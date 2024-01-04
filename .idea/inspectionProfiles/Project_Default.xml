@@ -1,0 +1,17 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="customers.models.tokens.TwitterToken.objects" />
+          <option value="yo_instagram.models.InstagramToken.objects" />
+          <option value="yo_instagram.models.InstagramToken.id" />
+          <option value="customers.models.initial_models.Customer.id" />
+          <option value="customers.models.social_media_profile.SocialMediaProfile.objects" />
+          <option value="yo_instagram.models.InstagramDownloadedURL.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
