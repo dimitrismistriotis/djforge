@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#   ____
+#  / ___|___  _ __ ___  _ __  _ __ ___  ___ ___  ___  _ __
+# | |   / _ \| '_ ` _ \| '_ \| '__/ _ \/ __/ __|/ _ \| '__|
+# | |__| (_) | | | | | | |_) | | |  __/\__ \__ \ (_) | |
+#  \____\___/|_| |_| |_| .__/|_|  \___||___/___/\___/|_|
+#                      |_|
+#
+# Compressor Configuration
+#
+COMPRESS_ROOT = BASE_DIR / 'static'
+
+COMPRESS_ENABLED = True
+
+STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
