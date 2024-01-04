@@ -21,3 +21,17 @@ create_poetry_environment:
 # MISSING INSTALL node
 # MISSING INSTALL npm
 # MISSING INSTALL npx
+
+#
+# Day to day commands
+#
+
+.PHONY: generate_output_css
+generate_output_css:
+	@echo "Generating output.css..."
+	npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
+
+.PHONY: django_runserver
+django_runserver:
+	@echo "Running Django server..."
+	poetry run python manage.py runserver
