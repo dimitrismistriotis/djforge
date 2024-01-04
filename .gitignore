@@ -164,3 +164,4 @@ cython_debug/
 # For Tailwind and other CSS frameworks
 #
 node_modules/
+static/CACHE/
