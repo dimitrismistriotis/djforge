@@ -17,3 +17,7 @@ install:
 create_poetry_environment:
 	@echo "Creating poetry environment..."
 	poetry env use python3.12
+
+# MISSING INSTALL node
+# MISSING INSTALL npm
+# MISSING INSTALL npx
