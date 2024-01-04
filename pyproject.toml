@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "djforge"
+version = "0.1.0"
+description = "Bootstrap and Grow your SaaS with Django (edi"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
