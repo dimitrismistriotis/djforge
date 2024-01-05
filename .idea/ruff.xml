@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RuffConfigService">
+    <option name="globalRuffLspExecutablePath" value="$PROJECT_DIR$/../../../linuxbrew/.linuxbrew/bin/ruff" />
+  </component>
+</project>
