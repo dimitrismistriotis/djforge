@@ -14,6 +14,14 @@ django = "^5.0.1"
 django-compressor = "^4.4"
 
 
+[tool.poetry.group.dev.dependencies]
+#
+# https://github.com/astral-sh/ruff
+# An extremely fast Python linter and code formatter, written in Rust.
+# MIT license
+#
+ruff = "^0.1.11"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
