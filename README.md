@@ -6,14 +6,14 @@
 
 [The Ruff Formatter](https://docs.astral.sh/ruff/)
 
-### PyCharm
+### Editors
 
-We use the community edition of [PyCharm](https://www.jetbrains.com/pycharm/).
+We use the community edition of [PyCharm](https://www.jetbrains.com/pycharm/) and [VS Code](https://code.visualstudio.com/).
 
-Settings are included and stored in the `.idea` folder. You might want to change them
+Settings are included and stored in the `.idea` and `.vscode` folders respectively. You might want to change them
 or completely remove them from the project based on which IDE/editor you use and how.
 After some deliberation, we decided to include them in order to make development faster
-for those who use or will use PyCharm.
+for those who use or will use either of these editors.
 
 ## Dependencies
 
