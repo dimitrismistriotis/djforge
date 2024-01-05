@@ -2,10 +2,10 @@
 
 This to be released as a blog post/content. Dropping it here for now.
 
-We are certainly in the dawn of a new era in terms of entrepreneurship and creativity.
+We are certainly at the dawn of a new era in terms of entrepreneurship and creativity.
 On the one hand, we have new technologies, especially in the field of AI,
 many of which release new products every day. On the other hand, we have had a wave
-of layoffs in the technology field, which means that there are many people able and
+of lay-offs in the technology field, which means that there are many people able and
 willing to make something new as a result of this. That is, they do not have a job and
 they want to try something new.
 
@@ -14,7 +14,7 @@ but also different frameworks in each programming language, which help someone t
 a new product/solution/SaaS/company to try an idea in weeks, if not in days.
 
 When starting a new project, many of us do the same steps over and over again,
-especially if this project starts from scratch, such as connecting our favorite
+especially if this project starts from scratch, such as connecting our favourite
 database, a linter or some other tool that contains the code, installing a testing
 library, things that usually take up to one or two weeks, something that is negligible
 if we work on this program for years or months, but it is something very proportionally
@@ -36,11 +36,11 @@ That is, in the second project, you do not need to learn anything because you ha
 already learned.
 
 Speaking specifically about DJ Django, the question is, why Python and why Django,
-when a large part of the industry is testing ideas in NEXTJS and React?
+when a large part of the industry is testing ideas in NEXT.js and React?
 
 Let's first answer about Python. Python is the language of data science and AI.
 Therefore, there are many things (libraries, available code, solutions) that one would
-like to try and they have something ready made in Python.
+like to try, and they have something ready-made in Python.
 So, if you start with Next.js, for example, you would have to somehow connect with
 this library.
 
@@ -49,14 +49,14 @@ programmers learn, but also in other fields such as economists, data scientists,
 analysts, etc. There are many young people who know Python first and would like to try
 building something.
 
-Then lets talk about Django. Here is the thing: because it is a framework which
+Then let's talk about Django. Here is the thing: because it is a framework which
 follows the so-called "Batteries Included" approach, one can start very quickly and
 iterate very quickly. A criticism that is exercised in this is that, in contrast to
 Flask and FastAPI, it is not so easy let's say to integrate with React/Vue or other
 modern JavaScript Frameworks. 
-Nn the first steps of developing an solution this might be an advantage, because
+In the first steps of developing a solution, this might be an advantage, because
 one can get to a solution way faster as all parts of the solution are in one codebase,
-with the programmer(s) involved able to concentrate on fewer fronts. If you a modern
+with the programmer(s) involved able to concentrate on fewer fronts. If you have a modern
 JavaScript framework is to be used, it can be done later, while we are considering
 supplying a solution for this as well in the future.
 
