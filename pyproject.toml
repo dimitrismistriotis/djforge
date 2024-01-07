@@ -71,6 +71,8 @@ commitizen = "^3.13.0"
 #
 django-livereload-server = "^0.5.1"
 
+pre-commit = "^3.6.0"
+
 #
 # End of DJForge development dependencies, add yours below
 #
