@@ -27,11 +27,16 @@ or completely remove them from the project based on which IDE/editor you use and
 After some deliberation, we decided to include them in order to make development faster
 for those who use or will use either of these editors.
 
+### Pre-commit
+
+We use [pre-commit](https://pre-commit.com/) to run some checks before committing. Install it with `poetry run install pre-commit`.
+
 ## Dependencies
 
 Using Python 3.12 and higher.
 
 Poetry is used for dependency management. Install it with `pip install poetry`.
+<<<<<<< HEAD
 
 ## Postgres
 
@@ -63,3 +68,7 @@ code, makes it easier to develop CSS + HTML changes
 ```shell
 make livereload
 ```
+||||||| parent of 716346c (docs(README): documentation to install pre-commit)
+
+=======
+>>>>>>> 716346c (docs(README): documentation to install pre-commit)
