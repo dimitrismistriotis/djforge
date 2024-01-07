@@ -6,7 +6,13 @@ help:
 	@echo "Targets:"
 	@echo "  help - Show this help"
 	@echo "  install - Install packages"
+	@echo "  install_poetry - Install poetry"
 	@echo "  create_poetry_environment - Create poetry environment"
+
+.PHONY: install_poetry
+install_poetry:
+	@echo "Installing poetry (source: https://python-poetry.org/docs/)..."
+	curl -sSL https://install.python-poetry.org | python3 -
 
 .PHONY: install
 install:
