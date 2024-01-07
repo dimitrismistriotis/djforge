@@ -21,34 +21,8 @@ django-compressor = "^4.4"
 # MIT license
 #
 ruff = "^0.1.11"
-#
-# The pytest framework makes it easy to write small tests,
-# yet scales to support complex functional testing for applications and libraries.
-# https://github.com/pytest-dev/pytest
-# MIT license
-#
-pytest = "^7.4.4"
-#
-# A plugin for pytest that provides a set of useful tools
-# for testing Django applications and projects.
-# https://pytest-django.readthedocs.io/en/latest/
-# BSD (3-clause) license
-#
-pytest-django = "^4.7.0"
-
-#
-# End of DJForge dependencies, add yours below
-#
+commitizen = "^3.13.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "djforge.settings"
-addopts = [
-    "--capture=no",
-    "--reuse-db",
-    "--no-migrations",
-    "--fail-on-template-vars"
-    ]
