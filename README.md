@@ -6,6 +6,10 @@
 
 [The Ruff Formatter](https://docs.astral.sh/ruff/)
 
+[FavIcons](https://www.favicon-generator.org/)
+
+Can use this one to generate specifics for your project
+
 ### Editors
 
 We use the community edition of [PyCharm](https://www.jetbrains.com/pycharm/) and [VS Code](https://code.visualstudio.com/).
@@ -20,4 +24,3 @@ for those who use or will use either of these editors.
 Using Python 3.12 and higher.
 
 Poetry is used for dependency management. Install it with `pip install poetry`.
-
