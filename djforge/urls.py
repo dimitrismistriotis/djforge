@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
+from dj_favicons.views import favicon
 from .views import index
 
 urlpatterns = [
+    path("favicon.ico", favicon, name="favicon"),
     path("admin/", admin.site.urls),
     path("", index, name="index"),
 ]
