@@ -9,6 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Django + Tailwind CSS + Flowbite</title>
 
+        {% include "dj_favicons/favicons_block_for_head.html" %}
+
         {% compress css %}
             <link rel="stylesheet" href="{% static 'src/output.css' %}">
         {% endcompress %}
