@@ -37,6 +37,11 @@ generate_output_css:
 	@echo "Generating output.css..."
 	npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
 
+.PHONY: test
+test:
+	@echo "Running tests..."
+	poetry run pytest
+
 .PHONY: django_runserver
 django_runserver:
 	@echo "Running Django server..."
