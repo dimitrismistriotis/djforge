@@ -21,6 +21,17 @@ django-compressor = "^4.4"
 # MIT license
 #
 ruff = "^0.1.11"
+#
+# The pytest framework makes it easy to write small tests,
+# yet scales to support complex functional testing for applications and libraries.
+# https://github.com/pytest-dev/pytest
+# MIT license
+#
+pytest = "^7.4.4"
+
+#
+# End of DJForge dependencies, add yours below
+#
 
 [build-system]
 requires = ["poetry-core"]
