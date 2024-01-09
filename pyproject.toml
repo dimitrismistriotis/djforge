@@ -21,6 +21,11 @@ django-compressor = "^4.4"
 # MIT license
 #
 ruff = "^0.1.11"
+#
+# Commitizen is release management tool designed for teams.
+# https://commitizen-tools.github.io/commitizen/
+# MIT license
+#
 commitizen = "^3.13.0"
 
 [build-system]
