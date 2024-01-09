@@ -43,3 +43,12 @@ pytest-django = "^4.7.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "djforge.settings"
+addopts = [
+    "--capture=no",
+    "--reuse-db",
+    "--no-migrations",
+    "--fail-on-template-vars"
+    ]
