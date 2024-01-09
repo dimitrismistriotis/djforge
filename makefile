@@ -37,8 +37,8 @@ generate_output_css:
 	@echo "Generating output.css..."
 	npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
 
-.PHONY: run_tests
-run_tests:
+.PHONY: test
+test:
 	@echo "Running tests..."
 	poetry run pytest
 
