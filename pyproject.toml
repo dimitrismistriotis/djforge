@@ -28,6 +28,13 @@ ruff = "^0.1.11"
 # MIT license
 #
 pytest = "^7.4.4"
+#
+# A plugin for pytest that provides a set of useful tools
+# for testing Django applications and projects.
+# https://pytest-django.readthedocs.io/en/latest/
+# BSD (3-clause) license
+#
+pytest-django = "^4.7.0"
 
 #
 # End of DJForge dependencies, add yours below
