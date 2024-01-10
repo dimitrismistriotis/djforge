@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "compressor",
     "dj_favicons",
+    "dj_landing_page",
 ]
 
 MIDDLEWARE = [

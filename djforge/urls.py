@@ -18,10 +18,10 @@ from django.contrib import admin
 from django.urls import path
 
 from dj_favicons.views import favicon
-from .views import index
+from dj_landing_page.views import index_page
 
 urlpatterns = [
     path("favicon.ico", favicon, name="favicon"),
     path("admin/", admin.site.urls),
-    path("", index, name="index"),
+    path("", index_page, name="index"),
 ]
