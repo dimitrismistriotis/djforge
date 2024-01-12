@@ -10,3 +10,9 @@ class TestFaviconViews:
         response = client.get("/favicon.ico")
 
         assert response.status_code == 200
+
+    def test_manifest_dot_json(self, client: Client) -> None:
+        """Test the manifest.json view."""
+        response = client.get("/manifest.json")
+
+        assert response.status_code == 200

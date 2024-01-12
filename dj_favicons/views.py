@@ -2,8 +2,9 @@
 from pathlib import Path
 
 from django.http import HttpRequest
+from django.http import HttpResponse
 from django.http import FileResponse
-# from django.shortcuts import render
+from django.shortcuts import render
 
 _FAVICON_LOCATION = Path(__file__).parent / "static" / "dj_favicons" / "favicon.ico"
 
@@ -14,3 +15,8 @@ def favicon(_request: HttpRequest) -> FileResponse:
     Follows approach discussed here: https://stackoverflow.com/a/65990187/1622
     """
     return FileResponse(_FAVICON_LOCATION.open("rb"))
+
+
+def manifest_dot_json(request: HttpRequest) -> HttpResponse:
+    """Return manifest.json file pointing to proper icon locations"""
+    return render(request, "dj_favicons/manifest.json")
