@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+
+{% block content %}
+    {% include "dj_landing_page/partials/header.html" %}
+
+    {% include "dj_landing_page/partials/hero_block.html" %}
+
+    {% include "dj_landing_page/partials/icon_row_block.html" %}
+
+    {% comment %}
+        Commenting out initial theme's page sections.
+        Uncomment as more functionality is being added.
+        Use all to see which ones you want to use on your implementation.
+
+        {% include "dj_landing_page/partials/features_block.html" %}
+
+        {% include "dj_landing_page/partials/used_by_block.html" %}
+    {% endcomment %}
+
+    {% include "dj_landing_page/partials/customer_quotes.html" %}
+
+    {% comment %}
+        {% include "dj_landing_page/partials/pricing_card_block.html" %}
+
+        {% include "dj_landing_page/partials/faq_block.html" %}
+
+        {% include "dj_landing_page/partials/start_trial_cta_block.html" %}
+
+    {% endcomment %}
+
+    {% include "dj_landing_page/partials/footer_block.html" %}
+{% endblock content %}

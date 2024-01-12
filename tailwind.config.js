@@ -2,6 +2,7 @@
 module.exports = {
     content: [
       './templates/**/*.html',
+      '*/templates/**/*.html',  // For Django templates
       './node_modules/flowbite/**/*.js'
   ],
   theme: {
@@ -11,4 +12,3 @@ module.exports = {
     require('flowbite/plugin')
   ]
 }
-

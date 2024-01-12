@@ -10,3 +10,12 @@ Chose a generic letter, "D" for "Django" and "DJ Forge" which would not be evasi
 a new project. Once you have decided on your logo you can create new icons using
 a tool like the above and then replace the ones in the `dj_favicons/static/dj_favicons`
 folder.
+
+## Landing Page
+
+Landing page is stored in the `dj_landing_page` app. It is a simple HTML page.
+You can either edit it inline which might cause issues with feature updates or
+leave it as it is, copy the directory to another one, then swap it on `INSTALLED_APPS`
+within `settings.py` and edit `urls.py` to point to the new location.
+
+This is a pattern to be followed on each "dj_" prefixed app.

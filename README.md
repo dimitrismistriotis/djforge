@@ -8,6 +8,8 @@
 
 [FavIcons](https://www.favicon-generator.org/)
 
+[Landwind](https://github.com/themesberg/landwind) for the landing page
+
 Can use this one to generate specifics for your project
 
 ### Editors
