@@ -19,4 +19,4 @@ def favicon(_request: HttpRequest) -> FileResponse:
 
 def manifest_dot_json(request: HttpRequest) -> HttpResponse:
     """Return manifest.json file pointing to proper icon locations"""
-    return render(request, "dj_favicons/manifest.json")
+    return render(request, "dj_favicons/manifest.json", content_type="application/json")
