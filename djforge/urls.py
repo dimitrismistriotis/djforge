@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path
 
 from dj_favicons.views import favicon
+from dj_favicons.views import manifest_dot_json
 from dj_landing_page.views import index_page
 
 urlpatterns = [
     path("favicon.ico", favicon, name="favicon"),
+    path("manifest.json", manifest_dot_json, name="manifest_dot_json"),
     path("admin/", admin.site.urls),
     path("", index_page, name="index"),
 ]
