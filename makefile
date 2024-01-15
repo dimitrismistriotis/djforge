@@ -42,6 +42,16 @@ test:
 	@echo "Running tests..."
 	poetry run pytest
 
+.PHONY: make_migrations
+make_migrations:
+	@echo "Making migrations..."
+	poetry run python manage.py makemigrations
+
+.PHONY: migrate
+migrate:
+	@echo "Running migrations..."
+	poetry run python manage.py migrate
+
 .PHONY: django_runserver
 django_runserver:
 	@echo "Running Django server..."
