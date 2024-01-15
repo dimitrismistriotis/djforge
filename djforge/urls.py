@@ -27,5 +27,9 @@ urlpatterns = [
     path("manifest.json", manifest_dot_json, name="manifest_dot_json"),
     path("admin/", admin.site.urls),
     path("", index_page, name="index"),
-    path("register_interest/", include("dj_register_interest.urls")),
+    path(
+        "register_interest",
+        include("dj_register_interest.urls"),
+        name="dj_register_interest",
+    ),
 ]
