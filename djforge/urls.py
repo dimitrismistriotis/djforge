@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.urls import include
 from django.urls import path
 
 from dj_favicons.views import favicon
@@ -26,4 +27,5 @@ urlpatterns = [
     path("manifest.json", manifest_dot_json, name="manifest_dot_json"),
     path("admin/", admin.site.urls),
     path("", index_page, name="index"),
+    path("register_interest/", include("dj_register_interest.urls")),
 ]
