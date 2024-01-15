@@ -55,6 +55,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+#
+# Conditionally add livereload to the mix if DEBUG is True
+#
+if DEBUG:
+    INSTALLED_APPS.append("livereload")
+    MIDDLEWARE.append("livereload.middleware.LiveReloadScript")
+
+
 ROOT_URLCONF = "djforge.urls"
 
 TEMPLATES = [

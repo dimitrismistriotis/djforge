@@ -46,6 +46,14 @@ pytest-django = "^4.7.0"
 # MIT license
 #
 commitizen = "^3.13.0"
+#
+# This django app adds a management command that starts a livereload server watching
+# all your static files and templates as well as a custom runserver command that issues
+# livereload requests when the development server is ready after a restart.
+# https://github.com/tjwalch/django-livereload-server
+# BSD-3-Clause license
+#
+django-livereload-server = "^0.5.1"
 
 #
 # End of DJForge dependencies, add yours below

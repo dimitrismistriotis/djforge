@@ -56,3 +56,8 @@ migrate:
 django_runserver:
 	@echo "Running Django server..."
 	poetry run python manage.py runserver
+
+.PHONY: livereload
+livereload:
+	@echo "Running livereload..."
+	poetry run python manage.py livereload
