@@ -11,7 +11,7 @@ class RegisterInterestView(View):
     """View for registering interest in the project."""
 
     form_class = InterestForm
-    template_name = "register_interest.html"
+    template_name = "dj_register_interest/register_interest.html"
 
     def get(self, request, *args, **kwargs) -> HttpResponse:
         """Get request for the view."""
