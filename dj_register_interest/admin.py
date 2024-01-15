@@ -1,4 +1,6 @@
 """Admin file for dj_register_interest app."""
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from .models import Interest
+
+admin.register(Interest)
