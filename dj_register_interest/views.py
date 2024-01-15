@@ -1,6 +1,7 @@
 """Views for dj_register_interest app."""
 from django.views import View
-from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
@@ -23,6 +24,9 @@ class RegisterInterestView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("success_url")  # Redirect to a success page
+            messages.success(request, "Thank you for registering your interest!")
+
+            # Redirect to same page as a "success" page:
+            return redirect(reverse("dj_register_interest:register_interest"))
 
         return render(request, self.template_name, {"form": form})
