@@ -1,5 +1,8 @@
 # Contributing
 
+This is specific for the base project, **DJ Forge**. You can use any part
+of it on your derived project, or change it accordingly.
+
 ## Commit messages
 
 We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
