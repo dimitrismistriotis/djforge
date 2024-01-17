@@ -1,13 +1,17 @@
 SHELL := /bin/bash
 
+.SILENT: help
+
+.PHONY: default
+default: help
+
+# The following fgrep will dynamically print all targets
+# that have a comment beginning with '##' including help.
 .PHONY: help
-help:
-	@echo "Usage: make [target]"
-	@echo "Targets:"
-	@echo "  help - Show this help"
-	@echo "  install - Install packages"
-	@echo "  install_poetry - Install poetry"
-	@echo "  create_poetry_environment - Create poetry environment"
+help:				## Show help message.
+	echo "Usage: make [target]"
+	echo "Targets:"
+	fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 .PHONY: install_poetry
 install_poetry:
@@ -15,12 +19,12 @@ install_poetry:
 	curl -sSL https://install.python-poetry.org | python3 -
 
 .PHONY: install
-install:
+install:			## Install packages
 	@echo "Installing packages..."
 	poetry install
 
 .PHONY: create_poetry_environment
-create_poetry_environment:
+create_poetry_environment:	## Create poetry environment
 	@echo "Creating poetry environment..."
 	poetry env use python3.12
 
@@ -33,16 +37,33 @@ create_poetry_environment:
 #
 
 .PHONY: generate_output_css
-generate_output_css:
+generate_output_css:  		## Generate Output CSS
 	@echo "Generating output.css..."
 	npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
 
 .PHONY: test
-test:
+test:				## Run tests
 	@echo "Running tests..."
 	poetry run pytest
 
+.PHONY: make_migrations
+make_migrations:		## Make migrations
+	@echo "Making migrations..."
+	poetry run python manage.py makemigrations
+
+.PHONY: migrate
+migrate:			## Run migrations
+	@echo "Running migrations..."
+	poetry run python manage.py migrate
+
 .PHONY: django_runserver
-django_runserver:
+django_runserver: 		## Run Django server
 	@echo "Running Django server..."
 	poetry run python manage.py runserver
+
+# LiveReload is a tool to automatically refresh your browser when files change.
+# See: pyproject.toml
+.PHONY: livereload
+livereload: 			## Run livereload
+	@echo "Running livereload..."
+	poetry run python manage.py livereload

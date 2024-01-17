@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     "compressor",
     "dj_favicons",
     "dj_landing_page",
+    # Has one form to capture email address and handles so that people
+    # can register interest in the project. Can be used to capture initial attention
+    # for experiments to see if there is enough momentum to pursue.
+    "dj_register_interest",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +54,14 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+#
+# Conditionally add livereload to the mix if DEBUG is True
+#
+if DEBUG:
+    INSTALLED_APPS.append("livereload")
+    MIDDLEWARE.append("livereload.middleware.LiveReloadScript")
+
 
 ROOT_URLCONF = "djforge.urls"
 
