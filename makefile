@@ -77,7 +77,8 @@ livereload: 			## Run livereload
 # Docker related commands
 #
 .PHONY: docker_compose_up
-docker_compose_up:		## Run docker compose up running needed containers in the foreground
+.PHONY: up
+docker_compose_up up:		## Run docker compose up running needed containers in the foreground
 	docker compose up
 
 .PHONY: docker_compose_pull
