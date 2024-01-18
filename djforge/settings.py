@@ -96,16 +96,36 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "djforge.wsgi.application"
 
-
-# Database
+#
+#  ___       _        _
+# |   \ __ _| |_ __ _| |__  __ _ ___ ___
+# | |) / _` |  _/ _` | '_ \/ _` (_-</ -_)
+# |___/\__,_|\__\__,_|_.__/\__,_/__/\___|
+#
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+#
+# Used default database configuration from docker-compose.yml if DATABASE_URL is not set
+#
+postgres_config_common = {
+    "ENGINE": "django.db.backends.postgresql",
+    "CONN_HEALTH_CHECKS": True,
+    "ATOMIC_REQUESTS": True,
 }
+
+if env.str("DATABASE_URL", ""):
+    # print("Using DATABASE_URL")
+    default_database = env.db() | postgres_config_common
+else:
+    # Defaults aligned with docker-compose.yml
+    default_database = {
+        "HOST": "localhost",
+        "USER": "dj_forge_user",
+        "NAME": "dj_forge_main_database",
+        "PASSWORD": "dj_forge_password",
+        "PORT": 5432,
+    } | postgres_config_common
+
+DATABASES = {"default": default_database}
 
 
 # Password validation

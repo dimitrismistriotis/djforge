@@ -10,9 +10,9 @@ services:
   dj_forge_postgresql:
     image: postgres:latest
     environment:
-      - POSTGRES_PASSWORD=dj_forge_user_password
+      - POSTGRES_PASSWORD=dj_forge_password
       - POSTGRES_USER=dj_forge_user
-      - POSTGRES_DB=dj_forge_main_app_database
+      - POSTGRES_DB=dj_forge_main_database
     healthcheck:
       test:
         [
