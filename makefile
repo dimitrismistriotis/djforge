@@ -67,3 +67,14 @@ django_runserver: 		## Run Django server
 livereload: 			## Run livereload
 	@echo "Running livereload..."
 	poetry run python manage.py livereload
+
+#
+# Docker related commands
+#
+.PHONY: docker_compose_up
+docker_compose_up:		## Run docker compose up running needed containers in the foreground
+	docker compose up
+
+.PHONY: docker_compose_pull
+docker_compose_pull:		## Pull docker latest versions of images
+	docker compose pull
