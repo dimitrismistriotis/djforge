@@ -3,6 +3,18 @@
 This is the setup guide on what to do after installing the project. It should be
 as part of documentation, dropping it here in order not to create a dependency.
 
+## Environment
+
+Copy the `.env.dist` to `.env` and edit it accordingly if needed. Django Settings
+provide defaults related to Docker Compose setup. Ideally because we wanted to shield
+production environments from malfunctioning, `DEBUG` value is set to `False` by default.
+For this the least necessary action is to have a oneline `.env` file with `DEBUG=True`.
+You can do that with:
+
+```shell
+make create_dot_env_file
+```
+
 ## Favicons
 
 Used [FavIcons](https://www.favicon-generator.org/) to generate the favicons.

@@ -28,6 +28,11 @@ create_poetry_environment:	## Create poetry environment
 	@echo "Creating poetry environment..."
 	poetry env use python3.12
 
+.PHONY: create_dot_env_file
+create_dot_env_file:		## Create .env file
+	@echo "Creating .env file..."
+	echo "DEBUG=True" > .env
+
 # MISSING INSTALL node
 # MISSING INSTALL npm
 # MISSING INSTALL npx
