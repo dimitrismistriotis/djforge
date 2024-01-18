@@ -33,7 +33,11 @@ SECRET_KEY = "django-insecure-e**-$_v&pmln#j*$_$_$nljc!+hxlhlxla3_l5f*4qbdw5s0%n
 # False if not in os.environ because of casting above
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+#
+# Allow from everywhere if DEBUG is True as in many cases the application will run
+# in a containerized environment which will take care of shielding host access.
+#
+ALLOWED_HOSTS = [] if DEBUG else ["*"]
 
 
 # Application definition
