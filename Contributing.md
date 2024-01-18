@@ -30,12 +30,12 @@ UI endpoints and resources handling business logic.
 A short edited article generated initially from ChatGPT follows
 to have as a quick reference.
 
+#### Detailing Handler Pattern
+
 The handler pattern in Python is a design approach where a handler class acts as an
 intermediary between different parts of the application. This pattern is particularly
 useful for separating concerns, managing complexity, and improving code
 maintainability. Let's break down how it works:
-
-#### Detailing Handler Pattern
 
 **Core Components of the Handler Pattern**
 
