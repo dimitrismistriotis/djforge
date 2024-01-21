@@ -52,6 +52,11 @@ INSTALLED_APPS = [
     "compressor",
     "dj_favicons",
     "dj_landing_page",
+    # Content app to host some static content that the site might need.
+    # There are some Django CMS packages with proper editors, decided to
+    # use this as a first "simple" option, and perhaps integrate a CMS
+    # later on.
+    "dj_content",
     # Has one form to capture email address and handles so that people
     # can register interest in the project. Can be used to capture initial attention
     # for experiments to see if there is enough momentum to pursue.
