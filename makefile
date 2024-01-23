@@ -28,6 +28,11 @@ create_poetry_environment:	## Create poetry environment
 	@echo "Creating poetry environment..."
 	poetry env use python3.12
 
+.PHONY: create_dot_env_file
+create_dot_env_file:		## Create .env file
+	@echo "Creating .env file..."
+	echo "DEBUG=True" > .env
+
 # MISSING INSTALL node
 # MISSING INSTALL npm
 # MISSING INSTALL npx
@@ -67,3 +72,15 @@ django_runserver: 		## Run Django server
 livereload: 			## Run livereload
 	@echo "Running livereload..."
 	poetry run python manage.py livereload
+
+#
+# Docker related commands
+#
+.PHONY: docker_compose_up
+.PHONY: up
+docker_compose_up up:		## Run docker compose up running needed containers in the foreground
+	docker compose up
+
+.PHONY: docker_compose_pull
+docker_compose_pull:		## Pull docker latest versions of images
+	docker compose pull

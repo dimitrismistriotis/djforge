@@ -11,9 +11,18 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 from pathlib import Path
 
+import environ
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Take environment variables from .env file, if present
+environ.Env.read_env(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -21,10 +30,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-e**-$_v&pmln#j*$_$_$nljc!+hxlhlxla3_l5f*4qbdw5s0%n"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# False if not in os.environ because of casting above
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+#
+# Allow from everywhere if DEBUG is True as in many cases the application will run
+# in a containerized environment which will take care of shielding host access.
+#
+ALLOWED_HOSTS = [] if DEBUG else ["*"]
 
 
 # Application definition
@@ -83,16 +96,36 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "djforge.wsgi.application"
 
-
-# Database
+#
+#  ___       _        _
+# |   \ __ _| |_ __ _| |__  __ _ ___ ___
+# | |) / _` |  _/ _` | '_ \/ _` (_-</ -_)
+# |___/\__,_|\__\__,_|_.__/\__,_/__/\___|
+#
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+#
+# Used default database configuration from docker-compose.yml if DATABASE_URL is not set
+#
+postgres_config_common = {
+    "ENGINE": "django.db.backends.postgresql",
+    "CONN_HEALTH_CHECKS": True,
+    "ATOMIC_REQUESTS": True,
 }
+
+if env.str("DATABASE_URL", ""):
+    # print("Using DATABASE_URL")
+    default_database = env.db() | postgres_config_common
+else:
+    # Defaults aligned with docker-compose.yml
+    default_database = {
+        "HOST": "localhost",
+        "USER": "dj_forge_user",
+        "NAME": "dj_forge_main_database",
+        "PASSWORD": "dj_forge_password",
+        "PORT": 5432,
+    } | postgres_config_common
+
+DATABASES = {"default": default_database}
 
 
 # Password validation

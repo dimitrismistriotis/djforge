@@ -2,6 +2,8 @@
 
 ## References
 
+[Postgres](https://www.postgresql.org/)
+
 [Tailwind CSS Django - Flowbite](https://flowbite.com/docs/getting-started/django/)
 
 [The Ruff Formatter](https://docs.astral.sh/ruff/)
@@ -29,11 +31,33 @@ Using Python 3.12 and higher.
 
 Poetry is used for dependency management. Install it with `pip install poetry`.
 
+## Postgres
+
+We decided to use Postgres as the database for this project as it is the most popular
+RDBMS for Django projects, also one of the most popular RDBMS in general.
+
+For most applications a RDBMS is a good-enough choice, which makes it a good default
+to kickstart your project.
+
 ## Day to Day
+
+## Run Database and related services with Docker Compose
+
+**Purpose**: To have a database and related services running in the background
+
+**How**: 
+
+```shell
+make up
+```
 
 ### Live Reload
 
 **Purpose**: To have the browser reload automatically when a change is made to the
 code, makes it easier to develop CSS + HTML changes
 
-**How**: `make livereload`
+**How**:
+
+```shell
+make livereload
+```
