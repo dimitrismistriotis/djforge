@@ -23,6 +23,10 @@ install:			## Install packages
 	@echo "Installing packages..."
 	poetry install
 
+install_npm:			## Install npm packages
+	@echo "Installing npm packages..."
+	npm install
+
 .PHONY: create_poetry_environment
 create_poetry_environment:	## Create poetry environment
 	@echo "Creating poetry environment..."

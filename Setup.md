@@ -15,6 +15,10 @@ You can do that with:
 make create_dot_env_file
 ```
 
+## Install npm Packages
+
+Run `make install_npm` to install npm packages for CSS generation.
+
 ## Favicons
 
 Used [FavIcons](https://www.favicon-generator.org/) to generate the favicons.
@@ -30,4 +34,4 @@ You can either edit it inline which might cause issues with feature updates or
 leave it as it is, copy the directory to another one, then swap it on `INSTALLED_APPS`
 within `settings.py` and edit `urls.py` to point to the new location.
 
-This is a pattern to be followed on each "dj_" prefixed app.
+This is a pattern to be followed on each "dj\_" prefixed app.

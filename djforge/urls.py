@@ -28,6 +28,11 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", index_page, name="index"),
     path(
+        "pages/",
+        include("dj_content.urls"),
+        name="dj_content",
+    ),
+    path(
         "register_interest",
         include("dj_register_interest.urls"),
         name="dj_register_interest",
