@@ -6,6 +6,8 @@
 
 [Tailwind CSS Django - Flowbite](https://flowbite.com/docs/getting-started/django/)
 
+[Flowbite](https://flowbite.com/docs/getting-started/introduction/)
+
 [The Ruff Formatter](https://docs.astral.sh/ruff/)
 
 [FavIcons](https://www.favicon-generator.org/)
