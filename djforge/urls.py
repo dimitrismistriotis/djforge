@@ -28,7 +28,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", index_page, name="index"),
     path(
-        "pages",
+        "pages/",
         include("dj_content.urls"),
         name="dj_content",
     ),
