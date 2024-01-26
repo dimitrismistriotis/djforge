@@ -15,6 +15,18 @@ You can do that with:
 make create_dot_env_file
 ```
 
+## Django Admin Access
+
+Create a superuser with:
+
+```shell
+poetry run python manage.py createsuperuser
+```
+
+If you do not want to use Django's Admin interface, you can
+remove the `django.contrib.admin` from the `INSTALLED_APPS` in `settings.py`
+and the `path('admin/', admin.site.urls),` from `djforge/djforge/urls.py`.
+
 ## Install npm Packages
 
 Run `make install_npm` to install npm packages for CSS generation.
