@@ -26,6 +26,12 @@ poetry run python manage.py createsuperuser
 If you do not want to use Django's Admin interface, you can
 remove the `django.contrib.admin` from the `INSTALLED_APPS` in `settings.py`.
 
+If you want to heavily rely on Django Admin, see
+[Awesome Django Admin](
+https://github.com/originalankur/awesome-django-admin?tab=readme-ov-file)
+for themes and other extensions. We can discuss incorporating some of these in this
+project.
+
 ## Install npm Packages
 
 Run `make install_npm` to install npm packages for CSS generation.
