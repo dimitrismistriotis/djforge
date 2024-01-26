@@ -24,8 +24,7 @@ poetry run python manage.py createsuperuser
 ```
 
 If you do not want to use Django's Admin interface, you can
-remove the `django.contrib.admin` from the `INSTALLED_APPS` in `settings.py`
-and the `path('admin/', admin.site.urls),` from `djforge/djforge/urls.py`.
+remove the `django.contrib.admin` from the `INSTALLED_APPS` in `settings.py`.
 
 ## Install npm Packages
 

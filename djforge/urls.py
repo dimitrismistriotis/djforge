@@ -39,6 +39,9 @@ urlpatterns = [
     ),
 ]
 
+#
+# Conditionally add admin to the mix if django.contrib.admin is in INSTALLED_APPS
+#
 if "django.contrib.admin" in INSTALLED_APPS:
     from django.contrib import admin
 
