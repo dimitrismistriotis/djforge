@@ -36,7 +36,6 @@ We use [pre-commit](https://pre-commit.com/) to run some checks before committin
 Using Python 3.12 and higher.
 
 Poetry is used for dependency management. Install it with `pip install poetry`.
-<<<<<<< HEAD
 
 ## Postgres
 
@@ -52,7 +51,7 @@ to kickstart your project.
 
 **Purpose**: To have a database and related services running in the background
 
-**How**: 
+**How**:
 
 ```shell
 make up
@@ -68,7 +67,3 @@ code, makes it easier to develop CSS + HTML changes
 ```shell
 make livereload
 ```
-||||||| parent of 716346c (docs(README): documentation to install pre-commit)
-
-=======
->>>>>>> 716346c (docs(README): documentation to install pre-commit)
