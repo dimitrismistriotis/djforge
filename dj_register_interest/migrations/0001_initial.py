@@ -4,20 +4,46 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Interest',
+            name="Interest",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(blank=True, max_length=100, verbose_name='(Optional) name of person registering interest')),
-                ('email', models.EmailField(max_length=254, verbose_name="Email address to use to communicate solution's availability to user")),
-                ('github_handle', models.CharField(blank=True, max_length=100, verbose_name='Github Handle in case solutions grants access a repository')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True,
+                        max_length=100,
+                        verbose_name="(Optional) name of person registering interest",
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        max_length=254,
+                        verbose_name="Email address to use to communicate solution's availability to user",
+                    ),
+                ),
+                (
+                    "github_handle",
+                    models.CharField(
+                        blank=True,
+                        max_length=100,
+                        verbose_name="Github Handle in case solutions grants access a repository",
+                    ),
+                ),
             ],
         ),
     ]

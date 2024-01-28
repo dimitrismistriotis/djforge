@@ -39,9 +39,9 @@ maintainability. Let's break down how it works:
 
 **Core Components of the Handler Pattern**
 
-- **Models**: Represent the data structure, usually mapping to database tables. 
+- **Models**: Represent the data structure, usually mapping to database tables.
 They encapsulate the data and its direct manipulation.
-- **APIs**: Provide an interface for external or internal clients to interact with the 
+- **APIs**: Provide an interface for external or internal clients to interact with the
 application's data and services.
 - **UI Code**: The front-end part of the application, which interacts with the user.
 - **Handler Class**: Sits in between these components, acting as a mediator or a
