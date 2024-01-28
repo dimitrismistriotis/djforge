@@ -18,6 +18,10 @@ install_poetry:
 	@echo "Installing poetry (source: https://python-poetry.org/docs/)..."
 	curl -sSL https://install.python-poetry.org | python3 -
 
+.PHONY: precommit_install
+precommit_install:
+	poetry run pre-commit install
+
 .PHONY: install
 install:			## Install packages
 	@echo "Installing packages..."

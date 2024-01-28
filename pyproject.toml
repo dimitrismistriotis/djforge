@@ -70,6 +70,12 @@ commitizen = "^3.13.0"
 # BSD-3-Clause license
 #
 django-livereload-server = "^0.5.1"
+#
+# A framework for managing and maintaining multi-language pre-commit hooks.
+# https://pre-commit.com/
+# MIT license
+#
+pre-commit = "^3.6.0"
 
 #
 # End of DJForge development dependencies, add yours below

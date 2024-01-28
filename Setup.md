@@ -15,6 +15,19 @@ You can do that with:
 make create_dot_env_file
 ```
 
+### Pre-commit
+
+We use [pre-commit](https://pre-commit.com/) to run some checks before committing.
+There are different suggestions on how to install it, see: <https://pre-commit.com/#install>.
+Seems that its authors would prefer it being installed externally from the Python
+environment in which case `brew install pre-commit` is suggested given that
+[Homebrew](https://brew.sh/) is available on your system.
+
+Then run `make precommit_install` to attach it to the current repository.
+
+Although we use it these checks for our code, it might not be necessary to use them
+in a derived project as with most things listed here.
+
 ## Django Admin Access
 
 Create a superuser with:
@@ -27,8 +40,7 @@ If you do not want to use Django's Admin interface, you can
 remove the `django.contrib.admin` from the `INSTALLED_APPS` in `settings.py`.
 
 If you want to heavily rely on Django Admin, see
-[Awesome Django Admin](
-https://github.com/originalankur/awesome-django-admin?tab=readme-ov-file)
+[Awesome Django Admin](https://github.com/originalankur/awesome-django-admin?tab=readme-ov-file)
 for themes and other extensions. We can discuss incorporating some of these in this
 project.
 

@@ -47,7 +47,7 @@ to kickstart your project.
 
 **Purpose**: To have a database and related services running in the background
 
-**How**: 
+**How**:
 
 ```shell
 make up
