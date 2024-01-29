@@ -19,7 +19,7 @@ install_poetry:
 	curl -sSL https://install.python-poetry.org | python3 -
 
 .PHONY: precommit_install
-precommit_install:
+precommit_install:		## Install pre-commit hooks
 	poetry run pre-commit install
 
 .PHONY: install

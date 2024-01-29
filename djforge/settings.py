@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "compressor",
+    "dj_theme",
     "dj_favicons",
     "dj_landing_page",
     # Content app to host some static content that the site might need.
