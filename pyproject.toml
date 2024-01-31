@@ -84,6 +84,13 @@ pre-commit = "^3.6.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+# https://docs.astral.sh/ruff/tutorial/#rule-selection
+[tool.ruff.lint]
+extend-select = [
+  "UP",  # pyupgrade: automatically upgrade syntax for newer versions of the language.
+  "D",   # pydocstyle: checking compliance with Python docstring conventions.
+]
+
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "djforge.settings"
 addopts = [
