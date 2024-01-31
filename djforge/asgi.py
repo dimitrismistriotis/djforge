@@ -1,5 +1,4 @@
-"""
-ASGI config for djforge project.
+"""ASGI config for djforge project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
