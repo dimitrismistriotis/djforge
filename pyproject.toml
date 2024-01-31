@@ -92,7 +92,12 @@ extend-exclude = ["dj_register_interest/migrations/0001_initial.py"]
 # `no-blank-line-before-class` (D211) are incompatible.
 #  Ignoring `one-blank-line-before-class`.
 # Enforcing `no-blank-line-before-class` which makes code more economical.
-extend-ignore = ["D203"]
+#
+# Similarly: warning: `multi-line-summary-first-line` (D212)
+# and `multi-line-summary-second-line` (D213) are incompatible.
+# Ignoring `multi-line-summary-second-line`.
+# With the same reasoning enforcing `multi-line-summary-first-line`.
+extend-ignore = ["D203", "D213"]
 
 [tool.ruff.extend-per-file-ignores]
 "**/migrations/*.py" = ["D100", "D101", "D104"]
