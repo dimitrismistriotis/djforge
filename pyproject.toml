@@ -84,6 +84,13 @@ pre-commit = "^3.6.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.ruff]
+extend-exclude = ["dj_register_interest/migrations/0001_initial.py"]
+
+[tool.ruff.extend-per-file-ignores]
+"**/migrations/*.py" = ["D100", "D101", "D104"]
+
+
 # https://docs.astral.sh/ruff/tutorial/#rule-selection
 [tool.ruff.lint]
 extend-select = [
