@@ -18,7 +18,7 @@ def favicon(_request: HttpRequest) -> FileResponse:
 
 
 def manifest_dot_json(request: HttpRequest) -> HttpResponse:
-    """Return manifest.json file pointing to proper icon locations
+    """Return manifest.json file pointing to proper icon locations.
 
     Reference: https://developer.mozilla.org/en-US/docs/Web/Manifest
     """

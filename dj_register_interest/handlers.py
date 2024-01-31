@@ -13,7 +13,7 @@ class RegisterInterestHandler:
     _logger = logging.getLogger(__name__)
 
     def __call__(self, form: InterestForm) -> bool:
-        """Entry point"""
+        """Entry point."""
         self._logger.info("Saving interest form data %s", form.data)
 
         if form.is_valid():

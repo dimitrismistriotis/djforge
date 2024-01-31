@@ -1,5 +1,4 @@
-"""
-WSGI config for djforge project.
+"""WSGI config for djforge project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
