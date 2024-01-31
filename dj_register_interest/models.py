@@ -23,9 +23,11 @@ class Interest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
+        """Str representation of Interest."""
         return f"Interest of {self.name} ({self.email}), Github: {self.github_handle}"
 
     def __repr__(self) -> str:
+        """Repr representation of Interest."""
         return (
             f"Interest(name={self.name}, "
             f"email={self.email}, github_handle={self.github_handle})"
