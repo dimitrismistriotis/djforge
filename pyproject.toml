@@ -84,9 +84,6 @@ pre-commit = "^3.6.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.ruff]
-extend-exclude = ["dj_register_interest/migrations/0001_initial.py"]
-
 # Ruff with current defaults generates the following warning:
 # warning: `one-blank-line-before-class` (D203) and
 # `no-blank-line-before-class` (D211) are incompatible.
