@@ -39,10 +39,12 @@ jobs:
           installer-parallel: true
       - name: Install dependencies
         run: make install
-      - name: Install additional dependencies
-        run: pip install pytest-md pytest-emoji
-      - uses: pavelzw/pytest-action@v2
-        with:
-          emoji: false
-          verbose: false
-          job-summary: true
+#      - name: Install additional dependencies
+#        run: pip install pytest-md pytest-emoji
+#      - uses: pavelzw/pytest-action@v2
+#        with:
+#          emoji: false
+#          verbose: false
+#          job-summary: true
+      - name: Run tests
+        run: make test
