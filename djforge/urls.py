@@ -15,6 +15,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 
+
 """
 from django.urls import include
 from django.urls import path
@@ -23,6 +24,7 @@ from dj_favicons.views import favicon
 from dj_favicons.views import manifest_dot_json
 from dj_landing_page.views import index_page
 
+from .settings import DEBUG
 from .settings import INSTALLED_APPS
 
 urlpatterns = [
@@ -49,4 +51,16 @@ if "django.contrib.admin" in INSTALLED_APPS:
 
     urlpatterns += [
         path("admin/", admin.site.urls),
+    ]
+
+#
+# Add Theme views conditionally in DEBUG mode
+#
+if DEBUG:
+    urlpatterns += [
+        path(
+            "theme/",
+            include("dj_theme.urls"),
+            name="dj_theme",
+        ),
     ]
