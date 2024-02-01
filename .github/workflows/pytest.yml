@@ -8,9 +8,12 @@ name: Run Python tests
 on: [push]
 
 jobs:
-  build:
+  test:
     name: Run tests
     runs-on: ubuntu-latest
+    env:
+      DEBUG: on
+      DJANGO_ENV: test
     strategy:
       matrix:
         #
