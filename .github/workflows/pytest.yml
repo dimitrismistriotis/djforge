@@ -1,6 +1,7 @@
 name: Run Python tests
 #
 # Sources:
+# - https://docs.github.com/en/actions/using-containerized-services/creating-postgresql-service-containers
 # - https://github.com/marketplace/actions/run-pytest
 # - https://github.com/marketplace/actions/install-poetry-action
 #
@@ -14,6 +15,27 @@ jobs:
     env:
       DEBUG: on
       DJANGO_ENV: test
+    services:
+      postgres:
+        image: postgres:latest
+        # service environment variables
+        # `POSTGRES_HOST` is `postgres`
+        env:
+          #
+          # Defaults from settings.py for when DATABASE_URL is not set.
+          #
+          POSTGRES_DB: "dj_forge_main_database"
+          POSTGRES_USER: "dj_forge_user"
+          POSTGRES_PASSWORD: "dj_forge_password"
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
     strategy:
       matrix:
         #
@@ -21,7 +43,6 @@ jobs:
         # Generally one version supported at a time.
         #
         python-version: ["3.12"]
-
     steps:
       - uses: szenius/set-timezone@v1.2
         with:
