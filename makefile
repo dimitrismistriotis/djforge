@@ -89,6 +89,6 @@ livereload: 			## Run livereload
 docker_compose_up up:		## Run docker compose up running needed containers in the foreground
 	docker compose up
 
-.PHONY: docker_compose_pull
-docker_compose_pull:		## Pull docker latest versions of images
+.PHONY: pull_docker_compose
+pull_docker_compose:		## Pull docker latest versions of images
 	docker compose pull
