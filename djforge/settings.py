@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import sys
 from pathlib import Path
 
 import environ
@@ -197,3 +198,47 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     "compressor.finders.CompressorFinder",
 )
+
+#  _                      _
+# | |    ___   __ _  __ _(_)_ __   __ _
+# | |   / _ \ / _` |/ _` | | '_ \ / _` |
+# | |__| (_) | (_| | (_| | | | | | (_| |
+# |_____\___/ \__, |\__, |_|_| |_|\__, |
+#             |___/ |___/         |___/
+#
+# Log to console in DEBUG mode
+# Reference:
+# - https://odwyer.software/blog/logging-to-standard-output-with-django
+#
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+        "simple": {
+            "format": "{name} at {asctime} ({levelname}) :: {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "verbose",
+        }
+    },
+    "loggers": {
+        # Too Verbose:
+        # "django": {
+        #     "handlers": ["console"],
+        #     "level": "DEBUG",
+        #     "propagate": True,
+        # },
+        "": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}
