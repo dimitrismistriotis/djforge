@@ -81,5 +81,3 @@ jobs:
           verbose: true
           job-summary: true
           custom-pytest: "poetry run pytest"
-#      - name: Run tests
-#        run: make test
