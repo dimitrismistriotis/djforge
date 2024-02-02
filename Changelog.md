@@ -22,3 +22,4 @@ For development:
 - Ruff
 - PyCharm settings
 - Pytest
+- Github Actions for Pytest
