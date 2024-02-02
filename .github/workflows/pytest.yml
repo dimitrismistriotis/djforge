@@ -65,6 +65,6 @@ jobs:
           emoji: false
           verbose: false
           job-summary: true
-          custom-pytest: "make test"
+          custom-pytest: "poetry run pytest"
 #      - name: Run tests
 #        run: make test
