@@ -80,6 +80,8 @@ pre-commit = "^3.6.0"
 #
 # End of DJForge development dependencies, add yours below
 #
+pytest-md = "^0.2.0"
+pytest-emoji = "^0.2.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
