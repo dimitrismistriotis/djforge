@@ -4,8 +4,8 @@ name: Run Python tests
 # - https://docs.github.com/en/actions/using-containerized-services/creating-postgresql-service-containers
 # - https://github.com/marketplace/actions/run-pytest
 # - https://github.com/marketplace/actions/install-poetry-action
+# - https://github.com/snok/install-poetry
 #
-
 on: [push]
 
 jobs:
@@ -52,7 +52,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Load cached Poetry installation
+        id: cached-poetry
+        uses: actions/cache@v3
+        with:
+          path: ~/.local  # the path depends on the OS
+          key: poetry-0  # increment to reset cache
       - name: Install Poetry
+        if: steps.cached-poetry.outputs.cache-hit != 'true'
         uses: snok/install-poetry@v1
         with:
           virtualenvs-create: true
