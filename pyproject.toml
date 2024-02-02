@@ -76,12 +76,24 @@ django-livereload-server = "^0.5.1"
 # MIT license
 #
 pre-commit = "^3.6.0"
+#
+# A pytest plugin that adds emojis to your test result report.
+# Used from Github Action for testing
+# https://pypi.org/project/pytest-emoji/
+# MIT license
+#
+pytest-emoji = "^0.2.0"
+#
+# Plugin for generating Markdown reports for pytest results
+# Used from Github Action for testing
+# https://github.com/hackebrot/pytest-md
+# MIT license
+#
+pytest-md = "^0.2.0"
 
 #
 # End of DJForge development dependencies, add yours below
 #
-pytest-md = "^0.2.0"
-pytest-emoji = "^0.2.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
