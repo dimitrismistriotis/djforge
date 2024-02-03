@@ -43,6 +43,10 @@ create_dot_env_file:		## Create .env file
 	@echo "Creating .env file..."
 	echo "DEBUG=True" > .env
 
+.PHONY: secret_key
+secret_key:
+	poetry run python manage.py generate_secret_key
+
 .PHONY: remove_containers_and_volumes
 remove_containers_and_volumes:	## Remove containers and volumes related to the project, useful when you want to restart from scratch
 	@echo "Removing containers..."
