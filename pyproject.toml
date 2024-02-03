@@ -34,6 +34,13 @@ psycopg = {extras = ["binary"], version = "^3.1.17"}
 # MIT license
 #
 django-allauth = "^0.60.1"
+#
+# A collection of custom extensions for the Django Framework
+# Using many of them in different parts of the application
+# https://django-extensions.readthedocs.io/en/latest/
+# MIT license
+#
+django-extensions = "^3.2.3"
 
 #
 # End of DJForge dependencies, add yours below
