@@ -15,6 +15,18 @@ You can do that with:
 make create_dot_env_file
 ```
 
+Command above populates the newly created `.env` with a new `SECRET_KEY`.
+Not needed that much for development, necessary in production, see sub-section below.
+
+### Production Environment
+
+You need to have a custom secret key stored in the `SECRET_KEY` variable. You can
+generate one with:
+
+```shell
+make secret_key
+```
+
 ## User Management
 
 After deliberation decided to use the [Substituting a custom User model](

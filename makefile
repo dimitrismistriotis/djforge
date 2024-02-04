@@ -47,7 +47,7 @@ create_poetry_environment:	## Create poetry environment
 create_dot_env_file:		## Create .env file
 	@echo "Creating .env file..."
 	echo "DEBUG=True" > .env
-	${GENERATE_SECRET_KEY}  | tail -n 1 | sed "s/^/SECRET+KEY=/"
+	${GENERATE_SECRET_KEY}  | tail -n 1 | poetry run python -c "print(f'SECRET_KEY=\"{input()}\"')" >> .env
 
 .PHONY: secret_key
 secret_key:
