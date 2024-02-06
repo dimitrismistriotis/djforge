@@ -31,6 +31,7 @@ urlpatterns = [
     path("favicon.ico", favicon, name="favicon"),
     path("manifest.json", manifest_dot_json, name="manifest_dot_json"),
     path("", index_page, name="index"),
+    path("accounts/", include("allauth.urls")),
     path(
         "pages/",
         include("dj_content.urls"),

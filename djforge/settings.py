@@ -39,6 +39,15 @@ DEBUG = env("DEBUG")
 #
 ALLOWED_HOSTS = [] if DEBUG else ["*"]
 
+#
+# Define parameter in order to use allauth:
+#
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
 # Application definition
 
@@ -50,6 +59,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "compressor",
+    #
+    # Allauth items, having only base and account for local storage of user credentials
+    # (mainly email and password), others can be added here such as Google, Facebook,
+    # etc.
+    #
+    "allauth",
+    "allauth.account",
     "dj_theme",
     "dj_favicons",
     #
@@ -76,6 +92,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Add Allauth's middleware:
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 #
