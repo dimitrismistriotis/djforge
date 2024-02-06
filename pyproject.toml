@@ -25,6 +25,15 @@ django-environ = "^0.11.2"
 # LGPL-3.0 license
 #
 psycopg = {extras = ["binary"], version = "^3.1.17"}
+#
+# Integrated set of Django applications addressing authentication, registration,
+# account management as well as 3rd party (social) account authentication.
+# https://allauth.org/
+# https://docs.allauth.org/en/latest/installation/quickstart.html
+# https://github.com/pennersr/django-allauth
+# MIT license
+#
+django-allauth = "^0.60.1"
 
 #
 # End of DJForge dependencies, add yours below
