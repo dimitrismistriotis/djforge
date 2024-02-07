@@ -6,11 +6,13 @@ SHELL := /bin/bash
 default: help
 
 # The following fgrep will dynamically print all targets
-# that have a comment beginning with '##' including help.
+# that have a comment beginning with two hashes including help.
 .PHONY: help
 help:				## Show help message.
 	echo "Usage: make [target]"
+	echo ""
 	echo "Targets:"
+	echo ""
 	fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 .PHONY: install_poetry
