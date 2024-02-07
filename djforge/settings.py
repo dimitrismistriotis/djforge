@@ -52,6 +52,10 @@ INSTALLED_APPS = [
     "compressor",
     "dj_theme",
     "dj_favicons",
+    #
+    # User Management App which contains the user model defined in AUTH_USER_MODEL
+    #
+    "dj_users",
     "dj_landing_page",
     # Content app to host some static content that the site might need.
     # There are some Django CMS packages with proper editors, decided to
