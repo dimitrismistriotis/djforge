@@ -246,3 +246,12 @@ LOGGING = {
         },
     },
 }
+
+#    _       _   _
+#   /_\ _  _| |_| |_
+#  / _ \ || |  _| ' \
+# /_/ \_\_,_|\__|_||_|
+#
+# Authentication related configuration
+#
+AUTH_USER_MODEL = "dj_users.User"

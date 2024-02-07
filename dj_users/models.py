@@ -1,4 +1,6 @@
 """User and Permissions models for the dj_users app."""
-# from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
+class User(AbstractUser):
+    """Application's user model."""
