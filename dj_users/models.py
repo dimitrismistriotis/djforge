@@ -4,3 +4,5 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     """Application's user model."""
+
+    USERNAME_FIELD = "email"
