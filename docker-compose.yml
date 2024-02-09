@@ -33,6 +33,8 @@ services:
       - dj_forge_network
     volumes:
       - dj_forge_postgresql_data:/var/lib/postgresql/data
+    labels:
+      - "net.djforge=true"
 
 networks:
   dj_forge_network:
@@ -40,3 +42,5 @@ networks:
 
 volumes:
   dj_forge_postgresql_data:
+    labels:
+      - "net.djforge=true"
