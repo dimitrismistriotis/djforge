@@ -41,6 +41,17 @@ create_dot_env_file:		## Create .env file
 	@echo "Creating .env file..."
 	echo "DEBUG=True" > .env
 
+.PHONY: remove_containers_and_volumes
+remove_containers_and_volumes:	## Remove containers and volumes related to the project, useful when you want to restart from scratch
+	@echo "Removing containers..."
+	@echo "Because action is destrictive, you need to confirm by typing 'yes' in uppercase"
+	@read -p "Are you sure? " -n 3 -r; \
+	if [[ $$REPLY == "YES" ]]; then \
+		echo "Removing containers..."; \
+		docker ps -a --filter "label=net.djforge" --format '{{.Names}}' | xargs docker rm; \
+		docker volume ls --format '{{.Name}}' --filter "label=net.djforge" | xargs docker volume rm; \
+	fi
+
 # MISSING INSTALL node
 # MISSING INSTALL npm
 # MISSING INSTALL npx
