@@ -15,6 +15,33 @@ You can do that with:
 make create_dot_env_file
 ```
 
+## User Management
+
+After deliberation decided to use the [Substituting a custom User model](
+https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#substituting-a-custom-user-model
+) approach as discussed in the Django documentation.
+
+Main concept is that we "override" the default `User` model with our own, which is
+set in `settings.py` as `AUTH_USER_MODEL`. This is done in the `dj_users` app.
+If you want to create another one, do so and adjust the `AUTH_USER_MODEL` value in
+the settings file.
+
+As documentation mentions:
+
+> If you’re starting a new project, it’s highly recommended to set up
+> a custom user model, even if the default User model is sufficient for you.
+> This model behaves identically to the default user model, but you’ll be able
+> to customize it in the future if the need arises
+
+Plus:
+
+> Don’t forget to point AUTH_USER_MODEL to it. Do this before creating
+> any migrations or running manage.py migrate for the first time.
+
+For this this is the first decision that needs to be made. If you want to "fork"
+the `dj_users` app, you should do it first, before doing anything else that affects
+the database.
+
 ### Pre-commit
 
 We use [pre-commit](https://pre-commit.com/) to run some checks before committing.
