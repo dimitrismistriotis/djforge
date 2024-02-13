@@ -59,13 +59,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "compressor",
-    #
-    # Allauth items, having only base and account for local storage of user credentials
-    # (mainly email and password), others can be added here such as Google, Facebook,
-    # etc.
-    #
-    "allauth",
-    "allauth.account",
     "dj_theme",
     "dj_favicons",
     #
@@ -82,6 +75,15 @@ INSTALLED_APPS = [
     # can register interest in the project. Can be used to capture initial attention
     # for experiments to see if there is enough momentum to pursue.
     "dj_register_interest",
+    #
+    # Allauth items, having only base and account for local storage of user credentials
+    # (mainly email and password), others can be added here such as Google, Facebook,
+    # etc.
+    #
+    # Needs to be placed after "dj_users" so that templates "forked"
+    # there can be overridden.
+    "allauth",
+    "allauth.account",
 ]
 
 MIDDLEWARE = [
