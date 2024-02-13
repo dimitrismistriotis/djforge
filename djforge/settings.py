@@ -273,3 +273,24 @@ LOGGING = {
 # Authentication related configuration
 #
 AUTH_USER_MODEL = "dj_users.User"
+#    _   _ _   _       _   _
+#   /_\ | | | /_\ _  _| |_| |_
+#  / _ \| | |/ _ \ || |  _| ' \
+# /_/ \_\_|_/_/ \_\_,_|\__|_||_|
+#
+# Allauth Configuration
+#
+# Reference: https://docs.allauth.org/en/latest/account/configuration.html
+#
+ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
+ACCOUNT_EMAIL_VERIFICATION = (
+    "none"  # As we do not have implemented any form of email sending
+)
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "email"
+if DEBUG:
+    # Something for debug nothing for production.
+    # Helps in case settings "slip": "What is this prefix in the emails?"
+    ACCOUNT_EMAIL_SUBJECT_PREFIX = "[djforge] "
+else:
+    ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
+ACCOUNT_USER_DISPLAY = "user.display"

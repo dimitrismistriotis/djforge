@@ -12,3 +12,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []  # Because of USERNAME_FIELD
 
     email = models.EmailField(_("email address"), blank=True, unique=True)
+
+    def display(self) -> str:
+        """Return a string representation of the user."""
+        return f"{self.first_name} {self.last_name} ({self.email})"
