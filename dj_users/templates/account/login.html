@@ -35,6 +35,12 @@
                 {% endelement %}
               {% endcomment %}
 
+              {% for error in form.non_field_errors %}
+                <p class="text-red-500 dark:text-red-400">
+                  {{ error }}
+                </p>
+              {% endfor %}
+
               {% for field in form %}
                 <div>
 
