@@ -1190,6 +1190,10 @@ input:checked + .toggle-bg {
   margin-left: 0.25rem;
 }
 
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -1224,10 +1228,6 @@ input:checked + .toggle-bg {
 
 .mt-6 {
   margin-top: 1.5rem;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
 }
 
 .block {
@@ -1736,6 +1736,11 @@ input:checked + .toggle-bg {
   padding-right: 1.25rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1764,11 +1769,6 @@ input:checked + .toggle-bg {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .pb-8 {
@@ -2252,14 +2252,14 @@ input:checked + .toggle-bg {
     line-height: 1.75rem;
   }
 
-  .sm\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
   .sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -2483,6 +2483,11 @@ input:checked + .toggle-bg {
     padding-right: 1.5rem;
   }
 
+  .lg\:py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -2501,11 +2506,6 @@ input:checked + .toggle-bg {
   .lg\:py-24 {
     padding-top: 6rem;
     padding-bottom: 6rem;
-  }
-
-  .lg\:py-0 {
-    padding-top: 0px;
-    padding-bottom: 0px;
   }
 
   .lg\:pb-16 {
@@ -2562,12 +2562,12 @@ input:checked + .toggle-bg {
     gap: 6rem;
   }
 
-  .xl\:p-8 {
-    padding: 2rem;
-  }
-
   .xl\:p-0 {
     padding: 0px;
+  }
+
+  .xl\:p-8 {
+    padding: 2rem;
   }
 
   .xl\:text-6xl {
@@ -2775,6 +2775,11 @@ input:checked + .toggle-bg {
   border-color: rgb(63 131 248 / var(--tw-border-opacity));
 }
 
+:is(:where(.dark) .dark\:focus\:ring-blue-500:focus) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(63 131 248 / var(--tw-ring-opacity));
+}
+
 :is(:where(.dark) .dark\:focus\:ring-blue-800:focus) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(30 66 159 / var(--tw-ring-opacity));
@@ -2803,11 +2808,6 @@ input:checked + .toggle-bg {
 :is(:where(.dark) .dark\:focus\:ring-purple-900:focus) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(74 29 150 / var(--tw-ring-opacity));
-}
-
-:is(:where(.dark) .dark\:focus\:ring-blue-500:focus) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(63 131 248 / var(--tw-ring-opacity));
 }
 
 @media (min-width: 1024px) {
