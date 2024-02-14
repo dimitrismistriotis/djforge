@@ -288,7 +288,9 @@ ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
 ACCOUNT_EMAIL_VERIFICATION = (
     "none"  # As we do not have implemented any form of email sending
 )
-ACCOUNT_USER_MODEL_USERNAME_FIELD = "email"
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USERNAME_REQUIRED = False
+
 if DEBUG:
     # Something for debug nothing for production.
     # Helps in case settings "slip": "What is this prefix in the emails?"
