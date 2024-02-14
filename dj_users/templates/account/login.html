@@ -79,7 +79,9 @@
                             </div>
                         </div>
 
-                        <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                        <a href="{% url 'account_reset_password' %}" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                          {% trans "Forgot password?" %}
+                        </a>
                     </div>
                   {% else %}{# Default, no styling #}
                     {{ field }}
