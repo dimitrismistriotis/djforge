@@ -37,8 +37,47 @@
             {% slot body %}
               {% csrf_token %}
 
-              {% element fields form=form unlabeled=True %}
-              {% endelement %}
+              {% comment %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+              {% endcomment %}
+
+              {% element fields form=form unlabeled=True %}{% endelement %}
+
+              {% for field in form %}
+                <div>
+                  {% if field.field.widget.input_type == "email" %}
+                    <label for="email_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      {{ field.label }}
+                    </label>
+
+                    <input type="{{ field.field.widget.input_type }}"
+                           name="{{ field.name }}"
+                           id="email_{{ field.auto_id }}"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="{{ field.field.widget.attrs.placeholder|default:'name@provider.com' }}"
+                           required="">
+                  {% elif field.field.widget.input_type == "password" %}
+                    <label for="password_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      {{ field.label }}
+                    </label>
+
+                    <input type="password"
+                           name="{{ field.name }}"
+                           id="password_{{ field.auto_id }}"
+                           placeholder="{{ field.field.widget.attrs.placeholder|default:'••••••••' }}"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           {% if field.field.widget.attrs.autocomplete %} autocomplete="{{ field.field.widget.attrs.autocomplete }}" {% endif %}
+                           required="">
+
+                    {% if field.help_text %}
+                      {{ field.help_text }}
+                    {% endif %}
+                  {% else %}
+                    {{ field }}
+                  {% endif %}
+                </div>
+              {% endfor %}
 
               {% if redirect_field_value %}
                 <input type="hidden"
