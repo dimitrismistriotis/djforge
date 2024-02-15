@@ -24,34 +24,41 @@
 
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <p>
+          <p class="mb-3 text-gray-500 dark:text-gray-400">
             {% blocktrans %}
-              Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+              Already have an account? Then please
+              <a href="{{ login_url }}" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">
+                sign in
+              </a>.
             {% endblocktrans %}
           </p>
 
           {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-              {% slot body %}
-                  {% csrf_token %}
-                  {% element fields form=form unlabeled=True %}
-                  {% endelement %}
-                  {% if redirect_field_value %}
-                      <input type="hidden"
-                             name="{{ redirect_field_name }}"
-                             value="{{ redirect_field_value }}" />
-                  {% endif %}
-              {% endslot %}
-              {% slot actions %}
-                  {% element button tags="prominent,signup" type="submit" %}
-                      {% trans "Sign Up" %}
-                  {% endelement %}
-              {% endslot %}
+            {% slot body %}
+              {% csrf_token %}
+
+              {% element fields form=form unlabeled=True %}
+              {% endelement %}
+
+              {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+              {% endif %}
+            {% endslot %}
+
+            {% slot actions %}
+              {% element button tags="prominent,signup" type="submit" %}
+                {% trans "Sign Up" %}
+              {% endelement %}
+            {% endslot %}
           {% endelement %}
+
           {% if SOCIALACCOUNT_ENABLED %}
-              {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
           {% endif %}
-          </div>
         </div>
+      </div>
     </div>
   </section>
 {% endblock content %}
