@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <header class="fixed w-full">
   <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
@@ -10,7 +11,9 @@
 
       <div class="flex items-center lg:order-2">
         <div class="hidden mt-2 mr-4 sm:inline-block">
-          <a class="github-button" href="https://github.com/themesberg/landwind" data-size="large" data-icon="octicon-star" data-show-count="true" aria-label="Star themesberg/landwind on GitHub">Star</a>
+          <a href="{% url 'account_login' %}">
+            {% trans "Sign In" %}
+          </a>
         </div>
 
         <!-- <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</a> -->
