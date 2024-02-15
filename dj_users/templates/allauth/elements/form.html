@@ -8,6 +8,14 @@
     {% slot actions %}
     {% endslot %}
   </form>
+{% elif "entrance" in attrs.tags and "signup" in attrs.tags %}{# Same as above #}
+  <form method="{{ attrs.method }}" action="{{ attrs.action }}" class="space-y-4 md:space-y-6">
+    {% slot body %}
+    {% endslot %}
+
+    {% slot actions %}
+    {% endslot %}
+  </form>
 {% else %}
   <form method="{{ attrs.method }}" action="{{ attrs.action }}">
     {% slot body %}

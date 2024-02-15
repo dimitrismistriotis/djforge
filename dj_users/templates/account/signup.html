@@ -1,34 +1,57 @@
-{% extends "account/base_entrance.html" %}
+{% extends "dj_theme/base.html" %}
+{% comment %}
+  Version here based on: https://flowbite.com/blocks/marketing/login/ as well as the login.html from allauth
+{% endcomment %}
+
+{% load static %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
+  {% include "dj_theme/header.html" %}
+
+  {% url 'account_signup' as action_url %}
+
+  <section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <img class="w-8 h-8 mr-2" src="{% static 'dj_favicons/favicon-96x96.png' %}" alt="logo">
+
         {% trans "Sign Up" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
-    {% url 'account_signup' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+      </a>
+
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <p>
+            {% blocktrans %}
+              Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+            {% endblocktrans %}
+          </p>
+
+          {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+              {% slot body %}
+                  {% csrf_token %}
+                  {% element fields form=form unlabeled=True %}
+                  {% endelement %}
+                  {% if redirect_field_value %}
+                      <input type="hidden"
+                             name="{{ redirect_field_name }}"
+                             value="{{ redirect_field_value }}" />
+                  {% endif %}
+              {% endslot %}
+              {% slot actions %}
+                  {% element button tags="prominent,signup" type="submit" %}
+                      {% trans "Sign Up" %}
+                  {% endelement %}
+              {% endslot %}
+          {% endelement %}
+          {% if SOCIALACCOUNT_ENABLED %}
+              {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+          {% endif %}
+          </div>
+        </div>
+    </div>
+  </section>
 {% endblock content %}
