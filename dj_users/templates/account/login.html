@@ -43,7 +43,6 @@
 
               {% for field in form %}
                 <div>
-
                   {% if field.field.widget.input_type == "password" %}
                     <label for="password_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       {{ field.label }}
