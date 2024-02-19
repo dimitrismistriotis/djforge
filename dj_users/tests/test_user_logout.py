@@ -2,23 +2,18 @@
 import pytest
 
 from django.urls import reverse
-from django.contrib.auth import get_user_model
+
+from .base_classes import UserLoginLogoutBase
 
 
 pytestmark = [pytest.mark.django_db]
 
 
 # noinspection HardcodedPassword
-class TestUserLogout:
+class TestUserLogout(UserLoginLogoutBase):
     """Test logout of users."""
 
-    USER_MODEL = get_user_model()
-
     LOGOUT_URL = reverse("account_logout")  # Assuming default allauth URL names
-
-    USERNAME = "testuser"
-    USER_EMAIL = "test_user@provided.com"
-    PASSWORD = "testpassword123"
 
     @pytest.fixture(autouse=True)
     def setup_method(self, db) -> None:
