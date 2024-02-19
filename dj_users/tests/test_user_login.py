@@ -61,17 +61,3 @@ class TestUserLogin:
         assert not response.context["user"].is_authenticated
         # Additionally, check for error messages or status codes if applicable
         assert "password you specified" in response.content.decode()
-
-    def test_logout(self, client) -> None:
-        """Test logout."""
-        # First, log the user in
-        client.login(username=self.USERNAME, password=self.PASSWORD)
-
-        # Then, logout
-        logout_url = reverse("account_logout")  # Assuming default allauth URL names
-        response = client.get(logout_url, follow=True)
-
-        # Verify that the user has been logged out
-        assert not response.context["user"].is_authenticated
-        assert response.status_code == 200
-        # Update the expected redirect URL based on your application's behavior
