@@ -275,6 +275,8 @@ LOGGING = {
 # Authentication related configuration
 #
 AUTH_USER_MODEL = "dj_users.User"
+LOGIN_REDIRECT_URL = "/"
+
 #    _   _ _   _       _   _
 #   /_\ | | | /_\ _  _| |_| |_
 #  / _ \| | |/ _ \ || |  _| ' \
@@ -297,4 +299,12 @@ if DEBUG:
     ACCOUNT_EMAIL_SUBJECT_PREFIX = "[djforge] "
 else:
     ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
-ACCOUNT_USER_DISPLAY = "user.display"
+
+#
+# The URL (or URL name) to redirect to directly after signing up.
+# Note that users are only redirected to this URL if the signup went
+# through uninterruptedly, ...
+#
+# Uncomment/Remove if you want to be the same as LOGIN_REDIRECT_URL
+#
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
