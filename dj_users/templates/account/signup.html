@@ -42,8 +42,6 @@
                 {% endelement %}
               {% endcomment %}
 
-              {% element fields form=form unlabeled=True %}{% endelement %}
-
               {% for field in form %}
                 <div>
                   {% if field.field.widget.input_type == "email" %}
@@ -71,7 +69,13 @@
                            required="">
 
                     {% if field.help_text %}
-                      {{ field.help_text }}
+                      {% comment %}
+                        Password help text gets generated as HTML with that we can only
+                        style it in a wrapper.
+                      {% endcomment %}
+                      <div class="mt-2 px-4 text-sm text-gray-500 dark:text-gray-400">
+                        {{ field.help_text }}
+                      </div>
                     {% endif %}
                   {% else %}
                     {{ field }}
