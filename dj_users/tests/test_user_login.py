@@ -10,7 +10,7 @@ pytestmark = [pytest.mark.django_db]
 
 # noinspection HardcodedPassword
 class TestUserLogin:
-    """Test the login of users."""
+    """Test login of users."""
 
     USER_MODEL = get_user_model()
 
