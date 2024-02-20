@@ -27,9 +27,13 @@ environ.Env.read_env(BASE_DIR / ".env")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-e**-$_v&pmln#j*$_$_$nljc!+hxlhlxla3_l5f*4qbdw5s0%n"
-
+# A secret key is required for production, supplying a default for development
+# and testing purposes.
+# Generate one with:
+# make secret_key
+SECRET_KEY = env.str(
+    "SECRET_KEY", "django-8hzm)&2gdw2f7i$be!worf!9r9(0a@*7um*q*uwoyb_#y!*5j"
+)
 # False if not in os.environ because of casting above
 DEBUG = env("DEBUG")
 
@@ -59,6 +63,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "compressor",
+    "django_extensions",
     "dj_theme",
     "dj_favicons",
     #

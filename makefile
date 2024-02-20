@@ -5,6 +5,11 @@ SHELL := /bin/bash
 .PHONY: default
 default: help
 
+#
+# Variables
+#
+GENERATE_SECRET_KEY := poetry run python manage.py generate_secret_key
+
 # The following fgrep will dynamically print all targets
 # that have a comment beginning with two hashes including help.
 .PHONY: help
@@ -42,6 +47,11 @@ create_poetry_environment:	## Create poetry environment
 create_dot_env_file:		## Create .env file
 	@echo "Creating .env file..."
 	echo "DEBUG=True" > .env
+	${GENERATE_SECRET_KEY}  | tail -n 1 | poetry run python -c "print(f'SECRET_KEY=\"{input()}\"')" >> .env
+
+.PHONY: secret_key
+secret_key:
+	${GENERATE_SECRET_KEY}
 
 .PHONY: remove_containers_and_volumes
 remove_containers_and_volumes:	## Remove containers and volumes related to the project, useful when you want to restart from scratch
