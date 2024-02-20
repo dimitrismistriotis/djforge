@@ -41,6 +41,12 @@ django-allauth = "^0.60.1"
 # MIT license
 #
 django-extensions = "^3.2.3"
+#
+# Python WSGI HTTP Server for UNIX
+# https://github.com/benoitc/gunicorn?tab=License-1-ov-file
+# https://gunicorn.org/
+#
+gunicorn = "^21.2.0"
 
 #
 # End of DJForge dependencies, add yours below
