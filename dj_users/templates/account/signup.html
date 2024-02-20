@@ -1,0 +1,107 @@
+{% extends "dj_theme/base.html" %}
+{% comment %}
+  Version here based on: https://flowbite.com/blocks/marketing/login/ as well as the login.html from allauth
+{% endcomment %}
+
+{% load static %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% trans "Signup" %}
+{% endblock head_title %}
+
+{% block content %}
+  {% include "dj_theme/header.html" %}
+
+  {% url 'account_signup' as action_url %}
+
+  <section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <img class="w-8 h-8 mr-2" src="{% static 'dj_favicons/favicon-96x96.png' %}" alt="logo">
+
+        {% trans "Sign Up" %}
+      </a>
+
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <p class="mb-3 text-gray-500 dark:text-gray-400">
+            {% blocktrans %}
+              Already have an account? Then please
+              <a href="{{ login_url }}" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">
+                sign in
+              </a>.
+            {% endblocktrans %}
+          </p>
+
+          {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+            {% slot body %}
+              {% csrf_token %}
+
+              {% comment %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+              {% endcomment %}
+
+              {% for field in form %}
+                <div>
+                  {% if field.field.widget.input_type == "email" %}
+                    <label for="email_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      {{ field.label }}
+                    </label>
+
+                    <input type="{{ field.field.widget.input_type }}"
+                           name="{{ field.name }}"
+                           id="email_{{ field.auto_id }}"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="{{ field.field.widget.attrs.placeholder|default:'name@provider.com' }}"
+                           required="">
+                  {% elif field.field.widget.input_type == "password" %}
+                    <label for="password_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      {{ field.label }}
+                    </label>
+
+                    <input type="password"
+                           name="{{ field.name }}"
+                           id="password_{{ field.auto_id }}"
+                           placeholder="{{ field.field.widget.attrs.placeholder|default:'••••••••' }}"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           {% if field.field.widget.attrs.autocomplete %} autocomplete="{{ field.field.widget.attrs.autocomplete }}" {% endif %}
+                           required="">
+
+                    {% if field.help_text %}
+                      {% comment %}
+                        Password help text gets generated as HTML with that we can only
+                        style it in a wrapper.
+                      {% endcomment %}
+                      <div class="mt-2 px-4 text-sm text-gray-500 dark:text-gray-400">
+                        {{ field.help_text }}
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    {{ field }}
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+              {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+              {% endif %}
+            {% endslot %}
+
+            {% slot actions %}
+              {% element button tags="prominent,signup" type="submit" %}
+                {% trans "Sign Up" %}
+              {% endelement %}
+            {% endslot %}
+          {% endelement %}
+
+          {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

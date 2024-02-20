@@ -1,0 +1,132 @@
+{% extends "dj_theme/base.html" %}
+{% comment %}
+  Version here based on: https://flowbite.com/blocks/marketing/login/
+{% endcomment %}
+
+{% load i18n %}
+{% load static %}
+
+{% load allauth account %}
+
+{% block content %}
+  {% include "dj_theme/header.html" %}
+
+  {% url 'account_login' as login_url %}
+
+  <section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <img class="w-8 h-8 mr-2" src="{% static 'dj_favicons/favicon-96x96.png' %}" alt="logo">
+
+        {% trans "Sign In to DJ Forge" %}
+      </a>
+
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            {% trans "Sign in to your account" %}
+          </h1>
+
+          {% element form form=form method="post" action=login_url tags="entrance,login" %}
+            {% slot body %}
+              {% csrf_token %}
+              {% comment %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+              {% endcomment %}
+
+              {% for error in form.non_field_errors %}
+                <p class="text-red-500 dark:text-red-400">
+                  {{ error }}
+                </p>
+              {% endfor %}
+
+              {% for field in form %}
+                <div>
+                  {% if field.field.widget.input_type == "password" %}
+                    <label for="password_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      {{ field.label }}
+                    </label>
+
+                    <input type="password"
+                           name="{{ field.name }}"
+                           id="password_{{ field.auto_id }}"
+                           placeholder="{{ field.field.widget.attrs.placeholder|default:'••••••••' }}"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           {% if field.field.widget.attrs.autocomplete %} autocomplete="{{ field.field.widget.attrs.autocomplete }}" {% endif %}
+                           required="">
+                  {% elif field.field.widget.input_type == "email" %}
+                    <label for="email_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      {{ field.label }}
+                    </label>
+
+                    <input type="{{ field.field.widget.input_type }}"
+                           name="{{ field.name }}"
+                           id="email_{{ field.auto_id }}"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="{{ field.field.widget.attrs.placeholder|default:'name@provider.com' }}"
+                           required="">
+                  {% elif field.field.widget.input_type == "checkbox" %}{# Used for "Remember me" #}
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <input type="checkbox"
+                                     id="remember_{{ field.auto_id }}"
+                                     aria-describedby="remember"
+                                     class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <label for="remember_{{ field.auto_id }}"
+                                     class="text-gray-500 dark:text-gray-300">
+                                {{ field.label }}
+                              </label>
+                            </div>
+                        </div>
+
+                        <a href="{% url 'account_reset_password' %}" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                          {% trans "Forgot password?" %}
+                        </a>
+                    </div>
+                  {% else %}{# Default, no styling #}
+                    {{ field }}
+                  {% endif %}
+
+                  {% if field.help_text %}
+                    <small class="text-gray-500 dark:text-gray-400">{{ field.help_text }}</small>
+                  {% endif %}
+
+                  {% for error in field.errors %}
+                    <p class="text-red-500 dark:text-red-400">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              {% endfor %}
+
+              {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+            {% endslot %}
+
+            {% slot actions %}
+              {% element button type="submit" tags="prominent,login" %}
+                {% trans "Sign In" %}
+              {% endelement %}
+            {% endslot %}
+          {% endelement %}
+
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            {% trans "Don’t have an account yet?" %}
+
+            <a href="{{ signup_url }}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">
+              {% trans "Sign Up" %}
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% comment %}We have not enabled social accounts yet{% endcomment %}
+  {% if SOCIALACCOUNT_ENABLED %}
+      {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+  {% endif %}
+{% endblock content %}

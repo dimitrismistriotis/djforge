@@ -24,15 +24,15 @@ class TestUserCreation:
     def test_user_is_also_created_with_trivial_password(self):
         """Test that the user is created with a trivial password.
 
-        Vvalidation does not apply at this level:
+        Validation does not apply at this level:
 
         > By default, validators are used in the forms to reset or change
-        > passwords and in the createsuperuser and changepassword management
+        > passwords and in the createsuperuser and change password management
         > commands. Validators aren’t applied at the model level,
         > for example in User.objects.create_user() and create_superuser(),
         > because we assume that developers, not users,
         > interact with Django at that level and also because model validation
-        > doesn’t automatically run as part of creating models.
+        > doesn't automatically run as part of creating models.
 
         Source: https://docs.djangoproject.com/en/dev/topics/auth/passwords/
         """

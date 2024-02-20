@@ -39,6 +39,15 @@ DEBUG = env("DEBUG")
 #
 ALLOWED_HOSTS = [] if DEBUG else ["*"]
 
+#
+# Define parameter in order to use allauth:
+#
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
 # Application definition
 
@@ -66,6 +75,15 @@ INSTALLED_APPS = [
     # can register interest in the project. Can be used to capture initial attention
     # for experiments to see if there is enough momentum to pursue.
     "dj_register_interest",
+    #
+    # Allauth items, having only base and account for local storage of user credentials
+    # (mainly email and password), others can be added here such as Google, Facebook,
+    # etc.
+    #
+    # Needs to be placed after "dj_users" so that templates "forked"
+    # there can be overridden.
+    "allauth",
+    "allauth.account",
 ]
 
 MIDDLEWARE = [
@@ -76,6 +94,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Add Allauth's middleware:
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 #
@@ -255,3 +275,36 @@ LOGGING = {
 # Authentication related configuration
 #
 AUTH_USER_MODEL = "dj_users.User"
+LOGIN_REDIRECT_URL = "/"
+
+#    _   _ _   _       _   _
+#   /_\ | | | /_\ _  _| |_| |_
+#  / _ \| | |/ _ \ || |  _| ' \
+# /_/ \_\_|_/_/ \_\_,_|\__|_||_|
+#
+# Allauth Configuration
+#
+# Reference: https://docs.allauth.org/en/latest/account/configuration.html
+#
+ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
+ACCOUNT_EMAIL_VERIFICATION = (
+    "none"  # As we do not have implemented any form of email sending
+)
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USERNAME_REQUIRED = False
+
+if DEBUG:
+    # Something for debug nothing for production.
+    # Helps in case settings "slip": "What is this prefix in the emails?"
+    ACCOUNT_EMAIL_SUBJECT_PREFIX = "[djforge] "
+else:
+    ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
+
+#
+# The URL (or URL name) to redirect to directly after signing up.
+# Note that users are only redirected to this URL if the signup went
+# through uninterruptedly, ...
+#
+# Uncomment/Remove if you want to be the same as LOGIN_REDIRECT_URL
+#
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
