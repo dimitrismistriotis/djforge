@@ -109,7 +109,13 @@ MIDDLEWARE = [
 if DEBUG:
     INSTALLED_APPS.append("livereload")
     MIDDLEWARE.append("livereload.middleware.LiveReloadScript")
-
+else:
+    securityMiddlewarePosition = MIDDLEWARE.index(
+        "django.middleware.security.SecurityMiddleware"
+    )
+    MIDDLEWARE.insert(
+        securityMiddlewarePosition + 1, "whitenoise.middleware.WhiteNoiseMiddleware"
+    )
 
 ROOT_URLCONF = "djforge.urls"
 
