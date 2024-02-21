@@ -84,9 +84,9 @@ build: install collect_static migrate	## Build the project
 #
 
 .PHONY: generate_output_css
-generate_output_css:  		## Generate Output CSS
+generate_output_css:  		## Generate Output CSS in watching for changes mode
 	@echo "Generating output.css..."
-	npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
+	npx tailwindcss -i ./static/src/input.css -o ./dj_theme/static/dj_theme/css/output.css --watch
 
 .PHONY: test
 test:				## Run tests
