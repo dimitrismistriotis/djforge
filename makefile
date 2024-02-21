@@ -69,6 +69,17 @@ remove_containers_and_volumes:	## Remove containers and volumes related to the p
 # MISSING INSTALL npx
 
 #
+# Development commands
+#
+.PHONY: collect_static
+collect_static:			## Collect Static Files
+	@echo "Collect Static..."
+	poetry run python manage.py collectstatic --no-input
+
+build: install collect_static migrate	## Build the project
+
+
+#
 # Day to day commands
 #
 

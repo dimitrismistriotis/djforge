@@ -43,10 +43,22 @@ django-allauth = "^0.60.1"
 django-extensions = "^3.2.3"
 #
 # Python WSGI HTTP Server for UNIX
-# https://github.com/benoitc/gunicorn?tab=License-1-ov-file
 # https://gunicorn.org/
+# https://github.com/benoitc/gunicorn?tab=License-1-ov-file
 #
 gunicorn = "^21.2.0"
+#
+# Uvicorn is an ASGI web server implementation for Python.
+# https://www.uvicorn.org/
+# BSD-3-Clause license
+#
+uvicorn = "^0.27.1"
+#
+# Radically simplified static file serving for Python web apps
+# https://whitenoise.readthedocs.io/en/latest/index.html
+# MIT license
+#
+whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 
 #
 # End of DJForge dependencies, add yours below

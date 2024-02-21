@@ -165,3 +165,8 @@ cython_debug/
 #
 node_modules/
 static/CACHE/
+
+#
+# Static files
+#
+staticfiles/
