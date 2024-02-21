@@ -10,7 +10,8 @@ services:
     name: djforge
     runtime: python
     buildCommand: "make build"
-    startCommand: "python -m gunicorn djforge.asgi:application -k uvicorn.workers.UvicornWorker"
+    # startCommand: "python -m gunicorn djforge.asgi:application -k uvicorn.workers.UvicornWorker"
+    startCommand: "python -m gunicorn djforge.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
