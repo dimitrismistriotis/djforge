@@ -27,11 +27,40 @@ generate one with:
 make secret_key
 ```
 
+### Deployments
+
+#### Render.com
+
+Did our first deployment on Render.com.
+
+Followed instructions on
+[Deploying Django on Render](https://docs.render.com/deploy-django)
+tweaking them for DJ-Django's configuration. For example did not install
+DJ-Database-URL, used poetry, `make build` instead of a build script,
+and others.
+
+In order to deploy a project there, having created an account, follow
+the steps in "Use render.yaml for deploys" (same URL as above), in detail:
+
+1. _Create a file named render.yaml..._ this has already beed done in
+   `render.yaml` in the root of this project. Check it and edit it if needed,
+   for example if the name of the application has changed
+2. In the Render Dashboard, go to the Blueprints page and click New Blueprint Instance.
+3. Select the repository that contains your blueprint and click Connect.
+4. Give your blueprint project a name and click Apply.
+
+Render.com should take care of the rest:
+
+> That’s it! Your project will be live at
+> its .onrender.com URL as soon as the build finishes.
+
+Note: these are instructions for the "free" package, without async processing
+or custom domain. We will be updating this section as we
+implement/configure them.
+
 ## User Management
 
-After deliberation decided to use the [Substituting a custom User model](
-https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#substituting-a-custom-user-model
-) approach as discussed in the Django documentation.
+After deliberation decided to use the [Substituting a custom User model](https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#substituting-a-custom-user-model) approach as discussed in the Django documentation.
 
 Main concept is that we "override" the default `User` model with our own, which is
 set in `settings.py` as `AUTH_USER_MODEL`. This is done in the `dj_users` app.
