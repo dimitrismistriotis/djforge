@@ -1,23 +1,36 @@
+#  ___             _
+# | _ \___ _ _  __| |___ _ _  __ ___ _ __
+# |   / -_) ' \/ _` / -_) '_|/ _/ _ \ '  \
+# |_|_\___|_||_\__,_\___|_|(_)__\___/_|_|_|
+#
+# Render.com configuration file
+#
 databases:
-  - name: djforgedb
-    plan: free
-    databaseName: djforge_database
-    user: djforge_user
+    - name: djforgedb
+      plan: free
+      databaseName: djforge_database
+      user: djforge_user
 
 services:
-  - type: web
-    plan: free
-    name: djforge
-    runtime: python
-    buildCommand: "make build"
-    # startCommand: "python -m gunicorn djforge.asgi:application -k uvicorn.workers.UvicornWorker"
-    startCommand: "python -m gunicorn djforge.wsgi:application"
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: djforgedb
-          property: connectionString
-      - key: SECRET_KEY
-        generateValue: true
-      - key: WEB_CONCURRENCY
-        value: 4
+    - type: web
+      plan: free
+      name: djforge
+      runtime: python
+      buildCommand: "make build"
+      #
+      # Start command provided from Render was the follwing:
+      #
+      # startCommand: "python -m gunicorn djforge.asgi:application -k uvicorn.workers.UvicornWorker"
+      #
+      # For some reason async did not work, this is the fallback to sync:
+      #
+      startCommand: "python -m gunicorn djforge.wsgi:application"
+      envVars:
+          - key: DATABASE_URL
+            fromDatabase:
+                name: djforgedb
+                property: connectionString
+          - key: SECRET_KEY
+            generateValue: true
+          - key: WEB_CONCURRENCY
+            value: 4
