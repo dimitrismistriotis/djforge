@@ -9,6 +9,8 @@ default: help
 # Variables
 #
 GENERATE_SECRET_KEY := poetry run python manage.py generate_secret_key
+# Note that there is not a trailing slash in the following variable for readability:
+THEME_CSS_BASE_DIRECTORY := ./dj_theme/static/dj_theme/css
 
 # The following fgrep will dynamically print all targets
 # that have a comment beginning with two hashes including help.
@@ -84,9 +86,9 @@ build: install collect_static migrate	## Build the project
 #
 
 .PHONY: generate_output_css
-generate_output_css:  		## Generate Output CSS
+generate_output_css:  		## Generate Output CSS in watching for changes mode
 	@echo "Generating output.css..."
-	npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
+	npx tailwindcss -i ${THEME_CSS_BASE_DIRECTORY}/input.css -o ${THEME_CSS_BASE_DIRECTORY}/output.css --watch
 
 .PHONY: test
 test:				## Run tests
