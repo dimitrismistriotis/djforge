@@ -9,10 +9,6 @@ readme = "README.md"
 python = "^3.12"
 django = "^5.0.2"
 #
-# Required from Flowbite
-#
-django-compressor = "^4.4"
-#
 # Package that allows you to use Twelve-factor methodology to configure your Django
 # application with environment variables.
 # https://django-environ.readthedocs.io/en/latest/
