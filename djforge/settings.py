@@ -63,7 +63,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "compressor",
     "django_extensions",
     "dj_theme",
     "dj_favicons",
@@ -224,28 +223,6 @@ if not DEBUG:
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-#   ____
-#  / ___|___  _ __ ___  _ __  _ __ ___  ___ ___  ___  _ __
-# | |   / _ \| '_ ` _ \| '_ \| '__/ _ \/ __/ __|/ _ \| '__|
-# | |__| (_) | | | | | | |_) | | |  __/\__ \__ \ (_) | |
-#  \____\___/|_| |_| |_| .__/|_|  \___||___/___/\___/|_|
-#                      |_|
-#
-# Compressor Configuration
-#
-COMPRESS_ROOT = BASE_DIR / "static"
-
-COMPRESS_ENABLED = True
-
-#
-# First two are the defaults, then added compressor
-#
-STATICFILES_FINDERS = (
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "compressor.finders.CompressorFinder",
-)
 
 #  _                      _
 # | |    ___   __ _  __ _(_)_ __   __ _
