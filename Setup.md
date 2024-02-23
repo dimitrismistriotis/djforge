@@ -54,8 +54,11 @@ Render.com should take care of the rest:
 > That’s it! Your project will be live at
 > its .onrender.com URL as soon as the build finishes.
 
+If you have a custom domain: Go to "Settings" -> "Custom Domains" and add it there.
+It will give you entries to add to your DNS provider.
+
 Note: these are instructions for the "free" package, without async processing
-or custom domain. We will be updating this section as we
+or other related functionality. We will be updating this section as we
 implement/configure them.
 
 ## User Management
@@ -123,6 +126,9 @@ Chose a generic letter, "D" for "Django" and "DJ Forge" which would not be evasi
 a new project. Once you have decided on your logo you can create new icons using
 a tool like the above and then replace the ones in the `dj_favicons/static/dj_favicons`
 folder.
+
+Change the name in `dj_favicons/templates/dj_favicons/manifest.json` to something
+that matches your project.
 
 ## Landing Page
 
