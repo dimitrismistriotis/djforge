@@ -54,8 +54,11 @@ Render.com should take care of the rest:
 > That’s it! Your project will be live at
 > its .onrender.com URL as soon as the build finishes.
 
+If you have a custom domain: Go to "Settings" -> "Custom Domains" and add it there.
+It will give you entries to add to your DNS provider.
+
 Note: these are instructions for the "free" package, without async processing
-or custom domain. We will be updating this section as we
+or other related functionality. We will be updating this section as we
 implement/configure them.
 
 ## User Management
