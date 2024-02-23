@@ -127,6 +127,9 @@ a new project. Once you have decided on your logo you can create new icons using
 a tool like the above and then replace the ones in the `dj_favicons/static/dj_favicons`
 folder.
 
+Change the name in `dj_favicons/templates/dj_favicons/manifest.json` to something
+that matches your project.
+
 ## Landing Page
 
 Landing page is stored in the `dj_landing_page` app. It is a simple HTML page.
