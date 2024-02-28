@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "djforge"
-version = "0.1.0"
-description = "Bootstrap and Grow your SaaS with Django (edi"
+version = "0.2.0"
+description = "Bootstrap and Grow your SaaS with Django"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
