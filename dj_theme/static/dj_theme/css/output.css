@@ -1925,6 +1925,10 @@ input:checked + .toggle-bg {
   padding-top: 1rem;
 }
 
+.pl-11 {
+  padding-left: 2.75rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2789,6 +2793,10 @@ input:checked + .toggle-bg {
 
 :is(:where([dir="rtl"]) .rtl\:space-x-reverse) > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 1;
+}
+
+:is(:where([dir="rtl"]) .rtl\:text-right) {
+  text-align: right;
 }
 
 :is(:where(.dark) .dark\:divide-gray-700) > :not([hidden]) ~ :not([hidden]) {
