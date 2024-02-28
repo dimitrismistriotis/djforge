@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "djforge"
-version = "0.1.0"
-description = "Bootstrap and Grow your SaaS with Django (edi"
-authors = ["Your Name <you@example.com>"]
+version = "0.2.0"
+description = "Bootstrap and Grow your SaaS with Django"
+authors = ["Dimitrios Mistriotis <dimitrios@mistriotis.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

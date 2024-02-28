@@ -1,6 +1,8 @@
 # Changelog
 
-## Version 0.1.0 - Current
+## Version 0.2.0 - Current
+
+## Version 0.1.0
 
 Purpose of this version: To have a landing page and a way to register interest page
 which are the the first steps of an application under development.
