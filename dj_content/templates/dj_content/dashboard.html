@@ -4,140 +4,16 @@
 
 {% block content %}
   {% comment %}
-    Reference: https://flowbite.com/docs/typography/paragraphs/
+    Reference: https://flowbite.com/docs/components/sidebar/
   {% endcomment %}
-
-  {% include "dj_theme/header.html" %}
-
-  <section class="bg-white dark:bg-gray-900">
-    <div class="items-center max-w-screen-xl px-4 py-8 mx-auto lg:gap-16 xl:gap-24 lg:py-24 lg:px-6">
-      <div class="col-span-2 mb-8">
-        {% include "dj_theme/messages.html" %}
-
-        <h2 class="mt-3 mb-4 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl dark:text-white">
-          About Us
-        </h2>
-
-        <p class="mb-3 text-gray-500 dark:text-gray-400 first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100 first-letter:me-3 first-letter:float-start">
-          We are certainly at the dawn of a new era in terms of entrepreneurship and creativity.
-          On the one hand, we have new technologies, especially in the field of
-          <span class="font-bold text-gray-900 dark:text-white">AI</span>,
-          many of which release new products every day. On the other hand, we have had a wave
-          of lay-offs in the technology field, which means that there are many people able and
-          willing to make something new as a result of this. That is, they do not have a job and
-          they want to try something new.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          With this in mind, there have been many solutions in different programming languages
-          but also different frameworks in each programming language, which help someone to start
-          a new product/solution/SaaS/company to try an idea in weeks, if not in days.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          When starting a new project, many of us do the same steps over and over again,
-          especially if this project starts from scratch, such as connecting our favourite
-          database, a linter or some other tool that contains the code, installing a testing
-          library, things that usually take up to one or two weeks, something that is negligible
-          if we work on this program for years or months, but it is something very proportionally
-          expensive if we want to do something that is a two or three day job.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          And this gap is coming to cover all these frameworks that are out there,
-          having exactly this approach. That is, for what reason to do this job again for a
-          few days or weeks, while you can have it ready and start immediately testing your idea,
-          or simply create a homepage to see who is interested, and later on instead of throwing
-          it away and continue with something new, continue building on it.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          For reasons of completeness, it must be mentioned that to get a large block of
-          ready-made code and start from it, has the cost that you have to learn and understand
-          how this code works. Here the argument would against it is that you need to do this
-          only once, and secondly, if this code is structured not with too many features,
-          then it seems to have a normal flow, so the cost is not so great. And certainly,
-          from whichever side we take it, this cost is something that is paid only once.
-          That is, in the second project, you do not need to learn anything because you have
-          already learned.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          Speaking specifically about
-          <span class="font-bold text-gray-900 dark:text-white">DJ Forge</span>, the question
-          is, why
-          <span class="font-bold text-gray-900 dark:text-white">Python</span> and why
-          <span class="font-bold text-gray-900 dark:text-white">Django</span>,
-          when a large part of the industry is testing ideas in NEXT.js and React?
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          Let's first answer about
-          <span class="font-bold text-gray-900 dark:text-white">Python</span>.
-          is the language of
-          <span class="font-bold text-gray-900 dark:text-white">Data Science</span> and
-          <span class="font-bold text-gray-900 dark:text-white">AI</span>.
-          Therefore, there are many things (libraries, available code, solutions)
-          that one would like to try, and they have something ready-made in
-          <span class="font-bold text-gray-900 dark:text-white">Python</span>.
-          So, if you start with Next.js, for example, you would have to somehow connect with
-          this library.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          The second reason is that
-          <span class="font-bold text-gray-900 dark:text-white">Python</span>
-          is the first programming language not only for new
-          <span class="font-bold text-gray-900 dark:text-white">programmers</span>
-          learn, but also in other fields such as
-          <span class="font-bold text-gray-900 dark:text-white">economists</span>,
-          <span class="font-bold text-gray-900 dark:text-white">data scientists</span>,
-          <span class="font-bold text-gray-900 dark:text-white">analysts</span>,
-          etc. There are many young people who know
-          <span class="font-bold text-gray-900 dark:text-white">Python</span>
-          before anything else and would like to try building something.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          Then let's talk about Django. Here is the thing: because it is a framework which
-          follows the so-called <em class="font-italic">"Batteries Included"</em>
-          approach, one can start very quickly and
-          iterate very quickly. A criticism that is exercised in this is that, in contrast to
-          Flask and FastAPI, it is not so easy let's say to integrate with React/Vue or other
-          modern JavaScript Frameworks.
-          In the first steps of developing a solution, this might be an advantage, because
-          one can get to a solution way faster as all parts of the solution are in one codebase,
-          with the programmer(s) involved able to concentrate on fewer fronts. If you have a
-          modern JavaScript framework is to be used, it can be done later, while we are
-          considering supplying a solution for this as well in the future.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          There are some other solutions for a more responsive UI, such as HTMX, which
-          will be integrated very quickly into
-          <span class="font-bold text-gray-900 dark:text-white">DJ Forge</span>,
-          if it has not already been integrated when reading these lines.
-        </p>
-
-        <p class="mb-2 text-gray-500 dark:text-gray-400">
-          With these, you can start and test your idea. We wish you all the best,
-          so that what you are after can start from here, be it a side-project complementing
-          your income, a small company, or <em class="font-italic">"the next big thing"</em>
-          in your sector. Best of luck!
-        </p>
-      </div>
-
-      <figure class="max-w-lg mx-auto">
-        <img class="h-auto max-w-full rounded-lg"
-             src="{% static 'dj_content/images/sunrise.png' %}"
-             alt="Sun rising in a modern city.">
-        <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">
-          Created in Dall-E by OpenAI with the following prompt:
-          <em class="font-italic">
-            Generate a photorealistic image of the sun rising in a modern city.
-          </em>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
+<!--
+// v0 by Vercel.
+// https://v0.dev/t/YoZO6L2UPrY
+-->
+<div><div><div class="flex w-full h-full"><div class="border-r w-16 min-w-0 border-gray-200 dark:border-gray-800"><div class="flex h-full"><div class="flex flex-col w-16"><div class="flex h-16 items-center justify-center"><div class="mx-auto"><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground w-8 h-8 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m15 18-6-6 6-6"></path></svg><span class="sr-only">Toggle sidebar</span></button></div></div><div class="flex-1 flex flex-col items-center justify-end"><div><div><div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><div>Home</div></div><div><div>Overview</div><div>Analytics</div><div>Settings</div></div></div><div><div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg></div><div>Docs</div></div><div><div>Getting Started</div><div>API Reference</div><div>Examples</div></div></div><div><div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><div>Team</div></div><div><div>Members</div><div>Roles</div><div>Invites</div></div></div></div></div></div></div></div><div class="flex-1 h-full"><div class="flex flex-col h-full"><div class="flex h-16 items-center border-b px-4 sm:px-6"><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground rounded-md w-8 h-8 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg><span class="sr-only">Toggle sidebar</span></button><nav class="flex-1 ml-4 sm:ml-6"><a class="font-semibold text-base transition-colors hover:underline" href="#">
+                Acme Inc
+              </a></nav><div class="flex items-center space-x-4 md:space-x-6"><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground w-8 h-8 rounded-full"><img src="/placeholder.svg" width="32" height="32" class="rounded-full" alt="Avatar" style="aspect-ratio: 32 / 32; object-fit: cover;"><span class="sr-only">View profile</span></button></div></div><div class="flex-1 flex items-center justify-center"><div class="text-center space-y-4"><div class="text-2xl font-bold">Welcome back, User</div><div class="max-w-[600px] text-gray-500 md:text-base/relaxed lg:text-xl/relaxed xl:text-base/relaxed dark:text-gray-400"><p>
+                  You last visited on <time datetime="2023-12-12">December 12, 2023</time>. You have
+                  3 unread messages.
+                </p></div></div></div></div></div></div></div></div>
 {% endblock content %}
