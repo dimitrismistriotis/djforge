@@ -1269,6 +1269,10 @@ input:checked + .toggle-bg {
   margin-top: 1.5rem;
 }
 
+.ms-2 {
+  margin-inline-start: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1341,6 +1345,10 @@ input:checked + .toggle-bg {
   height: auto;
 }
 
+.h-3\.5 {
+  height: 0.875rem;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -1377,6 +1385,10 @@ input:checked + .toggle-bg {
   width: 100%;
 }
 
+.w-3\.5 {
+  width: 0.875rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -1407,6 +1419,10 @@ input:checked + .toggle-bg {
 
 .max-w-screen-xl {
   max-width: 1280px;
+}
+
+.max-w-sm {
+  max-width: 24rem;
 }
 
 .flex-1 {
@@ -2074,6 +2090,10 @@ input:checked + .toggle-bg {
 
 .font-semibold {
   font-weight: 600;
+}
+
+.font-normal {
+  font-weight: 400;
 }
 
 .uppercase {
