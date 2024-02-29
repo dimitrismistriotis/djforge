@@ -1,16 +1,8 @@
-{% extends "dj_theme/base.html" %}
+{% extends "dj_theme/base_logged_in.html" %}
 {% load static %}
 
 {% block content %}
-  {% comment %}
-    Decided to roll with https://github.com/tailwindtoolbox/Admin-Template-Day
-    by TailwindToolbox licensed under MIT License to start with, and later refactor
-    to something more nuanced if the growth of functionality allows.
-
-    Also available: https://www.tailwindtoolbox.com/templates/admin-template-day
-  {% endcomment %}
-  <div class="bg-gray-100 font-sans leading-normal tracking-normal">
-    {% include "dj_theme/top_navigation_bar.html" %}
+  {{ block.super }}
 
      <!--Container-->
      <div class="container w-full mx-auto pt-20">
@@ -379,5 +371,5 @@
             return false;
         }
      </script>
-  </div>
+
 {% endblock content %}
