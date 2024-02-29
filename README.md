@@ -18,6 +18,19 @@ Can use this one to generate specifics for your project
 
 [LiveReload Server](https://github.com/tjwalch/django-livereload-server)
 
+### Dashboard Templates
+
+Cannot use all of them :) some to check:
+
+- [Tailwind Starter Templates](https://www.tailwindtoolbox.com/starter-templates)
+- [24 Tailwind Sidebars](https://freefrontend.com/tailwind-sidebars/)
+- [Flowbite Admin Dashboard](
+https://github.com/themesberg/flowbite-admin-dashboard?tab=readme-ov-file#quick-start)
+nice but very difficult to dissect and integrate, might reconsider in the near future
+- [Admin Template Day](https://www.tailwindtoolbox.com/templates/admin-template-day)
+nice and simple, ended up using this for logged in pages
+- [Admin Template Night](https://www.tailwindtoolbox.com/templates/admin-template-night)
+
 ### Editors
 
 We use the community edition of [PyCharm](https://www.jetbrains.com/pycharm/) and [VS Code](https://code.visualstudio.com/).
