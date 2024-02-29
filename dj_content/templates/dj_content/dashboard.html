@@ -1,9 +1,7 @@
 {% extends "dj_theme/base_logged_in.html" %}
 {% load static %}
 
-{% block content %}
-  {{ block.super }}
-
+{% block logged_in_content %}
   <!--Container-->
   <div class="container w-full mx-auto pt-20">
     <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
@@ -302,4 +300,4 @@
     </div>
   </div>
   <!--/container-->
-{% endblock content %}
+{% endblock logged_in_content %}
