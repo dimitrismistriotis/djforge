@@ -1,9 +1,11 @@
+{% load static %}
 {% load i18n %}
 <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
   <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
     <div class="w-1/2 pl-2 md:pl-0">
-      <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold" href="#">
-      <i class="fas fa-sun text-pink-600 pr-3"></i> Admin Day Mode
+      <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline flex" href="#">
+        <img src="{% static 'dj_favicons/favicon-32x32.png' %}" class="h-6 mr-3 sm:h-9" alt="DJ Forge" />
+        <span class="self-center text-xl font-semibold whitespace-nowrap">DJ Forge</span>
       </a>
     </div>
     <div class="w-1/2 pr-0">
