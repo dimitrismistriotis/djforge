@@ -1,3 +1,4 @@
+{% load i18n %}
 <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
   <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
     <div class="w-1/2 pl-2 md:pl-0">
@@ -25,7 +26,11 @@
               <li>
                 <hr class="border-t mx-2 border-gray-400">
               </li>
-              <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
+              <li>
+                <form action="{% url 'account_logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="w-full px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">{% trans "Log Out" %}</button>
+                </form>
             </ul>
           </div>
         </div>
