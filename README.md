@@ -14,6 +14,8 @@
 
 [Landwind](https://github.com/themesberg/landwind) for the landing page
 
+[HeroIcons](https://heroicons.com/) for the icons used throughout the project
+
 Can use this one to generate specifics for your project
 
 [LiveReload Server](https://github.com/tjwalch/django-livereload-server)
