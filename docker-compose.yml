@@ -35,6 +35,36 @@ services:
       - dj_forge_postgresql_data:/var/lib/postgresql/data
     labels:
       - "net.djforge=true"
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dj_forge@dj_forge.com
+      - PGADMIN_DEFAULT_PASSWORD=dj_forge_password
+    ports:
+      - "5050:80"
+    networks:
+      - dj_forge_network
+    labels:
+      - "net.djforge=true"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    restart: always
+    depends_on:
+      - dj_forge_postgresql
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-U",
+          "dj_forge_user",
+          "-d",
+          "dj_forge_main_database",
+        ]
+      interval: 1m
+      timeout: 5s
+      retries: 2
+      start_period: 1m
 
 networks:
   dj_forge_network:
