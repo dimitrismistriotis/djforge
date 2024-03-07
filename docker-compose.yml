@@ -35,19 +35,22 @@ services:
       - dj_forge_postgresql_data:/var/lib/postgresql/data
     labels:
       - "net.djforge=true"
+  #
+  # https://hub.docker.com/r/dpage/pgadmin4/
+  #
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=dj_forge@dj_forge.com
-      - PGADMIN_DEFAULT_PASSWORD=dj_forge_password
+      - PGADMIN_DEFAULT_EMAIL=pgadmin@djforge.net
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin_password
     ports:
       - "5050:80"
     networks:
       - dj_forge_network
     labels:
       - "net.djforge=true"
-    volumes:
-      - pgadmin:/var/lib/pgadmin
+    # volumes:
+    #   - pgadmin:/var/lib/pgadmin
     restart: always
     depends_on:
       - dj_forge_postgresql
