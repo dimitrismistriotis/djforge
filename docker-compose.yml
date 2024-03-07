@@ -49,8 +49,14 @@ services:
       - dj_forge_network
     labels:
       - "net.djforge=true"
-    # volumes:
-    #   - pgadmin:/var/lib/pgadmin
+    volumes:
+      # From documentation:
+      # > /var/lib/pgadmin
+      # > This is the working directory in which pgAdmin stores session data,
+      # > user files, configuration files, and it’s configuration database.
+      # > Mapping this directory onto the host machine gives you an easy way
+      # > to maintain configuration between invocations of the container.
+      - dj_forge_pgadmin:/var/lib/pgadmin
     restart: always
     depends_on:
       - dj_forge_postgresql
@@ -75,5 +81,8 @@ networks:
 
 volumes:
   dj_forge_postgresql_data:
+    labels:
+      - "net.djforge=true"
+  dj_forge_pgadmin:
     labels:
       - "net.djforge=true"
