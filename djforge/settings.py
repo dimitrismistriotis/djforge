@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+
 import os
 import sys
 from pathlib import Path
@@ -76,6 +77,9 @@ INSTALLED_APPS = [
     # use this as a first "simple" option, and perhaps integrate a CMS
     # later on.
     "dj_content",
+    # Dashboard as a login destination page always has lots of functionality hence
+    # deciding it to "live" in its own app.
+    "dj_dashboard",
     # Has one form to capture email address and handles so that people
     # can register interest in the project. Can be used to capture initial attention
     # for experiments to see if there is enough momentum to pursue.
