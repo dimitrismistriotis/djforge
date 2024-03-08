@@ -1,6 +1,11 @@
 {% extends "dj_theme/base_logged_in.html" %}
 {% load static %}
 
+{% block extra_head_entries %}
+  {{ block.super }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+{% endblock extra_head_entries %}
+
 {% block logged_in_content %}
   {# https://flowbite.com/docs/components/card/ #}
   <div class="w-100 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
