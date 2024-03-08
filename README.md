@@ -14,6 +14,8 @@
 
 [Landwind](https://github.com/themesberg/landwind) for the landing page
 
+[PgAdmin](https://www.pgadmin.org) web version to access database to create report SQL or for debugging
+
 Can use this one to generate specifics for your project
 
 [LiveReload Server](https://github.com/tjwalch/django-livereload-server)
