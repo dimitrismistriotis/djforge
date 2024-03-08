@@ -1389,14 +1389,6 @@ input:checked + .toggle-bg {
   width: 100%;
 }
 
-.w-2 {
-  width: 0.5rem;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
 .min-w-full {
   min-width: 100%;
 }
@@ -2011,10 +2003,6 @@ input:checked + .toggle-bg {
   padding-top: 2rem;
 }
 
-.pb-0 {
-  padding-bottom: 0px;
-}
-
 .text-left {
   text-align: left;
 }
@@ -2346,11 +2334,6 @@ input:checked + .toggle-bg {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
-.hover\:border-green-500:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(14 159 110 / var(--tw-border-opacity));
-}
-
 .hover\:border-orange-600:hover {
   --tw-border-opacity: 1;
   border-color: rgb(208 56 1 / var(--tw-border-opacity));
@@ -2359,16 +2342,6 @@ input:checked + .toggle-bg {
 .hover\:border-pink-500:hover {
   --tw-border-opacity: 1;
   border-color: rgb(231 70 148 / var(--tw-border-opacity));
-}
-
-.hover\:border-purple-500:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(144 97 249 / var(--tw-border-opacity));
-}
-
-.hover\:border-red-500:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(240 82 82 / var(--tw-border-opacity));
 }
 
 .hover\:border-teal-500:hover {
@@ -2667,10 +2640,6 @@ input:checked + .toggle-bg {
 
   .md\:pr-0 {
     padding-right: 0px;
-  }
-
-  .md\:pb-1 {
-    padding-bottom: 0.25rem;
   }
 
   .md\:text-center {
