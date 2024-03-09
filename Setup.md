@@ -7,6 +7,9 @@ as part of documentation, dropping it here in order not to create a dependency.
 
 ## Development Environment
 
+You can either fork the repository or create another one using this as a template
+as discused here: [Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+
 Copy the `.env.dist` to `.env` and edit it accordingly if needed. Django Settings
 provide defaults related to Docker Compose setup. Ideally because we wanted to shield
 production environments from malfunctioning, `DEBUG` value is set to `False` by default.
