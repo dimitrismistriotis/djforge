@@ -10,6 +10,7 @@
     {% include "dj_favicons/favicons_block_for_head.html" %}
 
     <link rel="stylesheet" href="{% static 'dj_theme/css/output.css' %}" />
+    {% block extra_head_entries %}{# Extra head entries go here #}{% endblock extra_head_entries %}
   </head>
 
   <body>

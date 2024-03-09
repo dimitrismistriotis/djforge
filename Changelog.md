@@ -2,6 +2,8 @@
 
 ## Version 0.2.0 - Current
 
+- PGAdmin in Docker Compose file
+
 ## Version 0.1.0
 
 Purpose of this version: To have a landing page and a way to register interest page
