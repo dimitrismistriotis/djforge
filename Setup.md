@@ -5,6 +5,8 @@ as part of documentation, dropping it here in order not to create a dependency.
 
 ## Environment
 
+## Development Environment
+
 Copy the `.env.dist` to `.env` and edit it accordingly if needed. Django Settings
 provide defaults related to Docker Compose setup. Ideally because we wanted to shield
 production environments from malfunctioning, `DEBUG` value is set to `False` by default.
@@ -17,6 +19,23 @@ make create_dot_env_file
 
 Command above populates the newly created `.env` with a new `SECRET_KEY`.
 Not needed that much for development, necessary in production, see sub-section below.
+
+### Helpers
+
+#### pgAdmin
+
+<https://www.pgadmin.org/>
+
+> pgAdmin is the most popular and feature rich Open Source administration and
+> development platform for PostgreSQL, the most advanced Open Source database
+> in the world.
+
+There is an instance of pgAdmin running as a container alongside Postgres.
+It is accessible in port 5050.
+
+-   Use your browser to navigate to: <http://localhost:5050>.
+-   Default login email from `docker-compose.yml` is **pgadmin@djforge.net** and default password is **pgadmin_password**.
+-   Development server's details are prepopulated, pgAdmin does not allow to prepopulate the password of the database which is: **dj_forge_password**
 
 ### Production Environment
 
