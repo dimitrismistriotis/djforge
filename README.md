@@ -14,6 +14,8 @@
 
 [Landwind](https://github.com/themesberg/landwind) for the landing page
 
+[PgAdmin](https://www.pgadmin.org) web version to access database to create report SQL or for debugging
+
 [HeroIcons](https://heroicons.com/) for the icons used throughout the project
 
 Can use this one to generate specifics for your project

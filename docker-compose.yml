@@ -35,12 +35,49 @@ services:
       - dj_forge_postgresql_data:/var/lib/postgresql/data
     labels:
       - "net.djforge=true"
-
+  #
+  # https://hub.docker.com/r/dpage/pgadmin4/
+  #
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin@djforge.net
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin_password
+    ports:
+      - "5050:80"
+    networks:
+      - dj_forge_network
+    labels:
+      - "net.djforge=true"
+    volumes:
+      # From documentation:
+      #
+      # > /pgadmin4/servers.json
+      # > If this file is mapped, server definitions found in it will be loaded
+      # > at launch time. This allows connection information to be pre-loaded into
+      # > the instance of pgAdmin in the container. Note that server definitions are
+      # > only loaded on first launch, i.e. when the configuration database is created,
+      # > and not on subsequent launches using the same configuration database.
+      - ./development_assist/pgadmin_database_servers.json:/pgadmin4/servers.json
+      # From documentation:
+      #
+      # > /var/lib/pgadmin
+      # > This is the working directory in which pgAdmin stores session data,
+      # > user files, configuration files, and it’s configuration database.
+      # > Mapping this directory onto the host machine gives you an easy way
+      # > to maintain configuration between invocations of the container.
+      - dj_forge_pgadmin:/var/lib/pgadmin
+    restart: always
+    depends_on:
+      - dj_forge_postgresql
 networks:
   dj_forge_network:
     name: dj_forge_network
 
 volumes:
   dj_forge_postgresql_data:
+    labels:
+      - "net.djforge=true"
+  dj_forge_pgadmin:
     labels:
       - "net.djforge=true"
