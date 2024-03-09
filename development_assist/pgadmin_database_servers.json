@@ -1,7 +1,7 @@
 {
   "Servers": {
     "1": {
-      "Name": "Development",
+      "Name": "Local Development Database",
       "Group": "Servers",
       "Host": "dj_forge_postgresql",
       "Port": 5432,
