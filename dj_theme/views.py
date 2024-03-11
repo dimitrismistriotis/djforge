@@ -46,4 +46,4 @@ def logging_demo(_request: HttpRequest) -> JsonResponse:
 
 def dashboard_template(request: HttpRequest) -> HttpResponse:
     """Return a Dashboard page, to use in development while integrating."""
-    return render(request, "dj_content/dashboard.html")
+    return render(request, "dj_theme/dashboard.html")
