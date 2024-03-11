@@ -1,4 +1,4 @@
-"""Urls for registering interest in the DJ app."""
+"""Urls for Theme in the DJ app."""
 
 from django.urls import path
 from django.conf import settings

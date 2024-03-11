@@ -1,4 +1,4 @@
-"""Urls for registering interest in the DJ app."""
+"""Urls for content the DJ app."""
 
 from django.urls import path
 
