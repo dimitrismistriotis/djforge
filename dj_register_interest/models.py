@@ -1,4 +1,6 @@
 """Models for dj_register_interest app."""
+from django_extensions.db.fields import CreationDateTimeField
+
 from django.db import models
 
 
@@ -16,11 +18,19 @@ class Interest(models.Model):
         )
     )
     github_handle = models.CharField(
-        verbose_name="Github Handle in case solutions grants access a repository",
+        verbose_name=(
+            "(Optional) Github Handle in case solutions grants access a repository"
+        ),
         max_length=100,
         blank=True,
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    user_intent = models.TextField(
+        verbose_name=(
+            "Please write a short description of what "
+            "do you hope to achieve with our solution?"
+        )
+    )
+    created = CreationDateTimeField()
 
     def __str__(self) -> str:
         """Str representation of Interest."""

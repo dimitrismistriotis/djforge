@@ -11,7 +11,7 @@ class InterestAdmin(admin.ModelAdmin):
         "name",
         "email",
         "github_handle",
-        "created_at",
+        "created",
     )
     search_fields = (
         "email",

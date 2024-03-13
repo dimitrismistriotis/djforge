@@ -26,6 +26,7 @@ class TestRegisterInterestView:
             "name": "Alice",
             "email": "alice@example.com",
             "github_handle": "alice123",
+            "user_intent": "I want to test the solution",
         }
         response = client.post(self._TARGET_URL, form_data)
 

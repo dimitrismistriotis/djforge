@@ -10,4 +10,4 @@ class InterestForm(forms.ModelForm):
         """Meta class for InterestForm."""
 
         model = Interest
-        fields = ["name", "email", "github_handle"]
+        fields = ["name", "email", "github_handle", "user_intent"]
