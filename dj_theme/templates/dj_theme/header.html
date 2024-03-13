@@ -62,7 +62,7 @@
               <a href="{% url 'dj_register_interest:register_interest' %}"
                  class="{% if 'register_interest' in request.resolver_match.view_name %}{{ current_area_classes }}{% else %}{{ default_area_classes }}{% endif %}"
                  aria-current="{% if 'register_interest' in request.resolver_match.view_name %}page{% else %}false{% endif %}">
-                Register Interest
+                {% trans "Waiting List" %}
               </a>
             </li>
             <li>
