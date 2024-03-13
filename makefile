@@ -95,6 +95,12 @@ test:				## Run tests
 	@echo "Running tests..."
 	poetry run pytest
 
+
+.PHONY: test_recreate
+test_recreate:			## Run tests creating the database, needed after migrations
+	@echo "Running tests..."
+	poetry run pytest --create-db
+
 .PHONY: make_migrations
 make_migrations:		## Make migrations
 	@echo "Making migrations..."
