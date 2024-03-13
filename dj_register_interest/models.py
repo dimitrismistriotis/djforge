@@ -16,7 +16,9 @@ class Interest(models.Model):
         )
     )
     github_handle = models.CharField(
-        verbose_name="Github Handle in case solutions grants access a repository",
+        verbose_name=(
+            "(Optional) Github Handle in case solutions grants access a repository"
+        ),
         max_length=100,
         blank=True,
     )
