@@ -38,7 +38,7 @@ urlpatterns = [
         name="dj_content",
     ),
     path(
-        "register_interest",
+        "waiting_list",
         include("dj_register_interest.urls"),
         name="dj_register_interest",
     ),
