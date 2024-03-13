@@ -22,6 +22,12 @@ class Interest(models.Model):
         max_length=100,
         blank=True,
     )
+    user_intent = models.TextField(
+        verbose_name=(
+            "Please write a short description of what "
+            "do you hope to achieve with our solution?"
+        )
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
