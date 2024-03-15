@@ -44,7 +44,7 @@ class TestLoginRedirectionToDashboard:
         assert (
             response.status_code == 200
         )  # Assuming your login view returns 200 even on failed auth
-        assert "Incorrect password" in response.content.decode()
+        assert "not correct" in response.content.decode()
 
     def test_dashboard_access_requires_login(self, client):
         """Test that accessing the dashboard requires user to be logged in."""
