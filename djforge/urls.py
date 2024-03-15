@@ -17,6 +17,7 @@ Including another URLconf
 
 
 """
+
 from django.urls import include
 from django.urls import path
 
@@ -41,6 +42,11 @@ urlpatterns = [
         "waiting_list",
         include("dj_register_interest.urls"),
         name="dj_register_interest",
+    ),
+    path(
+        "dashboard/",
+        include("dj_dashboard.urls"),
+        name="dj_dashboard",
     ),
 ]
 

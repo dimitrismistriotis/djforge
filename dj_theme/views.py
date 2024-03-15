@@ -1,4 +1,5 @@
 """Views for dj_theme app."""
+
 import logging
 
 from django.shortcuts import render
@@ -41,3 +42,8 @@ def logging_demo(_request: HttpRequest) -> JsonResponse:
     logger.critical("This is a CRITICAL log message.")
 
     return JsonResponse({"status": "success"})
+
+
+def dashboard_template(request: HttpRequest) -> HttpResponse:
+    """Return a Dashboard page, to use in development while integrating."""
+    return render(request, "dj_theme/dashboard.html")
