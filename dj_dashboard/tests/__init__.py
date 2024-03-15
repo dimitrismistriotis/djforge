@@ -1,0 +1,1 @@
+"""Init of dashboard tests."""
