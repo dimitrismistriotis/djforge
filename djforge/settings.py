@@ -280,7 +280,7 @@ LOGGING = {
 # Authentication related configuration
 #
 AUTH_USER_MODEL = "dj_users.User"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/dashboard"
 
 #    _   _ _   _       _   _
 #   /_\ | | | /_\ _  _| |_| |_
