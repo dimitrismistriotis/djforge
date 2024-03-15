@@ -9,5 +9,8 @@
   "[python]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "[django-html]": {
+    "editor.formatOnSave": false
   }
 }
