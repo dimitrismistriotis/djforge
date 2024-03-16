@@ -281,6 +281,7 @@ LOGGING = {
 #
 AUTH_USER_MODEL = "dj_users.User"
 LOGIN_REDIRECT_URL = "/dashboard"
+ACCOUNT_SIGNUP_REDIRECT_URL = "/dashboard?signup"
 
 #    _   _ _   _       _   _
 #   /_\ | | | /_\ _  _| |_| |_
