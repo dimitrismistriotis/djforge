@@ -312,4 +312,4 @@ else:
 #
 # Uncomment/Remove if you want to be the same as LOGIN_REDIRECT_URL
 #
-ACCOUNT_SIGNUP_REDIRECT_URL = "/"
+ACCOUNT_SIGNUP_REDIRECT_URL = "/dashboard/signup"
