@@ -20,18 +20,14 @@ class TestUserSignupRedirect:
             "password1": "ReallySecureP4$$word!",
             "password2": "ReallySecureP4$$word!",
             "email": "user@example.com",
-            # Add other fields required by your signup form
         }
+
         response = client.post(self.SIGNUP_URL, user_details, follow=True)
 
-        # Check if the response redirected to "/dashboard?signup".
-        dashboard_url = (
-            reverse("dj_dashboard:dashboard") + "?signup"
-        )  # Adjust if your URL pattern for dashboard is different
+        # Check if the response redirected to "/dashboard/signup".
+        dashboard_url_post_sign_up = reverse("dj_dashboard:dashboard_post_sign_up")
         assert response.status_code == 200
-        assert (
-            response.request["PATH_INFO"] + "?" + response.request["QUERY_STRING"]
-            == dashboard_url
-        )
+
+        assert response.request["PATH_INFO"] == dashboard_url_post_sign_up
 
         assert response.context["user"].is_authenticated

@@ -281,7 +281,6 @@ LOGGING = {
 #
 AUTH_USER_MODEL = "dj_users.User"
 LOGIN_REDIRECT_URL = "/dashboard"
-ACCOUNT_SIGNUP_REDIRECT_URL = "/dashboard?signup"
 
 #    _   _ _   _       _   _
 #   /_\ | | | /_\ _  _| |_| |_
@@ -313,4 +312,4 @@ else:
 #
 # Uncomment/Remove if you want to be the same as LOGIN_REDIRECT_URL
 #
-ACCOUNT_SIGNUP_REDIRECT_URL = "/"
+ACCOUNT_SIGNUP_REDIRECT_URL = "/dashboard/signup"
