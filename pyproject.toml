@@ -31,6 +31,15 @@ psycopg = {extras = ["binary"], version = "^3.1.17"}
 #
 django-allauth = "^0.60.1"
 #
+# Celery is a simple, flexible, and reliable distributed system to process
+# vast amounts of messages, while providing operations with the tools required
+# to maintain such a system.
+# https://github.com/celery/celery
+# https://docs.celeryq.dev/en/stable/index.html
+# BSD-3-Clause license plus other copyrights
+#
+celery = "^5.3.6"
+#
 # A collection of custom extensions for the Django Framework
 # Using many of them in different parts of the application
 # https://django-extensions.readthedocs.io/en/latest/
