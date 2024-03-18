@@ -80,6 +80,11 @@ INSTALLED_APPS = [
     # Dashboard as a login destination page always has lots of functionality hence
     # deciding it to "live" in its own app.
     "dj_dashboard",
+    #
+    # Asynchronous tasks, aiming to have some for testing and health checks purposes,
+    # plus later on a central location for cron related triggers.
+    #
+    "dj_tasks",
     # Has one form to capture email address and handles so that people
     # can register interest in the project. Can be used to capture initial attention
     # for experiments to see if there is enough momentum to pursue.
