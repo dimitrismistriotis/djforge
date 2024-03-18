@@ -40,6 +40,11 @@ django-allauth = "^0.60.1"
 #
 celery = "^5.3.6"
 #
+# Celery Result Backends using the Django ORM/Cache framework.
+# BSD-3-Clause license plus other copyrights
+#
+django-celery-results = "^2.5.1"
+#
 # A collection of custom extensions for the Django Framework
 # Using many of them in different parts of the application
 # https://django-extensions.readthedocs.io/en/latest/
