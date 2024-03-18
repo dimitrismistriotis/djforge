@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_celery_results",
     "django_extensions",
     "dj_theme",
     "dj_favicons",
@@ -177,6 +178,15 @@ else:
 
 DATABASES = {"default": default_database}
 
+#   ___     _
+#  / __|___| |___ _ _ _  _
+# | (__/ -_) / -_) '_| || |
+#  \___\___|_\___|_|  \_, |
+#                     |__/
+#
+# Asynchronous tasks configuration
+#
+CELERY_RESULT_BACKEND = "django-db"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
