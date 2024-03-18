@@ -116,6 +116,11 @@ django_runserver: 		## Run Django server
 	@echo "Running Django server..."
 	poetry run python manage.py runserver
 
+.PHONY: celery
+celery:				## Run celery
+	@echo "Running celery..."
+	poetry run celery -A djforge worker -l info
+
 # LiveReload is a tool to automatically refresh your browser when files change.
 # See: pyproject.toml
 .PHONY: livereload
