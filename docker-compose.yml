@@ -82,8 +82,7 @@ services:
   #
   dj_forge_redis:
     image: redis:latest
-    environment:
-      REDIS_ARGS: "--requirepass password --user dj_forge_redis_user on >dj_forge_redis_password ~* allcommands --user default off nopass nocommands"
+    command: ["redis-server", "--requirepass dj_forge_redis_password"]
     ports:
       - "6379:6379"
     networks:
