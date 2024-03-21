@@ -70,6 +70,27 @@ services:
     restart: always
     depends_on:
       - dj_forge_postgresql
+  #
+  # Redis
+  # https://hub.docker.com/_/redis
+  # Configuration:
+  # https://redis.io/docs/install/install-stack/docker/
+  #
+  # Follow Ups:
+  #
+  # - Setu up volume for persistence
+  #
+  dj_forge_redis:
+    image: redis:latest
+    environment:
+      REDIS_ARGS: "--requirepass password --user dj_forge_redis_user on >dj_forge_redis_password ~* allcommands --user default off nopass nocommands"
+    ports:
+      - "6379:6379"
+    networks:
+      - dj_forge_network
+    labels:
+      - "net.djforge=true"
+    restart: always
 networks:
   dj_forge_network:
     name: dj_forge_network
