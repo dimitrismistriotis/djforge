@@ -187,6 +187,10 @@ DATABASES = {"default": default_database}
 # Asynchronous tasks configuration
 #
 CELERY_RESULT_BACKEND = "django-db"
+CELERY_BROKER_URL = (
+    "redis://dj_forge_redis_user:dj_forge_redis_password@localhost:6379/0"
+)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
