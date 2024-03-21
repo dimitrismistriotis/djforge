@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_celery_results",
     "django_extensions",
     "dj_theme",
     "dj_favicons",
@@ -80,6 +81,11 @@ INSTALLED_APPS = [
     # Dashboard as a login destination page always has lots of functionality hence
     # deciding it to "live" in its own app.
     "dj_dashboard",
+    #
+    # Asynchronous tasks, aiming to have some for testing and health checks purposes,
+    # plus later on a central location for cron related triggers.
+    #
+    "dj_tasks",
     # Has one form to capture email address and handles so that people
     # can register interest in the project. Can be used to capture initial attention
     # for experiments to see if there is enough momentum to pursue.
@@ -171,6 +177,17 @@ else:
     } | postgres_config_common
 
 DATABASES = {"default": default_database}
+
+#   ___     _
+#  / __|___| |___ _ _ _  _
+# | (__/ -_) / -_) '_| || |
+#  \___\___|_\___|_|  \_, |
+#                     |__/
+#
+# Asynchronous tasks configuration
+#
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_BROKER_URL = "redis://:dj_forge_redis_password@localhost:6379/0"
 
 
 # Password validation
