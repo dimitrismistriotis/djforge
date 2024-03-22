@@ -108,6 +108,28 @@ For this this is the first decision that needs to be made. If you want to "fork"
 the `dj_users` app, you should do it first, before doing anything else that affects
 the database.
 
+## Task Queue - Asynchronous Tasks
+
+As the project currently is [Celery](https://docs.celeryq.dev/en/stable/index.html)
+is installed and configured to be used with a Redis back end which is one of the
+containers in `docker-compose.yml`. Currently it is not used integrally to the project,
+with this most probably to change soon. Some tasks to get an idea on how to write
+code with it are in the `dj_tasks` application inside `tasks.py`.
+
+From Celery's documentation:
+
+> Task queues are used as a mechanism to distribute work across threads or machines.
+
+> A task queue's input is a unit of work, called a task, dedicated worker processes
+> then constantly monitor the queue for new work to perform.
+
+> Celery communicates via messages, usually using a broker to mediate between
+> clients and workers. To initiate a task a client puts a message on the queue,
+> the broker then delivers the message to a worker.
+
+> A Celery system can consist of multiple workers and brokers, giving way to
+> high availability and horizontal scaling.
+
 ### Pre-commit
 
 We use [pre-commit](https://pre-commit.com/) to run some checks before committing.
