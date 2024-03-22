@@ -8,7 +8,7 @@
 -   Introduce Celery for back end processing
 -   DX improvements
 -   Integration of utilities and related methods
--   Asynchronous tasks with Celery (ongoing)
+-   Task Queues - Asynchronous tasks with Celery
 
 ## Version 0.1.0
 

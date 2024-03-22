@@ -187,8 +187,13 @@ DATABASES = {"default": default_database}
 # Asynchronous tasks configuration
 #
 CELERY_RESULT_BACKEND = "django-db"
-CELERY_BROKER_URL = "redis://:dj_forge_redis_password@localhost:6379/0"
-
+CELERY_BROKER_URL = env.str(
+    "CELERY_BROKER_URL",  # Use first CELERY_BROKER_URL
+    env.str(
+        "REDIS_URL",  # ... then a REDIS_URL for Redis if it is set
+        "redis://:dj_forge_redis_password@localhost:6379/0",  # finally a dev default
+    ),
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
