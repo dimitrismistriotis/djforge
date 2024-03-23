@@ -7,19 +7,5 @@
 {% endcomment %}
 
 {% block content %}
-  <div class="bg-gray-100 font-sans leading-normal tracking-normal">
-    {% include "dj_theme/partials/top_navigation_bar.html" %}
-
-    <div class="container w-full mx-auto pt-20"> {# Container #}
-      <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-        {% block logged_in_content %} {% endblock logged_in_content %}
-      </div>
-    </div>
-
-    {% include "dj_theme/partials/footer.html" %}
-
-    <script>
-      {% include "dj_theme/js/navigation_menu.js" %}
-    </script>
-  </div>
+  {% block logged_in_content %} {% endblock logged_in_content %}
 {% endblock content %}
