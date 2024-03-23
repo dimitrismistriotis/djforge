@@ -27,5 +27,17 @@
 {% endblock extra_head_entries %}
 
 {% block content %}
-  {% block logged_in_content %} {% endblock logged_in_content %}
+{% comment %}
+  Original theme wraps with this <html lang="en" class="dark">
+  and <body class="bg-gray-50 dark:bg-gray-800">
+    instad of the div wrapper used here instead
+{% endcomment %}
+  <div class="bg-gray-50 dark:bg-gray-800">
+    {% block logged_in_content %} {% endblock logged_in_content %}
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://flowbite-admin-dashboard.vercel.app//app.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/datepicker.min.js"></script>
+  </div>
+{% comment %} ... initial version finishes with: </body> </html> {% endcomment %}
 {% endblock content %}
