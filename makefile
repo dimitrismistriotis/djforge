@@ -142,7 +142,7 @@ livereload: 			## Run livereload
 .PHONY: docker_compose_up
 .PHONY: up
 docker_compose_up up:		## Run docker compose up running needed containers in the foreground
-	@if [ -z ${{DOCKER_DASH_COMPOSE+x} ]; then\
+	@if [ -z ${{DOCKER_DASH_COMPOSE+x}} ]; then\
 		docker-compose up;\
 	else\
 		docker compose up;\
