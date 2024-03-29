@@ -18,7 +18,7 @@ class TestContentPages:
         ],
     )
     def test_homepage_returns_200(self, client, url_name) -> None:
-        """Test that health page returns a 200 response."""
+        """Test page returns a 200 response."""
         response = client.get(reverse(url_name))
 
         assert response.status_code == 200
