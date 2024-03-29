@@ -5,50 +5,12 @@
   {{ block.super }}
 {% endblock extra_head_entries %}
 
-{% block logged_in_content %}
-  {% include "dj_theme/partials/top_navigation_bar.html" %}
+{% block navigation_bar %}
+  {{ block.super }}
+{% endblock navigation_bar %}
 
-  <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
-    {% include "dj_theme/partials/aside_navigation_bar.html" %}
-
-    <div
-      id="main-content"
-      class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
-    >
-      <main>
-        <div class="px-4 pt-6">
-          <div class="grid gap-4 xl:grid-cols-2 2xl:grid-cols-3">
-            {% include "dj_theme/partials/main_chart_widget.html" %}
-
-            {% include "dj_theme/partials/tabs_widget_statistics.html" %}
-          </div>
-
-          {% include "dj_theme/partials/small_bar_charts.html" %}
-
-          <div class="grid grid-cols-1 my-4 xl:grid-cols-2 xl:gap-4">
-            {% include "dj_theme/partials/chat_card.html" %}
-
-            <!-- Right Content -->
-            <div class="grid gap-4">
-              {% include "dj_theme/partials/bar_chart_card.html" %}
-
-              {% include "dj_theme/partials/pie_chart_card.html" %}
-            </div>
-          </div>
-          <!-- 2 columns -->
-          <div class="grid grid-cols-1 my-4 xl:grid-cols-2 xl:gap-4">
-            {% include "dj_theme/partials/activity_card.html" %}
-
-            {% include "dj_theme/partials/carousel_widget.html" %}
-          </div>
-
-          {% include "dj_theme/partials/transactions_table.html" %}
-        </div>
-      </main>
-
-      {% include "dj_theme/partials/footer.html" %}
-    </div>
-  </div>
+{% block end_of_content_scripts %}
+  {{ block.super }}
 
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   {% comment %}
@@ -58,4 +20,37 @@
   {% endcomment %}
   <script src="{% static 'dj_theme/js/app.bundle.js' %}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/datepicker.min.js"></script>
+{% endblock end_of_content_scripts %}
+
+{% block logged_in_content %}
+  <main>
+    <div class="px-4 pt-6">
+      <div class="grid gap-4 xl:grid-cols-2 2xl:grid-cols-3">
+        {% include "dj_theme/partials/main_chart_widget.html" %}
+
+        {% include "dj_theme/partials/tabs_widget_statistics.html" %}
+      </div>
+
+      {% include "dj_theme/partials/small_bar_charts.html" %}
+
+      <div class="grid grid-cols-1 my-4 xl:grid-cols-2 xl:gap-4">
+        {% include "dj_theme/partials/chat_card.html" %}
+
+        <!-- Right Content -->
+        <div class="grid gap-4">
+          {% include "dj_theme/partials/bar_chart_card.html" %}
+
+          {% include "dj_theme/partials/pie_chart_card.html" %}
+        </div>
+      </div>
+      <!-- 2 columns -->
+      <div class="grid grid-cols-1 my-4 xl:grid-cols-2 xl:gap-4">
+        {% include "dj_theme/partials/activity_card.html" %}
+
+        {% include "dj_theme/partials/carousel_widget.html" %}
+      </div>
+
+      {% include "dj_theme/partials/transactions_table.html" %}
+    </div>
+  </main>
 {% endblock logged_in_content %}

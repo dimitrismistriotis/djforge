@@ -1,4 +1,5 @@
 {% extends "dj_theme/base.html" %}
+{% load static %}
 
 {% comment %}
   Decided to roll with https://github.com/themesberg/flowbite-admin-dashboard/tree/main
@@ -33,7 +34,23 @@
     instad of the div wrapper used here instead
 {% endcomment %}
   <div class="bg-gray-50 dark:bg-gray-800">
-    {% block logged_in_content %} {% endblock logged_in_content %}
-  </div>
-{% comment %} ... initial version finishes with: </body> </html> {% endcomment %}
+    {% block navigation_bar %}
+      {% include "dj_theme/partials/top_navigation_bar.html" %}
+    {% endblock navigation_bar %}
+
+    <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
+      {% include "dj_theme/partials/aside_navigation_bar.html" %}
+
+      <div
+        id="main-content"
+        class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
+      >
+        {% block logged_in_content %} {% endblock logged_in_content %}
+
+        {% include "dj_theme/partials/footer.html" %}
+      </div>
+
+      {% block end_of_content_scripts %} {% endblock end_of_content_scripts %}
+    </div>
+    {% comment %} ... initial version finishes with: </body> </html> {% endcomment %}
 {% endblock content %}
