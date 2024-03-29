@@ -52,7 +52,7 @@ make secret_key
 #### Health Check
 
 For many providers or provisioners, a health check endpoint is necessary.
-We have one at `/pages/health/` which returns a 200 status code "OK" message as a
+We have one at `/pages/health` which returns a 200 status code "OK" message as a
 response.
 
 Example run with httpie in local development environment:
