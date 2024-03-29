@@ -60,14 +60,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/datepicker.min.js"></script>
 {% endblock logged_in_content %}
 
-
-{% comment %} {% extends "dj_theme/base_logged_in.html" %}
-{% load static %}
-
-{% block extra_head_entries %}
-  {{ block.super }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
-{% endblock extra_head_entries %}
+{% comment %}
 
 {% block logged_in_content %}
   {% include "dj_theme/messages.html" %}
