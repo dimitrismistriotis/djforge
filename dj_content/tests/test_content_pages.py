@@ -10,12 +10,15 @@ pytestmark = [pytest.mark.django_db]
 class TestContentPages:
     """Test Content Pages."""
 
-    def test_homepage_returns_200(self, client) -> None:
+    @pytest.mark.parametrize(
+        "url_name",
+        [
+            "dj_content:health",
+            "dj_content:about-us",
+        ],
+    )
+    def test_homepage_returns_200(self, client, url_name) -> None:
         """Test that health page returns a 200 response."""
-        response = client.get(reverse("dj_content:health"))
-        assert response.status_code == 200
+        response = client.get(reverse(url_name))
 
-    def test_about_page_returns_200(self, client) -> None:
-        """Test that "About Us" page returns a 200 response."""
-        response = client.get(reverse("dj_content:about-us"))
         assert response.status_code == 200
