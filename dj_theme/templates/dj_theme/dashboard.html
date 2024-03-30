@@ -9,6 +9,10 @@
   {{ block.super }}
 {% endblock navigation_bar %}
 
+{% block side_navigation_bar %}
+  {% include "dj_theme/partials/aside_navigation_bar-full.html" %}
+{% endblock side_navigation_bar %}
+
 {% block end_of_content_scripts %}
   {{ block.super }}
 

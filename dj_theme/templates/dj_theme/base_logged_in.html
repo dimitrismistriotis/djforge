@@ -39,7 +39,9 @@
     {% endblock navigation_bar %}
 
     <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
-      {% include "dj_theme/partials/aside_navigation_bar.html" %}
+      {% block side_navigation_bar %}
+        {% include "dj_theme/partials/aside_navigation_bar.html" %}
+      {% endblock side_navigation_bar %}
 
       <div
         id="main-content"
