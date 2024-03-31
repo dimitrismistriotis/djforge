@@ -18,8 +18,6 @@ GENERATE_SECRET_KEY := poetry run python manage.py generate_secret_key
 # Note that there is not a trailing slash in the following variable for readability:
 THEME_CSS_BASE_DIRECTORY := ./dj_theme/static/dj_theme/css
 
-DOCKER_DASH_COMPOSE := $(shell command -v docker-compose 2> /dev/null)
-
 # The following fgrep will dynamically print all targets
 # that have a comment beginning with two hashes including help.
 .PHONY: help
@@ -142,12 +140,8 @@ livereload: 			## Run livereload
 .PHONY: docker_compose_up
 .PHONY: up
 docker_compose_up up:		## Run docker compose up running needed containers in the foreground
-	@if [ -z ${{DOCKER_DASH_COMPOSE+x}} ]; then\
-		docker-compose up;\
-	else\
-		docker compose up;\
-	fi;
+	./development_assist/docker_compose_wrapper up
 
 .PHONY: pull_docker_compose
 pull_docker_compose:		## Pull docker latest versions of images
-	docker compose pull
+	./development_assist/docker_compose_wrapper pull

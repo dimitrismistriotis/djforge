@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# Docker Compose Wrapper
+#
+# This script is a wrapper for docker-compose and docker compose.
+# The docker-compose command is being deprecated in favor of docker compose
+# but many systems still use the old command.
+#
+
+echo "Docker compose and docker-compose wrapper"
+echo "========================================="
+echo ""
+
+if [ -x "$(command -v docker-compose)" ]; then
+    docker-compose $@
+else # use docker compose
+    docker compose $@
+fi
