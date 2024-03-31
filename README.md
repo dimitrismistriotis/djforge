@@ -28,7 +28,10 @@ Can use this one to generate specifics for your project
 
 ### Dashboard Templates
 
-Cannot use all of them :) some to check:
+Decided to use
+[Flowbite Admin Dashboard](https://github.com/themesberg/flowbite-admin-dashboard)
+
+Some others to check:
 
 -   [Tailwind Starter Templates](https://www.tailwindtoolbox.com/starter-templates)
 -   [24 Tailwind Sidebars](https://freefrontend.com/tailwind-sidebars/)
