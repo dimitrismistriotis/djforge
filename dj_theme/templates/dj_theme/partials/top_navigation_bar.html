@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <nav
   class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
@@ -127,16 +128,10 @@
                   role="menuitem">Settings</a>
               </li>
               <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">Earnings</a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">Sign out</a>
+                <form action="{% url 'account_logout' %}" class="" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{% trans "Log Out" %}</button>
+                </form>
               </li>
             </ul>
           </div>
