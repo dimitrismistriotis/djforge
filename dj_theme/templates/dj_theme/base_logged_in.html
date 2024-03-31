@@ -52,7 +52,11 @@
         {% include "dj_theme/partials/footer.html" %}
       </div>
 
-      {% block end_of_content_scripts %} {% endblock end_of_content_scripts %}
+      {% block end_of_content_scripts %}
+        <script>
+          {% include "dj_theme/js/navigation_menu.js" %}
+        </script>
+      {% endblock end_of_content_scripts %}
     </div>
     {% comment %} ... initial version finishes with: </body> </html> {% endcomment %}
 {% endblock content %}
