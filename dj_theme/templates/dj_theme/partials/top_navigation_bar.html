@@ -128,7 +128,7 @@
                   role="menuitem">{% trans "Settings" %}</a>
               </li>
               <li>
-                <form action="{% url 'account_logout' %}" class="" method="post">
+                <form action="{% url 'account_logout' %}" method="post">
                   {% csrf_token %}
                   <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{% trans "Log Out" %}</button>
                 </form>
