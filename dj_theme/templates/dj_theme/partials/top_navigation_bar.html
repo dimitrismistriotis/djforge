@@ -43,7 +43,7 @@
             alt="DJ Forge Logo"
           />
           <span
-            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">DJ Forge</span>
+            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{% trans "DJ Forge" %}</span>
         </a>
       </div>
 
@@ -80,7 +80,7 @@
           id="tooltip-toggle"
           role="tooltip"
           class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-          Toggle dark mode
+          {% trans "Toggle dark mode" %}
           <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
 
@@ -92,7 +92,7 @@
               id="user-menu-button-2"
               aria-expanded="false"
               data-dropdown-toggle="dropdown-2">
-              <span class="sr-only">Open user menu</span>
+              <span class="sr-only">{% trans "Open user menu" %}</span>
               <img
                 class="w-8 h-8 rounded-full"
                 src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
@@ -119,13 +119,13 @@
                 <a
                   href="#"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">Dashboard</a>
+                  role="menuitem">{% trans "Dashboard" %}</a>
               </li>
               <li>
                 <a
                   href="#"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">Settings</a>
+                  role="menuitem">{% trans "Settings" %}</a>
               </li>
               <li>
                 <form action="{% url 'account_logout' %}" class="" method="post">
