@@ -34,4 +34,4 @@ services:
             generateValue: true
           - key: WEB_CONCURRENCY
             value: 4
-      healthCheckPath: "/healthcheck"
+      healthCheckPath: "/pages/health"
