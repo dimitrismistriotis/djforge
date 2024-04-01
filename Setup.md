@@ -49,6 +49,30 @@ generate one with:
 make secret_key
 ```
 
+#### Health Check
+
+For many providers or provisioners, a health check endpoint is necessary.
+We have one at `/pages/health` which returns a 200 status code "OK" message as a
+response.
+
+Example run with httpie in local development environment:
+
+```shell
+http http://localhost:8000/pages/health
+HTTP/1.1 200 OK
+Content-Length: 2
+Content-Type: text/html; charset=utf-8
+Cross-Origin-Opener-Policy: same-origin
+Date: Fri, 29 Mar 2024 16:03:49 GMT
+Referrer-Policy: same-origin
+Server: WSGIServer/0.2 CPython/3.12.2
+Vary: Cookie
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+OK
+```
+
 ### Deployments
 
 #### Render.com
