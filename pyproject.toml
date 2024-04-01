@@ -79,6 +79,7 @@ whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 # MIT license
 #
 rich = "^13.7.1"
+
 #
 # End of DJForge dependencies, add yours below
 #
