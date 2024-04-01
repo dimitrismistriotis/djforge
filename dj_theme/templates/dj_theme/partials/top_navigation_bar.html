@@ -1,3 +1,5 @@
+{% load i18n %}
+{% load static %}
 <nav
   class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
 >
@@ -33,17 +35,18 @@
           </svg>
         </button>
         <a
-          href="https://flowbite-admin-dashboard.vercel.app/"
+          href="{% url 'dj_dashboard:dashboard' %}"
           class="flex ml-2 md:mr-24">
           <img
-            src="https://flowbite-admin-dashboard.vercel.app/images/logo.svg"
+            src="{% static 'dj_favicons/favicon-32x32.png' %}"
             class="h-8 mr-3"
-            alt="FlowBite Logo"
+            alt="DJ Forge Logo"
           />
           <span
-            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
+            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{% trans "DJ Forge" %}</span>
         </a>
       </div>
+
       <div class="flex items-center">
         <button
           id="theme-toggle"
@@ -59,6 +62,7 @@
             <path
               d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
           </svg>
+
           <svg
             id="theme-toggle-light-icon"
             class="hidden w-5 h-5"
@@ -71,11 +75,12 @@
               clip-rule="evenodd"></path>
           </svg>
         </button>
+
         <div
           id="tooltip-toggle"
           role="tooltip"
           class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-          Toggle dark mode
+          {% trans "Toggle dark mode" %}
           <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
 
@@ -87,12 +92,12 @@
               id="user-menu-button-2"
               aria-expanded="false"
               data-dropdown-toggle="dropdown-2">
-              <span class="sr-only">Open user menu</span>
-              <img
-                class="w-8 h-8 rounded-full"
-                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                alt="user photo"
-              />
+              <span class="sr-only">{% trans "Open user menu" %}</span>
+
+              {# user-circle from https://heroicons.com/solid and modified stroke #}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 stroke-gray-50 dark:stroke-grey-100 fill-white dark:fill-gray-50">
+                <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+              </svg>
             </button>
           </div>
 
@@ -100,39 +105,35 @@
             class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
             id="dropdown-2">
             <div class="px-4 py-3" role="none">
-              <p class="text-sm text-gray-900 dark:text-white" role="none">
-                Neil Sims
-              </p>
+              {% if user.name %}
+                <p class="text-sm text-gray-900 dark:text-white" role="none">
+                  {{ user.name }}
+                </p>
+              {% endif %}
               <p
                 class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
                 role="none">
-                neil.sims@flowbite.com
+                {{ user.email }}
               </p>
             </div>
             <ul class="py-1" role="none">
               <li>
                 <a
-                  href="#"
+                  href="{% url 'dj_dashboard:dashboard' %}"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">Dashboard</a>
+                  role="menuitem">{% trans "Dashboard" %}</a>
               </li>
               <li>
                 <a
                   href="#"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">Settings</a>
+                  role="menuitem">{% trans "Settings" %}</a>
               </li>
               <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">Earnings</a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">Sign out</a>
+                <form action="{% url 'account_logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{% trans "Log Out" %}</button>
+                </form>
               </li>
             </ul>
           </div>

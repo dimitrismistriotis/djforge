@@ -7,6 +7,7 @@
 # but many systems still use the old command.
 #
 
+echo ""
 echo "Docker compose and docker-compose wrapper"
 echo "========================================="
 echo ""
