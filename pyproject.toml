@@ -72,6 +72,13 @@ uvicorn = "^0.27.1"
 # MIT license
 #
 whitenoise = {extras = ["brotli"], version = "^6.6.0"}
+#
+# Rich is a Python library for rich text and beautiful formatting in the terminal.
+# https://github.com/Textualize/rich
+# https://rich.readthedocs.io/en/latest/
+# MIT license
+#
+rich = "^13.7.1"
 
 #
 # End of DJForge dependencies, add yours below

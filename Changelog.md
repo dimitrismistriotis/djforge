@@ -7,7 +7,7 @@
 -   Better Sign Up and Login handling
 -   Templated Project
 -   Introduce Celery for back end processing
--   DX improvements
+-   DX improvements (rich library for CLI, others)
 -   Integration of utilities and related methods
 -   Task Queues - Asynchronous tasks with Celery
 -   Health Check Endpoint
