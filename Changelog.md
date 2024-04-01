@@ -9,6 +9,7 @@
 -   DX improvements
 -   Integration of utilities and related methods
 -   Task Queues - Asynchronous tasks with Celery
+-   Health Check Endpoint
 
 ## Version 0.1.0
 
