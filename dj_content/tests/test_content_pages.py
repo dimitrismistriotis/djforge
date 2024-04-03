@@ -15,6 +15,7 @@ class TestContentPages:
         [
             "dj_content:health",
             "dj_content:about-us",
+            "dj_content:license",
         ],
     )
     def test_homepage_returns_200(self, client, url_name) -> None:
