@@ -180,8 +180,7 @@ extend-ignore = ["D203", "D213"]
 [tool.ruff.lint]
 extend-select = [
   "UP",  # pyupgrade: automatically upgrade syntax for newer versions of the language.
-  "D",   # pydocstyle: checking compliance with Python docstring conventions.
-]
+  "D"]   # pydocstyle: checking compliance with Python docstring conventions.
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "djforge.settings"
