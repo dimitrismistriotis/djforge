@@ -24,6 +24,12 @@ def health(_request: HttpRequest) -> HttpResponse:
 
 def license(request: HttpRequest) -> HttpResponse:
     """Return the license of the dj_content app from License.md."""
-    license_lines = read_file_into_array(_LICENSE_FILE)
+    # Below removes markdown header:
+    license_lines = [
+        line for line in read_file_into_array(_LICENSE_FILE) if not line.startswith("#")
+    ]
+    # Remove first empty line if there as it was to space out the header:
+    if not license_lines[0]:
+        license_lines.pop(0)
 
     return render(request, "dj_content/license.html", {"license_lines": license_lines})
