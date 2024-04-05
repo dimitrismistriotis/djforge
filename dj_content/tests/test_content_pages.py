@@ -15,10 +15,18 @@ class TestContentPages:
         [
             "dj_content:health",
             "dj_content:about-us",
+            "dj_content:license",
         ],
     )
-    def test_homepage_returns_200(self, client, url_name) -> None:
+    def test_content_page_returns_200(self, client, url_name) -> None:
         """Test page returns a 200 response."""
         response = client.get(reverse(url_name))
 
         assert response.status_code == 200
+
+    def test_license_page_contains_license(self, client) -> None:
+        """Test license page contains the license."""
+        response = client.get(reverse("dj_content:license"))
+
+        assert "License" in response.content.decode()
+        assert "DJ-FORGE" in response.content.decode()

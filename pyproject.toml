@@ -145,10 +145,17 @@ pytest-emoji = "^0.2.0"
 #
 pytest-md = "^0.2.0"
 
+httpie = "^3.2.2"
+#
+# Runs pytest, and re-runs it when a file in your project changes.
+# https://github.com/joeyespo/pytest-watch
+# MIT license
+#
+pytest-watch = "^4.2.0"
+
 #
 # End of DJForge development dependencies, add yours below
 #
-httpie = "^3.2.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
@@ -173,8 +180,7 @@ extend-ignore = ["D203", "D213"]
 [tool.ruff.lint]
 extend-select = [
   "UP",  # pyupgrade: automatically upgrade syntax for newer versions of the language.
-  "D",   # pydocstyle: checking compliance with Python docstring conventions.
-]
+  "D"]   # pydocstyle: checking compliance with Python docstring conventions.
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "djforge.settings"

@@ -102,6 +102,12 @@ test:				## Run tests
 	poetry run pytest
 
 
+.PHONY: test_watch
+test_watch:			## Run tests in watch mode (rerun tests when files change)
+	@echo "Pytest Watch..."
+	poetry run ptw
+
+
 .PHONY: test_recreate
 test_recreate:			## Run tests creating the database, needed after migrations
 	@echo "Running tests..."
