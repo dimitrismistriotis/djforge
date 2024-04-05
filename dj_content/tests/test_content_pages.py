@@ -28,4 +28,5 @@ class TestContentPages:
         """Test license page contains the license."""
         response = client.get(reverse("dj_content:license"))
 
+        assert "License" in response.content.decode()
         assert "DJ-FORGE" in response.content.decode()

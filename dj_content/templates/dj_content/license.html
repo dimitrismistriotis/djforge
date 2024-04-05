@@ -1,6 +1,7 @@
 {% extends "dj_theme/base.html" %}
 
 {% load static %}
+{% load i18n %}
 
 {% block content %}
   {% comment %}
@@ -15,9 +16,10 @@
         {% include "dj_theme/messages.html" %}
 
         <h2 class="mt-3 mb-4 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl dark:text-white">
-          About Us
+          {% trans "License" %}
         </h2>
 
+        {{ license_text }}
         <p class="mb-3 text-gray-500 dark:text-gray-400 first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100 first-letter:me-3 first-letter:float-start">
           We are certainly at the dawn of a new era in terms of entrepreneurship and creativity.
           On the one hand, we have new technologies, especially in the field of
