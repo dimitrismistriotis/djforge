@@ -23,3 +23,9 @@ class TestContentPages:
         response = client.get(reverse(url_name))
 
         assert response.status_code == 200
+
+    def test_license_page_contains_license(self, client) -> None:
+        """Test license page contains the license."""
+        response = client.get(reverse("dj_content:license"))
+
+        assert "DJ-FORGE" in response.content.decode()
