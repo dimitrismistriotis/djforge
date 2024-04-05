@@ -18,7 +18,7 @@ class TestContentPages:
             "dj_content:license",
         ],
     )
-    def test_homepage_returns_200(self, client, url_name) -> None:
+    def test_content_page_returns_200(self, client, url_name) -> None:
         """Test page returns a 200 response."""
         response = client.get(reverse(url_name))
 
