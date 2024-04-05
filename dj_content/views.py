@@ -24,6 +24,6 @@ def health(_request: HttpRequest) -> HttpResponse:
 
 def license(request: HttpRequest) -> HttpResponse:
     """Return the license of the dj_content app from License.md."""
-    license_text = read_file_into_array(_LICENSE_FILE)
+    license_lines = read_file_into_array(_LICENSE_FILE)
 
-    return render(request, "dj_content/license.html", {"license_text": license_text})
+    return render(request, "dj_content/license.html", {"license_lines": license_lines})
