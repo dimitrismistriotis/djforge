@@ -1,6 +1,8 @@
 # Changelog
 
-## Version 0.2.0 - Current
+## Version 0.3.0 - Current
+
+## Version 0.2.0
 
 -   Integrate [Flowbite Admin Dashboard](https://github.com/themesberg/flowbite-admin-dashboard)
 -   PGAdmin in Docker Compose file
