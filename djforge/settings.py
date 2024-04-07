@@ -91,6 +91,11 @@ INSTALLED_APPS = [
     # for experiments to see if there is enough momentum to pursue.
     "dj_register_interest",
     #
+    # Proof of Concepts app, to test out various things, and to have a place to
+    # experiment with new ideas, discuss mocks, or display what the project can do.
+    #
+    "dj_pocs",
+    #
     # Allauth items, having only base and account for local storage of user credentials
     # (mainly email and password), others can be added here such as Google, Facebook,
     # etc.
