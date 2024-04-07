@@ -11,6 +11,7 @@
 -   Integration of utilities and related methods
 -   Task Queues - Asynchronous tasks with Celery
 -   Health Check Endpoint
+-   Features List on Landing Page
 
 ## Version 0.1.0
 
