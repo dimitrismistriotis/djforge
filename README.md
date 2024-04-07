@@ -64,6 +64,13 @@ RDBMS for Django projects, also one of the most popular RDBMS in general.
 For most applications a RDBMS is a good-enough choice, which makes it a good default
 to kickstart your project.
 
+## Use of Images
+
+Most of the images used in this repository have been generated from Dall-E or similar
+tools, this means that you can use them... but so can everybody else.
+
+In the future prompts used to generate content be provided alongside it.
+
 ## Day to Day
 
 ## Run Database and related services with Docker Compose
