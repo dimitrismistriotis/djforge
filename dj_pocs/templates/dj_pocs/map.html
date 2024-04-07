@@ -24,9 +24,15 @@
           {% trans "Map and Postcode Analysis" %}
         </h3>
 
-        <p class="font-normal text-gray-700 dark:text-gray-400">
-          Placeholder for Map
-        </p>
+        {% if google_maps_api_key %}
+          <p class="font-normal text-gray-700 dark:text-gray-400">
+            Placeholder for Map
+          </p>
+        {% else %}
+          <p class="font-normal text-gray-700 dark:text-gray-400">
+            Map Key missing message.
+          </p>
+        {% endif %}
       </div>
 
       <div class="mt-3 block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
