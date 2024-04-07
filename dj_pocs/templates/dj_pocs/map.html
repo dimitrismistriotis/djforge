@@ -1,1 +1,43 @@
-Placeholder
+{% extends "dj_theme/base_logged_in.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block extra_head_entries %}
+  {{ block.super }}
+{% endblock extra_head_entries %}
+
+{% block navigation_bar %}
+  {{ block.super }}
+{% endblock navigation_bar %}
+
+{% block end_of_content_scripts %}
+  {{ block.super }}
+{% endblock end_of_content_scripts %}
+
+{% block logged_in_content %}
+  <main>
+    <div class="px-4 pt-6">
+      {% include "dj_theme/messages.html" %}
+
+      <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {% trans "Map and Postcode Analysis" %}
+        </h3>
+
+        <p class="font-normal text-gray-700 dark:text-gray-400">
+          Placeholder for Map
+        </p>
+      </div>
+
+      <div class="mt-3 block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {% trans "Postcodes Table" %}
+        </h5>
+
+        <p class="font-normal text-gray-700 dark:text-gray-400">
+          Placeholder for Table
+        </p>
+      </div>
+    </div>
+  </main>
+{% endblock logged_in_content %}
