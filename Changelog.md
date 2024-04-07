@@ -2,6 +2,8 @@
 
 ## Version 0.3.0 - Current
 
+-   Google Maps inside the Application as Static Image - PoC
+
 ## Version 0.2.0
 
 -   Integrate [Flowbite Admin Dashboard](https://github.com/themesberg/flowbite-admin-dashboard)
