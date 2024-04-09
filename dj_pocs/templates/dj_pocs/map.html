@@ -26,7 +26,7 @@
           </h3>
 
           <p class="font-normal text-gray-700 dark:text-gray-400">
-            <div id="map" style="height: 400px; width: 100%;"></div>
+            <div id="map" style="height: 450px; width: 100%;"></div>
           </p>
         </div>
       {% else %}
@@ -98,8 +98,8 @@
       function initMap() {
         // Map options
         var options = {
-            zoom: 8,
-            center: {lat: -34.397, lng: 150.644} // This should be roughly centered based on your markers
+          zoom: 10,
+          center: {lat: {{approximate_center.latitude}}, lng: {{approximate_center.longitude}}}
         };
 
         // New map

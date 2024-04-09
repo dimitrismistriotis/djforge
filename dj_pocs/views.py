@@ -1,5 +1,7 @@
 """Views for the dj_pocs app."""
 
+from functools import reduce
+
 from django.conf import settings
 from django.contrib import messages
 from django.http import HttpResponse
@@ -96,11 +98,29 @@ def map_and_postcode_analysis(request: HttpRequest) -> HttpResponse:
 
     post_codes_and_demand = POST_CODE_SAMPLE_DATA  # Will later be ordered/filtered
 
+    approximate_center = reduce(
+        lambda acc, post_code: (
+            acc[0] + post_code["latitude"],
+            acc[1] + post_code["longitude"],
+        ),
+        post_codes_and_demand,
+        (0, 0),
+    )
+    approximate_center = (
+        approximate_center[0] / len(post_codes_and_demand),
+        approximate_center[1] / len(post_codes_and_demand),
+    )
+    approximate_center_dict = {
+        "latitude": approximate_center[0],
+        "longitude": approximate_center[1],
+    }
+
     return render(
         request,
         "dj_pocs/map.html",
         {
             "google_maps_api_key": google_maps_api_key,
             "post_codes_and_demand": post_codes_and_demand,
+            "approximate_center": approximate_center_dict,
         },
     )
