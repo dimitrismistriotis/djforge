@@ -94,13 +94,13 @@ def map_and_postcode_analysis(request: HttpRequest) -> HttpResponse:
             request, _("Google Maps API key is not set, cannot display map.")
         )
 
-    post_code_and_demand = POST_CODE_SAMPLE_DATA  # Will later be ordered/filtered
+    post_codes_and_demand = POST_CODE_SAMPLE_DATA  # Will later be ordered/filtered
 
     return render(
         request,
         "dj_pocs/map.html",
         {
             "google_maps_api_key": google_maps_api_key,
-            "post_code_and_demand": post_code_and_demand,
+            "post_codes_and_demand": post_codes_and_demand,
         },
     )
