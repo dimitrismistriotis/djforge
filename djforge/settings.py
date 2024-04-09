@@ -340,3 +340,12 @@ else:
 # Uncomment/Remove if you want to be the same as LOGIN_REDIRECT_URL
 #
 ACCOUNT_SIGNUP_REDIRECT_URL = "/dashboard/signup"
+
+#    _   ___ ___   _  __
+#   /_\ | _ \_ _| | |/ /___ _  _ ___
+#  / _ \|  _/| |  | ' </ -_) || (_-<
+# /_/ \_\_| |___| |_|\_\___|\_, /__/
+#                           |__/
+#
+# Different API Keys used throughout the project
+GOOGLE_MAPS_API_KEY = env.str("GOOGLE_MAPS_API_KEY", "")  # No default
