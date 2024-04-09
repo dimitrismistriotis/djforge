@@ -20,7 +20,7 @@
       {% include "dj_theme/messages.html" %}
 
       {% if google_maps_api_key %}
-        <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {% trans "Map and Postcode Analysis" %}
           </h3>
@@ -30,7 +30,7 @@
           </p>
         </div>
       {% else %}
-        <div href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        <div href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row dark:border-gray-700 dark:bg-gray-800">
           <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
               src="{% static "dj_pocs/map.png" %}" alt="Map Image">
 
@@ -49,7 +49,7 @@
       {% endif %}
 
 
-      <div class="mt-3 block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <div class="mt-3 block p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {% trans "Postcodes Table" %}
         </h5>
