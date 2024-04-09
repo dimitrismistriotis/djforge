@@ -7,27 +7,83 @@ from django.http import HttpRequest
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 
+#
+# Data sourced from https://www.doogal.co.uk/UKPostcodes?Search=NG10
+# and ChatGPT for demand
+#
 POST_CODE_SAMPLE_DATA = [
-    {"post_code": "NG1", "demand": 15},
-    {"post_code": "NG2", "demand": 16},
-    {"post_code": "NG3", "demand": 18},
-    {"post_code": "NG4", "demand": 18},
-    {"post_code": "NG5", "demand": 19},
-    {"post_code": "NG6", "demand": 17},
-    {"post_code": "NG7", "demand": 10},
-    {"post_code": "NG8", "demand": 13},
-    {"post_code": "NG9", "demand": 13},
-    {"post_code": "NG10", "demand": 12},
-    {"post_code": "NG11", "demand": 15},
-    {"post_code": "NG12", "demand": 13},
-    {"post_code": "NG13", "demand": 15},
-    {"post_code": "NG14", "demand": 15},
-    {"post_code": "NG15", "demand": 16},
-    {"post_code": "NG16", "demand": 14},
-    {"post_code": "NG17", "demand": 12},
-    {"post_code": "NG18", "demand": 20},
-    {"post_code": "NG19", "demand": 18},
-    {"post_code": "NG20", "demand": 16},
+    {
+        "post_code": "NG10 1AA",
+        "latitude": 52.897228,
+        "longitude": -1.272167,
+        "demand": 15,
+    },
+    {
+        "post_code": "NG10 1AB",
+        "latitude": 52.887565,
+        "longitude": -1.275499,
+        "demand": 16,
+    },
+    {
+        "post_code": "NG10 1AD",
+        "latitude": 52.888628,
+        "longitude": -1.277339,
+        "demand": 18,
+    },
+    {
+        "post_code": "NG10 1AE",
+        "latitude": 52.887459,
+        "longitude": -1.277255,
+        "demand": 19,
+    },
+    {
+        "post_code": "NG10 1AF",
+        "latitude": 52.886726,
+        "longitude": -1.274993,
+        "demand": 17,
+    },
+    {
+        "post_code": "NG10 1AG",
+        "latitude": 52.88806,
+        "longitude": -1.278434,
+        "demand": 10,
+    },
+    {
+        "post_code": "NG10 1AH",
+        "latitude": 52.886334,
+        "longitude": -1.278448,
+        "demand": 13,
+    },
+    {
+        "post_code": "NG10 1AJ",
+        "latitude": 52.886429,
+        "longitude": -1.277852,
+        "demand": 13,
+    },
+    {
+        "post_code": "NG10 1AL",
+        "latitude": 52.885908,
+        "longitude": -1.277875,
+        "demand": 12,
+    },
+    {
+        "post_code": "NG10 1AN",
+        "latitude": 52.885659,
+        "longitude": -1.279871,
+        "demand": 15,
+    },
+    {
+        "post_code": "NG10 1AP",
+        "latitude": 52.887616,
+        "longitude": -1.280819,
+        "demand": 16,
+    },
+    {
+        "post_code": "NG10 1AQ",
+        "latitude": 52.887015,
+        "longitude": -1.27961,
+        "demand": 14,
+    },
 ]
 
 
