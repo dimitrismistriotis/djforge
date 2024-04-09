@@ -26,7 +26,7 @@
           </h3>
 
           <p class="font-normal text-gray-700 dark:text-gray-400">
-            Placeholder for map.
+            <div id="map" style="height: 400px; width: 100%;"></div>
           </p>
         </div>
       {% else %}
@@ -92,4 +92,70 @@
       </div>
     </div>
   </main>
+
+  {% if google_maps_api_key %}
+    <script>
+      function initMap() {
+        // Map options
+        var options = {
+            zoom: 8,
+            center: {lat: -34.397, lng: 150.644} // This should be roughly centered based on your markers
+        };
+
+        // New map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+
+        // Array of markers
+        var markers = [
+            {
+                coords: {lat: -34.397, lng: 150.644},
+                iconImage: 'path/to/custom/icon1.png', // Specify the path to your custom pin image
+                content: '<h1>Location One</h1>'
+            },
+            {
+                coords: {lat: -35.297, lng: 149.644},
+                iconImage: 'path/to/custom/icon2.png', // Specify the path to another custom pin image
+                content: '<h1>Location Two</h1>'
+            }
+            // Add more markers as needed
+        ];
+
+        // Loop through markers
+        for(var i = 0; i < markers.length; i++){
+            addMarker(markers[i]);
+        }
+
+        // Add Marker Function
+        function addMarker(props){
+            var marker = new google.maps.Marker({
+                position:props.coords,
+                map:map,
+                // Set the custom icon
+                icon:props.iconImage
+            });
+
+            // Check for custom icon
+            if(props.iconImage){
+                // Set icon image
+                marker.setIcon(props.iconImage);
+            }
+
+            // Check content
+            if(props.content){
+                var infoWindow = new google.maps.InfoWindow({
+                    content:props.content
+                });
+
+                marker.addListener('click', function(){
+                    infoWindow.open(map, marker);
+                });
+            }
+        }
+    }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap">
+    </script>
+  {% endif %}
 {% endblock logged_in_content %}
