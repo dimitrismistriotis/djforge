@@ -96,7 +96,9 @@ def map_and_postcode_analysis(request: HttpRequest) -> HttpResponse:
             request, _("Google Maps API key is not set, cannot display map.")
         )
 
-    post_codes_and_demand = POST_CODE_SAMPLE_DATA  # Will later be ordered/filtered
+    post_codes_and_demand = sorted(
+        POST_CODE_SAMPLE_DATA, key=lambda x: x["demand"], reverse=True
+    )
 
     approximate_center = reduce(
         lambda acc, post_code: (
