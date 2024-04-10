@@ -31,6 +31,10 @@ Can use this one to generate specifics for your project
 Decided to use
 [Flowbite Admin Dashboard](https://github.com/themesberg/flowbite-admin-dashboard)
 
+Other links from the theme:
+
+-   <https://flowbite-admin-dashboard.vercel.app/playground/stacked/>
+
 Some others to check:
 
 -   [Tailwind Starter Templates](https://www.tailwindtoolbox.com/starter-templates)

@@ -48,6 +48,7 @@ urlpatterns = [
         include("dj_dashboard.urls"),
         name="dj_dashboard",
     ),
+    path("pocs/", include("dj_pocs.urls"), name="dj_pocs"),
 ]
 
 #

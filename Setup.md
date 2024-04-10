@@ -206,3 +206,13 @@ leave it as it is, copy the directory to another one, then swap it on `INSTALLED
 within `settings.py` and edit `urls.py` to point to the new location.
 
 This is a pattern to be followed on each "dj\_" prefixed app.
+
+## Proof of Concept Area
+
+### Maps Page
+
+In order to display the Map image and link, a Google Maps API key is needed to be
+set as the `GOOGLE_MAPS_API_KEY` variable, stemming from environment.
+For instructions see
+<https://developers.google.com/maps/documentation/javascript/get-api-key>
+or search the web 🙃: <https://search.brave.com/search?q=create+google+maps+api+key>
