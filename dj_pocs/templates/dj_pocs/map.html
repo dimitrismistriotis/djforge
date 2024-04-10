@@ -54,13 +54,6 @@
           {% trans "Postcodes Table" %}
         </h5>
 
-        <p class="font-normal text-gray-700 dark:text-gray-400">
-          Placeholder for Table
-
-          Data:
-          {{ post_codes_and_demand }}
-        </p>
-
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -98,7 +91,7 @@
       function initMap() {
         // Map options
         var options = {
-          zoom: 10,
+          zoom: 15,
           center: {lat: {{approximate_center.latitude}}, lng: {{approximate_center.longitude}}}
         };
 
@@ -107,16 +100,13 @@
 
         // Array of markers
         var markers = [
+          {% for post_code_and_demand in post_codes_and_demand %}
             {
-                coords: {lat: -34.397, lng: 150.644},
-                iconImage: 'path/to/custom/icon1.png', // Specify the path to your custom pin image
-                content: '<h1>Location One</h1>'
-            },
-            {
-                coords: {lat: -35.297, lng: 149.644},
-                iconImage: 'path/to/custom/icon2.png', // Specify the path to another custom pin image
-                content: '<h1>Location Two</h1>'
-            }
+                coords: {lat: {{ post_code_and_demand.latitude }}, lng: {{ post_code_and_demand.longitude }}},
+                // iconImage: 'path/to/custom/icon1.png', // Specify the path to your custom pin image
+                content: '<h1>{{ post_code_and_demand.post_code }}</h1>'
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
             // Add more markers as needed
         ];
 
