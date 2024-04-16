@@ -3,6 +3,7 @@
 ## Version 0.3.0 - Current
 
 -   Google Maps inside the Application as Static Image - PoC
+-   Integrated User Management Functionality: Change Password
 
 ## Version 0.2.0
 
