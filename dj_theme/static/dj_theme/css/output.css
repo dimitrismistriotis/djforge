@@ -2948,6 +2948,11 @@ input:checked + .toggle-bg {
 }
 
 @media (min-width: 768px) {
+  .md\:mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
   .md\:mb-0 {
     margin-bottom: 0px;
   }
