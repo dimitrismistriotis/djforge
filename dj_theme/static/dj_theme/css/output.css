@@ -1535,6 +1535,10 @@ input:checked + .toggle-bg {
   max-width: 24rem;
 }
 
+.max-w-md {
+  max-width: 28rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1612,6 +1616,10 @@ input:checked + .toggle-bg {
 
 .resize {
   resize: both;
+}
+
+.list-inside {
+  list-style-position: inside;
 }
 
 .list-disc {
@@ -2386,6 +2394,10 @@ input:checked + .toggle-bg {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
 }
 
 .italic {
