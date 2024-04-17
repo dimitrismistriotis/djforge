@@ -59,7 +59,7 @@ django-extensions = "^3.2.3"
 # https://gunicorn.org/
 # https://github.com/benoitc/gunicorn?tab=License-1-ov-file
 #
-gunicorn = "^21.2.0"
+gunicorn = "^22.0.0"
 #
 # Uvicorn is an ASGI web server implementation for Python.
 # https://www.uvicorn.org/
