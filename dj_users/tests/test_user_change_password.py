@@ -12,6 +12,7 @@ from .base_classes import UserLoginLogoutBase
 pytestmark = [pytest.mark.django_db]
 
 
+# noinspection HardcodedPassword
 class TestUserChangePassword(UserLoginLogoutBase):
     """Test User Change Password functionality."""
 
@@ -25,27 +26,29 @@ class TestUserChangePassword(UserLoginLogoutBase):
         assert response.status_code == 200
         assert "Change Password" in str(response.content)
 
-    # def test_change_password_view(self, client: Client) -> None:
-    #     """Correctly change password for a user."""
-    #     client.login(username=self.USERNAME, password=self.PASSWORD)
+    def test_change_password_view(self, client: Client) -> None:
+        """Correctly change password for a user."""
+        client.login(username=self.USER_EMAIL, password=self.PASSWORD)
 
-    #     # Test GET request to change password page
-    #     response = client.get(reverse("account_change_password"))
-    #     assert response.status_code == 200
-    #     assert "Change Password" in str(response.content)
+        # Test POST request to change password
+        new_password: str = "NewP4ssword12!"
+        response = client.post(
+            reverse("account_change_password"),
+            {
+                "oldpassword": self.PASSWORD,
+                "password1": new_password,
+                "password2": new_password,
+            },
+        )
 
-    #     # Test POST request to change password
-    #     new_password: str = "newpassword"
-    #     response = client.post(
-    #         reverse("account_change_password"),
-    #         {
-    #             "oldpassword": self.PASSWORD,
-    #             "password1": new_password,
-    #             "password2": new_password,
-    #         },
-    #     )
-    #     assert response.status_code == 302
-    #     assert response.url == reverse("account_change_password_done")
+        assert response.status_code == 302
+        #
+        # This was initial synthetic test's code, with the current setup, user gets
+        # redirected to the same page. Keep it in comments as it seems a better idea
+        # to take them there in the future.
+        #
+        # assert response.url == reverse("account_change_password_done")
+        assert response.url == self.TARGET_URL
 
     #     # Logout and login with new password
     #     client.logout()
