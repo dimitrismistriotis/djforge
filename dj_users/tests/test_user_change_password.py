@@ -70,52 +70,38 @@ class TestUserChangePassword(UserLoginLogoutBase):
 
         assert client.login(username=self.USER_EMAIL, password=new_password)
 
-    #
-    # Remainint tests, can reintroduce as we go along.
-    #
+    def test_change_password_with_current_password_wrong(self, client: Client) -> None:
+        """Do not change password with current password wrong."""
+        client.login(username=self.USER_EMAIL, password=self.PASSWORD)
 
-    # def test_change_password_with_invalid_data(self, client: Client) -> None:
-    #     """Do not change password with current password wrong."""
-    #     client.login(username=self.USERNAME, password=self.PASSWORD)
+        # Issue POST request with wrong current password:
+        response = client.post(
+            self.TARGET_URL,
+            {
+                "oldpassword": "wrong_testpass",
+                "password1": "differentpass",
+                "password2": "differentpass",
+            },
+        )
 
-    #     # Test POST request with mismatched passwords
-    #     response = client.post(
-    #         reverse("account_change_password"),
-    #         {
-    #             "oldpassword": "wrong_testpass",
-    #             "password1": "differentpass",
-    #             "password2": "differentpass",
-    #         },
-    #     )
-    #     assert response.status_code == 200
-    #     assert "The two password fields didn&#39;t match." in str(response.content)
+        assert response.status_code == 200
+        assert "Please type your current password" in str(response.content)
 
-    #     # Test POST request with incorrect old password
-    #     response = client.post(
-    #         reverse("account_change_password"),
-    #         {
-    #             "oldpassword": "wrongpass",
-    #             "password1": "newpass",
-    #             "password2": "newpass",
-    #         },
-    #     )
-    #     assert response.status_code == 200
-    #     assert "Your current password was entered incorrectly." in str(response.content)
+    def test_change_password_with_mismatched_new_passwords(
+        self, client: Client
+    ) -> None:
+        """Do not change password if password 1 and 2 do not match."""
+        client.login(username=self.USER_EMAIL, password=self.PASSWORD)
 
-    # def test_change_password_with_mismatched_new_passwords(
-    #     self, client: Client
-    # ) -> None:
-    #     """Do not change password if password 1 and 2 do not match."""
-    #     client.login(username=self.USERNAME, password=self.PASSWORD)
+        # Issue POST request with mismatched new passwords:
+        response = client.post(
+            self.TARGET_URL,
+            {
+                "oldpassword": self.PASSWORD,
+                "password1": "NewP4ssword12!",
+                "password2": "NewP4ssword12!-with-more-stuff",
+            },
+        )
 
-    #     # Test POST request with mismatched new passwords
-    #     response = client.post(
-    #         reverse("account_change_password"),
-    #         {
-    #             "oldpassword": "testpass",
-    #             "password1": "newpass1",
-    #             "password2": "newpass2",
-    #         },
-    #     )
-    #     assert response.status_code == 200
-    #     assert "The two password fields didn&#39;t match." in str(response.content)
+        assert response.status_code == 200
+        assert "You must type the same password each time" in str(response.content)
