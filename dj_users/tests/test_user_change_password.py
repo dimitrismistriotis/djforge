@@ -70,6 +70,10 @@ class TestUserChangePassword(UserLoginLogoutBase):
 
         assert client.login(username=self.USER_EMAIL, password=new_password)
 
+    #
+    # Remainint tests, can reintroduce as we go along.
+    #
+
     # def test_change_password_with_invalid_data(self, client: Client) -> None:
     #     """Do not change password with current password wrong."""
     #     client.login(username=self.USERNAME, password=self.PASSWORD)
