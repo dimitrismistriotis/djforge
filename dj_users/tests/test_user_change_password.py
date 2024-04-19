@@ -50,12 +50,25 @@ class TestUserChangePassword(UserLoginLogoutBase):
         # assert response.url == reverse("account_change_password_done")
         assert response.url == self.TARGET_URL
 
-    #     # Logout and login with new password
-    #     client.logout()
-    #     client.login(login="user@provider.com", password=new_password)
+    def test_user_can_log_in_with_changed_password(self, client: Client) -> None:
+        """Once password is changed, user can log in with new password."""
+        client.login(username=self.USER_EMAIL, password=self.PASSWORD)
 
-    #     user = self.USER_MODEL.objects.get(email=self.USER_EMAIL)
-    #     assert client.session.get("_auth_user_id") == str(user.id)
+        # Test POST request to change password
+        new_password: str = "NewP4ssword12!"
+        client.post(
+            reverse("account_change_password"),
+            {
+                "oldpassword": self.PASSWORD,
+                "password1": new_password,
+                "password2": new_password,
+            },
+        )
+
+        # Logout and login with new password
+        client.logout()
+
+        assert client.login(username=self.USER_EMAIL, password=new_password)
 
     # def test_change_password_with_invalid_data(self, client: Client) -> None:
     #     """Do not change password with current password wrong."""
