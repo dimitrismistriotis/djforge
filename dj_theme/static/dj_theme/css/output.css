@@ -1519,6 +1519,10 @@ input:checked + .toggle-bg {
   max-width: 32rem;
 }
 
+.max-w-md {
+  max-width: 28rem;
+}
+
 .max-w-screen-md {
   max-width: 768px;
 }
@@ -1533,10 +1537,6 @@ input:checked + .toggle-bg {
 
 .max-w-sm {
   max-width: 24rem;
-}
-
-.max-w-md {
-  max-width: 28rem;
 }
 
 .flex-1 {
@@ -1968,14 +1968,14 @@ input:checked + .toggle-bg {
   border-color: rgb(253 232 232 / var(--tw-border-opacity));
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .border-red-500 {
   --tw-border-opacity: 1;
   border-color: rgb(240 82 82 / var(--tw-border-opacity));
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .bg-blue-50 {
@@ -2396,10 +2396,6 @@ input:checked + .toggle-bg {
   text-transform: uppercase;
 }
 
-.lowercase {
-  text-transform: lowercase;
-}
-
 .italic {
   font-style: italic;
 }
@@ -2517,6 +2513,11 @@ input:checked + .toggle-bg {
   color: rgb(155 28 28 / var(--tw-text-opacity));
 }
 
+.text-red-900 {
+  --tw-text-opacity: 1;
+  color: rgb(119 29 29 / var(--tw-text-opacity));
+}
+
 .text-teal-500 {
   --tw-text-opacity: 1;
   color: rgb(6 148 162 / var(--tw-text-opacity));
@@ -2535,16 +2536,6 @@ input:checked + .toggle-bg {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(114 59 19 / var(--tw-text-opacity));
-}
-
-.text-red-700 {
-  --tw-text-opacity: 1;
-  color: rgb(200 30 30 / var(--tw-text-opacity));
-}
-
-.text-red-900 {
-  --tw-text-opacity: 1;
-  color: rgb(119 29 29 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -3519,13 +3510,13 @@ input:checked + .toggle-bg {
   border-color: rgb(249 128 128 / var(--tw-border-opacity));
 }
 
-:is(:where(.dark) .dark\:border-transparent) {
-  border-color: transparent;
-}
-
 :is(:where(.dark) .dark\:border-red-500) {
   --tw-border-opacity: 1;
   border-color: rgb(240 82 82 / var(--tw-border-opacity));
+}
+
+:is(:where(.dark) .dark\:border-transparent) {
+  border-color: transparent;
 }
 
 :is(:where(.dark) .dark\:bg-blue-600) {
