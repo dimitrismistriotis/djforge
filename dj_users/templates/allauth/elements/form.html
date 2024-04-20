@@ -1,5 +1,15 @@
 {% load allauth %}
 
+{% comment %}
+  <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Debug</span> FORM start (remove once done)
+    </div>
+  </div>
+{% endcomment %}
+
+
 {% if "entrance" in attrs.tags and "login" in attrs.tags %}
   <form method="{{ attrs.method }}" action="{{ attrs.action }}" class="space-y-4 md:space-y-6">
     {% slot body %}
@@ -17,7 +27,7 @@
     {% endslot %}
   </form>
 {% else %}
-  <form method="{{ attrs.method }}" action="{{ attrs.action }}">
+  <form method="{{ attrs.method }}" action="{{ attrs.action }}" class="space-y-4 md:space-y-6">
     {% slot body %}
     {% endslot %}
 
