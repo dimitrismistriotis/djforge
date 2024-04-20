@@ -133,12 +133,26 @@ celery:				## Run celery
 	@echo "Running celery..."
 	poetry run celery -A djforge worker -l info
 
+
 # LiveReload is a tool to automatically refresh your browser when files change.
 # See: pyproject.toml
 .PHONY: livereload
 livereload: 			## Run livereload
 	@echo "Running livereload..."
 	poetry run python manage.py livereload
+
+
+#
+# Run many web development make targets concurrently in one shell
+# https://kylewbanks.com/blog/running-multiple-make-targets-concurrently
+#
+# Follow Up(s):
+# - Perhaps add Celery here
+#
+.PHONY: runserver_plus_additional_service
+runserver_plus_additional_services:	## Run Django server, generate_output_css and livereload together
+	make -j django_runserver generate_output_css livereload
+
 
 #
 # Docker related commands

@@ -4,6 +4,7 @@
 
 -   Google Maps inside the Application as Static Image - PoC
 -   Integrated User Management Functionality: Change Password
+-   Makefile multiplexer for web development commands
 
 ## Version 0.2.0
 
