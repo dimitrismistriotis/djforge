@@ -22,6 +22,7 @@
               d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
               clip-rule="evenodd"></path>
           </svg>
+
           <svg
             id="toggleSidebarMobileClose"
             class="hidden w-6 h-6"
@@ -34,6 +35,7 @@
               clip-rule="evenodd"></path>
           </svg>
         </button>
+
         <a
           href="{% url 'dj_dashboard:dashboard' %}"
           class="flex ml-2 md:mr-24">
@@ -42,6 +44,7 @@
             class="h-8 mr-3"
             alt="DJ Forge Logo"
           />
+
           <span
             class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{% trans "DJ Forge" %}</span>
         </a>
@@ -116,6 +119,7 @@
                 {{ user.email }}
               </p>
             </div>
+
             <ul class="py-1" role="none">
               <li>
                 <a
@@ -123,15 +127,17 @@
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem">{% trans "Dashboard" %}</a>
               </li>
+
               <li>
                 <a
-                  href="#"
+                  href="{% url 'account_change_password' %}"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem">{% trans "Settings" %}</a>
+                  role="menuitem">{% trans "Change Password" %}</a>
               </li>
               <li>
                 <form action="{% url 'account_logout' %}" method="post">
                   {% csrf_token %}
+
                   <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{% trans "Log Out" %}</button>
                 </form>
               </li>
