@@ -207,6 +207,13 @@ within `settings.py` and edit `urls.py` to point to the new location.
 
 This is a pattern to be followed on each "dj\_" prefixed app.
 
+## Email Dispatch
+
+### Development
+
+Currently there is email capture with Mailcrab which traps SMTP traffic in 1025 port
+and exposes a web service in 1080.
+
 ## Proof of Concept Area
 
 ### Maps Page

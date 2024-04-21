@@ -5,6 +5,7 @@
 -   Google Maps inside the Application as Static Image - PoC
 -   Integrated User Management Functionality: Change Password
 -   Makefile multiplexer for web development commands
+-   Email Dispatch Integration: Mailcrab to capture emails while developing
 
 ## Version 0.2.0
 
