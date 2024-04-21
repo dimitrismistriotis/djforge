@@ -90,6 +90,23 @@ services:
     labels:
       - "net.djforge=true"
     restart: always
+  #
+  # Mailcrab
+  #
+  # Read repository for additional configuration:
+  #
+  # https://github.com/tweedegolf/mailcrab
+  #
+  dj_forge_mailcrab:
+    image: marlonb/mailcrab:latest
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    labels:
+      - "net.djforge=true"
+    networks:
+      - dj_forge_network
+
 networks:
   dj_forge_network:
     name: dj_forge_network
