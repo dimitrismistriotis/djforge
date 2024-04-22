@@ -5135,4 +5135,12 @@ var dark_mode = __webpack_require__(834);
 
 /******/ })()
 ;
-//# sourceMappingURL=app.bundle.js.map
+/* 
+
+Break sourcmapping as it breaks builds. Can assemble back by bringing everything in one line and removing comments:
+
+//#
+sourceMappingURL
+=
+app.bundle.js.map
+*/
