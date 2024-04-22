@@ -299,6 +299,19 @@ LOGGING = {
     },
 }
 
+#  ___            _ _    ___           __ _                    _   _
+# | __|_ __  __ _(_) |  / __|___ _ _  / _(_)__ _ _  _ _ _ __ _| |_(_)___ _ _
+# | _|| '  \/ _` | | | | (__/ _ \ ' \|  _| / _` | || | '_/ _` |  _| / _ \ ' \
+# |___|_|_|_\__,_|_|_|  \___\___/_||_|_| |_\__, |\_,_|_| \__,_|\__|_\___/_||_|
+#                                          |___/
+#
+# Email configuration
+#
+# Defaults for development, need to extend for production
+#
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_PORT = env.int("EMAIL_PORT", 1025)
+
 #    _       _   _
 #   /_\ _  _| |_| |_
 #  / _ \ || |  _| ' \

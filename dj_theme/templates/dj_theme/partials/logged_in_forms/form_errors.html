@@ -1,0 +1,14 @@
+{% load allauth i18n %}
+{% if form.errors %}
+<h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+  {% trans "Please correct the following errors:" %}
+</h2>
+
+<ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+  {% for key, value in form.errors.items %}
+    <li id="password_error_{{key}}">
+      {{ value.as_text|cut:"*" }}
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}

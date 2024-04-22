@@ -149,7 +149,7 @@ livereload: 			## Run livereload
 # Follow Up(s):
 # - Perhaps add Celery here
 #
-.PHONY: runserver_plus_additional_service
+.PHONY: runserver_plus_additional_services
 runserver_plus_additional_services:	## Run Django server, generate_output_css and livereload together
 	make -j django_runserver generate_output_css livereload
 

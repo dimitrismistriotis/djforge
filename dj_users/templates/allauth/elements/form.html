@@ -9,8 +9,15 @@
   </div>
 {% endcomment %}
 
+{% if "authenticated" in attrs.tags  %}
+  <form method="post" action="{{ attrs.action }}" class="space-y-4 max-w-sm mx-auto md:mx-2">
+    {% slot body %}
+    {% endslot %}
 
-{% if "entrance" in attrs.tags and "login" in attrs.tags %}
+    {% slot actions %}
+    {% endslot %}
+  </form>
+{% elif "entrance" in attrs.tags and "login" in attrs.tags %}
   <form method="{{ attrs.method }}" action="{{ attrs.action }}" class="space-y-4 md:space-y-6">
     {% slot body %}
     {% endslot %}
