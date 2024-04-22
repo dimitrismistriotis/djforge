@@ -6,7 +6,7 @@
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * ApexCharts v3.32.0
+ * ApexCharts v3.32.0ƒ
  * (c) 2018-2021 ApexCharts
  * Released under the MIT License.
  */
@@ -4350,7 +4350,15 @@ exports["default"] = {
 /******/ })()
 ;
 });
-//# sourceMappingURL=flowbite.js.map
+/* 
+
+Break sourcmapping as it breaks builds. Can assemble back by bringing everything in one line and removing comments:
+
+//# 
+sourceMappingURL
+=
+flowbite.js.map
+*/
 
 /***/ }),
 
