@@ -11,7 +11,7 @@ class ContactUsEntryAdmin(admin.ModelAdmin):
         "name",
         "email",
         "message",
-        "created_at",
+        "created",
     )
     search_fields = (
         "email",
