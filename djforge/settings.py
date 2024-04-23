@@ -86,6 +86,13 @@ INSTALLED_APPS = [
     # plus later on a central location for cron related triggers.
     #
     "dj_tasks",
+    #
+    # Contact Us app, to have a simple form for people to communicate with the project.
+    # Different than registering interest, as this is more for general inquiries plus
+    # it is supposed to be part of the application "for ever", while registering
+    # interest should be removed once the project is "live".
+    #
+    "dj_contact_us",
     # Has one form to capture email address and handles so that people
     # can register interest in the project. Can be used to capture initial attention
     # for experiments to see if there is enough momentum to pursue.
