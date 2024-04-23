@@ -4,7 +4,7 @@ import pytest
 from django.urls import reverse
 from django.core import mail
 
-from ..models import ContactForm
+from ..models import ContactUsEntry
 
 pytestmark = [pytest.mark.django_db]
 
@@ -29,7 +29,7 @@ class TestContactView:
         response = client.post(url, data)
         assert response.status_code == 302
         assert response.url == reverse("contact")
-        assert ContactForm.objects.count() == 1
+        assert ContactUsEntry.objects.count() == 1
         assert len(mail.outbox) == 2  # One email to the user, one to the admin
 
     def test_contact_view_post_invalid_data(self, client) -> None:
@@ -38,5 +38,5 @@ class TestContactView:
         data = {"name": "", "email": "invalid-email", "message": ""}
         response = client.post(url, data)
         assert response.status_code == 200
-        assert ContactForm.objects.count() == 0
+        assert ContactUsEntry.objects.count() == 0
         assert len(mail.outbox) == 0
