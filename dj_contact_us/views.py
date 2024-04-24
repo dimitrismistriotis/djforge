@@ -34,7 +34,7 @@ def contact_view(request: HttpRequest) -> HttpResponse:
             # )
             messages.success(request, "Your message has been sent successfully.")
 
-            return redirect("contact")
+            return redirect("dj_contact_us:contact-us")
     else:
         form = ContactUsEntryForm()
-    return render(request, "contact.html", {"form": form})
+    return render(request, "dj_contact_us/contact.html", {"form": form})

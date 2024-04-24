@@ -30,7 +30,7 @@ class TestContactView:
         response = client.post(self.TARGET_URL, data)
 
         assert response.status_code == 302
-        assert response.url == reverse("contact")
+        assert response.url == self.TARGET_URL
         assert ContactUsEntry.objects.count() == 1
         # assert len(mail.outbox) == 2  # One email to the user, one to the admin
 
