@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.http import HttpRequest
+# from django.core.mail import send_mail
+
 
 from .forms import ContactUsEntryForm
 
