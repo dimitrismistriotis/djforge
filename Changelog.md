@@ -6,6 +6,7 @@
 -   Integrated User Management Functionality: Change Password
 -   Makefile multiplexer for web development commands
 -   Email Dispatch Integration: Mailcrab to capture emails while developing
+-   Add "Deploy to Render Button" for ease of deployment in Readme
 
 ## Version 0.2.0
 
