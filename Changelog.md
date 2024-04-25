@@ -7,6 +7,7 @@
 -   Makefile multiplexer for web development commands
 -   Email Dispatch Integration: Mailcrab to capture emails while developing
 -   Add "Deploy to Render Button" for ease of deployment in Readme
+-   "Contact Us" page similar to "Waiting List"
 
 ## Version 0.2.0
 
