@@ -23,6 +23,20 @@ make create_dot_env_file
 Command above populates the newly created `.env` with a new `SECRET_KEY`.
 Not needed that much for development, necessary in production, see sub-section below.
 
+### Node.js for Tailwind CSS and React.Email
+
+[Node.js](https://nodejs.org/en/) needs to be available alongside `npm` and `npx`.
+Because of different types of setups in different operating systems or distributions,
+how to do install is left out as "out of scope" of this document. Easiest way is to
+is using [brew](https://brew.sh/).
+
+Node is needed for two reasons: Tailwind CSS compilation, and email template generation.
+You can develop without it, but extra CSS classes of Tailwind or own have to be
+added manually. Similar situation for email templates.
+
+Outputs of the above should be placed in version control and presence of these tools
+in production is not required, not we believe should be for a Django project.
+
 ### Helpers
 
 #### pgAdmin

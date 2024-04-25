@@ -72,10 +72,6 @@ remove_containers_and_volumes:	## Remove containers and volumes related to the p
 		docker volume ls --format '{{.Name}}' --filter "label=net.djforge" | xargs docker volume rm; \
 	fi
 
-# MISSING INSTALL node
-# MISSING INSTALL npm
-# MISSING INSTALL npx
-
 #
 # Development commands
 #
