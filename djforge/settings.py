@@ -78,6 +78,11 @@ INSTALLED_APPS = [
     # use this as a first "simple" option, and perhaps integrate a CMS
     # later on.
     "dj_content",
+    #
+    # Single point of contact for all email dispatching. Templates are to be stored
+    # in the dj_emails app, and the dispatching is done from here.
+    #
+    "dj_emails",
     # Dashboard as a login destination page always has lots of functionality hence
     # deciding it to "live" in its own app.
     "dj_dashboard",
