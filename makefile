@@ -61,6 +61,11 @@ create_dot_env_file:		## Create .env file
 secret_key:
 	${GENERATE_SECRET_KEY}
 
+.PHONY: update_react_email
+update_react_email:			## Update React Email packages
+	@echo "React Email..."
+	cd dj_emails/react_email && npm update
+
 .PHONY: remove_containers_and_volumes
 remove_containers_and_volumes:	## Remove containers and volumes related to the project, useful when you want to restart from scratch
 	@echo "Removing containers..."

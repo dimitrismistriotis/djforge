@@ -56,13 +56,17 @@ It is accessible in port 5050.
 
 ### React.email
 
+Homepage: [React.email](https://react.email/)
+
 Used to create nice emails in HTML and text format. What is provided is the self contained application produced from installation instructions here: <https://react.email/docs/getting-started/automatic-setup> plus wrappers in the makefile for ease of use. Additionally, the generated templates for this application's emails are also provided.
 
 You can either edit the template since it is in uncompressed HTML plus text and ignore this helper, or use it to create completely custom emails.
 
-Need to update periodically with:
+Install packages and update react.email periodically with:
 
-TODO
+```shell
+make update_react_email
+```
 
 Run with:
 
