@@ -54,6 +54,22 @@ It is accessible in port 5050.
 -   Default login email from `docker-compose.yml` is **pgadmin@djforge.net** and default password is **pgadmin_password**.
 -   Development server's details are prepopulated, pgAdmin does not allow to prepopulate the password of the database which is: **dj_forge_password**
 
+### React.email
+
+Used to create nice emails in HTML and text format. What is provided is the self contained application produced from installation instructions here: <https://react.email/docs/getting-started/automatic-setup> plus wrappers in the makefile for ease of use. Additionally, the generated templates for this application's emails are also provided.
+
+You can either edit the template since it is in uncompressed HTML plus text and ignore this helper, or use it to create completely custom emails.
+
+Need to update periodically with:
+
+TODO
+
+Run with:
+
+```shell
+make react_email
+```
+
 ### Production Environment
 
 You need to have a custom secret key stored in the `SECRET_KEY` variable. You can

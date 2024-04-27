@@ -82,6 +82,13 @@ collect_static:			## Collect Static Files
 
 build: install collect_static migrate	## Build the project
 
+# Email templating
+.PHONY: react_email
+react_email:			## Run React Email to edit email templates
+	@echo "React Email..."
+	cd dj_emails/react_email && npm run dev
+
+
 
 #
 # Day to day commands
