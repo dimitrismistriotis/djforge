@@ -17,17 +17,21 @@ interface DJForgeResetPasswordEmailProps {
     username?: string;
     updatedDate?: Date;
     currentYear?: number;
+    baseUrl?: string;
 }
-
-const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "";
 
 export const DJForgeResetPasswordEmail = ({
     username,
     updatedDate,
     currentYear,
+    baseUrl,
 }: DJForgeResetPasswordEmailProps) => {
+    if (!baseUrl) {
+        baseUrl = process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : "";
+    }
+
     const formattedDate = new Intl.DateTimeFormat("en", {
         dateStyle: "medium",
         timeStyle: "medium",
@@ -42,10 +46,7 @@ export const DJForgeResetPasswordEmail = ({
             <Body style={main}>
                 <Container style={container}>
                     <Section style={logo}>
-                        <Img
-                            width={114}
-                            src={`${baseUrl}/static/twitch-logo.png`}
-                        />
+                        <Img width={114} src={`${baseUrl}/path/to/logo.png`} />
                     </Section>
                     <Section style={sectionsBorders}>
                         <Row>
@@ -57,9 +58,8 @@ export const DJForgeResetPasswordEmail = ({
                     <Section style={content}>
                         <Text style={paragraph}>Hi {username},</Text>
                         <Text style={paragraph}>
-                            You updated the password for your Twitch account on{" "}
-                            {formattedDate}. If this was you, then no further
-                            action is required.
+                            Asked to update your password on {formattedDate}. If
+                            this was you, then no further action is required.
                         </Text>
                         <Text style={paragraph}>
                             However if you did NOT perform this password change,
@@ -71,8 +71,8 @@ export const DJForgeResetPasswordEmail = ({
                         </Text>
                         <Text style={paragraph}>
                             Remember to use a password that is both strong and
-                            unique to your Twitch account. To learn more about
-                            how to create a strong and unique password,{" "}
+                            unique to your account. To learn more about how to
+                            create a strong and unique password,{" "}
                             <Link href="#" style={link}>
                                 click here.
                             </Link>
@@ -80,13 +80,8 @@ export const DJForgeResetPasswordEmail = ({
                         <Text style={paragraph}>
                             Still have questions? Please contact{" "}
                             <Link href="#" style={link}>
-                                Twitch Support
+                                Support
                             </Link>
-                        </Text>
-                        <Text style={paragraph}>
-                            Thanks,
-                            <br />
-                            Twitch Support Team
                         </Text>
                     </Section>
                 </Container>
