@@ -16,6 +16,7 @@ import * as React from "react";
 interface DJForgeResetPasswordEmailProps {
     username?: string;
     updatedDate?: Date;
+    currentYear?: number;
 }
 
 const baseUrl = process.env.VERCEL_URL
@@ -25,11 +26,14 @@ const baseUrl = process.env.VERCEL_URL
 export const DJForgeResetPasswordEmail = ({
     username,
     updatedDate,
+    currentYear,
 }: DJForgeResetPasswordEmailProps) => {
     const formattedDate = new Intl.DateTimeFormat("en", {
         dateStyle: "medium",
         timeStyle: "medium",
     }).format(updatedDate);
+
+    const displayYear = currentYear || new Date().getFullYear();
 
     return (
         <Html>
@@ -89,28 +93,8 @@ export const DJForgeResetPasswordEmail = ({
 
                 <Section style={footer}>
                     <Row>
-                        <Column
-                            align="right"
-                            style={{ width: "50%", paddingRight: "8px" }}
-                        >
-                            <Img
-                                src={`${baseUrl}/static/twitch-icon-twitter.png`}
-                            />
-                        </Column>
-                        <Column
-                            align="left"
-                            style={{ width: "50%", paddingLeft: "8px" }}
-                        >
-                            <Img
-                                src={`${baseUrl}/static/twitch-icon-facebook.png`}
-                            />
-                        </Column>
-                    </Row>
-                    <Row>
                         <Text style={{ textAlign: "center", color: "#706a7b" }}>
-                            © 2022 Twitch, All Rights Reserved <br />
-                            350 Bush Street, 2nd Floor, San Francisco, CA, 94104
-                            - USA
+                            © {displayYear} DJ Forge
                         </Text>
                     </Row>
                 </Section>
