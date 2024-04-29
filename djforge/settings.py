@@ -17,7 +17,8 @@ import environ
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    ENVIRONMENT=(str, 'production')  # Be as alert as possible if not set
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,6 +39,9 @@ SECRET_KEY = env.str(
 )
 # False if not in os.environ because of casting above
 DEBUG = env("DEBUG")
+
+# Set the current environment:
+ENVIRONMENT = env("ENVIRONMENT")
 
 #
 # Allow from everywhere if DEBUG is True as in many cases the application will run
@@ -321,8 +325,10 @@ LOGGING = {
 #
 # Defaults for development, need to extend for production
 #
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_PORT = env.int("EMAIL_PORT", 1025)
+if ENVIRONMENT == "development":
+    # Use Mailcrab documented in docker-compose.yml:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_PORT = env.int("EMAIL_PORT", 1025)
 
 #    _       _   _
 #   /_\ _  _| |_| |_
