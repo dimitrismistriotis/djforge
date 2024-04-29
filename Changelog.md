@@ -9,6 +9,7 @@
 -   Email Styling using React Email
 -   Add "Deploy to Render Button" for ease of deployment in Readme
 -   "Contact Us" page similar to "Waiting List"
+-   Start having different behaviour based on environment variable
 
 ## Version 0.2.0
 
