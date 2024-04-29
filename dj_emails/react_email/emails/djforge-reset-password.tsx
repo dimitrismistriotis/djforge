@@ -10,6 +10,7 @@ import {
     Row,
     Section,
     Text,
+    Tailwind,
 } from "@react-email/components";
 import * as React from "react";
 
@@ -86,6 +87,26 @@ export const DJForgeResetPasswordEmail = ({
                                 Support
                             </Link>
                         </Text>
+                        <Text style={paragraph}>
+                            Thanks,
+                            <br />
+                            The DJ Forge Team
+                        </Text>
+                    </Section>
+                </Container>
+
+                <Container style={container}>
+                    <Section style={content}>
+                        <Tailwind>
+                            <Text className="flex justify-center">
+                                <Link
+                                    href="#"
+                                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md"
+                                >
+                                    Click this button for something to happen.
+                                </Link>
+                            </Text>
+                        </Tailwind>
                     </Section>
                 </Container>
 
