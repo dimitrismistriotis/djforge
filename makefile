@@ -61,6 +61,11 @@ create_dot_env_file:		## Create .env file
 secret_key:
 	${GENERATE_SECRET_KEY}
 
+.PHONY: update_react_email
+update_react_email:			## Update React Email packages
+	@echo "React Email..."
+	cd dj_emails/react_email && npm update
+
 .PHONY: remove_containers_and_volumes
 remove_containers_and_volumes:	## Remove containers and volumes related to the project, useful when you want to restart from scratch
 	@echo "Removing containers..."
@@ -81,6 +86,23 @@ collect_static:			## Collect Static Files
 	poetry run python manage.py collectstatic --no-input
 
 build: install collect_static migrate	## Build the project
+
+# Email templating
+.PHONY: react_email
+react_email:			## Run React Email to edit email templates
+	@echo "React Email..."
+	cd dj_emails/react_email && npm run dev
+
+.PHONY: generate_email_templates
+generate_email_templates:			## Generate React Email HTML and text templates
+	@echo "React Email Export..."
+
+	# HTML:
+	cd dj_emails/react_email && \
+		npm run export -- --outDir "../email_templates/html"  --pretty true --plainText false
+	# Text:
+	cd dj_emails/react_email && \
+		npm run export -- --outDir "../email_templates/txt"  --pretty true --plainText true
 
 
 #
