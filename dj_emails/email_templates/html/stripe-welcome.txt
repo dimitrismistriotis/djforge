@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+
+Thanks for submitting your account information. You're now ready to make live
+transactions with Stripe!
+
+You can view your payments and a variety of other information about your account
+right from your dashboard.
+
+View your Stripe Dashboard https://dashboard.stripe.com/login
+
+--------------------------------------------------------------------------------
+
+If you haven't finished your integration, you might find our docs
+https://stripe.com/docs handy.
+
+Once you're ready to start accepting payments, you'll just need to use your live
+API keys https://dashboard.stripe.com/login?redirect=%2Fapikeys instead of your
+test API keys. Your account can simultaneously be used for both test and live
+requests, so you can continue testing while accepting live payments. Check out
+our tutorial about account basics https://stripe.com/docs/dashboard.
+
+Finally, we've put together a quick checklist
+https://stripe.com/docs/checklist/website to ensure your website conforms to
+card network standards.
+
+We'll be here to help you with any step along the way. You can find answers to
+most questions and get in touch with us on our support site
+https://support.stripe.com/.
+
+— The Stripe team
+
+--------------------------------------------------------------------------------
+
+Stripe, 354 Oyster Point Blvd, South San Francisco, CA 94080

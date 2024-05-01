@@ -93,6 +93,16 @@ react_email:			## Run React Email to edit email templates
 	@echo "React Email..."
 	cd dj_emails/react_email && npm run dev
 
+.PHONY: generate_email_templates
+generate_email_templates:			## Generate React Email HTML and text templates
+	@echo "React Email Export..."
+
+	# HTML:
+	cd dj_emails/react_email && \
+		npm run export -- --outDir "../email_templates/html"  --pretty true --plainText false
+	# Text:
+	cd dj_emails/react_email && \
+		npm run export -- --outDir "../email_templates/txt"  --pretty true --plainText true
 
 
 #
