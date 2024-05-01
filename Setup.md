@@ -3,7 +3,7 @@
 This is the setup guide on what to do after installing the project. It should be
 as part of documentation, dropping it here in order not to create a dependency.
 
-## Environment
+## Environments
 
 ## Development Environment
 
@@ -74,7 +74,7 @@ Run with:
 make react_email
 ```
 
-### Production Environment
+## Production Environment
 
 You need to have a custom secret key stored in the `SECRET_KEY` variable. You can
 generate one with:
@@ -82,6 +82,13 @@ generate one with:
 ```shell
 make secret_key
 ```
+
+### Environment Variables
+
+Although defaults are for production, it is suggested to also add them through the desired hosting solution:
+
+-    **DEBUG**: to `false`, unless you want to debug something in production
+-    **ENVIRONMENT**: to `production`
 
 #### Health Check
 
