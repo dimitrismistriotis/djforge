@@ -1,0 +1,14 @@
+{% extends "dj_theme/base.html" %}
+
+
+{% block page_body %}
+  {% comment %}
+    Flowbite included at the end for both logged in and not logged in pages.
+  {% endcomment %}
+
+  <body>
+    {% block content %} {% endblock content %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  </body>
+{% endblock page_body %}

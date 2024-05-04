@@ -27,13 +27,14 @@
   </script>
 {% endblock extra_head_entries %}
 
-{% block content %}
-{% comment %}
-  Original theme wraps with this <html lang="en" class="dark">
-  and <body class="bg-gray-50 dark:bg-gray-800">
-    instad of the div wrapper used here instead
-{% endcomment %}
-  <div class="bg-gray-50 dark:bg-gray-800">
+{% block page_body %}
+  {% comment %}
+    Original theme wraps html tag as well: <html lang="en" class="dark">
+
+    Flowbite included at the end for both logged in and not logged in pages.
+  {% endcomment %}
+
+  <body class="bg-gray-50 dark:bg-gray-800">
     {% block navigation_bar %}
       {% include "dj_theme/partials/top_navigation_bar.html" %}
     {% endblock navigation_bar %}
@@ -59,5 +60,8 @@
         </script>
       {% endblock end_of_content_scripts %}
     </div>
-    {% comment %} ... initial version finishes with: </body> </html> {% endcomment %}
-{% endblock content %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  </body>
+  {% comment %} ... initial version finishes with:  </html> {% endcomment %}
+{% endblock page_body %}

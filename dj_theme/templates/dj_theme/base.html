@@ -13,9 +13,16 @@
     {% block extra_head_entries %}{# Extra head entries go here #}{% endblock extra_head_entries %}
   </head>
 
-  <body>
-    {% block content %} {% endblock content %}
+  {% comment %}
+    There are some differences in how pages not requiring login are rendered over
+    ones that do. For this <body>...</body> is rendered in inherited templates.
+  {% endcomment %}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-  </body>
+  {% block page_body %}
+    <body>
+      {% block content %} {% endblock content %}
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    </body>
+  {% endblock page_body %}
 </html>
