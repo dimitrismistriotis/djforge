@@ -4,6 +4,8 @@ from pathlib import Path
 
 from django import template
 
+from ..exceptions import DjEmailException
+
 _LOGO_FOR_EMAILS_LOCATION = (
     Path(__file__).parent.parent
     / "react_email"
@@ -25,7 +27,9 @@ def logo_base64_png() -> str:
             base64_encoded_data = base64.b64encode(png_data)
             base64_string = base64_encoded_data.decode("utf-8")
             return f"data:image/png;base64,{base64_string}"
-    except FileNotFoundError:
-        print(f"Error: File '{_LOGO_FOR_EMAILS_LOCATION}' not found.")
-    except Exception as e:
-        print(f"Error: {str(e)}")
+    except FileNotFoundError as file_not_found_error:
+        raise DjEmailException(
+            f"Error: File '{_LOGO_FOR_EMAILS_LOCATION}' not found."
+        ) from file_not_found_error
+    except Exception as exception:
+        raise DjEmailException(str(exception)) from exception
