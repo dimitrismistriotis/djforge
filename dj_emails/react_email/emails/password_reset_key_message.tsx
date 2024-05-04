@@ -102,7 +102,7 @@ DJForgePasswordResetKeyMessage.PreviewProps = {
     baseUrl: "{{SITE_URL}}",
     username: "{{ username }}",
     resetUrl: "{{ password_resetUrl }}",
-    displayYear: "{{ YEAR_PLACEHOLDER }}",
+    displayYear: '{% now "Y" %}',
 } as DJForgePasswordResetKeyMessageProps;
 
 export default DJForgePasswordResetKeyMessage;
