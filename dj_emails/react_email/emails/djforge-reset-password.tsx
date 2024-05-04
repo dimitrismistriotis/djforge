@@ -49,7 +49,7 @@ export const DJForgeResetPasswordEmail = ({
                     <Section style={logo}>
                         <Img
                             width={114}
-                            src={`${baseUrl}/static/dj-logo_for_email.png`}
+                            src={`${baseUrl}/static/logo_for_email.png`}
                         />
                     </Section>
                     <Section style={sectionsBorders}>

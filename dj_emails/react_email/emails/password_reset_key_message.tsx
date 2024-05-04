@@ -17,28 +17,34 @@ import {
 import * as React from "react";
 
 interface DJForgePasswordResetKeyMessageProps {
-    baseUrl?: string;
     username?: string;
     resetUrl?: string;
     displayYear?: string;
+    baseUrl?: string;
 }
 
 export const DJForgePasswordResetKeyMessage = ({
-    baseUrl = "BASE_URL_HERE",
     username = "USERNAME_HERE",
     resetUrl = "RESET_URL_HERE",
     displayYear = "YEAR_HERE",
+    baseUrl,
 }: DJForgePasswordResetKeyMessageProps) => {
+    if (!baseUrl) {
+        baseUrl = process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : "";
+    }
     return (
         <Html>
             <Head />
             <Preview>Password Reset Request</Preview>
+
             <Body style={main}>
                 <Container style={container}>
                     <Section style={logo}>
                         <Img
                             width={114}
-                            src={`${baseUrl}/static/dj-logo_for_email.png`}
+                            src={`${baseUrl}/static/logo_for_email.png`}
                         />
                     </Section>
                     <Section style={sectionsBorders}>
@@ -99,10 +105,9 @@ export const DJForgePasswordResetKeyMessage = ({
 // Properties as Django template variables
 //
 DJForgePasswordResetKeyMessage.PreviewProps = {
-    baseUrl: "{{SITE_URL}}",
     username: "{{ username }}",
     resetUrl: "{{ password_resetUrl }}",
-    displayYear: '{% now "Y" %}',
+    displayYear: "202X",
 } as DJForgePasswordResetKeyMessageProps;
 
 export default DJForgePasswordResetKeyMessage;
