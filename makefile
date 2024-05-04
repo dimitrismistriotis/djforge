@@ -99,10 +99,10 @@ generate_email_templates:			## Generate React Email HTML and text templates
 
 	# HTML:
 	cd dj_emails/react_email && \
-		npm run export -- --outDir "../email_templates/html"  --pretty true --plainText false
+		npm run export -- --outDir "../email_templates/html" --pretty true
 	# Text:
 	cd dj_emails/react_email && \
-		npm run export -- --outDir "../email_templates/txt"  --pretty true --plainText true
+		npm run export -- --outDir "../email_templates/txt" --plainText true
 
 
 #

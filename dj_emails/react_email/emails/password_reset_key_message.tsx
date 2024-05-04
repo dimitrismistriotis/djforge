@@ -1,3 +1,5 @@
+/* React template with variables from Allauth PasswordResetKeyMessage
+ */
 import {
     Body,
     Container,
@@ -14,36 +16,29 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-interface DJForgeResetPasswordEmailProps {
+interface DJForgePasswordResetKeyMessageProps {
     username?: string;
-    updatedDate?: Date;
-    currentYear?: number;
+    resetUrl?: string;
+    displayYear?: string;
     baseUrl?: string;
 }
 
-export const DJForgeResetPasswordEmail = ({
-    username,
-    updatedDate,
-    currentYear,
+export const DJForgePasswordResetKeyMessage = ({
+    username = "USERNAME_HERE",
+    resetUrl = "RESET_URL_HERE",
+    displayYear = "YEAR_HERE",
     baseUrl,
-}: DJForgeResetPasswordEmailProps) => {
+}: DJForgePasswordResetKeyMessageProps) => {
     if (!baseUrl) {
         baseUrl = process.env.VERCEL_URL
             ? `https://${process.env.VERCEL_URL}`
             : "";
     }
-
-    const formattedDate = new Intl.DateTimeFormat("en", {
-        dateStyle: "medium",
-        timeStyle: "medium",
-    }).format(updatedDate);
-
-    const displayYear = currentYear || new Date().getFullYear();
-
     return (
         <Html>
             <Head />
-            <Preview>You updated the password for your Twitch account</Preview>
+            <Preview>Password Reset Request</Preview>
+
             <Body style={main}>
                 <Container style={container}>
                     <Section style={logo}>
@@ -62,51 +57,35 @@ export const DJForgeResetPasswordEmail = ({
                     <Section style={content}>
                         <Text style={paragraph}>Hi {username},</Text>
                         <Text style={paragraph}>
-                            Asked to update your password on {formattedDate}. If
-                            this was you, then no further action is required.
+                            You're receiving this email because you or someone
+                            else has requested a password reset for your user
+                            account. It can be safely ignored if you did not
+                            request a password reset. Click the link below to
+                            reset your password.
                         </Text>
                         <Text style={paragraph}>
-                            However if you did NOT perform this password change,
-                            please{" "}
-                            <Link href="#" style={link}>
-                                reset your account password
-                            </Link>{" "}
-                            immediately.
+                            <Tailwind>
+                                <Text className="flex justify-center">
+                                    <Link
+                                        href={resetUrl}
+                                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md"
+                                    >
+                                        Reset Your Password
+                                    </Link>
+                                </Text>
+                            </Tailwind>
                         </Text>
                         <Text style={paragraph}>
-                            Remember to use a password that is both strong and
-                            unique to your account. To learn more about how to
-                            create a strong and unique password,{" "}
-                            <Link href="#" style={link}>
-                                click here.
-                            </Link>
-                        </Text>
-                        <Text style={paragraph}>
-                            Still have questions? Please contact{" "}
-                            <Link href="#" style={link}>
-                                Support
-                            </Link>
+                            Alternatively copy and paste the follwing URL into
+                            your browser:
+                            <br />
+                            {resetUrl}
                         </Text>
                         <Text style={paragraph}>
                             Thanks,
                             <br />
                             The DJ Forge Team
                         </Text>
-                    </Section>
-                </Container>
-
-                <Container style={container}>
-                    <Section style={content}>
-                        <Tailwind>
-                            <Text className="flex justify-center">
-                                <Link
-                                    href="#"
-                                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md"
-                                >
-                                    Click this button for something to happen.
-                                </Link>
-                            </Text>
-                        </Tailwind>
                     </Section>
                 </Container>
 
@@ -122,12 +101,16 @@ export const DJForgeResetPasswordEmail = ({
     );
 };
 
-DJForgeResetPasswordEmail.PreviewProps = {
-    username: "alanturing",
-    updatedDate: new Date("June 23, 2022 4:06:00 pm UTC"),
-} as DJForgeResetPasswordEmailProps;
+//
+// Properties as Django template variables
+//
+DJForgePasswordResetKeyMessage.PreviewProps = {
+    username: "{{ username }}",
+    resetUrl: "{{ password_resetUrl }}",
+    displayYear: "202X",
+} as DJForgePasswordResetKeyMessageProps;
 
-export default DJForgeResetPasswordEmail;
+export default DJForgePasswordResetKeyMessage;
 
 const fontFamily = "HelveticaNeue,Helvetica,Arial,sans-serif";
 
@@ -176,8 +159,4 @@ const sectionBorder = {
 const sectionCenter = {
     borderBottom: "1px solid rgb(145,71,255)",
     width: "102px",
-};
-
-const link = {
-    textDecoration: "underline",
 };
