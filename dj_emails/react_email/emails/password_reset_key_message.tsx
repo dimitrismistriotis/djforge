@@ -24,15 +24,15 @@ interface DJForgePasswordResetKeyMessageProps {
 }
 
 export const DJForgePasswordResetKeyMessage = ({
-    baseUrl,
-    username,
-    resetUrl,
-    displayYear,
+    baseUrl = "BASE_URL_HERE",
+    username = "USERNAME_HERE",
+    resetUrl = "RESET_URL_HERE",
+    displayYear = "YEAR_HERE",
 }: DJForgePasswordResetKeyMessageProps) => {
     return (
         <Html>
             <Head />
-            <Preview>You updated the password for your Twitch account</Preview>
+            <Preview>Password Reset Request</Preview>
             <Body style={main}>
                 <Container style={container}>
                     <Section style={logo}>
