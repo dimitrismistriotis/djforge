@@ -60,7 +60,7 @@ Homepage: [React.email](https://react.email/)
 
 Used to create nice emails in HTML and text format. What is provided is the self contained application produced from installation instructions here: <https://react.email/docs/getting-started/automatic-setup> plus wrappers in the makefile for ease of use. Additionally, the generated templates for this application's emails are also provided.
 
-You can either edit the template since it is in uncompressed HTML plus text and ignore this helper, or use it to create completely custom emails.
+You can either edit the template since it is in uncompressed HTML plus text and ignore this helper, or use it to create completely custom emails. After some experimentation we discovered that it is best to have final emails not generated hene place them into their own folder.
 
 Install packages and update react.email periodically with:
 
@@ -87,8 +87,8 @@ make secret_key
 
 Although defaults are for production, it is suggested to also add them through the desired hosting solution:
 
--    **DEBUG**: to `false`, unless you want to debug something in production
--    **ENVIRONMENT**: to `production`
+-   **DEBUG**: to `false`, unless you want to debug something in production
+-   **ENVIRONMENT**: to `production`
 
 #### Health Check
 
