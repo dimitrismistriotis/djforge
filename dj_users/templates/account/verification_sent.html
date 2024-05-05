@@ -1,14 +1,42 @@
-{% extends "account/base_entrance.html" %}
+{% extends "dj_theme/base_not_logged_in.html" %}
 {% load i18n %}
 {% load allauth %}
+
 {% block head_title %}
-    {% trans "Verify Your Email Address" %}
+  {% trans "Verify Your Email Address" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
+  {% include "dj_theme/header.html" %}
+
+  <section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <h1 class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
         {% trans "Verify Your Email Address" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
-    </p>
+      </h1>
+
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <p>
+            {% blocktrans %}
+              We have sent an email to you for verification. Follow the link provided
+              to finalize the signup process.
+            {% endblocktrans %}
+          </p>
+
+          <p>
+            {% blocktrans %}
+              If you do not see the verification email in your main inbox,
+              check your spam folder.
+              <br />
+              Please contact us if you do not receive the verification email
+              within a few minutes.
+            {% endblocktrans %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include "dj_theme/partials/content/footer_block.html" %}
 {% endblock content %}
