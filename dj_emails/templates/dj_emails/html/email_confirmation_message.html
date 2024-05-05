@@ -4,9 +4,7 @@
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
-  <div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0">
-    {% trans "Password Reset Request" %}
-  </div>
+  <div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0">{% trans "Please Confirm your Email" %}</div>
 
   <body style="background-color:#efeef1;font-family:HelveticaNeue,Helvetica,Arial,sans-serif">
     <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:580px;margin:30px auto;background-color:#ffffff">
@@ -41,12 +39,13 @@
               <tbody>
                 <tr>
                   <td>
-                    <p style="font-size:14px;line-height:1.5;margin:16px 0">{% trans "Hi," %}</p>
-                    <p style="font-size:14px;line-height:1.5;margin:16px 0">{% trans "You&#x27;re receiving this email because you or someone else has requested a password reset for your user account. It can be safely ignored if you did not request a password reset. Click the link below to reset your password." %}</p>
+                    <p style="font-size:14px;line-height:1.5;margin:16px 0">{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hi from {{ site_domain }},{% endblocktrans %}</p>
+                    <p style="font-size:14px;line-height:1.5;margin:16px 0">{% trans "You are receiving this email because your email address was given to register an account our application." %}</p>
+                    <p style="font-size:14px;line-height:1.5;margin:16px 0">{% trans "To confirm this is correct:" %}</p>
                     <p style="font-size:14px;line-height:1.5;margin:16px 0">
-                      <p style="font-size:14px;line-height:24px;margin:16px 0;display:flex;justify-content:center"><a href="{{ password_reset_url }}" class="hover:bg-indigo-700" style="color:rgb(255,255,255);text-decoration:none;background-color:rgb(79,70,229);padding-left:1rem;padding-right:1rem;padding-top:0.5rem;padding-bottom:0.5rem;border-radius:0.375rem" target="_blank">Reset Your Password</a></p>
+                    <p style="font-size:14px;line-height:24px;margin:16px 0;display:flex;justify-content:center"><a href="{{ activate_url }}" class="hover:bg-indigo-700" style="color:rgb(255,255,255);text-decoration:none;background-color:rgb(79,70,229);padding-left:1rem;padding-right:1rem;padding-top:0.5rem;padding-bottom:0.5rem;border-radius:0.375rem" target="_blank">{% trans "Confirm Email" %}</a></p>
                     </p>
-                    <p style="font-size:14px;line-height:1.5;margin:16px 0">{% trans "Alternatively copy and paste the follwing URL into your browser:" %}<br />{{ password_reset_url }}</p>
+                    <p style="font-size:14px;line-height:1.5;margin:16px 0">{% trans "Alternatively copy and paste the follwing URL into your browser:" %}<br />{{ activate_url }}</p>
                     <p style="font-size:14px;line-height:1.5;margin:16px 0">{% trans "Thanks," %}<br />{% trans "The DJ Forge Team" %}</p>
                   </td>
                 </tr>
@@ -63,9 +62,7 @@
             <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation">
               <tbody style="width:100%">
                 <tr style="width:100%">
-                  <p style="font-size:14px;line-height:24px;margin:16px 0;text-align:center;color:#706a7b">
-                    © {% now "Y" %} DJ Forge
-                  </p>
+                  <p style="font-size:14px;line-height:24px;margin:16px 0;text-align:center;color:#706a7b">© YEAR_HERE DJ Forge</p>
                 </tr>
               </tbody>
             </table>
@@ -74,4 +71,5 @@
       </tbody>
     </table>
   </body>
+
 </html>

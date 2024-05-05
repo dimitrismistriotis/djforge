@@ -1,0 +1,20 @@
+Hi from SITE_NAME_HERE,
+
+You are receiving this email because your email address was given to register an
+account our application.
+
+To confirm this is correct:
+
+
+
+Confirm Email ACTIVATE_URL_HERE
+
+
+
+Alternatively copy and paste the follwing URL into your browser:
+ACTIVATE_URL_HERE
+
+Thanks,
+The DJ Forge Team
+
+© YEAR_HERE DJ Forge

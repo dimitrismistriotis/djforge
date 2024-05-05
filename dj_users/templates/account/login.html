@@ -8,6 +8,8 @@
 
 {% load allauth account %}
 
+{% load dj_users_tags %}
+
 {% block content %}
   {% include "dj_theme/header.html" %}
 
@@ -20,6 +22,8 @@
 
         {% trans "Sign In to DJ Forge" %}
       </a>
+
+      {% include "dj_theme/messages.html" %}
 
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -68,24 +72,28 @@
                            required="">
                   {% elif field.field.widget.input_type == "checkbox" %}{# Used for "Remember me" #}
                     <div class="flex items-center justify-between">
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                              <input type="checkbox"
-                                     id="remember_{{ field.auto_id }}"
-                                     aria-describedby="remember"
-                                     class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
-                            </div>
-                            <div class="ml-3 text-sm">
-                              <label for="remember_{{ field.auto_id }}"
-                                     class="text-gray-500 dark:text-gray-300">
-                                {{ field.label }}
-                              </label>
-                            </div>
+                      <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                          <input type="checkbox"
+                                  id="remember_{{ field.auto_id }}"
+                                  aria-describedby="remember"
+                                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
                         </div>
 
+                        <div class="ml-3 text-sm">
+                          <label for="remember_{{ field.auto_id }}"
+                                 class="text-gray-500 dark:text-gray-300">
+                            {{ field.label }}
+                          </label>
+                        </div>
+                      </div>
+
+                      {% display_action_requiring_email_dispatch as display_forgot_password %}
+                      {% if display_forgot_password %}
                         <a href="{% url 'account_reset_password' %}" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
                           {% trans "Forgot password?" %}
                         </a>
+                      {% endif %}
                     </div>
                   {% else %}{# Default, no styling #}
                     {{ field }}
