@@ -3,9 +3,10 @@
 ## Version 0.3.0 - Current
 
 -   Google Maps inside the Application as Static Image - PoC
--   Integrated User Management Functionality: Change Password
+-   Integrated User Management Functionality: Change Password, Reset Password
 -   Makefile multiplexer for web development commands
 -   Email Dispatch Integration: Mailcrab to capture emails while developing
+-   [React.email](https://react.email) as a studio to generate nice looking emails
 -   Email Styling using React Email
 -   Add "Deploy to Render Button" for ease of deployment in Readme
 -   "Contact Us" page similar to "Waiting List"
