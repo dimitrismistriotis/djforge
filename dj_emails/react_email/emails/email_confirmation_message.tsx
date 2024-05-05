@@ -1,4 +1,4 @@
-/* React template with variables from Allauth EmailConfirmationMessage
+/* React template with variables from Allauth email_confirmation_message
  */
 import {
     Body,
@@ -17,21 +17,20 @@ import {
 import * as React from "react";
 
 interface DJForgeEmailConfirmationMessageProps {
-    username?: string;
-    resetUrl?: string;
+    siteName?: string;
+    activateURL?: string;
     displayYear?: string;
-    baseUrl?: string;
 }
 
 export const DJForgeEmailConfirmationMessage = ({
-    username = "USERNAME_HERE",
-    resetUrl = "RESET_URL_HERE",
+    siteName = "SITE_NAME_HERE",
+    activateURL = "ACTIVATE_URL_HERE",
     displayYear = "YEAR_HERE",
 }: DJForgeEmailConfirmationMessageProps) => {
     return (
         <Html>
             <Head />
-            <Preview>Password Reset Request</Preview>
+            <Preview>Please Confirm your Email</Preview>
 
             <Body style={main}>
                 <Container style={container}>
@@ -46,22 +45,23 @@ export const DJForgeEmailConfirmationMessage = ({
                         </Row>
                     </Section>
                     <Section style={content}>
-                        <Text style={paragraph}>Hi {username},</Text>
+                        <Text style={paragraph}>Hi from {siteName},</Text>
                         <Text style={paragraph}>
-                            You're receiving this email because you or someone
-                            else has requested a password reset for your user
-                            account. It can be safely ignored if you did not
-                            request a password reset. Click the link below to
-                            reset your password.
+                            You are receiving this email because your email
+                            address was given to register an account our
+                            application.
+                        </Text>
+                        <Text style={paragraph}>
+                            To confirm this is correct:
                         </Text>
                         <Text style={paragraph}>
                             <Tailwind>
                                 <Text className="flex justify-center">
                                     <Link
-                                        href={resetUrl}
+                                        href={activateURL}
                                         className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md"
                                     >
-                                        Reset Your Password
+                                        Confirm Email
                                     </Link>
                                 </Text>
                             </Tailwind>
@@ -70,7 +70,7 @@ export const DJForgeEmailConfirmationMessage = ({
                             Alternatively copy and paste the follwing URL into
                             your browser:
                             <br />
-                            {resetUrl}
+                            {activateURL}
                         </Text>
                         <Text style={paragraph}>
                             Thanks,
@@ -92,12 +92,9 @@ export const DJForgeEmailConfirmationMessage = ({
     );
 };
 
-//
-// Properties as Django template variables
-//
 DJForgeEmailConfirmationMessage.PreviewProps = {
-    username: "{{ username }}",
-    resetUrl: "{{ password_resetUrl }}",
+    siteName: "DJ Forge Site Name",
+    activateURL: "{{ activate_url }}",
     displayYear: "202X",
 } as DJForgeEmailConfirmationMessageProps;
 
