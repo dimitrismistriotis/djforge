@@ -34,14 +34,16 @@
                 </p>
 
                 {% url 'account_confirm_email' confirmation.key as action_url %}
-                  {% element form method="post" action=action_url %}
-                      {% slot actions %}
-                          {% csrf_token %}
-                          {% element button type="submit" %}
-                              {% trans 'Confirm' %}
-                          {% endelement %}
-                      {% endslot %}
-                  {% endelement %}
+
+                {% element form method="post" action=action_url %}
+                  {% slot actions %}
+                    {% csrf_token %}
+
+                    {% element button type="submit" tags="prominent,signup" %}
+                      {% trans 'Confirm' %}
+                    {% endelement %}
+                  {% endslot %}
+                {% endelement %}
               {% else %}
                 <p>
                   {% blocktrans %}
