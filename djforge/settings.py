@@ -18,7 +18,7 @@ import environ
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
-    ENVIRONMENT=(str, 'production')  # Be as alert as possible if not set
+    ENVIRONMENT=(str, "production"),  # Be as alert as possible if not set
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -350,9 +350,11 @@ LOGIN_REDIRECT_URL = "/dashboard"
 # Reference: https://docs.allauth.org/en/latest/account/configuration.html
 #
 ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
-ACCOUNT_EMAIL_VERIFICATION = (
-    "none"  # As we do not have implemented any form of email sending
-)
+if ENVIRONMENT == "development":
+    ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+else:  # Any form of email sending not implemented
+    ACCOUNT_EMAIL_VERIFICATION = "none"
+
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
 
