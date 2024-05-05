@@ -1,7 +1,7 @@
 {% extends "account/email/base_message.txt" %}
 {% load account %}
 {% load i18n %}
-{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hi {{ site_domain }},{% endblocktrans %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hi from {{ site_domain }},{% endblocktrans %}
 {% block content %}{% autoescape off %}{% blocktrans %}You're receiving this email because your email address was given to register an account our application.
 
 To confirm this is correct, go to {{ activate_url }}{% endblocktrans %}{% endautoescape %}{% endblock content %}
