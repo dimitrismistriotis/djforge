@@ -22,14 +22,14 @@
         {% trans "Sign Up" %}
       </a>
 
+      {% include "dj_theme/messages.html" %}
+
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           <p class="mb-3 text-gray-500 dark:text-gray-400">
             {% blocktrans %}
               Already have an account? Then please
-              <a href="{{ login_url }}" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">
-                sign in
-              </a>.
+              <a href="{{ login_url }}" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">sign in</a>.
             {% endblocktrans %}
           </p>
 

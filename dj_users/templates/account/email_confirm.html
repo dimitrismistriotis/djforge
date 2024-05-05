@@ -25,7 +25,7 @@
                 <p>
                   {% blocktrans with confirmation.email_address.email as email %}
                     Please confirm that
-                    <a href="mailto:{{ email }}" class="text-purple-600 hover:underline dark:text-purple-500">{{ email }}</a>
+                    <a href="mailto:{{ email }}" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">{{ email }}</a>
                     is your email address.
                   {% endblocktrans %}
                   {% comment %}
@@ -56,7 +56,7 @@
             <p>
               {% blocktrans %}
                 This email confirmation link expired or is invalid.
-                Please <a href="{{ email_url }}" class="text-purple-600 hover:underline dark:text-purple-500">
+                Please <a href="{{ email_url }}" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">
                 issue a new email confirmation request</a>.
               {% endblocktrans %}
             </p>
