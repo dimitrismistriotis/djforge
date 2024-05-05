@@ -6,8 +6,9 @@
 -   Integrated User Management Functionality: Change Password, Reset Password
 -   Makefile multiplexer for web development commands
 -   Email Dispatch Integration: Mailcrab to capture emails while developing
--   [React.email](https://react.email) as a studio to generate nice looking emails
--   Email Styling using React Email
+-   [React.email](https://react.email) to style emails
+-   Conditional behaviour based on email setup, such as display "Reset Password",
+    or verify user's email address
 -   Add "Deploy to Render Button" for ease of deployment in Readme
 -   "Contact Us" page similar to "Waiting List"
 -   Start having different behaviour based on environment variable
