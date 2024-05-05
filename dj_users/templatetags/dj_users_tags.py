@@ -8,6 +8,7 @@ from django.conf import settings
 register = template.Library()
 
 
+@register.simple_tag
 def display_action_requiring_email_dispatch() -> bool:
     """Display action requiring email dispatch based settings value.
 
@@ -19,8 +20,10 @@ def display_action_requiring_email_dispatch() -> bool:
 
     ...
 
-    {% if display_action_requiring_email_dispatch %}
-        <!-- Display action requiring email dispatch -->
+    {% display_action_requiring_email_dispatch as can_do_something %}
+
+    {% if can_do_something %}
+      <!-- Display action requiring email dispatch -->
     {% endif %}
     """
     return getattr(settings, "ACCOUNT_EMAIL_VERIFICATION", "none") != "none"
