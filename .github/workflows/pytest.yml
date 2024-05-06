@@ -80,4 +80,4 @@ jobs:
           emoji: true
           verbose: true
           job-summary: true
-          custom-pytest: "poetry run pytest"
+          custom-pytest: "poetry run pytest; poetry run pytest --ruff --ruff-format"
