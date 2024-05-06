@@ -153,6 +153,12 @@ httpie = "^3.2.2"
 #
 pytest-watch = "^4.2.0"
 
+# Runs one ruff check test per file and fail if code is not ok for ruff.
+# https://github.com/businho/pytest-ruff
+# MIT license
+#
+pytest-ruff = "^0.3.2"
+
 #
 # End of DJForge development dependencies, add yours below
 #
