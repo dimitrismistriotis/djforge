@@ -26,7 +26,9 @@ def license(request: HttpRequest) -> HttpResponse:
     """Return the license of the dj_content app from License.md."""
     # Below removes markdown header:
     license_lines = [
-        line for line in read_file_into_array(_LICENSE_FILE) if not line.startswith("#")
+        line
+        for line in read_file_into_array(_LICENSE_FILE, encoding="utf-8")
+        if not line.startswith("#")
     ]
     # Remove first empty line if there as it was to space out the header:
     if not license_lines[0]:
