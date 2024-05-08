@@ -1,0 +1,7 @@
+{
+    "user_view_permission": {
+        "codename": "can_view_user_account",
+        "name": "Can view User account"
+
+    }
+}

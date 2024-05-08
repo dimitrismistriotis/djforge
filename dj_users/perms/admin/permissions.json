@@ -1,0 +1,6 @@
+{
+    "admin_view_permission": {
+        "codename":"can_view_admin_account",
+        "name":"Can view Admin account"
+    }
+}

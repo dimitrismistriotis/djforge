@@ -33,6 +33,7 @@ urlpatterns = [
     path("manifest.json", manifest_dot_json, name="manifest_dot_json"),
     path("", index_page, name="index"),
     path("accounts/", include("allauth.urls")),
+    path("users/", include("dj_users.urls"), name="dj_users"),
     path(
         "pages/",
         include("dj_content.urls"),
