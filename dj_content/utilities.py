@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Optional
 
 
-def read_file_into_array(file_path, encoding: Optional[str] = None) -> list[str]:
+def read_file_into_array(file_path, encoding: Optional[str] = "utf-8") -> list[str]:
     """Read a file into an array of lines.
 
     Note: Should move to a "core" or "utilities" app if to be used in multiple apps.
