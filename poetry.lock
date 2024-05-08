@@ -1403,6 +1403,21 @@ files = [
 pytest = ">=4.2.1"
 
 [[package]]
+name = "pytest-ruff"
+version = "0.3.2"
+description = "pytest plugin to check ruff requirements."
+optional = false
+python-versions = "<4.0,>=3.8"
+files = [
+    {file = "pytest_ruff-0.3.2-py3-none-any.whl", hash = "sha256:5096578df2240b2a99f7376747bc433ce25e590c7d570d5c2b47f725497f2c10"},
+    {file = "pytest_ruff-0.3.2.tar.gz", hash = "sha256:8d82882969e52b664a7cef4465cba63e45173f38d907dffeca41d9672f59b6c6"},
+]
+
+[package.dependencies]
+pytest = ">=5"
+ruff = ">=0.0.242"
+
+[[package]]
 name = "pytest-watch"
 version = "4.2.0"
 description = "Local continuous test runner with pytest and watchdog."
@@ -1899,4 +1914,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "16a7d21cd9086c31e1b7434983ba061d94880f8d462575c64b315fddc9a5ff66"
+content-hash = "d94aa929ee0ed61f1fb00c2dcb018b9c4e16ca57f2a018159fbd37f42c0b21eb"
