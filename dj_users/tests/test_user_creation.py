@@ -42,3 +42,14 @@ class TestUserCreation:
 
         assert user
         assert self.USER_MODEL.objects.exists()
+
+    def test_create_super_user(self):
+        """Test creating a super user."""
+        user = self.USER_MODEL.objects.create_superuser(
+            email="person@example.com", password="SuperSecretPassword123!"
+        )
+
+        assert user
+        assert self.USER_MODEL.objects.exists()
+        assert user.is_staff
+        assert user.is_superuser
