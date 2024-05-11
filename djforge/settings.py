@@ -351,7 +351,7 @@ LOGIN_REDIRECT_URL = "/dashboard"
 #
 ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
 if ENVIRONMENT == "development":
-    ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+    ACCOUNT_EMAIL_VERIFICATION = "optional"
 else:  # Any form of email sending not implemented
     ACCOUNT_EMAIL_VERIFICATION = "none"
 
