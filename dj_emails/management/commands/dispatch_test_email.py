@@ -4,8 +4,11 @@ Call from commend line:
 
 python manage.py dispatch_test_email --email dimitrios@mistriotis.com
 """
+from rich import print as rich_print
+
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
+from django.core.mail import send_mail
 
 
 class Command(BaseCommand):
@@ -22,5 +25,16 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """Handle the command."""
         email = options["email"]
-        print(f"Sending test email to {email}")
-        raise CommandError("Test email sending is not implemented.")
+        rich_print(f"Sending test email to [bold]{email}[/bold]")
+
+        try:
+            send_mail(
+                "DJ-Forge Test Email",
+                "Message.",
+                # This should change to app's appropriate setting:
+                "no-reply@example.com",
+                [email],
+                fail_silently=False,
+            )
+        except Exception as exception:
+            raise CommandError(f"Error sending email: {exception}")
