@@ -1,5 +1,6 @@
 """Django backend for Resend.com."""
 from django.core.mail.backends.base import BaseEmailBackend
+from django.core.mail import EmailMessage
 
 """Base email backend class."""
 
@@ -32,11 +33,11 @@ class ResendEmailBackend(BaseEmailBackend):
         """Override the close method of BaseEmailBackend, but does nothing."""
         pass
 
-    def send_messages(self, email_messages) -> int:
+    def send_messages(self, email_messages: list[EmailMessage]) -> int:
         """Send one or more EmailMessage objects.
 
         Returns the number of email messages sent.
         """
-        raise NotImplementedError(
-            "subclasses of BaseEmailBackend must override send_messages() method"
-        )
+        email_message: EmailMessage
+        for email_message in email_messages:
+            print(f"Sending email to {email_message.to}")
