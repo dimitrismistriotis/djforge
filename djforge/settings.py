@@ -323,12 +323,20 @@ LOGGING = {
 #
 # Email configuration
 #
+# Email API Keys - separated from API keys below as they dictate email sending behavior
+#
+RESEND_API_KEY = env.str("RESEND_API_KEY", "")  # No default
+#
 # Defaults for development, need to extend for production
 #
-if ENVIRONMENT == "development":
+if RESEND_API_KEY:
+    EMAIL_BACKEND = "dj_emails.backends.resend.ResendEmailBackend"
+elif ENVIRONMENT == "development":
     # Use Mailcrab documented in docker-compose.yml:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_PORT = env.int("EMAIL_PORT", 1025)
+
+dispatch_emails = RESEND_API_KEY or ENVIRONMENT == "development"
 
 #    _       _   _
 #   /_\ _  _| |_| |_
@@ -350,7 +358,7 @@ LOGIN_REDIRECT_URL = "/dashboard"
 # Reference: https://docs.allauth.org/en/latest/account/configuration.html
 #
 ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
-if ENVIRONMENT == "development":
+if dispatch_emails:
     ACCOUNT_EMAIL_VERIFICATION = "optional"
 else:  # Any form of email sending not implemented
     ACCOUNT_EMAIL_VERIFICATION = "none"
