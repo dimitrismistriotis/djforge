@@ -2,7 +2,9 @@
 from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail import EmailMessage
 
-"""Base email backend class."""
+
+class ResendEmailBackendException(Exception):
+    """Base exception for ResendEmailBackend."""
 
 
 class ResendEmailBackend(BaseEmailBackend):
