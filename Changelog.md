@@ -6,6 +6,7 @@
 -   Integrated User Management Functionality: Change Password, Reset Password
 -   Makefile multiplexer for web development commands
 -   Email Dispatch Integration: Mailcrab to capture emails while developing
+-   Email Dispatch Integration: Resend.com for email dispatch optional integration
 -   [React.email](https://react.email) to style emails
 -   Conditional behaviour based on email setup, such as display "Reset Password",
     or verify user's email address
