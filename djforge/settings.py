@@ -323,6 +323,8 @@ LOGGING = {
 #
 # Email configuration
 #
+DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL", "no-reply@djforge.net")
+#
 # Email API Keys - separated from API keys below as they dictate email sending behavior
 #
 RESEND_API_KEY = env.str("RESEND_API_KEY", "")  # No default
