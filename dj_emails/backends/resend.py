@@ -6,7 +6,7 @@ from resend.exceptions import ResendError
 
 from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 
 
 class ResendEmailBackendException(Exception):
@@ -51,20 +51,29 @@ class ResendEmailBackend(BaseEmailBackend):
         """Override the close method of BaseEmailBackend, but does nothing."""
         pass
 
-    def send_messages(self, email_messages: list[EmailMessage]) -> int:
-        """Send one or more EmailMessage objects.
+    def send_messages(self, email_messages: list[EmailMultiAlternatives]) -> int:
+        """Send one or more EmailMultiAlternatives objects.
 
         Returns the number of email messages sent.
         """
-        sent_messages = 0
+        messages_count = 0
 
-        email_message: EmailMessage
+        email_message: EmailMultiAlternatives
         for email_message in email_messages:
+            html_content = next(
+                map(
+                    lambda x: x[0],
+                    filter(lambda x: x[1] == "text/html", email_message.alternatives),
+                ),
+                None,
+            )
+            # print(f"{html_content=}")
+
             params: resend.Emails.SendParams = {
                 "sender": email_message.from_email or self._default_from_email,
                 "to": email_message.to,
                 "subject": email_message.subject,
-                "html": email_message.body,
+                "text": email_message.body,
                 "reply_to": email_message.reply_to,
                 "bcc": email_message.bcc,
                 "cc": email_message.cc,
@@ -73,6 +82,10 @@ class ResendEmailBackend(BaseEmailBackend):
                     # {"name": "tag2", "value": "tagvalue2"},
                 ],
             }
+
+            if html_content:
+                params["html"] = html_content
+
             self._logger.debug("Sending email: %s", params)
             try:
                 email = resend.Emails.send(params)
@@ -82,6 +95,6 @@ class ResendEmailBackend(BaseEmailBackend):
 
                 raise ResendEmailBackendException(str(resend_error)) from resend_error
 
-            sent_messages += 1
+            messages_count += 1
 
-        return sent_messages
+        return messages_count
