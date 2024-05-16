@@ -79,6 +79,13 @@ whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 # MIT license
 #
 rich = "^13.7.1"
+#
+# Resend Python SDK
+# https://resend.com/
+# https://github.com/resend/resend-python
+# MIT license
+#
+resend = "^1.0.2"
 
 #
 # End of DJForge dependencies, add yours below
