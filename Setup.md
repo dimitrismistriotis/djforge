@@ -255,6 +255,13 @@ This is a pattern to be followed on each "dj\_" prefixed app.
 Currently there is email capture with Mailcrab which traps SMTP traffic in 1025 port
 and exposes a web service in 1080.
 
+### Resend.com
+
+Optional integration of [Resend.com](https://resend.com/). For how to setup and
+validate the domain check their documentation and guides. For this application, make
+`RESEND_API_KEY` available to the application (same name as one in Resend's
+documentation).
+
 ## Proof of Concept Area
 
 ### Maps Page
