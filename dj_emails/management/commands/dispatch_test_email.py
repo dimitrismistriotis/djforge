@@ -29,12 +29,12 @@ class Command(BaseCommand):
 
         try:
             send_mail(
-                "DJ-Forge Test Email",
-                "Message.",
-                # This should change to app's appropriate setting:
-                "no-reply@example.com",
-                [email],
+                subject="DJ-Forge Test Email",
+                message="This is a test email from DJ-Forge - message.",
+                from_email=None,
+                recipient_list=[email],
                 fail_silently=False,
+                html_message="<p>This is a test email from DJ-Forge - html.</p>",
             )
         except Exception as exception:
             raise CommandError(f"Error sending email: {exception}")
