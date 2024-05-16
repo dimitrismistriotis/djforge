@@ -27,6 +27,7 @@ class ResendEmailBackend(BaseEmailBackend):
     """
 
     _logger: logging.Logger = logging.getLogger(__name__)
+    _default_from_email: str = getattr(settings, "DEFAULT_FROM_EMAIL")
 
     def __init__(self, fail_silently=False, **kwargs):
         """Initialize the ResendEmailBackend class.
@@ -60,7 +61,7 @@ class ResendEmailBackend(BaseEmailBackend):
         email_message: EmailMessage
         for email_message in email_messages:
             params: resend.Emails.SendParams = {
-                "sender": email_message.from_email,
+                "sender": email_message.from_email or self._default_from_email,
                 "to": email_message.to,
                 "subject": email_message.subject,
                 "html": email_message.body,
