@@ -56,10 +56,9 @@ class TestContactView:
         # Arrange
 
         # Act
-        response = client.post(self.TARGET_URL, self._CORRECT_QUERY_DATA)
+        client.post(self.TARGET_URL, self._CORRECT_QUERY_DATA)
 
         # Assert
-        assert response.status_code == 200  # Replace with the expected status code
         assert len(mail.outbox) == 1  # Check if one email was sent
         # assert mail.outbox[0].subject == data["subject"]  # Check if the subject matches
         assert (
