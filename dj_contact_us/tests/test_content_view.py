@@ -56,11 +56,17 @@ class TestContactView:
         # assert len(mail.outbox) == 0
 
     @override_settings(DISPATCHING_EMAILS=True)
+    @override_settings(
+        ADMINS=[
+            ("John Doe", "john@example.com"),
+            ("Jane Smith", "jane@example.com"),
+        ]
+    )
     def test_email_sent(self, client: Client) -> None:
         """Test that an email is sent when the view is called."""
         client.post(self.TARGET_URL, self._CORRECT_QUERY_DATA)
 
-        # assert len(mail.outbox) == 2  # One email to the user, one to the admin
+        assert len(mail.outbox) == 2  # One email to the user, one to admins
         assert mail.outbox[0].subject == "New Contact Form Submission"
         assert (
             self._CORRECT_QUERY_DATA["email"] in mail.outbox[0].to
