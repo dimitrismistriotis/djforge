@@ -72,3 +72,10 @@ class TestContactView:
         client.post(self.TARGET_URL, self._INVALID_QUERY_DATA)
 
         assert len(mail.outbox) == 0  # Check that no email was sent
+
+    def test_no_email_sent_with_settings_to_false(self, client: Client) -> None:
+        """Test that no  email is sent when application is not configured to do so."""
+        with override_settings(DISPATCHING_EMAILS=False):
+            client.post(self.TARGET_URL, self._CORRECT_QUERY_DATA)
+
+        assert len(mail.outbox) == 0
