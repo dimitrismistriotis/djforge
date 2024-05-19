@@ -301,15 +301,20 @@ LOGGING = {
         }
     },
     "loggers": {
+        "": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
         # Too Verbose:
         # "django": {
         #     "handlers": ["console"],
         #     "level": "DEBUG",
         #     "propagate": True,
         # },
-        "": {
+        "psycopg.pq": {
             "handlers": ["console"],
-            "level": "DEBUG",
+            "level": "INFO",
             "propagate": True,
         },
     },
