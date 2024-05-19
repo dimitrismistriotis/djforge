@@ -30,6 +30,10 @@ environ.Env.read_env(BASE_DIR / ".env")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
+ADMINS = [
+    ("Dimitrios Mistriotis", "dimitrios@mistriotis.com"),
+]
+
 # A secret key is required for production, supplying a default for development
 # and testing purposes.
 # Generate one with:
@@ -301,15 +305,20 @@ LOGGING = {
         }
     },
     "loggers": {
+        "": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
         # Too Verbose:
         # "django": {
         #     "handlers": ["console"],
         #     "level": "DEBUG",
         #     "propagate": True,
         # },
-        "": {
+        "psycopg.pq": {
             "handlers": ["console"],
-            "level": "DEBUG",
+            "level": "INFO",
             "propagate": True,
         },
     },
@@ -338,7 +347,7 @@ elif ENVIRONMENT == "development":
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_PORT = env.int("EMAIL_PORT", 1025)
 
-dispatch_emails = RESEND_API_KEY or ENVIRONMENT == "development"
+DISPATCHING_EMAILS = RESEND_API_KEY or ENVIRONMENT == "development"
 
 #    _       _   _
 #   /_\ _  _| |_| |_
@@ -360,7 +369,7 @@ LOGIN_REDIRECT_URL = "/dashboard"
 # Reference: https://docs.allauth.org/en/latest/account/configuration.html
 #
 ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
-if dispatch_emails:
+if DISPATCHING_EMAILS:
     ACCOUNT_EMAIL_VERIFICATION = "optional"
 else:  # Any form of email sending not implemented
     ACCOUNT_EMAIL_VERIFICATION = "none"
