@@ -20,7 +20,7 @@ class TestAdministratorsRestrictedView:
             email="person@example.com",
             password="correct_password_for_person",
         )
-        group = Group.objects.get(name="Platform Administrators")
+        group, _ = Group.objects.get_or_create(name="Platform Administrators")
         user.groups.add(group)
 
         # Login the user

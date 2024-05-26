@@ -12,6 +12,10 @@ from django.shortcuts import render
 from django.utils.translation import gettext as _
 from django.contrib.auth.decorators import login_required
 
+
+from dj_users.permissions import restrict_to_platform_admin
+
+
 #
 # Data sourced from https://www.doogal.co.uk/UKPostcodes?Search=NG10
 # and ChatGPT for demand
@@ -22,6 +26,7 @@ POST_CODE_SAMPLE_DATA = json.loads(
 
 
 @login_required
+@restrict_to_platform_admin
 def admin_only_display(request: HttpRequest) -> HttpResponse:
     """Allow to be seen only from Platform Administrators."""
     return render(request, "dj_pocs/view_for_admin_prermissions.html", {})
