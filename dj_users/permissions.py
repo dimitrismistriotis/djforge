@@ -1,4 +1,5 @@
 """Functions related to permission checks for the dj_users app."""
+from typing import Callable
 from functools import wraps
 
 from django.contrib.auth.decorators import user_passes_test
@@ -16,7 +17,7 @@ def is_platform_admin(user) -> bool:
 restrict_to_platform_admin = user_passes_test(is_platform_admin)
 
 
-def restrict_to_platform_admin_404(view_func):
+def restrict_to_platform_admin_404(view_func) -> Callable:
     """Restrict view to Platform Administrators, raise 404 if not."""
 
     @wraps(view_func)
