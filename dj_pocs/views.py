@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 from django.shortcuts import render
 from django.utils.translation import gettext as _
+from django.contrib.auth.decorators import login_required
 
 #
 # Data sourced from https://www.doogal.co.uk/UKPostcodes?Search=NG10
@@ -20,6 +21,7 @@ POST_CODE_SAMPLE_DATA = json.loads(
 )
 
 
+@login_required
 def admin_only_display(request: HttpRequest) -> HttpResponse:
     """Allow to be seen only from Platform Administrators."""
     return render(request, "dj_pocs/view_for_admin_prermissions.html", {})
