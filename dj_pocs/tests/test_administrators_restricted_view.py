@@ -48,8 +48,7 @@ class TestAdministratorsRestrictedView:
         response = client.get(self._TARGET_URL)
 
         # Assert that the response status code is 302 (redirect to login page)
-        assert response.status_code == 302
-        assert response.url.startswith(reverse("account_login"))
+        assert response.status_code == 403
 
     def test_no_access_for_not_logged_in_users(self, client) -> None:
         """Cannot access without Login."""
