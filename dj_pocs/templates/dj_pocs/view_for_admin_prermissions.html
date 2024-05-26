@@ -1,0 +1,45 @@
+{% extends "dj_theme/base_logged_in.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block extra_head_entries %}
+  {{ block.super }}
+{% endblock extra_head_entries %}
+
+{% block navigation_bar %}
+  {{ block.super }}
+{% endblock navigation_bar %}
+
+{% block end_of_content_scripts %}
+  {{ block.super }}
+{% endblock end_of_content_scripts %}
+
+{% block logged_in_content %}
+  <main>
+    <div class="px-4 pt-6">
+      {% include "dj_theme/messages.html" %}
+
+      <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row dark:border-gray-700 dark:bg-gray-800">
+        {% comment %}
+          Image generated in Venice.ai with the prompt:
+          Create me a vector illustration on the concept of a System Administrator. Background should be white.
+        {% endcomment %}
+        <img
+          class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+          src="{% static "dj_pocs/systems_administrator.png" %}" alt="Map Image">
+
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {% trans "Administrators Screen" %}
+            </h3>
+
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {% trans "In order to display a map, you need to supply a Google Maps API key to the application." %}
+              <br />
+              {% trans "This screen should be visible only to users who belong to the administators group." %}
+            </p>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock logged_in_content %}

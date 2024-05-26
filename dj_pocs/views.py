@@ -20,6 +20,11 @@ POST_CODE_SAMPLE_DATA = json.loads(
 )
 
 
+def admin_only_display(request: HttpRequest) -> HttpResponse:
+    """Allow to be seen only from Platform Administrators."""
+    return render(request, "dj_pocs/view_for_admin_prermissions.html", {})
+
+
 def map_and_postcode_analysis(request: HttpRequest) -> HttpResponse:
     """Display a map and a table with postcode analysis."""
     if not (google_maps_api_key := getattr(settings, "GOOGLE_MAPS_API_KEY", None)):
