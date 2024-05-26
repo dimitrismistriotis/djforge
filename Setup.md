@@ -271,3 +271,8 @@ set as the `GOOGLE_MAPS_API_KEY` variable, stemming from environment.
 For instructions see
 <https://developers.google.com/maps/documentation/javascript/get-api-key>
 or search the web 🙃: <https://search.brave.com/search?q=create+google+maps+api+key>
+
+### Permissions Check Page
+
+A page checking permissions displayed conditionally, to be used as a reference for
+permission checks within the app.
