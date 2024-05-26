@@ -10,6 +10,11 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 from django.shortcuts import render
 from django.utils.translation import gettext as _
+from django.contrib.auth.decorators import login_required
+
+
+from dj_users.permissions import restrict_to_platform_admin_404
+
 
 #
 # Data sourced from https://www.doogal.co.uk/UKPostcodes?Search=NG10
@@ -18,6 +23,13 @@ from django.utils.translation import gettext as _
 POST_CODE_SAMPLE_DATA = json.loads(
     (Path(__file__).parent / "sample_data" / "post_codes_and_demand.json").read_bytes()
 )
+
+
+@login_required
+@restrict_to_platform_admin_404
+def admin_only_display(request: HttpRequest) -> HttpResponse:
+    """Allow to be seen only from Platform Administrators."""
+    return render(request, "dj_pocs/view_for_admin_prermissions.html", {})
 
 
 def map_and_postcode_analysis(request: HttpRequest) -> HttpResponse:

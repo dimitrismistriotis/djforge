@@ -13,6 +13,7 @@
 -   Add "Deploy to Render Button" for ease of deployment in Readme
 -   "Contact Us" page similar to "Waiting List"
 -   Start having different behaviour based on environment variable
+-   Introduce Permission checks for required views
 
 ## Version 0.2.0
 
