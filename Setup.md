@@ -276,3 +276,11 @@ or search the web 🙃: <https://search.brave.com/search?q=create+google+maps+ap
 
 A page checking permissions displayed conditionally, to be used as a reference for
 permission checks within the app.
+
+You can add a user to a group programmatically from shell_plus with:
+
+```python
+>>> Group.objects.get(
+   name="Platform Administrators").user_set.add(User.objects.get(
+   email="john.doe@example.com"))
+```

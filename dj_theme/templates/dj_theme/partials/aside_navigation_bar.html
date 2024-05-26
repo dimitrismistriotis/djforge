@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load dj_users_tags %}
+
 <aside
   id="sidebar"
   class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 hidden w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width"
@@ -141,13 +143,15 @@
                   {% trans "Map / Post Codes" %}
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://flowbite-admin-dashboard.vercel.app/playground/sidebar/"
-                  class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700"
-                  >Sidebar</a
-                >
-              </li>
+              {% if request.user|has_group:"Platform Administrators" %}
+                <li>
+                  <a
+                    href="{% url 'dj_pocs:admin_only_display' %}"
+                    class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700"
+                    >Admin Only Page</a
+                  >
+                </li>
+              {% endif %}
             </ul>
           </li>
         </ul>
