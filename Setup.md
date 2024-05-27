@@ -1,4 +1,4 @@
-# Setup
+7# Setup
 
 This is the setup guide on what to do after installing the project. It should be
 as part of documentation, dropping it here in order not to create a dependency.
@@ -284,3 +284,7 @@ You can add a user to a group programmatically from shell_plus with:
    name="Platform Administrators").user_set.add(User.objects.get(
    email="john.doe@example.com"))
 ```
+
+## Updating Repositories Generated from Template
+
+Placeholder: Need to expand this section.
