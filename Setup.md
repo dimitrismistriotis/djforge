@@ -287,4 +287,14 @@ You can add a user to a group programmatically from shell_plus with:
 
 ## Updating Repositories Generated from Template
 
-Placeholder: Need to expand this section.
+One solution would be to use [Cruft](https://github.com/cruft/cruft) which has
+automated the process. Unfortunately this requires the repository to be formed with
+CookieCutter, something that it is not for the time being at least.
+
+Had good results with <https://github.com/AndreasAugustin/actions-template-sync> which
+is currently the most suggested option, after having it configured.
+
+Most suggested option is to generate from a template and then
+"fork" each Django application: copy to new directory and change in `settings.py`.
+Then at regular intervals copy over from original repository and then port each
+change you want.
