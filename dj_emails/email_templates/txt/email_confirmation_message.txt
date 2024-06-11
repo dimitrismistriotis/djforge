@@ -11,7 +11,7 @@ Confirm Email ACTIVATE_URL_HERE
 
 
 
-Alternatively copy and paste the follwing URL into your browser:
+Alternatively copy and paste the following URL into your browser:
 ACTIVATE_URL_HERE
 
 Thanks,
