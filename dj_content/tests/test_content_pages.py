@@ -13,8 +13,9 @@ class TestContentPages:
     @pytest.mark.parametrize(
         "url_name",
         [
-            "dj_content:health",
             "dj_content:about-us",
+            "dj_content:cookies-policy",
+            "dj_content:health",
             "dj_content:license",
         ],
     )

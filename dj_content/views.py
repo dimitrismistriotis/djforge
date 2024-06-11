@@ -17,6 +17,11 @@ def about_us(request: HttpRequest) -> HttpResponse:
     return render(request, "dj_content/about_us.html")
 
 
+def cookies_policy(request: HttpRequest) -> HttpResponse:
+    """Return Cookies Policy Document."""
+    return render(request, "dj_content/cookies_policy.html")
+
+
 def health(_request: HttpRequest) -> HttpResponse:
     """Return a health for the dj_content app."""
     return HttpResponse("OK")

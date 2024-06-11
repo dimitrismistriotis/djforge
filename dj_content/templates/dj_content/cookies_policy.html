@@ -1,0 +1,138 @@
+{% extends "dj_theme/base_not_logged_in.html" %}
+{% comment %}
+  Did not wrap this page in translation tags because it is a legal document.
+  If you want it in another language, it makes more sense to have if statements.
+{% endcomment %}
+
+{% load static %}
+
+{% block content %}
+  {% comment %}
+    Reference: https://flowbite.com/docs/typography/paragraphs/
+  {% endcomment %}
+
+  {% include "dj_theme/header.html" %}
+
+  <section class="bg-white dark:bg-gray-900">
+    <div class="items-center max-w-screen-xl px-4 py-8 mx-auto lg:gap-16 xl:gap-24 lg:py-24 lg:px-6">
+      <div class="col-span-2 mb-8">
+        {% include "dj_theme/messages.html" %}
+
+        <h2 class="mt-3 mb-4 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl dark:text-white">
+          Cookie Policy Document
+        </h2>
+
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          <span class="font-bold text-gray-900 dark:text-white">Introduction:</span>
+          <br />
+
+          Our website (the "Website") uses cookies to improve your browsing experience
+          and to collect information about your use of the Website.
+          This Cookie Policy explains what cookies are, how we use them,
+          and our practices regarding user control over cookie settings.
+        </p>
+
+
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          <span class="font-bold text-gray-900 dark:text-white">
+            What are cookies?
+          </span>
+
+          <br />
+
+          Cookies are small text files that are stored on your device (such as your
+          computer, tablet, or smartphone) when you visit our Website. They help us
+          remember your preferences and improve your browsing experience. Cookies can
+          be session cookies (which are deleted when you close your browser) or
+          persistent cookies (which remain on your device for a longer period of time).
+        </p>
+
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          <span class="font-bold text-gray-900 dark:text-white">
+            Types of cookies used on our Website:
+          </span>
+
+          <br />
+
+          Our Website uses two types of cookies:
+
+          <br/>
+
+          <span class="font-bold text-gray-900 dark:text-white">
+            1. Session management cookies:
+          </span>
+
+          These cookies are used to enable you to navigate and interact with our
+          Website. They remember your preferences and login information, and help us
+          provide you with a more personalized experience.
+
+          <br />
+
+          <span class="font-bold text-gray-900 dark:text-white">
+            2. Web analytics cookies:
+          </span>
+
+          These cookies are used to collect information about your use of our Website,
+          such as the pages you visit and the links you click on. This helps us
+          understand how users interact with our Website and make improvements to
+          the user experience. These cookies are not deleted when you close your
+          browser and will remain on your device for a longer period of time.
+        </p>
+
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          <span class="font-bold text-gray-900 dark:text-white">
+            Control over cookie settings:
+          </span>
+
+          <br />
+
+          While we provide information about the types of cookies used on our Website,
+          we do not offer users the ability to control which specific cookies are
+          being used. This is because certain cookies are necessary for the proper
+          functioning of our Website, and disabling them may affect your ability
+          to use certain features and services.
+        </p>
+
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          <span class="font-bold text-gray-900 dark:text-white">
+            Changes to our Cookie Policy:
+          </span>
+
+          <br />
+
+          We reserve the right to update this Cookie Policy at any time. We will
+          notify you of any changes by posting the updated policy on our Website.
+          Your continued use of our Website after the effective date of any update
+          to this Cookie Policy will constitute your acceptance of the updated policy.
+        </p>
+
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          <span class="font-bold text-gray-900 dark:text-white">
+            Contact Us:
+          </span>
+
+          <br />
+
+          If you have any questions or concerns about our Cookie Policy,
+
+          {% comment %}
+            If you want to use a mailto link:
+
+            please contact us at
+            <a href="mailto:info@djforge.net"
+               class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">
+              info@djforge.net
+            </a>.
+          {% endcomment %}
+
+          <a href="{% url 'dj_contact_us:contact-us' %}"
+             class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">Contact Us</a>.
+
+          We will be happy to answer any questions you may have.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {% include "dj_theme/partials/content/footer_block.html" %}
+{% endblock content %}

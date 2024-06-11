@@ -67,7 +67,7 @@ export const DJForgeEmailConfirmationMessage = ({
                             </Tailwind>
                         </Text>
                         <Text style={paragraph}>
-                            Alternatively copy and paste the follwing URL into
+                            Alternatively copy and paste the following URL into
                             your browser:
                             <br />
                             {activateURL}
