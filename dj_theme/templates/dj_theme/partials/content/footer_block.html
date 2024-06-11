@@ -49,6 +49,13 @@
               <li class="mb-4">
                 <a href="#" class="hover:underline">Privacy Policy</a>
               </li>
+
+              <li class="mb-4">
+                <a href="{% url 'dj_content:cookies-policy' %}" class="hover:underline">
+                  {% trans "Cookies Policy" %}
+                </a>
+              </li>
+
               <li class="mb-4">
                 <a href="{% url 'dj_content:license' %}" class="hover:underline">
                   {% trans "Licensing" %}
