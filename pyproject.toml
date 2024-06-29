@@ -165,6 +165,19 @@ pytest-watch = "^4.2.0"
 # MIT license
 #
 pytest-ruff = "^0.3.2"
+#
+# isort your imports, so you don't have to.
+# https://pycqa.github.io/isort/
+# https://github.com/PyCQA/isort
+# MIT license
+#
+isort = "^5.13.2"
+#
+# py.test plugin to check import ordering using isort
+# https://pypi.org/project/pytest-isort/
+# MIT license
+#
+pytest-isort = "^4.0.0"
 
 #
 # End of DJForge development dependencies, add yours below
@@ -185,6 +198,10 @@ build-backend = "poetry.core.masonry.api"
 # With the same reasoning enforcing `multi-line-summary-first-line`.
 extend-ignore = ["D203", "D213"]
 
+[tool.isort]
+profile = "black"
+force_single_line = true
+
 [tool.ruff.extend-per-file-ignores]
 "**/migrations/*.py" = ["D100", "D101", "D104"]
 
@@ -200,6 +217,7 @@ DJANGO_SETTINGS_MODULE = "djforge.settings"
 addopts = [
     "--capture=no",
     "--reuse-db",
+    "--isort",
     "--no-migrations",
     "--fail-on-template-vars"
     ]
