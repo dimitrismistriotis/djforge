@@ -1,9 +1,9 @@
 """Views for the dj_favicons app."""
 from pathlib import Path
 
+from django.http import FileResponse
 from django.http import HttpRequest
 from django.http import HttpResponse
-from django.http import FileResponse
 from django.shortcuts import render
 
 _FAVICON_LOCATION = Path(__file__).parent / "static" / "dj_favicons" / "favicon.ico"

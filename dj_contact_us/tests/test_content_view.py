@@ -1,10 +1,9 @@
 """Test Contact Us View."""
 import pytest
-
-from django.urls import reverse
 from django.core import mail
 from django.test import Client
 from django.test import override_settings
+from django.urls import reverse
 
 from ..models import ContactUsEntry
 

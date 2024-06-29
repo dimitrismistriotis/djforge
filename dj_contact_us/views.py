@@ -1,17 +1,20 @@
 """Contact Us views."""
 import logging
 
-from django.shortcuts import render
-from django.shortcuts import redirect
 from django.contrib import messages
-from django.http import HttpResponse
 from django.http import HttpRequest
-# from django.core.mail import send_mail
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.shortcuts import render
 
 from dj_emails.dispatchers import contact_us_email_dispatcher
 from dj_emails.exceptions import EmailDispatcherException
 
 from .forms import ContactUsEntryForm
+
+# from django.core.mail import send_mail
+
+
 
 
 def contact_view(request: HttpRequest) -> HttpResponse:

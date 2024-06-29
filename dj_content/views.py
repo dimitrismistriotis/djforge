@@ -2,12 +2,11 @@
 
 from pathlib import Path
 
-from django.http import HttpResponse
 from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from .utilities import read_file_into_array
-
 
 _LICENSE_FILE = Path(__file__).parent.parent / "License.md"
 

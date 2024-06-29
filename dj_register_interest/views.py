@@ -1,9 +1,11 @@
 """Views for dj_register_interest app."""
-from django.views import View
 from django.contrib import messages
-from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.shortcuts import render
+from django.shortcuts import reverse
+from django.views import View
 
 from .forms import InterestForm
 from .handlers import RegisterInterestHandler

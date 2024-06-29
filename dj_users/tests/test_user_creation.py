@@ -1,8 +1,6 @@
 """Tests related to creating users."""
 import pytest
-
 from django.contrib.auth import get_user_model
-
 
 pytestmark = [pytest.mark.django_db]
 

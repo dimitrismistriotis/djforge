@@ -1,11 +1,11 @@
 """Urls for Theme in the DJ app."""
 
-from django.urls import path
 from django.conf import settings
+from django.urls import path
 
-from .views import messages_demo
-from .views import logging_demo
 from .views import dashboard_template
+from .views import logging_demo
+from .views import messages_demo
 
 app_name = "dj_theme"
 

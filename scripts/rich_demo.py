@@ -11,11 +11,11 @@ poetry run python manage.py runscript rich_demo --script-args argument1 argument
 
 from random import randint
 
-from rich.console import Console
-from rich.table import Table
 from rich import inspect
 from rich import print as rich_print
+from rich.console import Console
 from rich.highlighter import Highlighter
+from rich.table import Table
 
 
 class RainbowHighlighter(Highlighter):

@@ -6,15 +6,13 @@ from pathlib import Path
 
 from django.conf import settings
 from django.contrib import messages
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.translation import gettext as _
-from django.contrib.auth.decorators import login_required
-
 
 from dj_users.permissions import restrict_to_platform_admin_404
-
 
 #
 # Data sourced from https://www.doogal.co.uk/UKPostcodes?Search=NG10

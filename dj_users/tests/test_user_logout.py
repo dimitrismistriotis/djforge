@@ -1,10 +1,8 @@
 """Test User Logout functionality."""
 import pytest
-
 from django.urls import reverse
 
 from .base_classes import UserLoginLogoutBase
-
 
 pytestmark = [pytest.mark.django_db]
 

@@ -2,9 +2,8 @@
 
 from django.urls import path
 
-from .views import map_and_postcode_analysis
 from .views import admin_only_display
-
+from .views import map_and_postcode_analysis
 
 app_name = "dj_pocs"
 

@@ -1,9 +1,9 @@
 """Views for dj_dashboard app."""
 
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 
 
 @login_required

@@ -4,11 +4,10 @@ Call from commend line:
 
 python manage.py dispatch_test_email --email dimitrios@mistriotis.com
 """
-from rich import print as rich_print
-
+from django.core.mail import send_mail
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
-from django.core.mail import send_mail
+from rich import print as rich_print
 
 
 class Command(BaseCommand):

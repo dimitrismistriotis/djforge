@@ -1,7 +1,6 @@
 """Models for the dj_contact_us app."""
-from django_extensions.db.fields import CreationDateTimeField
-
 from django.db import models
+from django_extensions.db.fields import CreationDateTimeField
 
 
 class ContactUsEntry(models.Model):

@@ -1,5 +1,6 @@
 """Forms for the dj_register_interest app."""
 from django import forms
+
 from .models import Interest
 
 
