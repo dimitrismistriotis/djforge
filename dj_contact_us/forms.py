@@ -1,4 +1,5 @@
 """Forms for the dj_contact_us app."""
+
 from django import forms
 
 from .models import ContactUsEntry

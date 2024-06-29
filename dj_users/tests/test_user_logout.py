@@ -1,4 +1,5 @@
 """Test User Logout functionality."""
+
 import pytest
 from django.urls import reverse
 

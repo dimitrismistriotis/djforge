@@ -1,4 +1,5 @@
 """Views for dj_register_interest app."""
+
 from django.contrib import messages
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect

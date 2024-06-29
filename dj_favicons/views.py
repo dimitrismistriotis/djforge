@@ -1,4 +1,5 @@
 """Views for the dj_favicons app."""
+
 from pathlib import Path
 
 from django.http import FileResponse

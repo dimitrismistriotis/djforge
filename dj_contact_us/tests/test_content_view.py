@@ -1,4 +1,5 @@
 """Test Contact Us View."""
+
 import pytest
 from django.core import mail
 from django.test import Client

@@ -1,4 +1,5 @@
 """Django backend for Resend.com."""
+
 import logging
 
 import resend

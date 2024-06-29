@@ -1,4 +1,5 @@
 """Test View Restricted Only to Users who Belong to Administrators Group."""
+
 import pytest
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group

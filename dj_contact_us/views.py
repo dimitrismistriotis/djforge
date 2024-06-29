@@ -1,4 +1,5 @@
 """Contact Us views."""
+
 import logging
 
 from django.contrib import messages
@@ -13,8 +14,6 @@ from dj_emails.exceptions import EmailDispatcherException
 from .forms import ContactUsEntryForm
 
 # from django.core.mail import send_mail
-
-
 
 
 def contact_view(request: HttpRequest) -> HttpResponse:

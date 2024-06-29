@@ -1,4 +1,5 @@
 """Functions related to permission checks for the dj_users app."""
+
 from functools import wraps
 from typing import Callable
 

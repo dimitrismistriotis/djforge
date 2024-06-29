@@ -1,4 +1,5 @@
 """Test for the views of the dj_favicons app."""
+
 import pytest
 from django.test import Client
 
