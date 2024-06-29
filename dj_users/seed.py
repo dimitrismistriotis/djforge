@@ -1,8 +1,8 @@
 """Seed function for dj_users app, Seeding Groups, Permissions, etc."""
-from rich import print as rich_print
 
 from django.contrib.auth.models import Group
 from django.db import transaction
+from rich import print as rich_print
 
 
 @transaction.atomic

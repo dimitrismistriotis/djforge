@@ -1,10 +1,11 @@
 """Email Dispatchers, other modules should have a corresponding dispatcher here."""
+
 import logging
 from smtplib import SMTPException
 
-from django.core.mail import send_mail
-from django.core.mail import mail_admins
 from django.conf import settings
+from django.core.mail import mail_admins
+from django.core.mail import send_mail
 
 from .exceptions import EmailDispatcherException
 

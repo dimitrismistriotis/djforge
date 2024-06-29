@@ -1,9 +1,8 @@
 """Test the register interest view."""
-import pytest
 
+import pytest
 from django.shortcuts import reverse
 from django.test.client import Client
-
 
 pytestmark = [pytest.mark.django_db]
 

@@ -1,6 +1,7 @@
 """Functions related to permission checks for the dj_users app."""
-from typing import Callable
+
 from functools import wraps
+from typing import Callable
 
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied

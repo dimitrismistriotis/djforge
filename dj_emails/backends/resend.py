@@ -1,12 +1,12 @@
 """Django backend for Resend.com."""
+
 import logging
 
 import resend
-from resend.exceptions import ResendError
-
 from django.conf import settings
-from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail import EmailMultiAlternatives
+from django.core.mail.backends.base import BaseEmailBackend
+from resend.exceptions import ResendError
 
 
 class ResendEmailBackendException(Exception):

@@ -1,13 +1,10 @@
 """Tests for the user change password view from Allauth."""
 
 import pytest
-
-from django.urls import reverse
 from django.test import Client
-
+from django.urls import reverse
 
 from .base_classes import UserLoginLogoutBase
-
 
 pytestmark = [pytest.mark.django_db]
 

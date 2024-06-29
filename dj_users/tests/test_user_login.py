@@ -1,6 +1,6 @@
 """Test User Login functionality."""
-import pytest
 
+import pytest
 from django.urls import reverse
 
 from .base_classes import UserLoginLogoutBase
