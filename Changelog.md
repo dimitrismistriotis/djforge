@@ -14,6 +14,7 @@
 -   "Contact Us" page similar to "Waiting List"
 -   Start having different behaviour based on environment variable
 -   Introduce Permission checks for required views
+-   Add isort to sort imports in development
 
 ## Version 0.2.0
 
