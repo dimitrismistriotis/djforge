@@ -1,6 +1,7 @@
 """Tests for the user change password view from Allauth."""
 
 import pytest
+
 from django.test import Client
 from django.urls import reverse
 

@@ -1,6 +1,7 @@
 """Test Sign Up Redirects Users to Dashboard with Specific Flag."""
 
 import pytest
+
 from django.urls import reverse
 
 pytestmark = [pytest.mark.django_db]
