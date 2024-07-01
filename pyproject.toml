@@ -200,7 +200,10 @@ extend-ignore = ["D203", "D213"]
 
 [tool.isort]
 profile = "black"
+known_django = "django"
+sections = "FUTURE,STDLIB,THIRDPARTY,DJANGO,FIRSTPARTY,LOCALFOLDER"
 force_single_line = true
+
 
 [tool.ruff.extend-per-file-ignores]
 "**/migrations/*.py" = ["D100", "D101", "D104"]
