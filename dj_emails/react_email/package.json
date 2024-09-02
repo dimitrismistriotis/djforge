@@ -8,10 +8,10 @@
     "export": "email export"
   },
   "dependencies": {
-    "@react-email/components": "0.0.16",
     "react": "18.2.0"
   },
   "devDependencies": {
+    "@react-email/components": "0.0.25",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "react-email": "3.0.1"
