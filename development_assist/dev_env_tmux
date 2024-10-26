@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+#
+# Reference:
+#
+# https://ryan.himmelwright.net/post/scripting-tmux-workspaces/
+#
+#
+# SESSION_EXISTS below fails with these options, need refactoring
+#
+#set -eox pipefail
+
+#
+# Exit if tmux is not installed
+#
+if ! command -v tmux &> /dev/null
+then
+  echo "tmux could not be found"
+  exit
+fi
+
+# Set Session Name
+SESSION="Water_Direct_Main_App"
+SESSION_EXISTS=$(tmux list-sessions | grep ${SESSION})
+
+# Only create tmux session if it doesn't already exist
+if [ "${SESSION_EXISTS}" = "" ]
+then
+  # Start New Session with our name
+  tmux new-session -d -s $SESSION
+
+  tmux rename-window -t 0 'make-up'
+
+
+  #
+  # Generate Cross alignment, 4 panes equal
+  #
+  tmux split-window -h
+  tmux split-window -v -t 1
+  tmux split-window -v -t 0
+
+  #
+  # Commands start with space so that they are not saved in history
+  #
+  tmux send-keys -t 0 'echo " Pane 0"' C-m
+  tmux send-keys -t 1 'echo " Pane 1"' C-m
+  tmux send-keys -t 2 'echo " Pane 2"' C-m
+  tmux send-keys -t 3 'echo " Pane 3"' C-m
+
+  tmux send-keys -t 0 ' make up' C-m
+  tmux send-keys -t 1 ' make django_runserver' C-m
+  tmux send-keys -t 2 ' make celery' C-m
+
+  tmux select-pane -t ${SESSION}:0.3
+fi
+
+# Attach Session, on the Main window
+tmux attach-session -t ${SESSION}:0
