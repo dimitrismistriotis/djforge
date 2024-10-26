@@ -164,6 +164,18 @@ livereload: 			## Run livereload
 # Run many web development make targets concurrently in one shell
 # https://kylewbanks.com/blog/running-multiple-make-targets-concurrently
 #
+.PHONY: development_tmux_services
+development_tmux_services:	## Run Docker Compose, Django server, celery, and a shell in tmux if there
+	@echo ""
+	@echo "Tmux Development Multiplexing..."
+	@echo ""
+	./development_assist/dev_env_tmux
+
+
+#
+# Run many web development make targets concurrently in one shell
+# https://kylewbanks.com/blog/running-multiple-make-targets-concurrently
+#
 # Follow Up(s):
 # - Perhaps add Celery here
 #
