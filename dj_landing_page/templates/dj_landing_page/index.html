@@ -1,12 +1,8 @@
 {% extends "dj_theme/base_not_logged_in.html" %}
 
 {% block content %}
-    {% include "dj_theme/header.html" %}
-
     {% include "dj_landing_page/partials/hero_block.html" %}
-
     {% include "dj_landing_page/partials/icon_row_block.html" %}
-
     {% include "dj_landing_page/partials/features_block.html" %}
 
     {% comment %}
@@ -25,8 +21,5 @@
         {% include "dj_landing_page/partials/faq_block.html" %}
 
         {% include "dj_landing_page/partials/start_trial_cta_block.html" %}
-
     {% endcomment %}
-
-    {% include "dj_theme/partials/content/footer_block.html" %}
 {% endblock content %}

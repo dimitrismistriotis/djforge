@@ -1,0 +1,35 @@
+{% if "cookie_consent" in request.COOKIES %}
+{% else %}
+    <section class="fixed bottom-0 w-full bg-gray-50 dark:bg-gray-800">
+        <div class="container px-4 py-8 mx-auto lg:flex lg:items-center lg:gap-x-16">
+            <p class="text-gray-600 dark:text-gray-300">By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to enhance site navigation, analyze site usage, and assist in our marketing efforts.</p>
+
+            <div class="flex items-center mt-6 gap-x-4 lg:gap-x-8 shrink-0 lg:mt-0">
+                <button id="decline-cookies" class="w-1/2 text-sm text-gray-800 underline transition-colors duration-300 md:w-auto dark:text-white dark:hover:text-gray-400 hover:text-gray-600 focus:outline-none">
+                    Decline All Cookies
+                </button>
+
+                <button id="accept-cookies" class="text-sm w-1/2 md:w-auto font-medium bg-gray-900 rounded-lg hover:bg-gray-900/80 text-white px-4 py-2.5 duration-300 transition-colors focus:outline-none">
+                    Accept All Cookies
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var acceptCookiesBtn = document.getElementById('accept-cookies');
+          var declineCookiesBtn = document.getElementById('decline-cookies');
+
+          acceptCookiesBtn.addEventListener('click', function() {
+              document.cookie = 'cookie_consent=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+              window.location.reload();
+          });
+          declineCookiesBtn.addEventListener('click', function() {
+              document.cookie = 'cookie_consent=false; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+              window.location.reload();
+          });
+      });
+    </script>
+{% endif %}
