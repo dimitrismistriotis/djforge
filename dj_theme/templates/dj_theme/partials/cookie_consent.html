@@ -2,15 +2,11 @@
 {% else %}
     <section class="fixed bottom-0 w-full bg-gray-50 dark:bg-gray-800">
         <div class="container px-4 py-8 mx-auto lg:flex lg:items-center lg:gap-x-16">
-            <p class="text-gray-600 dark:text-gray-300">
-                By clicking “Accept Cookies”, you agree to the storing of cookies on your device to enhance site navigation and analyze site usage.
-                Please see our <a href="{% url 'dj_content:cookies-policy' %}" class="dark:hover:text-purple-700 hover:text-purple-800">Cookie Policy Document.</a>
-            </p>
+            <p class="text-gray-600 dark:text-gray-300">By clicking "Accept", you agree to the storing of cookies on your device to enhance site navigation and analyze site usage. Please see our <a href="{% url 'dj_content:cookies-policy' %}" class="underline dark:hover:text-purple-700 hover:text-purple-800">Cookie Policy Document.</a></p>
 
-            <div class="flex items-center mt-6 gap-x-4 lg:gap-x-8 shrink-0 lg:mt-0">
-                <button id="decline-cookies" class="text-sm w-1/2 text-gray-800 transition-colors font-medium duration-300 md:w-auto dark:text-white dark:hover:text-purple-700 hover:text-purple-800 focus:outline-none">Decline</button>
-
-                <button id="accept-cookies" class="px-3 py-1.5 text-sm w-1/2 text-white transition-colors font-medium duration-300 md:w-auto bg-gray-900 rounded-lg dark:hover:bg-purple-700 hover:bg-purple-800 focus:outline-none">Accept</button>
+            <div class="flex items-center lg:gap-x-8 shrink-0 lg:mt-0">
+                <button id="decline-cookies" class="block mr-4 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Decline</button>
+                <button id="accept-cookies" class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Accept</button>
             </div>
         </div>
     </section>
