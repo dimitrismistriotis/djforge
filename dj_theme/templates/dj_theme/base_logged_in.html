@@ -51,7 +51,27 @@
         {% block logged_in_content %} {% endblock logged_in_content %}
 
         {% include "dj_theme/partials/cookie_consent.html" %}
-        {% include "dj_theme/partials/footer.html" %}
+
+        <c-footer
+          hide_copyright
+
+          footer_classes="p-4 my-6 mx-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800"
+          body_classes=""
+          legal_body_classes="flex flex-wrap items-center mb-6 space-y-1 md:mb-0"
+          legal_options_classes="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6 dark:text-gray-400"
+
+          :legal="[
+            {'text': 'Terms and conditions', 'link': '#'},
+            {'text': 'Privacy Policy', 'link': '#'},
+            {'text': 'Licensing', 'link': '#'},
+            {'text': 'Cookie Policy', 'link': '#'},
+            {'text': 'Contact', 'link': '#'}
+          ]"
+        >
+          {% comment %}
+            TODO: add socials slot
+          {% endcomment %}
+        </c-footer>
       </div>
 
       {% block end_of_content_scripts %}

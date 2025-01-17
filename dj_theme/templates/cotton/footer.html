@@ -1,12 +1,86 @@
+{% comment %}TODO: add some sort of component documentation{% endcomment %}
+{% load static %}
+
+
 <c-vars
-  footer_class="bg-white dark:bg-gray-800"
+  footer_classes="bg-white dark:bg-gray-800"
+  body_classes="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10"
+
+  cols_body_classes="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4"
+  cols_title_classes="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+
+  rows_body_classes=""
+  rows_title_classes="hover:underline"
+  rows_anchor_classes="mb-4"
+  break_classes="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+
+  legal_body_classes="flex flex-wrap items-center mb-6 space-y-1 md:mb-0"
+  legal_options_classes="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6 dark:text-gray-400"
 />
 
 
-<footer class="{{ footer_class }}">
-  {{ navigation }}
+<footer id="footer" class="{{ footer_classes }}">
+  <div id="footer-body" class="{{ body_classes }}">
 
-  {{ body }}
+    {% if cols %}
+      <div id="secondary-navigation" class="{{ cols_body_classes }}">
+        {% for col in cols %}
+          <div>
+            <h3 class="{{ cols_title_classes }}">col.text</h3>
 
-  {{ socials }}
+            {% comment %}TODO: replace list elem with cotton list when available{% endcomment %}
+            <ul class="{{ rows_body_classes }}">
+              {% for option in col.options %}
+                <li class="{{ row_body_classes }}">
+                  <a href="{{ option.link }}" class="{{ rows_anchor_classes }}">{{ option.text }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if legal or not hide_copyright or socials %}
+        <hr class="{{ break_classes }}" />
+      {% endif %}
+    {% endif %}
+
+    {% if legal %}
+      <div id="legal">
+        {% comment %}TODO: replace list elem with cotton list when available{% endcomment %}
+        <ul class="{{ legal_body_classes }}">
+        {% for option in legal %}
+          <li>
+            <a href="{{ option.link }}" class="{{ legal_options_classes }}">{{ option.text }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+      <div>
+    {% endif %}
+
+    {% comment %}
+      Copyright section, should always dysplayed and consistent across the website.
+      However, it can be disabled if neeeded.
+    {% endcomment %}
+    {% if hide_copyright %}
+    {% else %}
+      <div class="text-center">
+        <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
+          <img src="{% static 'dj_favicons/favicon-32x32.png' %}" class="h-6 mr-3 sm:h-9" alt="Logo" />
+          DJ Forge
+        </a>
+        <span class="block text-sm text-center text-gray-500 dark:text-gray-400">
+          © 2023-2024 DJ Forge™. All Rights Reserved.
+          Built with <a href="https://flowbite.com" class="text-purple-600 hover:underline dark:text-purple-500">Flowbite</a> and <a href="https://tailwindcss.com" class="text-purple-600 hover:underline dark:text-purple-500">Tailwind CSS</a>.
+        </span>
+      </div>
+    {% endif %}
+
+    {% comment %}
+      Socials should be its own component as people might add them to the header, footer or other pages.
+    {% endcomment %}
+    {{ socials }}
+
+  </div>
 </footer>
