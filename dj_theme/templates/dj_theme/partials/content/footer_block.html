@@ -2,112 +2,15 @@
 
 <footer class="bg-white dark:bg-gray-800">
   <div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
-    {% comment %}
-      <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
-          <div>
-            <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h3>
-
-            <ul class="text-gray-500 dark:text-gray-400">
-              <li class="mb-4">
-                <a href="#" class=" hover:underline">About</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Careers</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Brand Center</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Blog</a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Help center</h3>
-
-            <ul class="text-gray-500 dark:text-gray-400">
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Discord Server</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Twitter</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Facebook</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Contact Us</a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h3>
-
-            <ul class="text-gray-500 dark:text-gray-400">
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Privacy Policy</a>
-              </li>
-
-              <li class="mb-4">
-                <a href="{% url 'dj_content:cookies-policy' %}" class="hover:underline">
-                  {% trans "Cookies Policy" %}
-                </a>
-              </li>
-
-              <li class="mb-4">
-                <a href="{% url 'dj_content:license' %}" class="hover:underline">
-                  {% trans "Licensing" %}
-                </a>
-              </li>
-              <li class="mb-4">
-                  <a href="#" class="hover:underline">Terms</a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h3>
-
-            <ul class="text-gray-500 dark:text-gray-400">
-              <li class="mb-4">
-                <a href="#" class=" hover:underline">About</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Careers</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Brand Center</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Blog</a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Download</h3>
-
-            <ul class="text-gray-500 dark:text-gray-400">
-              <li class="mb-4">
-                <a href="#" class="hover:underline">iOS</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Android</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">Windows</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="hover:underline">MacOS</a>
-              </li>
-            </ul>
-          </div>
-      </div>
-    {% endcomment %}
+    <c-footer-navigation :tabs="{
+      'Company': [{'name': 'About', 'href': '#'}, {'name': 'Carrers', 'href': '#'}, {'name': 'Brand Center', 'href': '#'}, {'name': 'Blog', 'href': '#'}],
+      'Help Center': [{'name': 'Discord Server', 'href': '#'}, {'name': 'Twitter', 'href': '#'}, {'name': 'Facebookr', 'href': '#'}, {'name': 'Contact Us', 'href': '#'}],
+      'Legal': [{'name': 'Privacy Policy', 'href': '#'}, {'name': 'Cookies Policy', 'href': '#'}, {'name': 'Licensing', 'href': '#'}, {'name': 'Terms', 'href': '#'}],
+      'Download': [{'name': 'iOS', 'href': '#'}, {'name': 'Android', 'href': '#'}, {'name': 'Windows', 'href': '#'}, {'name': 'MacOS', 'href': '#'}]
+    }" />
 
     {% include "dj_theme/partials//content/footer_block_common.html" %}
 
-    {% comment %}
       <ul class="flex justify-center mt-5 space-x-5">
         <li>
           <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
@@ -135,7 +38,6 @@
           </a>
         </li>
       </ul>
-    {% endcomment %}
     </div>
   </div>
 </footer>

@@ -86,7 +86,13 @@ rich = "^13.7.1"
 # MIT license
 #
 resend = "^1.0.2"
-
+#
+# Brings component-based design to Django templates.
+# https://django-cotton.com/
+# https://github.com/wrabit/django-cotton
+# MIT license
+#
+django-cotton = "^1.5.2"
 #
 # End of DJForge dependencies, add yours below
 #
