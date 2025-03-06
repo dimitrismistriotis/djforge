@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-django = "^5.0.10"
+django = "^5.0.13"
 #
 # Package that allows you to use Twelve-factor methodology to configure your Django
 # application with environment variables.
