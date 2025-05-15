@@ -802,14 +802,14 @@ files = [
 
 [[package]]
 name = "httpie"
-version = "3.2.2"
+version = "3.2.4"
 description = "HTTPie: modern, user-friendly command-line HTTP client for the API era."
 optional = false
 python-versions = ">=3.7"
 groups = ["dev"]
 files = [
-    {file = "httpie-3.2.2-py3-none-any.whl", hash = "sha256:33082092553126e3e38395682c23121c3450472ffddb363eb895ad685d01800e"},
-    {file = "httpie-3.2.2.tar.gz", hash = "sha256:8bfb671f0b39505c197fdef3367f7f99af5d0e81a4e22289bb4c1f0e72251c90"},
+    {file = "httpie-3.2.4-py3-none-any.whl", hash = "sha256:4bd0435cc4b9bca59501bc65089de96f3e93b393803f32a81951db62050ebf0b"},
+    {file = "httpie-3.2.4.tar.gz", hash = "sha256:302ad436c3dc14fd0d1b19d4572ef8d62b146bcd94b505f3c2521f701e2e7a2a"},
 ]
 
 [package.dependencies]
@@ -825,8 +825,8 @@ rich = ">=9.10.0"
 setuptools = "*"
 
 [package.extras]
-dev = ["Jinja2", "flake8", "flake8-comprehensions", "flake8-deprecated", "flake8-mutable", "flake8-tuple", "pyopenssl", "pytest", "pytest-cov", "pytest-httpbin (>=0.0.6)", "pytest-lazy-fixture (>=0.0.6)", "pytest-mock", "pyyaml", "responses", "twine", "werkzeug (<2.1.0)", "wheel"]
-test = ["pytest", "pytest-httpbin (>=0.0.6)", "pytest-lazy-fixture (>=0.0.6)", "pytest-mock", "responses", "werkzeug (<2.1.0)"]
+dev = ["Jinja2", "flake8", "flake8-comprehensions", "flake8-deprecated", "flake8-mutable", "flake8-tuple", "pyopenssl", "pytest", "pytest-cov", "pytest-httpbin (>=0.0.6)", "pytest-mock", "pyyaml", "responses", "twine", "werkzeug (<2.1.0)", "wheel"]
+test = ["pytest", "pytest-httpbin (>=0.0.6)", "pytest-mock", "responses", "werkzeug (<2.1.0)"]
 
 [[package]]
 name = "identify"
@@ -2086,4 +2086,4 @@ test = ["big-O", "importlib-resources ; python_version < \"3.9\"", "jaraco.funct
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "a083be01e14a90cf9974fba1bbb8b3925fe4845f388701374b901636b76e7e13"
+content-hash = "3917a597ba7eee554c851ceda564094c37fe4db9deb88dd1b894d3631695e3b9"

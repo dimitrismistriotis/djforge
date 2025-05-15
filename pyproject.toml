@@ -152,7 +152,7 @@ pytest-emoji = "^0.2.0"
 #
 pytest-md = "^0.2.0"
 
-httpie = "^3.2.2"
+httpie = "^3.2.3"
 #
 # Runs pytest, and re-runs it when a file in your project changes.
 # https://github.com/joeyespo/pytest-watch
