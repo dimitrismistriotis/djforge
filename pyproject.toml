@@ -1,70 +1,8 @@
-[tool.poetry]
+[project]
 name = "djforge"
 version = "1.0.0"
 description = "Bootstrap and Grow your SaaS with Django"
-authors = ["Dimitrios Mistriotis <dimitrios@mistriotis.com>"]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-django = "^5.0.13"
-django-environ = "^0.11.2"
-psycopg = {extras = ["binary"], version = "^3.1.17"}
-django-allauth = "^0.60.1"
-celery = {extras = ["redis"], version = "^5.3.6"}
-django-celery-results = "^2.5.1"
-django-extensions = "^3.2.3"
-gunicorn = "^22.0.0"
-uvicorn = "^0.27.1"
-whitenoise = {extras = ["brotli"], version = "^6.6.0"}
-rich = "^13.7.1"
-resend = "^1.0.2"
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.1.11"
-pytest = "^7.4.4"
-pytest-django = "^4.7.0"
-commitizen = "^3.13.0"
-django-livereload-server = "^0.5.1"
-pre-commit = "^3.6.0"
-pytest-emoji = "^0.2.0"
-pytest-md = "^0.2.0"
-httpie = "^3.2.2"
-pytest-watch = "^4.2.0"
-pytest-ruff = "^0.3.2"
-isort = "^5.13.2"
-pytest-isort = "^4.0.0"
-
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
-
-[tool.isort]
-profile = "black"
-known_django = "django"
-sections = "FUTURE,STDLIB,THIRDPARTY,DJANGO,FIRSTPARTY,LOCALFOLDER"
-force_single_line = true
-
-[tool.ruff.extend-per-file-ignores]
-"**/migrations/*.py" = ["D100", "D101", "D104"]
-
-# https://docs.astral.sh/ruff/tutorial/#rule-selection
-[tool.ruff.lint]
-extend-select = [
-  "UP",  # pyupgrade: automatically upgrade syntax for newer versions of the language.
-  "D"]   # pydocstyle: checking compliance with Python docstring conventions.
-
-[tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "djforge.settings"
-addopts = [
-    "--capture=no",
-    "--reuse-db",
-    "--isort",
-    "--no-migrations",
-    "--fail-on-template-vars"
-    ]
-
-[project]
 authors = [
     {name = "Dimitrios Mistriotis", email = "dimitrios@mistriotis.com"},
 ]
@@ -140,10 +78,6 @@ dependencies = [
     
     # End of DJForge dependencies, add yours below
 ]
-name = "djforge"
-version = "1.0.0"
-description = "Bootstrap and Grow your SaaS with Django"
-readme = "README.md"
 
 [dependency-groups]
 dev = [
@@ -219,3 +153,32 @@ dev = [
     
     # End of DJForge development dependencies, add yours below
 ]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.isort]
+profile = "black"
+known_django = "django"
+sections = "FUTURE,STDLIB,THIRDPARTY,DJANGO,FIRSTPARTY,LOCALFOLDER"
+force_single_line = true
+
+[tool.ruff.extend-per-file-ignores]
+"**/migrations/*.py" = ["D100", "D101", "D104"]
+
+# https://docs.astral.sh/ruff/tutorial/#rule-selection
+[tool.ruff.lint]
+extend-select = [
+  "UP",  # pyupgrade: automatically upgrade syntax for newer versions of the language.
+  "D"]   # pydocstyle: checking compliance with Python docstring conventions.
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "djforge.settings"
+addopts = [
+    "--capture=no",
+    "--reuse-db",
+    "--isort",
+    "--no-migrations",
+    "--fail-on-template-vars"
+    ]
