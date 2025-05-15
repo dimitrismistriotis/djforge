@@ -183,20 +183,8 @@ pytest-isort = "^4.0.0"
 # End of DJForge development dependencies, add yours below
 #
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-# Ruff with current defaults generates the following warning:
-# warning: `one-blank-line-before-class` (D203) and
-# `no-blank-line-before-class` (D211) are incompatible.
-#  Ignoring `one-blank-line-before-class`.
-# Enforcing `no-blank-line-before-class` which makes code more economical.
-#
-# Similarly: warning: `multi-line-summary-first-line` (D212)
-# and `multi-line-summary-second-line` (D213) are incompatible.
-# Ignoring `multi-line-summary-second-line`.
-# With the same reasoning enforcing `multi-line-summary-first-line`.
-extend-ignore = ["D203", "D213"]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [tool.isort]
 profile = "black"
@@ -224,3 +212,44 @@ addopts = [
     "--no-migrations",
     "--fail-on-template-vars"
     ]
+
+[project]
+authors = [
+    {name = "Dimitrios Mistriotis", email = "dimitrios@mistriotis.com"},
+]
+requires-python = "<4.0,>=3.12"
+dependencies = [
+    "django<6.0.0,>=5.0.10",
+    "django-environ<1.0.0,>=0.11.2",
+    "psycopg[binary]<4.0.0,>=3.1.17",
+    "django-allauth<1.0.0,>=0.60.1",
+    "celery[redis]<6.0.0,>=5.3.6",
+    "django-celery-results<3.0.0,>=2.5.1",
+    "django-extensions<4.0.0,>=3.2.3",
+    "gunicorn<23.0.0,>=22.0.0",
+    "uvicorn<1.0.0,>=0.27.1",
+    "whitenoise[brotli]<7.0.0,>=6.6.0",
+    "rich<14.0.0,>=13.7.1",
+    "resend<2.0.0,>=1.0.2",
+]
+name = "djforge"
+version = "1.0.0"
+description = "Bootstrap and Grow your SaaS with Django"
+readme = "README.md"
+
+[dependency-groups]
+dev = [
+    "ruff<1.0.0,>=0.1.11",
+    "pytest<8.0.0,>=7.4.4",
+    "pytest-django<5.0.0,>=4.7.0",
+    "commitizen<4.0.0,>=3.13.0",
+    "django-livereload-server<1.0.0,>=0.5.1",
+    "pre-commit<4.0.0,>=3.6.0",
+    "pytest-emoji<1.0.0,>=0.2.0",
+    "pytest-md<1.0.0,>=0.2.0",
+    "httpie<4.0.0,>=3.2.2",
+    "pytest-watch<5.0.0,>=4.2.0",
+    "pytest-ruff<1.0.0,>=0.3.2",
+    "isort<6.0.0,>=5.13.2",
+    "pytest-isort<5.0.0,>=4.0.0",
+]
