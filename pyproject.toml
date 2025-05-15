@@ -8,180 +8,33 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 django = "^5.0.13"
-#
-# Package that allows you to use Twelve-factor methodology to configure your Django
-# application with environment variables.
-# https://django-environ.readthedocs.io/en/latest/
-# MIT / X11 License
-#
 django-environ = "^0.11.2"
-#
-# The most popular PostgreSQL adapter for the Python programming language.
-# https://www.psycopg.org/
-# LGPL-3.0 license
-#
 psycopg = {extras = ["binary"], version = "^3.1.17"}
-#
-# Integrated set of Django applications addressing authentication, registration,
-# account management as well as 3rd party (social) account authentication.
-# https://allauth.org/
-# https://docs.allauth.org/en/latest/installation/quickstart.html
-# https://github.com/pennersr/django-allauth
-# MIT license
-#
 django-allauth = "^0.60.1"
-#
-# Celery is a simple, flexible, and reliable distributed system to process
-# vast amounts of messages, while providing operations with the tools required
-# to maintain such a system.
-#
-# Installed as "celery[redis]" to include the Redis broker.
-#
-# https://github.com/celery/celery
-# https://docs.celeryq.dev/en/stable/index.html
-# BSD-3-Clause license plus other copyrights
-#
 celery = {extras = ["redis"], version = "^5.3.6"}
-#
-# Celery Result Backends using the Django ORM/Cache framework.
-# BSD-3-Clause license plus other copyrights
-#
 django-celery-results = "^2.5.1"
-#
-# A collection of custom extensions for the Django Framework
-# Using many of them in different parts of the application
-# https://django-extensions.readthedocs.io/en/latest/
-# MIT license
-#
 django-extensions = "^3.2.3"
-#
-# Python WSGI HTTP Server for UNIX
-# https://gunicorn.org/
-# https://github.com/benoitc/gunicorn?tab=License-1-ov-file
-#
 gunicorn = "^22.0.0"
-#
-# Uvicorn is an ASGI web server implementation for Python.
-# https://www.uvicorn.org/
-# BSD-3-Clause license
-#
 uvicorn = "^0.27.1"
-#
-# Radically simplified static file serving for Python web apps
-# https://whitenoise.readthedocs.io/en/latest/index.html
-# MIT license
-#
 whitenoise = {extras = ["brotli"], version = "^6.6.0"}
-#
-# Rich is a Python library for rich text and beautiful formatting in the terminal.
-# https://github.com/Textualize/rich
-# https://rich.readthedocs.io/en/latest/
-# MIT license
-#
 rich = "^13.7.1"
-#
-# Resend Python SDK
-# https://resend.com/
-# https://github.com/resend/resend-python
-# MIT license
-#
 resend = "^1.0.2"
 
-#
-# End of DJForge dependencies, add yours below
-#
-
 [tool.poetry.group.dev.dependencies]
-#
-# https://github.com/astral-sh/ruff
-# An extremely fast Python linter and code formatter, written in Rust.
-# MIT license
-#
 ruff = "^0.1.11"
-#
-# The pytest framework makes it easy to write small tests,
-# yet scales to support complex functional testing for applications and libraries.
-# https://github.com/pytest-dev/pytest
-# Commitizen is release management tool designed for teams.
-# https://commitizen-tools.github.io/commitizen/
-# MIT license
-#
 pytest = "^7.4.4"
-#
-# A plugin for pytest that provides a set of useful tools
-# for testing Django applications and projects.
-# https://pytest-django.readthedocs.io/en/latest/
-# BSD (3-clause) license
-# Commitizen is release management tool designed for teams.
-# https://commitizen-tools.github.io/commitizen/
-# MIT license
-#
 pytest-django = "^4.7.0"
-#
-# Commitizen is release management tool designed for teams.
-# https://commitizen-tools.github.io/commitizen/
-# MIT license
-#
 commitizen = "^3.13.0"
-#
-# This django app adds a management command that starts a livereload server watching
-# all your static files and templates as well as a custom runserver command that issues
-# livereload requests when the development server is ready after a restart.
-# https://github.com/tjwalch/django-livereload-server
-# BSD-3-Clause license
-#
 django-livereload-server = "^0.5.1"
-#
-# A framework for managing and maintaining multi-language pre-commit hooks.
-# https://pre-commit.com/
-# MIT license
-#
 pre-commit = "^3.6.0"
-#
-# A pytest plugin that adds emojis to your test result report.
-# Used from Github Action for testing
-# https://pypi.org/project/pytest-emoji/
-# MIT license
-#
 pytest-emoji = "^0.2.0"
-#
-# Plugin for generating Markdown reports for pytest results
-# Used from Github Action for testing
-# https://github.com/hackebrot/pytest-md
-# MIT license
-#
 pytest-md = "^0.2.0"
-
 httpie = "^3.2.2"
-#
-# Runs pytest, and re-runs it when a file in your project changes.
-# https://github.com/joeyespo/pytest-watch
-# MIT license
-#
 pytest-watch = "^4.2.0"
-#
-# Runs one ruff check test per file and fail if code is not ok for ruff.
-# https://github.com/businho/pytest-ruff
-# MIT license
-#
 pytest-ruff = "^0.3.2"
-#
-# isort your imports, so you don't have to.
-# https://pycqa.github.io/isort/
-# https://github.com/PyCQA/isort
-# MIT license
-#
 isort = "^5.13.2"
-#
-# py.test plugin to check import ordering using isort
-# https://pypi.org/project/pytest-isort/
-# MIT license
-#
 pytest-isort = "^4.0.0"
 
-#
-# End of DJForge development dependencies, add yours below
-#
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
@@ -192,10 +45,8 @@ known_django = "django"
 sections = "FUTURE,STDLIB,THIRDPARTY,DJANGO,FIRSTPARTY,LOCALFOLDER"
 force_single_line = true
 
-
 [tool.ruff.extend-per-file-ignores]
 "**/migrations/*.py" = ["D100", "D101", "D104"]
-
 
 # https://docs.astral.sh/ruff/tutorial/#rule-selection
 [tool.ruff.lint]
@@ -219,18 +70,75 @@ authors = [
 ]
 requires-python = "<4.0,>=3.12"
 dependencies = [
-    "django<6.0.0,>=5.0.10",
+    # Django framework - core dependency
+    "django<6.0.0,>=5.0.13",
+    
+    # Package that allows you to use Twelve-factor methodology to configure your Django
+    # application with environment variables.
+    # https://django-environ.readthedocs.io/en/latest/
+    # MIT / X11 License
     "django-environ<1.0.0,>=0.11.2",
+    
+    # The most popular PostgreSQL adapter for the Python programming language.
+    # https://www.psycopg.org/
+    # LGPL-3.0 license
     "psycopg[binary]<4.0.0,>=3.1.17",
+    
+    # Integrated set of Django applications addressing authentication, registration,
+    # account management as well as 3rd party (social) account authentication.
+    # https://allauth.org/
+    # https://docs.allauth.org/en/latest/installation/quickstart.html
+    # https://github.com/pennersr/django-allauth
+    # MIT license
     "django-allauth<1.0.0,>=0.60.1",
+    
+    # Celery is a simple, flexible, and reliable distributed system to process
+    # vast amounts of messages, while providing operations with the tools required
+    # to maintain such a system.
+    # Installed as "celery[redis]" to include the Redis broker.
+    # https://github.com/celery/celery
+    # https://docs.celeryq.dev/en/stable/index.html
+    # BSD-3-Clause license plus other copyrights
     "celery[redis]<6.0.0,>=5.3.6",
+    
+    # Celery Result Backends using the Django ORM/Cache framework.
+    # BSD-3-Clause license plus other copyrights
     "django-celery-results<3.0.0,>=2.5.1",
+    
+    # A collection of custom extensions for the Django Framework
+    # Using many of them in different parts of the application
+    # https://django-extensions.readthedocs.io/en/latest/
+    # MIT license
     "django-extensions<4.0.0,>=3.2.3",
+    
+    # Python WSGI HTTP Server for UNIX
+    # https://gunicorn.org/
+    # https://github.com/benoitc/gunicorn?tab=License-1-ov-file
     "gunicorn<23.0.0,>=22.0.0",
+    
+    # Uvicorn is an ASGI web server implementation for Python.
+    # https://www.uvicorn.org/
+    # BSD-3-Clause license
     "uvicorn<1.0.0,>=0.27.1",
+    
+    # Radically simplified static file serving for Python web apps
+    # https://whitenoise.readthedocs.io/en/latest/index.html
+    # MIT license
     "whitenoise[brotli]<7.0.0,>=6.6.0",
+    
+    # Rich is a Python library for rich text and beautiful formatting in the terminal.
+    # https://github.com/Textualize/rich
+    # https://rich.readthedocs.io/en/latest/
+    # MIT license
     "rich<14.0.0,>=13.7.1",
+    
+    # Resend Python SDK
+    # https://resend.com/
+    # https://github.com/resend/resend-python
+    # MIT license
     "resend<2.0.0,>=1.0.2",
+    
+    # End of DJForge dependencies, add yours below
 ]
 name = "djforge"
 version = "1.0.0"
@@ -239,17 +147,75 @@ readme = "README.md"
 
 [dependency-groups]
 dev = [
+    # An extremely fast Python linter and code formatter, written in Rust.
+    # https://github.com/astral-sh/ruff
+    # MIT license
     "ruff<1.0.0,>=0.1.11",
+    
+    # The pytest framework makes it easy to write small tests,
+    # yet scales to support complex functional testing for applications and libraries.
+    # https://github.com/pytest-dev/pytest
+    # MIT license
     "pytest<8.0.0,>=7.4.4",
+    
+    # A plugin for pytest that provides a set of useful tools
+    # for testing Django applications and projects.
+    # https://pytest-django.readthedocs.io/en/latest/
+    # BSD (3-clause) license
     "pytest-django<5.0.0,>=4.7.0",
+    
+    # Commitizen is release management tool designed for teams.
+    # https://commitizen-tools.github.io/commitizen/
+    # MIT license
     "commitizen<4.0.0,>=3.13.0",
+    
+    # This django app adds a management command that starts a livereload server watching
+    # all your static files and templates as well as a custom runserver command that issues
+    # livereload requests when the development server is ready after a restart.
+    # https://github.com/tjwalch/django-livereload-server
+    # BSD-3-Clause license
     "django-livereload-server<1.0.0,>=0.5.1",
+    
+    # A framework for managing and maintaining multi-language pre-commit hooks.
+    # https://pre-commit.com/
+    # MIT license
     "pre-commit<4.0.0,>=3.6.0",
+    
+    # A pytest plugin that adds emojis to your test result report.
+    # Used from Github Action for testing
+    # https://pypi.org/project/pytest-emoji/
+    # MIT license
     "pytest-emoji<1.0.0,>=0.2.0",
+    
+    # Plugin for generating Markdown reports for pytest results
+    # Used from Github Action for testing
+    # https://github.com/hackebrot/pytest-md
+    # MIT license
     "pytest-md<1.0.0,>=0.2.0",
+    
+    # Command-line HTTP client and debugger
     "httpie<4.0.0,>=3.2.2",
+    
+    # Runs pytest, and re-runs it when a file in your project changes.
+    # https://github.com/joeyespo/pytest-watch
+    # MIT license
     "pytest-watch<5.0.0,>=4.2.0",
+    
+    # Runs one ruff check test per file and fail if code is not ok for ruff.
+    # https://github.com/businho/pytest-ruff
+    # MIT license
     "pytest-ruff<1.0.0,>=0.3.2",
+    
+    # isort your imports, so you don't have to.
+    # https://pycqa.github.io/isort/
+    # https://github.com/PyCQA/isort
+    # MIT license
     "isort<6.0.0,>=5.13.2",
+    
+    # py.test plugin to check import ordering using isort
+    # https://pypi.org/project/pytest-isort/
+    # MIT license
     "pytest-isort<5.0.0,>=4.0.0",
+    
+    # End of DJForge development dependencies, add yours below
 ]
