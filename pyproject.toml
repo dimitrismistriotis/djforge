@@ -164,11 +164,11 @@ known_django = "django"
 sections = "FUTURE,STDLIB,THIRDPARTY,DJANGO,FIRSTPARTY,LOCALFOLDER"
 force_single_line = true
 
-[tool.ruff.extend-per-file-ignores]
+[tool.lint.extend-per-file-ignores]
 "**/migrations/*.py" = ["D100", "D101", "D104"]
 
 # https://docs.astral.sh/ruff/tutorial/#rule-selection
-[tool.ruff.lint]
+[tool.lint]
 extend-select = [
     "UP", # pyupgrade: automatically upgrade syntax for newer versions of the language.
     "D",
