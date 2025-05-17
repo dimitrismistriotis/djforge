@@ -3,3 +3,11 @@
 /workspace.xml
 # GitHub Copilot persisted chat sessions
 /copilot/chatSessions
+/material_theme_project_new.xml
+# This is specific to each user's setup, so best not to commit it.
+/misc.xml
+#
+# IML files are setup specific, so should never be commited.
+# https://stackoverflow.com/a/25505062/4044560
+#
+/*.iml
