@@ -2,6 +2,7 @@
 
 Placed temporarily in this app, but should be moved to a more appropriate place.
 """
+
 from django import template
 
 register = template.Library()

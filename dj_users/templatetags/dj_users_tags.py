@@ -2,6 +2,7 @@
 
 To include these tags in a template, add `{% load dj_users_tags %}` at the top.
 """
+
 from django import template
 from django.conf import settings
 from django.contrib.auth.models import Group

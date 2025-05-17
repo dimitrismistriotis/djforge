@@ -1,4 +1,5 @@
 """AppConfig for dj_landing_page app."""
+
 from django.apps import AppConfig
 
 

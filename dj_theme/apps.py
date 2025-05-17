@@ -1,4 +1,5 @@
 """App configuration for dj_theme app."""
+
 from django.apps import AppConfig
 
 

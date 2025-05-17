@@ -1,4 +1,5 @@
 """App configuration for dj_contact_us app."""
+
 from django.apps import AppConfig
 
 
