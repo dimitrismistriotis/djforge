@@ -55,6 +55,12 @@ secret_key:
 	${GENERATE_SECRET_KEY}
 
 
+.PHONY: update_dependencies
+update_dependencies:			## Update Project dependencies
+	@echo "Update Dependencies..."
+	uv sync -U
+
+
 .PHONY: update_react_email
 update_react_email:			## Update React Email packages
 	@echo "React Email..."
