@@ -1,4 +1,5 @@
 """AppConfig for dj_register_interest app."""
+
 from django.apps import AppConfig
 
 

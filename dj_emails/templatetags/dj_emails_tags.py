@@ -1,4 +1,5 @@
 """Template tags for the dj_emails app."""
+
 import base64
 from pathlib import Path
 

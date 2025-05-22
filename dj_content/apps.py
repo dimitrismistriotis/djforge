@@ -1,4 +1,5 @@
 """AppConfig for dj_content app."""
+
 from django.apps import AppConfig
 
 

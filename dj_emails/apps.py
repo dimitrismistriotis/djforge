@@ -1,4 +1,5 @@
 """App configuration for dj_emails app."""
+
 from django.apps import AppConfig
 
 

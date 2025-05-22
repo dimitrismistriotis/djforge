@@ -1,6 +1,11 @@
 # Changelog
 
-## Version 0.3.0 - Current
+## Version 1.0.1 - Current
+
+-   Uv instead of Poetry for package management
+-   Update ruff formatting to latest version
+
+## Version 0.3.0
 
 -   Google Maps inside the Application as Static Image - PoC
 -   Integrated User Management Functionality: Change Password, Reset Password

@@ -60,7 +60,7 @@ for those who use or will use either of these editors.
 
 ## Dependencies
 
-Using Python 3.12 and higher.
+Using Python 3.13 and higher.
 
 Poetry is used for dependency management. Install it with `pip install poetry`.
 

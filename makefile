@@ -14,7 +14,7 @@ default: help
 #
 # Variables
 #
-GENERATE_SECRET_KEY := poetry run python manage.py generate_secret_key
+GENERATE_SECRET_KEY := uv run python manage.py generate_secret_key
 # Note that there is not a trailing slash in the following variable for readability:
 THEME_CSS_BASE_DIRECTORY := ./dj_theme/static/dj_theme/css
 
@@ -28,43 +28,44 @@ help:				## Show help message.
 	echo ""
 	fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-.PHONY: install_poetry
-install_poetry:
-	@echo "Installing poetry (source: https://python-poetry.org/docs/)..."
-	curl -sSL https://install.python-poetry.org | python3 -
 
 .PHONY: precommit_install
 precommit_install:		## Install pre-commit hooks
-	poetry run pre-commit install
+	uv run pre-commit install
 
 .PHONY: install
 install:			## Install packages
 	@echo "Installing packages..."
-	poetry install
+	uv sync
 
 install_npm:			## Install npm packages
 	@echo "Installing npm packages..."
 	npm install
 
-.PHONY: create_poetry_environment
-create_poetry_environment:	## Create poetry environment
-	@echo "Creating poetry environment..."
-	poetry env use python3.12
 
 .PHONY: create_dot_env_file
 create_dot_env_file:		## Create .env file
 	@echo "Creating .env file..."
 	echo "DEBUG=True" > .env
-	${GENERATE_SECRET_KEY}  | tail -n 1 | poetry run python -c "print(f'SECRET_KEY=\"{input()}\"')" >> .env
+	${GENERATE_SECRET_KEY}  | tail -n 1 | uv run python -c "print(f'SECRET_KEY=\"{input()}\"')" >> .env
+
 
 .PHONY: secret_key
 secret_key:
 	${GENERATE_SECRET_KEY}
 
+
+.PHONY: update_dependencies
+update_dependencies:			## Update Project dependencies
+	@echo "Update Dependencies..."
+	uv sync -U
+
+
 .PHONY: update_react_email
 update_react_email:			## Update React Email packages
 	@echo "React Email..."
 	cd dj_emails/react_email && npm update
+
 
 .PHONY: remove_containers_and_volumes
 remove_containers_and_volumes:	## Remove containers and volumes related to the project, useful when you want to restart from scratch
@@ -83,15 +84,18 @@ remove_containers_and_volumes:	## Remove containers and volumes related to the p
 .PHONY: collect_static
 collect_static:			## Collect Static Files
 	@echo "Collect Static..."
-	poetry run python manage.py collectstatic --no-input
+	uv run python manage.py collectstatic --no-input
+
 
 build: install collect_static migrate	## Build the project
+
 
 # Email templating
 .PHONY: react_email
 react_email:			## Run React Email to edit email templates
 	@echo "React Email..."
 	cd dj_emails/react_email && npm run dev
+
 
 .PHONY: generate_email_templates
 generate_email_templates:			## Generate React Email HTML and text templates
@@ -117,39 +121,41 @@ generate_output_css:  		## Generate Output CSS in watching for changes mode
 .PHONY: test
 test:				## Run tests
 	@echo "Running tests..."
-	poetry run pytest
+	uv run pytest
 
 
 .PHONY: test_watch
 test_watch:			## Run tests in watch mode (rerun tests when files change)
 	@echo "Pytest Watch..."
-	poetry run ptw
+	uv run ptw
 
 
 .PHONY: test_recreate
 test_recreate:			## Run tests creating the database, needed after migrations
 	@echo "Running tests..."
-	poetry run pytest --create-db
+	uv run pytest --create-db
 
-.PHONY: make_migrations
-make_migrations:		## Make migrations
+.PHONY: migrations
+migrations:		## Make migrations
 	@echo "Making migrations..."
-	poetry run python manage.py makemigrations
+	uv run python manage.py makemigrations
 
 .PHONY: migrate
 migrate:			## Run migrations
 	@echo "Running migrations..."
-	poetry run python manage.py migrate
+	uv run python manage.py migrate
+
 
 .PHONY: django_runserver
 django_runserver: 		## Run Django server
 	@echo "Running Django server..."
-	poetry run python manage.py runserver
+	uv run python manage.py runserver
+
 
 .PHONY: celery
 celery:				## Run celery
 	@echo "Running celery..."
-	poetry run celery -A djforge worker -l info
+	uv run celery -A djforge worker -l info
 
 
 # LiveReload is a tool to automatically refresh your browser when files change.
@@ -157,7 +163,7 @@ celery:				## Run celery
 .PHONY: livereload
 livereload: 			## Run livereload
 	@echo "Running livereload..."
-	poetry run python manage.py livereload
+	uv run python manage.py livereload
 
 
 #
@@ -191,6 +197,7 @@ runserver_plus_additional_services:	## Run Django server, generate_output_css an
 .PHONY: up
 docker_compose_up up:		## Run docker compose up running needed containers in the foreground
 	./development_assist/docker_compose_wrapper up
+
 
 .PHONY: pull_docker_compose
 pull_docker_compose:		## Pull docker latest versions of images

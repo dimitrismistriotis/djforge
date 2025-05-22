@@ -1,4 +1,5 @@
 """Register Interest Handlers."""
+
 import logging
 
 from .forms import InterestForm

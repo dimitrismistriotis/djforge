@@ -1,4 +1,5 @@
 """Urls for registering interest in the DJ app."""
+
 from django.urls import path
 
 from .views import RegisterInterestView

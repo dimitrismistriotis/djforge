@@ -1,4 +1,5 @@
 """AppConfig for dj_favicons."""
+
 from django.apps import AppConfig
 
 

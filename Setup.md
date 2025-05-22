@@ -13,7 +13,7 @@ as discussed here: [Creating a repository from a template](https://docs.github.c
 Copy the `.env.dist` to `.env` and edit it accordingly if needed. Django Settings
 provide defaults related to Docker Compose setup. Ideally because we wanted to shield
 production environments from malfunctioning, `DEBUG` value is set to `False` by default.
-For this the least necessary action is to have an oneline `.env` file with `DEBUG=True`.
+For this the least necessary action is to have an one line `.env` file with `DEBUG=True`.
 You can do that with:
 
 ```shell
@@ -22,6 +22,10 @@ make create_dot_env_file
 
 Command above populates the newly created `.env` with a new `SECRET_KEY`.
 Not needed that much for development, necessary in production, see sub-section below.
+
+## Package Management
+
+We settled for [uv](https://docs.astral.sh/uv/) - [github](https://github.com/astral-sh/uv). Check its "[Installation](https://docs.astral.sh/uv/getting-started/installation/)" section on how to set up.
 
 ### Node.js for Tailwind CSS and React.Email
 
