@@ -116,7 +116,7 @@ generate_email_templates:			## Generate React Email HTML and text templates
 .PHONY: generate_output_css
 generate_output_css:  		## Generate Output CSS in watching for changes mode
 	@echo "Generating output.css..."
-	npx tailwindcss -i ${THEME_CSS_BASE_DIRECTORY}/input.css -o ${THEME_CSS_BASE_DIRECTORY}/output.css --watch
+	npx @tailwindcss/cli -i ./input.css -o ${THEME_CSS_BASE_DIRECTORY}/output.css --watch
 
 .PHONY: test
 test:				## Run tests
