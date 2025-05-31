@@ -4,10 +4,6 @@
 #
 # https://ryan.himmelwright.net/post/scripting-tmux-workspaces/
 #
-#
-# SESSION_EXISTS below fails with these options, need refactoring
-#
-#set -eox pipefail
 
 #
 # Exit if tmux is not installed
@@ -15,43 +11,49 @@
 if ! command -v tmux &> /dev/null
 then
   echo "tmux could not be found"
-  exit
+  exit 1
 fi
 
 # Set Session Name
 SESSION="Water_Direct_Main_App"
-SESSION_EXISTS=$(tmux list-sessions | grep ${SESSION})
+
+# Check if session exists
+SESSION_EXISTS=$(tmux list-sessions 2>/dev/null | grep "^${SESSION}:" || true)
 
 # Only create tmux session if it doesn't already exist
-if [ "${SESSION_EXISTS}" = "" ]
-then
-  # Start New Session with our name
-  tmux new-session -d -s $SESSION
+if [ -z "${SESSION_EXISTS}" ]; then
+    # Start New Session with our name
+    tmux new-session -d -s "$SESSION"
 
-  tmux rename-window -t 0 'make-up'
+    # Create windows for different tasks
+    tmux rename-window -t "${SESSION}:0" 'make-up'
+    tmux new-window -t "${SESSION}" -n 'django'
+    tmux new-window -t "${SESSION}" -n 'celery'
+    tmux new-window -t "${SESSION}" -n 'livereload'
+    tmux new-window -t "${SESSION}" -n 'extra'
+    tmux new-window -t "${SESSION}" -n 'extra-1'
+    tmux new-window -t "${SESSION}" -n 'extra-2'
 
+    # Send commands to respective windows
+    tmux send-keys -t "${SESSION}:make-up" 'echo "Window: make-up"' C-m
+    tmux send-keys -t "${SESSION}:make-up" ' make up' C-m
+    sleep 5
 
-  #
-  # Generate Cross alignment, 4 panes equal
-  #
-  tmux split-window -h
-  tmux split-window -v -t 1
-  tmux split-window -v -t 0
+    tmux send-keys -t "${SESSION}:django" 'echo "Window: django"' C-m
+    tmux send-keys -t "${SESSION}:django" ' make django_runserver' C-m
 
-  #
-  # Commands start with space so that they are not saved in history
-  #
-  tmux send-keys -t 0 'echo " Pane 0"' C-m
-  tmux send-keys -t 1 'echo " Pane 1"' C-m
-  tmux send-keys -t 2 'echo " Pane 2"' C-m
-  tmux send-keys -t 3 'echo " Pane 3"' C-m
+    tmux send-keys -t "${SESSION}:celery" 'echo "Window: celery"' C-m
+    tmux send-keys -t "${SESSION}:celery" ' make celery_debug' C-m
 
-  tmux send-keys -t 0 ' make up' C-m
-  tmux send-keys -t 1 ' make django_runserver' C-m
-  tmux send-keys -t 2 ' make celery' C-m
+    tmux send-keys -t "${SESSION}:livereload" 'echo "Window: Live Reload"' C-m
+    tmux send-keys -t "${SESSION}:livereload" ' make livereload' C-m
 
-  tmux select-pane -t ${SESSION}:0.3
+    tmux send-keys -t "${SESSION}:extra" 'echo "Window: extra"' C-m
+
+    # Select the first window
+    # tmux select-window -t "${SESSION}:make-up"
+    tmux select-window -t "${SESSION}:django"
 fi
 
-# Attach Session, on the Main window
-tmux attach-session -t ${SESSION}:0
+# Attach to the session
+tmux attach-session -t "${SESSION}"
