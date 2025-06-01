@@ -88,7 +88,13 @@ dependencies = [
     # MIT license
     #
     "resend>=1.0.2",
-
+    #
+    # Bringing component-based design to django templates
+    # https://django-cotton.com/
+    # https://github.com/wrabit/django-cotton
+    # MIT license
+    #
+    "django-cotton>=2.1.2",
     # End of DJForge dependencies, add yours below
 ]
 
