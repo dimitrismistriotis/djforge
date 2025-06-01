@@ -1,5 +1,4 @@
-/* static/src/input.css */
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@plugin 'flowbite/plugin';
+@source 'node_modules/flowbite/**/*.js';

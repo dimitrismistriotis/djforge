@@ -38,6 +38,12 @@ Node is needed for two reasons: Tailwind CSS compilation, and email template gen
 You can develop without it, but extra CSS classes of Tailwind or own have to be
 added manually. Similar situation for email templates.
 
+Then run:
+
+```shell
+npm install tailwindcss @tailwindcss/cli flowbite
+```
+
 Outputs of the above should be placed in version control and presence of these tools
 in production is not required, not we believe should be for a Django project.
 
