@@ -111,6 +111,10 @@ INSTALLED_APPS = [
     # for experiments to see if there is enough momentum to pursue.
     "dj_register_interest",
     #
+    # A Chatbot app, to have a simple chatbot that can be used to answer user queries
+    #
+    "dj_chatbot",
+    #
     # Proof of Concepts app, to test out various things, and to have a place to
     # experiment with new ideas, discuss mocks, or display what the project can do.
     #
