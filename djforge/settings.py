@@ -392,14 +392,15 @@ LOGIN_REDIRECT_URL = "/dashboard"
 # Allauth Configuration
 #
 # Reference: https://docs.allauth.org/en/latest/account/configuration.html
+# Email is used instead of username
 #
-ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 if DISPATCHING_EMAILS:
     ACCOUNT_EMAIL_VERIFICATION = "optional"
 else:  # Any form of email sending not implemented
     ACCOUNT_EMAIL_VERIFICATION = "none"
 
-ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_USERNAME_REQUIRED = False
 
 if DEBUG:
