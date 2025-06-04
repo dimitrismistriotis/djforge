@@ -111,6 +111,10 @@ INSTALLED_APPS = [
     # for experiments to see if there is enough momentum to pursue.
     "dj_register_interest",
     #
+    # A Chatbot app, to have a simple chatbot that can be used to answer user queries
+    #
+    "dj_chatbot",
+    #
     # Proof of Concepts app, to test out various things, and to have a place to
     # experiment with new ideas, discuss mocks, or display what the project can do.
     #
@@ -388,14 +392,15 @@ LOGIN_REDIRECT_URL = "/dashboard"
 # Allauth Configuration
 #
 # Reference: https://docs.allauth.org/en/latest/account/configuration.html
+# Email is used instead of username
 #
-ACCOUNT_EMAIL_REQUIRED = True  # Email is used instead of username
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 if DISPATCHING_EMAILS:
     ACCOUNT_EMAIL_VERIFICATION = "optional"
 else:  # Any form of email sending not implemented
     ACCOUNT_EMAIL_VERIFICATION = "none"
 
-ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_USERNAME_REQUIRED = False
 
 if DEBUG:

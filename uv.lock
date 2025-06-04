@@ -269,6 +269,18 @@ wheels = [
 ]
 
 [[package]]
+name = "django-cotton"
+version = "2.1.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/37/4e/e8be2accc5e10c899f4d22e6f64686b93733c5ac42524275e627cbf7314f/django_cotton-2.1.2.tar.gz", hash = "sha256:ad467f725239bf43004dad87dfc70f95c08d96efde4166d4bfb815e7cb72c56f", size = 23063, upload-time = "2025-05-11T21:43:58.505Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/45/2b/1285d050801ee92bfe408574954d26aaacbf67e1eb68946a78024fd3d0b8/django_cotton-2.1.2-py3-none-any.whl", hash = "sha256:8492cb7cfe881455a1b9dfaaaec2d1943494a1d3d2e2066ac7da6ce31afceef3", size = 22053, upload-time = "2025-05-11T21:43:56.978Z" },
+]
+
+[[package]]
 name = "django-environ"
 version = "0.12.0"
 source = { registry = "https://pypi.org/simple" }
@@ -311,6 +323,7 @@ dependencies = [
     { name = "django" },
     { name = "django-allauth" },
     { name = "django-celery-results" },
+    { name = "django-cotton" },
     { name = "django-environ" },
     { name = "django-extensions" },
     { name = "gunicorn" },
@@ -344,6 +357,7 @@ requires-dist = [
     { name = "django", specifier = ">=5.0.13" },
     { name = "django-allauth", specifier = ">=0.60.1" },
     { name = "django-celery-results", specifier = ">=2.5.1" },
+    { name = "django-cotton", specifier = ">=2.1.2" },
     { name = "django-environ", specifier = ">=0.11.2" },
     { name = "django-extensions", specifier = ">=3.2.3" },
     { name = "gunicorn", specifier = ">=22.0.0" },

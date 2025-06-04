@@ -38,8 +38,15 @@ Node is needed for two reasons: Tailwind CSS compilation, and email template gen
 You can develop without it, but extra CSS classes of Tailwind or own have to be
 added manually. Similar situation for email templates.
 
-Outputs of the above should be placed in version control and presence of these tools
-in production is not required, not we believe should be for a Django project.
+Then run:
+
+```shell
+npm install tailwindcss @tailwindcss/cli flowbite
+```
+
+Outputs of the above should be placed in version control,
+and the presence of these tools in production is not required;
+not we believe should be for a Django project.
 
 ### Helpers
 
@@ -56,17 +63,17 @@ It is accessible in port 5050.
 
 -   Use your browser to navigate to: <http://localhost:5050>.
 -   Default login email from `docker-compose.yml` is **pgadmin@djforge.net** and default password is **pgadmin_password**.
--   Development server's details are prepopulated, pgAdmin does not allow to prepopulate the password of the database which is: **dj_forge_password**
+-   Development server's details are prepopulated, pgAdmin does not allow prepopulating the password of the database which is: **dj_forge_password**
 
 ### React.email
 
 Homepage: [React.email](https://react.email/)
 
-Used to create nice emails in HTML and text format. What is provided is the self contained application produced from installation instructions here: <https://react.email/docs/getting-started/automatic-setup> plus wrappers in the makefile for ease of use. Additionally, the generated templates for this application's emails are also provided.
+Used to create nice emails in HTML and text format. What is provided is the self-contained application produced from installation instructions here: <https://react.email/docs/getting-started/automatic-setup> plus wrappers in the makefile for ease of use. Additionally, the generated templates for this application's emails are also provided.
 
 You can either edit the template since it is in uncompressed HTML plus text and ignore this helper, or use it to create completely custom emails. After some experimentation we discovered that it is best to have final emails not generated hene place them into their own folder.
 
-Install packages and update react.email periodically with:
+Install packages and update React.email periodically with:
 
 ```shell
 make update_react_email
@@ -122,9 +129,7 @@ OK
 
 #### Render.com
 
-Did our first deployment on Render.com.
-
-Followed instructions on
+Did our first deployment on Render.com Following instructions on
 [Deploying Django on Render](https://docs.render.com/deploy-django)
 tweaking them for DJ-Django's configuration. For example did not install
 DJ-Database-URL, used poetry, `make build` instead of a build script,
@@ -135,7 +140,7 @@ the steps in "Use render.yaml for deploys" (same URL as above), in detail:
 
 1. _Create a file named render.yaml..._ this has already beed done in
    `render.yaml` in the root of this project. Check it and edit it if needed,
-   for example if the name of the application has changed
+   for example, if the name of the application has changed
 2. In the Render Dashboard, go to the Blueprints page and click New Blueprint Instance.
 3. Select the repository that contains your blueprint and click Connect.
 4. Give your blueprint project a name and click Apply.
@@ -292,7 +297,7 @@ You can add a user to a group programmatically from shell_plus with:
 ## Updating Repositories Generated from Template
 
 One solution would be to use [Cruft](https://github.com/cruft/cruft) which has
-automated the process. Unfortunately this requires the repository to be formed with
+automated the process. Unfortunately, this requires the repository to be formed with
 CookieCutter, something that it is not for the time being at least.
 
 Had good results with <https://github.com/AndreasAugustin/actions-template-sync> which
@@ -300,5 +305,5 @@ is currently the most suggested option, after having it configured.
 
 Most suggested option is to generate from a template and then
 "fork" each Django application: copy to new directory and change in `settings.py`.
-Then at regular intervals copy over from original repository and then port each
+Then at regular intervals, copy over from the original repository and then port each
 change you want.

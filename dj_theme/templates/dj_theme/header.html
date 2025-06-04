@@ -15,7 +15,11 @@
         <div class="flex items-center lg:order-2">
           <div class="hidden mt-2 mr-4 sm:inline-block">
             {% if request.user.is_authenticated %}
-              {{ request.user.email }}
+              <a href="{% url 'dj_dashboard:dashboard' %}"
+                 class="{% if 'login' in request.resolver_match.view_name %}{{ current_area_classes }}{% else %}{{ default_area_classes }}{% endif %}"
+                 aria-current="{% if 'index' in request.resolver_match.view_name %}page{% else %}false{% endif %}">
+                    {% trans "Dashboard" %}
+              </a>
             {% else %}
               <a href="{% url 'account_login' %}"
                  class="{% if 'login' in request.resolver_match.view_name %}{{ current_area_classes }}{% else %}{{ default_area_classes }}{% endif %}"

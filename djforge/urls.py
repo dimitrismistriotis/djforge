@@ -53,6 +53,11 @@ urlpatterns = [
         include("dj_dashboard.urls"),
         name="dj_dashboard",
     ),
+    path(
+        "chat/",
+        include("dj_chatbot.urls"),
+        name="dj_chatbot",
+    ),
     path("pocs/", include("dj_pocs.urls"), name="dj_pocs"),
 ]
 
