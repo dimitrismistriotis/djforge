@@ -29,7 +29,7 @@ def chat(request):
                 chat_messages = []
                 messages.success(
                     request,
-                    f"Chat history cleared. You can have up to {MAX_MESSAGES} messages in your chat history.",
+                    "Chat history cleared.",
                 )
                 form = ChatMessageForm()
             else:
