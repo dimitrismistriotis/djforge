@@ -15,8 +15,9 @@
       {% include "dj_theme/messages.html" %}
 
       <div class="grid grid-cols-1 mb-4 xl:grid-cols-1 xl:gap-4">
-        <div class="w-100 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
+
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Welcome to the chat interface. Start a conversation below.</p>
 
           <div class="chat-container mb-4">
@@ -27,6 +28,7 @@
                     <div class="text-xs font-semibold mb-1 {% if message.sender == 'user' %}text-blue-100{% else %}text-gray-600 dark:text-gray-300{% endif %}">
                       {{ message.sender_name }}
                     </div>
+
                     <div>{{ message.message }}</div>
                   </div>
                 </div>
