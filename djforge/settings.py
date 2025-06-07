@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_celery_results",
     "django_extensions",
+    "django_cotton",
     "dj_theme",
     "dj_favicons",
     #

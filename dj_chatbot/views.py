@@ -17,7 +17,7 @@ def chat(request):
         if form.is_valid():
             user_message = form.cleaned_data["message"]
 
-            # Add user message to chat
+            # Add the user message to chat
             chat_messages.append(
                 {
                     "sender": "user",
@@ -36,7 +36,7 @@ def chat(request):
                 }
             )
 
-            # Reset form for new message
+            # Reset form for a new message
             form = ChatMessageForm()
 
     context = {
