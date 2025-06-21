@@ -428,3 +428,4 @@ ACCOUNT_SIGNUP_REDIRECT_URL = "/dashboard/signup"
 # Different API Keys used throughout the project
 GOOGLE_MAPS_API_KEY = env.str("GOOGLE_MAPS_API_KEY", "")  # No default
 ANTHROPIC_API_KEY = env.str("ANTHROPIC_API_KEY", "")  # No default
+CLAUDE_MODEL_FOR_CHAT = env.str("CLAUDE_MODEL_FOR_CHAT", "claude-3-5-haiku-20241022")

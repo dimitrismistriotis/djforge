@@ -28,7 +28,9 @@ def get_ai_response(user_message: str) -> str:
 
         # Use Claude 3 Haiku, its least expensive model for proof of concept
         response = client.messages.create(
-            model="claude-3-haiku-20240307",
+            model=getattr(
+                settings, "CLAUDE_MODEL_FOR_CHAT", "claude-3-5-haiku-20241022"
+            ),
             max_tokens=1000,
             messages=[{"role": "user", "content": user_message}],
         )
