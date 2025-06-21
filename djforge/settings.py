@@ -402,7 +402,6 @@ else:  # Any form of email sending not implemented
     ACCOUNT_EMAIL_VERIFICATION = "none"
 
 ACCOUNT_LOGIN_METHODS = {"email"}
-ACCOUNT_USERNAME_REQUIRED = False
 
 if DEBUG:
     # Something for debug nothing for production.
