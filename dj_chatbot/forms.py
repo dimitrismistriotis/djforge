@@ -11,7 +11,7 @@ class ChatMessageForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 "class": "flex-1 p-2 border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:text-white",
-                "placeholder": "Type your message here...",
+                "placeholder": 'Type your message here. Type "/clear" to clear message history.',
                 "id": "message-input",
             }
         ),

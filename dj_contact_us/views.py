@@ -13,8 +13,6 @@ from dj_emails.exceptions import EmailDispatcherException
 
 from .forms import ContactUsEntryForm
 
-# from django.core.mail import send_mail
-
 
 def contact_view(request: HttpRequest) -> HttpResponse:
     """Contact Us view."""
@@ -46,4 +44,5 @@ def contact_view(request: HttpRequest) -> HttpResponse:
             return redirect("dj_contact_us:contact-us")
     else:
         form = ContactUsEntryForm()
+
     return render(request, "dj_contact_us/contact.html", {"form": form})

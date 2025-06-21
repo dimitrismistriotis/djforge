@@ -95,6 +95,13 @@ dependencies = [
     # MIT license
     #
     "django-cotton>=2.1.2",
+    #
+    # The official Python library for the anthropic API, used in Chatbot
+    # https://github.com/anthropics/anthropic-sdk-python
+    # https://pypi.org/project/anthropic/
+    # MIT license
+    #
+    "anthropic>=0.52.2",
     # End of DJForge dependencies, add yours below
 ]
 

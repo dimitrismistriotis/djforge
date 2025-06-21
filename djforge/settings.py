@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_celery_results",
     "django_extensions",
+    "django_cotton",
     "dj_theme",
     "dj_favicons",
     #
@@ -401,7 +402,6 @@ else:  # Any form of email sending not implemented
     ACCOUNT_EMAIL_VERIFICATION = "none"
 
 ACCOUNT_LOGIN_METHODS = {"email"}
-ACCOUNT_USERNAME_REQUIRED = False
 
 if DEBUG:
     # Something for debug nothing for production.
@@ -427,3 +427,5 @@ ACCOUNT_SIGNUP_REDIRECT_URL = "/dashboard/signup"
 #
 # Different API Keys used throughout the project
 GOOGLE_MAPS_API_KEY = env.str("GOOGLE_MAPS_API_KEY", "")  # No default
+ANTHROPIC_API_KEY = env.str("ANTHROPIC_API_KEY", "")  # No default
+CLAUDE_MODEL_FOR_CHAT = env.str("CLAUDE_MODEL_FOR_CHAT", "claude-3-5-haiku-20241022")

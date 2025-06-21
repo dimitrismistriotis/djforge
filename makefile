@@ -14,9 +14,11 @@ default: help
 #
 # Variables
 #
-GENERATE_SECRET_KEY := uv run python manage.py generate_secret_key
+UV_COMMAND_PREFIX := uv run python
+GENERATE_SECRET_KEY := ${UV_COMMAND_PREFIX} manage.py generate_secret_key
 # Note that there is not a trailing slash in the following variable for readability:
 THEME_CSS_BASE_DIRECTORY := ./dj_theme/static/dj_theme/css
+
 
 # The following fgrep will dynamically print all targets
 # that have a comment beginning with two hashes including help.
@@ -84,7 +86,7 @@ remove_containers_and_volumes:	## Remove containers and volumes related to the p
 .PHONY: collect_static
 collect_static:			## Collect Static Files
 	@echo "Collect Static..."
-	uv run python manage.py collectstatic --no-input
+	${UV_COMMAND_PREFIX} manage.py collectstatic --no-input
 
 
 build: install collect_static migrate	## Build the project
@@ -138,18 +140,18 @@ test_recreate:			## Run tests creating the database, needed after migrations
 .PHONY: migrations
 migrations:		## Make migrations
 	@echo "Making migrations..."
-	uv run python manage.py makemigrations
+	${UV_COMMAND_PREFIX} manage.py makemigrations
 
 .PHONY: migrate
 migrate:			## Run migrations
 	@echo "Running migrations..."
-	uv run python manage.py migrate
+	${UV_COMMAND_PREFIX} manage.py migrate
 
 
 .PHONY: django_runserver
 django_runserver: 		## Run Django server
 	@echo "Running Django server..."
-	uv run python manage.py runserver
+	${UV_COMMAND_PREFIX} manage.py runserver
 
 
 .PHONY: celery
@@ -163,7 +165,19 @@ celery:				## Run celery
 .PHONY: livereload
 livereload: 			## Run livereload
 	@echo "Running livereload..."
-	uv run python manage.py livereload
+	${UV_COMMAND_PREFIX} manage.py livereload
+
+
+.PHONY: shell
+shell:              ## Run Django's shell_plus
+	@echo "Running django shell..."
+	${UV_COMMAND_PREFIX} manage.py shell_plus
+
+
+.PHONY: dbshell
+dbshell:            ## Run Django's dbshell
+	@echo "Running Django's dbshell..."
+	${UV_COMMAND_PREFIX} manage.py dbshell
 
 
 #
