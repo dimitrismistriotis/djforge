@@ -14,9 +14,11 @@ default: help
 #
 # Variables
 #
+UV_COMMAND_PREFIX := uv run python
 GENERATE_SECRET_KEY := uv run python manage.py generate_secret_key
 # Note that there is not a trailing slash in the following variable for readability:
 THEME_CSS_BASE_DIRECTORY := ./dj_theme/static/dj_theme/css
+
 
 # The following fgrep will dynamically print all targets
 # that have a comment beginning with two hashes including help.
@@ -164,6 +166,18 @@ celery:				## Run celery
 livereload: 			## Run livereload
 	@echo "Running livereload..."
 	uv run python manage.py livereload
+
+
+.PHONY: shell
+shell:              ## Run Django's shell_plus
+	@echo "Running django shell..."
+	${UV_COMMAND_PREFIX} manage.py shell_plus
+
+
+.PHONY: dbshell
+dbshell:            ## Run Django's dbshell
+	@echo "Running Django's dbshell..."
+	${UV_COMMAND_PREFIX} manage.py dbshell
 
 
 #
