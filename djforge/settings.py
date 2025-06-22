@@ -75,6 +75,8 @@ INSTALLED_APPS = [
     "django_celery_results",
     "django_extensions",
     "django_cotton",
+    # Impersonate app, to allow users to impersonate other users
+    "impersonate",
     "dj_theme",
     "dj_favicons",
     #
@@ -139,6 +141,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "impersonate.middleware.ImpersonateMiddleware",
     # Add Allauth's middleware:
     "allauth.account.middleware.AccountMiddleware",
 ]

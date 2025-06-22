@@ -15,11 +15,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 
-
 """
 
 from django.urls import include
 from django.urls import path
+from django.urls import re_path
 
 from dj_favicons.views import favicon
 from dj_favicons.views import manifest_dot_json
@@ -29,6 +29,7 @@ from .settings import DEBUG
 from .settings import INSTALLED_APPS
 
 urlpatterns = [
+    re_path(r"^impersonate/", include("impersonate.urls")),
     path("favicon.ico", favicon, name="favicon"),
     path("manifest.json", manifest_dot_json, name="manifest_dot_json"),
     path("", index_page, name="index"),
