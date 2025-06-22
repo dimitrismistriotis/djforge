@@ -162,7 +162,7 @@
                   {% trans "Map / Post Codes" %}</a>
               </li>
 
-              {% if request.user|has_group:"Platform Administrators" %}
+              {% if request.user|has_group:"Platform Administrators" or request.user.is_superuser %}
                 <li>
                   <a
                     href="{% url 'dj_pocs:admin_only_display' %}"

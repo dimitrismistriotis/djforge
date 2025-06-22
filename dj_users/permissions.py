@@ -23,7 +23,7 @@ def restrict_to_platform_admin_404(view_func) -> Callable:
 
     @wraps(view_func)
     def wrapper(request, *args, **kwargs):
-        if is_platform_admin(request.user):
+        if is_platform_admin(request.user) or request.user.is_superuser:
             return view_func(request, *args, **kwargs)
 
         #
