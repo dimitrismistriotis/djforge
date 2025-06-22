@@ -200,6 +200,13 @@
 
         <div class="pt-2 space-y-2">
           {% if request.user.is_impersonate %}
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Logged in as
+              <span class="font-bold">{{ request.impersonator }}</span>
+              impersonating
+              <span class="font-bold">{{ request.user }}</span>
+            </p>
+
             <a
               href="{% url 'impersonate-stop' %}"
               class="w-full flex items-center p-2 text-base text-red-900 transition duration-75 rounded-lg hover:bg-red-100 group dark:text-red-200 dark:hover:bg-red-700 bg-red-50 border border-red-200 dark:bg-red-900 dark:border-red-700"
