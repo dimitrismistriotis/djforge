@@ -10,43 +10,39 @@
 {% endblock navigation_bar %}
 
 {% block logged_in_content %}
-  <main>
-    <div class="px-4 pt-6">
-      {% include "dj_theme/messages.html" %}
+  {% include "dj_theme/messages.html" %}
 
-      <div class="grid grid-cols-1 mb-4 xl:grid-cols-1 xl:gap-4">
-        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
+  <div class="grid grid-cols-1 mb-4 xl:grid-cols-1 xl:gap-4">
+    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Chat</h5>
 
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {% blocktrans %}Welcome to the chat interface. Start a conversation below. You can have up to {{ max_messages }} messages in your chat history.{% endblocktrans %}
-          </p>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        {% blocktrans %}Welcome to the chat interface. Start a conversation below. You can have up to {{ max_messages }} messages in your chat history.{% endblocktrans %}
+      </p>
 
-          <div class="chat-container mb-4">
-            <div id="chat-messages" class="h-96 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border">
-              {% for message in chat_messages %}
-                <c-message :message=message />
-              {% empty %}
-                <div class="text-center text-gray-500 dark:text-gray-400 mt-20">
-                  <p>No messages yet. Start the conversation!</p>
-                </div>
-              {% endfor %}
+      <div class="chat-container mb-4">
+        <div id="chat-messages" class="h-96 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border">
+          {% for message in chat_messages %}
+            <c-message :message=message />
+          {% empty %}
+            <div class="text-center text-gray-500 dark:text-gray-400 mt-20">
+              <p>No messages yet. Start the conversation!</p>
             </div>
-          </div>
-
-          <div class="chat-input">
-            <form method="post" class="flex gap-2">
-              {% csrf_token %}
-
-              {{ form.message }}
-
-              <button type="submit" class="px-4 py-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Send
-              </button>
-            </form>
-          </div>
+          {% endfor %}
         </div>
       </div>
+
+      <div class="chat-input">
+        <form method="post" class="flex gap-2">
+          {% csrf_token %}
+
+          {{ form.message }}
+
+          <button type="submit" class="px-4 py-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Send
+          </button>
+        </form>
+      </div>
     </div>
-  </main>
+  </div>
 {% endblock logged_in_content %}

@@ -15,11 +15,7 @@
 {% endblock end_of_content_scripts %}
 
 {% block logged_in_content %}
-  <main>
-    <div class="px-4 pt-6">
-      {% include "dj_theme/messages.html" %}
+  {% include "dj_theme/messages.html" %}
 
-      {% include "dj_theme/partials/admin_only_banner.html" %}
-    </div>
-  </main>
+  {% include "dj_theme/partials/admin_only_banner.html" %}
 {% endblock logged_in_content %}
