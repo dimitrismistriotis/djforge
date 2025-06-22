@@ -60,6 +60,7 @@ urlpatterns = [
         name="dj_chatbot",
     ),
     path("pocs/", include("dj_pocs.urls"), name="dj_pocs"),
+    path("users/", include("dj_users.urls"), name="dj_users"),
 ]
 
 #
