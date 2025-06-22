@@ -27,7 +27,7 @@ POST_CODE_SAMPLE_DATA = json.loads(
 @restrict_to_platform_admin_404
 def admin_only_display(request: HttpRequest) -> HttpResponse:
     """Allow to be seen only from Platform Administrators."""
-    return render(request, "dj_pocs/view_for_admin_prermissions.html", {})
+    return render(request, "dj_pocs/view_for_admin_permissions.html", {})
 
 
 def map_and_postcode_analysis(request: HttpRequest) -> HttpResponse:
