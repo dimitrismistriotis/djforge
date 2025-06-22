@@ -351,6 +351,12 @@ wheels = [
 ]
 
 [[package]]
+name = "django-impersonate"
+version = "1.9.5"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8a/d1/df63cf3cb942c49d2b6237ab57ddd1f5b312186678b609149df2a1744009/django_impersonate-1.9.5.tar.gz", hash = "sha256:1a77459b9174bf2cbe054c03088ed78718211ff9e91e172890f7500ab0385128", size = 26694, upload-time = "2025-04-05T15:14:50.492Z" }
+
+[[package]]
 name = "django-livereload-server"
 version = "0.5.1"
 source = { registry = "https://pypi.org/simple" }
@@ -376,6 +382,7 @@ dependencies = [
     { name = "django-cotton" },
     { name = "django-environ" },
     { name = "django-extensions" },
+    { name = "django-impersonate" },
     { name = "gunicorn" },
     { name = "psycopg", extra = ["binary"] },
     { name = "resend" },
@@ -411,6 +418,7 @@ requires-dist = [
     { name = "django-cotton", specifier = ">=2.1.2" },
     { name = "django-environ", specifier = ">=0.11.2" },
     { name = "django-extensions", specifier = ">=3.2.3" },
+    { name = "django-impersonate", specifier = ">=1.9.5" },
     { name = "gunicorn", specifier = ">=22.0.0" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.1.17" },
     { name = "resend", specifier = ">=1.0.2" },
