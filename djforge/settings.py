@@ -123,6 +123,10 @@ INSTALLED_APPS = [
     #
     "dj_pocs",
     #
+    # Billing app for Stripe payment processing and subscription management
+    #
+    "dj_billing",
+    #
     # Allauth items, having only base and account for local storage of user credentials
     # (mainly email and password), others can be added here such as Google, Facebook,
     # etc.
@@ -432,3 +436,19 @@ ACCOUNT_SIGNUP_REDIRECT_URL = "/dashboard/signup"
 GOOGLE_MAPS_API_KEY = env.str("GOOGLE_MAPS_API_KEY", "")  # No default
 ANTHROPIC_API_KEY = env.str("ANTHROPIC_API_KEY", "")  # No default
 CLAUDE_MODEL_FOR_CHAT = env.str("CLAUDE_MODEL_FOR_CHAT", "claude-3-5-haiku-20241022")
+
+#  ____  _        _
+# / ___|| |_ _ __(_)_ __   ___
+# \___ \| __| '__| | '_ \ / _ \
+#  ___) | |_| |  | | |_) |  __/
+# |____/ \__|_|  |_| .__/ \___|
+#                  |_|
+#
+# Stripe Configuration
+#
+STRIPE_PUBLISHABLE_KEY = env.str("STRIPE_PUBLISHABLE_KEY", "")  # No default
+STRIPE_SECRET_KEY = env.str("STRIPE_SECRET_KEY", "")  # No default
+STRIPE_WEBHOOK_SECRET = env.str("STRIPE_WEBHOOK_SECRET", "")  # No default
+STRIPE_PRICE_ID_STARTER = env.str("STRIPE_PRICE_ID_STARTER", "")  # No default
+STRIPE_PRICE_ID_COMPANY = env.str("STRIPE_PRICE_ID_COMPANY", "")  # No default
+STRIPE_PRICE_ID_ENTERPRISE = env.str("STRIPE_PRICE_ID_ENTERPRISE", "")  # No default
