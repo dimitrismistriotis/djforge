@@ -58,13 +58,13 @@ secret_key:
 
 
 .PHONY: update_dependencies
-update_dependencies:			## Update Project dependencies
+update_dependencies:		## Update Project dependencies
 	@echo "Update Dependencies..."
 	uv sync -U
 
 
 .PHONY: update_react_email
-update_react_email:			## Update React Email packages
+update_react_email:		## Update React Email packages
 	@echo "React Email..."
 	cd dj_emails/react_email && npm update
 
@@ -100,7 +100,7 @@ react_email:			## Run React Email to edit email templates
 
 
 .PHONY: generate_email_templates
-generate_email_templates:			## Generate React Email HTML and text templates
+generate_email_templates:	## Generate React Email HTML and text templates
 	@echo "React Email Export..."
 
 	# HTML:

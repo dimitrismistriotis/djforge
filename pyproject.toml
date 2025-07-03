@@ -102,6 +102,12 @@ dependencies = [
     # MIT license
     #
     "anthropic>=0.52.2",
+    #
+    # Django app to allow superusers to impersonate other users.
+    # https://pypi.org/project/django-impersonate/
+    # https://hg.code.netlandish.com/~petersanchez/django-impersonate
+    #
+    "django-impersonate>=1.9.5",
     # End of DJForge dependencies, add yours below
 ]
 

@@ -48,7 +48,11 @@
         id="main-content"
         class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
       >
-        {% block logged_in_content %} {% endblock logged_in_content %}
+        <main>
+          <div class="px-4 pt-6">
+            {% block logged_in_content %} {% endblock logged_in_content %}
+          </div>
+        </main>
 
         {% include "dj_theme/partials/cookie_consent.html" %}
         {% include "dj_theme/partials/footer.html" %}
