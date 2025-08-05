@@ -62,7 +62,7 @@ urlpatterns = [
     path("pocs/", include("dj_pocs.urls"), name="dj_pocs"),
     path("users/", include("dj_users.urls"), name="dj_users"),
     path(
-        "billing/",
+        "pricing/",
         include("dj_billing.urls"),
         name="dj_billing",
     ),

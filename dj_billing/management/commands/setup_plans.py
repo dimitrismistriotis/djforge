@@ -9,64 +9,81 @@ from dj_billing.models import Plan
 class Command(BaseCommand):
     """Management command to create default billing plans."""
 
-    help = "Create default billing plans from settings"
+    help = "Create default billing plans using Stripe product IDs"
+
+    def add_arguments(self, parser):
+        """Add command arguments."""
+        parser.add_argument(
+            "--product-id",
+            type=str,
+            help="Stripe product ID to create a plan for",
+        )
+        parser.add_argument(
+            "--order",
+            type=int,
+            default=0,
+            help="Display order for the plan",
+        )
 
     def handle(self, *args, **options):
         """Handle the command execution."""
-        plans_data = [
-            {
-                "name": "Starter",
-                "plan_type": "starter",
-                "stripe_price_id": settings.STRIPE_PRICE_ID_STARTER,
-                "price": 29.00,
-                "max_developers": 1,
-                "support_months": 6,
-            },
-            {
-                "name": "Company",
-                "plan_type": "company",
-                "stripe_price_id": settings.STRIPE_PRICE_ID_COMPANY,
-                "price": 99.00,
-                "max_developers": 10,
-                "support_months": 24,
-            },
-            {
-                "name": "Enterprise",
-                "plan_type": "enterprise",
-                "stripe_price_id": settings.STRIPE_PRICE_ID_ENTERPRISE,
-                "price": 499.00,
-                "max_developers": 100,
-                "support_months": 36,
-            },
-        ]
+        if options["product_id"]:
+            # Create a single plan with the provided product ID
+            self.create_plan(options["product_id"], options["order"])
+        else:
+            # Create default plans from environment variables (if available)
+            self.create_default_plans()
 
-        for plan_data in plans_data:
-            if not plan_data["stripe_price_id"]:
-                self.stdout.write(
-                    self.style.WARNING(
-                        f"Skipping {plan_data['name']} plan - no Stripe price ID configured"
-                    )
-                )
-                continue
-
+    def create_plan(self, product_id: str, order: int = 0):
+        """Create a plan with the given Stripe product ID."""
+        try:
             plan, created = Plan.objects.get_or_create(
-                plan_type=plan_data["plan_type"],
-                defaults=plan_data,
+                stripe_product_id=product_id,
+                defaults={"order": order, "is_active": True},
             )
 
             if created:
                 self.stdout.write(
-                    self.style.SUCCESS(f"Created plan: {plan.name}")
+                    self.style.SUCCESS(f"Created plan: {plan} (Product: {product_id})")
                 )
             else:
-                # Update existing plan with new data
-                for field, value in plan_data.items():
-                    setattr(plan, field, value)
-                plan.save()
                 self.stdout.write(
-                    self.style.SUCCESS(f"Updated plan: {plan.name}")
+                    self.style.WARNING(
+                        f"Plan already exists: {plan} (Product: {product_id})"
+                    )
+                )
+        except Exception as e:
+            self.stdout.write(
+                self.style.ERROR(f"Failed to create plan for product {product_id}: {e}")
+            )
+
+    def create_default_plans(self):
+        """Create default plans from environment variables."""
+        default_products = [
+            ("STRIPE_PRODUCT_ID_STARTER", 1),
+            ("STRIPE_PRODUCT_ID_COMPANY", 2),
+            ("STRIPE_PRODUCT_ID_ENTERPRISE", 3),
+        ]
+
+        plans_created = 0
+        for env_var, order in default_products:
+            product_id = getattr(settings, env_var, None)
+            if product_id:
+                self.create_plan(product_id, order)
+                plans_created += 1
+            else:
+                self.stdout.write(
+                    self.style.WARNING(f"Environment variable {env_var} not set")
                 )
 
-        self.stdout.write(
-            self.style.SUCCESS("Successfully set up billing plans")
-        )
+        if plans_created == 0:
+            self.stdout.write(
+                self.style.WARNING(
+                    "No plans created. Use --product-id to create individual plans, "
+                    "or set STRIPE_PRODUCT_ID_* environment variables."
+                )
+            )
+        else:
+            self.stdout.write(
+                self.style.SUCCESS(f"Successfully created {plans_created} plans")
+            )

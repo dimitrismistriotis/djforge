@@ -55,39 +55,19 @@ class PlanQuerySet(models.QuerySet):
 class Plan(models.Model):
     """Plan model to store subscription plan information."""
 
-    PLAN_TYPES = [
-        ("starter", _("Starter")),
-        ("company", _("Company")),
-        ("enterprise", _("Enterprise")),
-    ]
-
     id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=100, verbose_name=_("Plan Name"))
-    plan_type = models.CharField(
-        max_length=20,
-        choices=PLAN_TYPES,
-        unique=True,
-        verbose_name=_("Plan Type"),
-    )
-    stripe_price_id = models.CharField(
+    stripe_product_id = models.CharField(
         max_length=255,
         unique=True,
-        verbose_name=_("Stripe Price ID"),
-        help_text=_("The price ID from Stripe"),
+        verbose_name=_("Stripe Product ID"),
+        help_text=_("The product ID from Stripe (e.g., prod_ABC123)"),
     )
-    price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        verbose_name=_("Price"),
-        help_text=_("Monthly price in USD"),
-    )
-    max_developers = models.PositiveIntegerField(
-        verbose_name=_("Max Developers"),
-        help_text=_("Maximum number of developers allowed"),
-    )
-    support_months = models.PositiveIntegerField(
-        verbose_name=_("Support Months"),
-        help_text=_("Number of months of support included"),
+    order = models.PositiveIntegerField(
+        default=0,
+        verbose_name=_("Display Order"),
+        help_text=_(
+            "Order in which this plan appears on the pricing page (lower numbers first)"
+        ),
     )
     is_active = models.BooleanField(
         default=True,
@@ -106,7 +86,31 @@ class Plan(models.Model):
 
     def __str__(self):
         """Return string representation of the plan."""
-        return f"{self.name} (${self.price}/month)"
+        stripe_details = self.get_stripe_details()
+        return stripe_details.get("name", f"Plan ({self.stripe_product_id})")
+
+    @property
+    def name(self):
+        """Get plan name from Stripe."""
+        return self.get_stripe_details().get("name", "Unknown Plan")
+
+    @property
+    def description(self):
+        """Get plan description from Stripe."""
+        return self.get_stripe_details().get("description", "")
+
+    @property
+    def price(self):
+        """Get plan price from Stripe."""
+        price_details = self.get_stripe_details().get("price_details", {})
+        return price_details.get("amount", 0)
+
+    def get_stripe_details(self):
+        """Get all product and price details from Stripe."""
+        from dj_billing.services import StripeService
+
+        stripe_service = StripeService()
+        return stripe_service.get_product_details(self.stripe_product_id)
 
 
 class SubscriptionQuerySet(models.QuerySet):

@@ -22,10 +22,41 @@ class CustomerAdmin(admin.ModelAdmin):
 class PlanAdmin(admin.ModelAdmin):
     """Admin configuration for Plan model."""
 
-    list_display = ["name", "plan_type", "price", "max_developers", "is_active"]
-    list_filter = ["plan_type", "is_active"]
-    search_fields = ["name", "stripe_price_id"]
-    readonly_fields = ["created_at", "updated_at"]
+    list_display = ["stripe_name_display", "stripe_price_display", "order", "is_active"]
+    list_filter = ["is_active"]
+    search_fields = ["stripe_product_id"]
+    list_editable = ["order"]
+    readonly_fields = [
+        "created_at",
+        "updated_at",
+        "stripe_name_display",
+        "stripe_price_display",
+    ]
+
+    def stripe_name_display(self, obj):
+        """Display Stripe product name."""
+        try:
+            return obj.name
+        except Exception as e:
+            return f"Error: {str(e)[:30]}"
+
+    stripe_name_display.short_description = "Product Name (from Stripe)"
+
+    def stripe_price_display(self, obj):
+        """Display current Stripe price."""
+        try:
+            stripe_details = obj.get_stripe_details()
+            price_details = stripe_details.get("price_details", {})
+            if price_details and price_details.get("amount"):
+                currency_symbol = (
+                    "€" if price_details["currency"].upper() == "EUR" else "$"
+                )
+                return f"{price_details['amount']}{currency_symbol}/{price_details['recurring_interval']}"
+            return "No price found"
+        except Exception as e:
+            return f"Error: {str(e)[:50]}"
+
+    stripe_price_display.short_description = "Current Stripe Price"
 
 
 @admin.register(Subscription)
@@ -39,7 +70,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
         "current_period_start",
         "current_period_end",
     ]
-    list_filter = ["status", "plan__plan_type", "created_at"]
+    list_filter = ["status", "created_at"]
     search_fields = ["customer__user__email", "stripe_subscription_id"]
     readonly_fields = ["created_at", "updated_at"]
     date_hierarchy = "current_period_start"

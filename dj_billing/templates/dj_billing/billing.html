@@ -6,14 +6,14 @@
 <main>
   <div class="px-4 pt-6">
     {% include "dj_theme/messages.html" %}
-    
+
     <!-- Page Header -->
     <div class="mb-4">
       <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-        {% trans "Billing & Subscription" %}
+        {% trans "Products & Subscription" %}
       </h1>
       <p class="text-gray-600 dark:text-gray-400">
-        {% trans "Manage your subscription and billing information" %}
+        {% trans "Choose your plan and manage your subscription" %}
       </p>
     </div>
 
@@ -27,14 +27,23 @@
           </h2>
           <div class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
             <p>
-              <span class="font-medium">{% trans "Plan:" %}</span> 
-              {{ active_subscription.plan.name }} 
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+              <span class="font-medium">{% trans "Plan:" %}</span>
+              {{ active_subscription.plan.name }}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
                 {% if active_subscription.status == 'active' %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300{% elif active_subscription.status == 'trialing' %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300{% else %}bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300{% endif %}">
                 {{ active_subscription.get_status_display }}
               </span>
             </p>
-            <p><span class="font-medium">{% trans "Price:" %}</span> ${{ active_subscription.plan.price }}/{% trans "month" %}</p>
+            <p>
+              <span class="font-medium">{% trans "Price:" %}</span>
+              {% with stripe_price=active_subscription.plan.get_stripe_price_details %}
+                {% if stripe_price %}
+                  {% if stripe_price.currency|upper == 'EUR' %}{{ stripe_price.amount }}€{% else %}\${{ stripe_price.amount }}{% endif %}/{{ stripe_price.recurring_interval|default:"month" }}
+                {% else %}
+                  {{ active_subscription.plan.price }}$/{% trans "month" %}
+                {% endif %}
+              {% endwith %}
+            </p>
             <p><span class="font-medium">{% trans "Current Period:" %}</span> {{ active_subscription.current_period_start|date:"M d, Y" }} - {{ active_subscription.current_period_end|date:"M d, Y" }}</p>
             {% if active_subscription.trial_end %}
             <p><span class="font-medium">{% trans "Trial Ends:" %}</span> {{ active_subscription.trial_end|date:"M d, Y" }}</p>
@@ -43,34 +52,22 @@
             <p class="text-orange-600 dark:text-orange-400">
               <span class="font-medium">{% trans "Status:" %}</span> {% trans "Will cancel at period end" %}
             </p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              {% trans "Use 'Manage Subscription' to reactivate or make changes" %}
+            </p>
             {% endif %}
           </div>
         </div>
-        <div class="flex flex-col space-y-2">
+        <div>
           <form method="post" action="{% url 'dj_billing:billing_portal' %}">
             {% csrf_token %}
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-              {% trans "Manage Billing" %}
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+              {% trans "Manage Subscription" %}
             </button>
           </form>
-          
-          {% if active_subscription.cancel_at_period_end %}
-          <form method="post" action="{% url 'dj_billing:reactivate_subscription' %}">
-            {% csrf_token %}
-            <input type="hidden" name="subscription_id" value="{{ active_subscription.id }}">
-            <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
-              {% trans "Reactivate" %}
-            </button>
-          </form>
-          {% else %}
-          <form method="post" action="{% url 'dj_billing:cancel_subscription' %}" onsubmit="return confirm('{% trans "Are you sure you want to cancel your subscription?" %}')">
-            {% csrf_token %}
-            <input type="hidden" name="subscription_id" value="{{ active_subscription.id }}">
-            <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
-              {% trans "Cancel Subscription" %}
-            </button>
-          </form>
-          {% endif %}
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+            {% trans "Cancel, update payment methods, and view invoices" %}
+          </p>
         </div>
       </div>
     </div>
@@ -83,7 +80,8 @@
         {% trans "Choose Your Plan" %}
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {% for plan in plans %}
+        {% for plan_data in plans_with_stripe_prices %}
+        {% with plan=plan_data.plan stripe_price=plan_data.stripe_price %}
         <div class="border border-gray-200 rounded-lg p-6 dark:border-gray-700 {% if plan.plan_type == 'company' %}ring-2 ring-blue-500 relative{% endif %}">
           {% if plan.plan_type == 'company' %}
           <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -92,16 +90,23 @@
             </span>
           </div>
           {% endif %}
-          
+
           <div class="text-center">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
               {{ plan.name }}
             </h3>
             <div class="mb-4">
-              <span class="text-3xl font-bold text-gray-900 dark:text-white">${{ plan.price }}</span>
-              <span class="text-gray-600 dark:text-gray-400">/{% trans "month" %}</span>
+              {% if stripe_price %}
+                <span class="text-3xl font-bold text-gray-900 dark:text-white">
+                  {% if stripe_price.currency|upper == 'EUR' %}{{ stripe_price.amount }}€{% else %}\${{ stripe_price.amount }}{% endif %}
+                </span>
+                <span class="text-gray-600 dark:text-gray-400">/{{ stripe_price.recurring_interval|default:"month" }}</span>
+              {% else %}
+                <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ plan.price }}$</span>
+                <span class="text-gray-600 dark:text-gray-400">/{% trans "month" %}</span>
+              {% endif %}
             </div>
-            
+
             <ul class="text-sm text-gray-600 dark:text-gray-400 mb-6 space-y-2">
               <li class="flex items-center">
                 <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -122,7 +127,7 @@
                 {% trans "7-day free trial" %}
               </li>
             </ul>
-            
+
             <form method="post" action="{% url 'dj_billing:create_checkout_session' %}">
               {% csrf_token %}
               <input type="hidden" name="plan_id" value="{{ plan.id }}">
@@ -132,6 +137,7 @@
             </form>
           </div>
         </div>
+        {% endwith %}
         {% endfor %}
       </div>
     </div>
@@ -160,7 +166,7 @@
               <td class="px-6 py-4">{{ payment.created_at|date:"M d, Y" }}</td>
               <td class="px-6 py-4">${{ payment.amount }}</td>
               <td class="px-6 py-4">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
                   {% if payment.is_successful %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300{% else %}bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300{% endif %}">
                   {{ payment.get_status_display }}
                 </span>

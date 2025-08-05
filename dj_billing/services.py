@@ -2,11 +2,13 @@
 
 import logging
 from decimal import Decimal
+from zoneinfo import ZoneInfo
 
 import stripe
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 from .models import Customer
 from .models import Payment
@@ -41,11 +43,15 @@ class StripeService:
                 stripe_customer_id=stripe_customer.id,
             )
 
-            logger.info(f"Created Stripe customer {stripe_customer.id} for user {user.email}")
+            logger.info(
+                f"Created Stripe customer {stripe_customer.id} for user {user.email}"
+            )
             return customer
 
         except stripe.error.StripeError as exception:
-            logger.error(f"Failed to create Stripe customer for user {user.email}: {exception}")
+            logger.error(
+                f"Failed to create Stripe customer for user {user.email}: {exception}"
+            )
             raise
 
     def get_or_create_customer(self, user: User) -> Customer:
@@ -65,12 +71,20 @@ class StripeService:
     ) -> str:
         """Create a Stripe checkout session for subscription."""
         try:
+            # Get the price ID from the plan's Stripe product details
+            stripe_details = plan.get_stripe_details()
+            price_details = stripe_details.get("price_details", {})
+            price_id = price_details.get("price_id")
+
+            if not price_id:
+                raise ValueError(f"No price found for plan {plan.stripe_product_id}")
+
             session_data = {
                 "customer": customer.stripe_customer_id,
                 "payment_method_types": ["card"],
                 "line_items": [
                     {
-                        "price": plan.stripe_price_id,
+                        "price": price_id,
                         "quantity": 1,
                     }
                 ],
@@ -130,20 +144,36 @@ class StripeService:
             customer = Customer.objects.get(
                 stripe_customer_id=stripe_subscription["customer"]
             )
-            plan = Plan.objects.get(
-                stripe_price_id=stripe_subscription["items"]["data"][0]["price"]["id"]
-            )
+            # Get the product ID from the price to find the matching plan
+            price_id = stripe_subscription["items"]["data"][0]["price"]["id"]
+            price = stripe.Price.retrieve(price_id)
+            plan = Plan.objects.get(stripe_product_id=price.product)
+
+            # Get period dates from the first subscription item
+            first_item = stripe_subscription["items"]["data"][0]
 
             subscription = Subscription.objects.create(
                 customer=customer,
                 plan=plan,
                 stripe_subscription_id=stripe_subscription["id"],
                 status=stripe_subscription["status"],
-                current_period_start=stripe_subscription["current_period_start"],
-                current_period_end=stripe_subscription["current_period_end"],
+                current_period_start=timezone.datetime.fromtimestamp(
+                    first_item["current_period_start"], tz=ZoneInfo("UTC")
+                ),
+                current_period_end=timezone.datetime.fromtimestamp(
+                    first_item["current_period_end"], tz=ZoneInfo("UTC")
+                ),
                 cancel_at_period_end=stripe_subscription["cancel_at_period_end"],
-                trial_start=stripe_subscription.get("trial_start"),
-                trial_end=stripe_subscription.get("trial_end"),
+                trial_start=timezone.datetime.fromtimestamp(
+                    stripe_subscription["trial_start"], tz=ZoneInfo("UTC")
+                )
+                if stripe_subscription.get("trial_start")
+                else None,
+                trial_end=timezone.datetime.fromtimestamp(
+                    stripe_subscription["trial_end"], tz=ZoneInfo("UTC")
+                )
+                if stripe_subscription.get("trial_end")
+                else None,
             )
 
             logger.info(f"Created subscription {subscription.id} from webhook")
@@ -160,13 +190,40 @@ class StripeService:
                 stripe_subscription_id=stripe_subscription["id"]
             )
 
+            # Get period dates from the first subscription item
+            first_item = stripe_subscription["items"]["data"][0]
+
             subscription.status = stripe_subscription["status"]
-            subscription.current_period_start = stripe_subscription["current_period_start"]
-            subscription.current_period_end = stripe_subscription["current_period_end"]
-            subscription.cancel_at_period_end = stripe_subscription["cancel_at_period_end"]
-            subscription.canceled_at = stripe_subscription.get("canceled_at")
-            subscription.trial_start = stripe_subscription.get("trial_start")
-            subscription.trial_end = stripe_subscription.get("trial_end")
+            subscription.current_period_start = timezone.datetime.fromtimestamp(
+                first_item["current_period_start"], tz=ZoneInfo("UTC")
+            )
+            subscription.current_period_end = timezone.datetime.fromtimestamp(
+                first_item["current_period_end"], tz=ZoneInfo("UTC")
+            )
+            subscription.cancel_at_period_end = stripe_subscription[
+                "cancel_at_period_end"
+            ]
+            subscription.canceled_at = (
+                timezone.datetime.fromtimestamp(
+                    stripe_subscription["canceled_at"], tz=ZoneInfo("UTC")
+                )
+                if stripe_subscription.get("canceled_at")
+                else None
+            )
+            subscription.trial_start = (
+                timezone.datetime.fromtimestamp(
+                    stripe_subscription["trial_start"], tz=ZoneInfo("UTC")
+                )
+                if stripe_subscription.get("trial_start")
+                else None
+            )
+            subscription.trial_end = (
+                timezone.datetime.fromtimestamp(
+                    stripe_subscription["trial_end"], tz=ZoneInfo("UTC")
+                )
+                if stripe_subscription.get("trial_end")
+                else None
+            )
             subscription.save()
 
             logger.info(f"Updated subscription {subscription.id} from webhook")
@@ -183,7 +240,13 @@ class StripeService:
                 stripe_subscription_id=stripe_subscription["id"]
             )
             subscription.status = "canceled"
-            subscription.canceled_at = stripe_subscription.get("canceled_at")
+            subscription.canceled_at = (
+                timezone.datetime.fromtimestamp(
+                    stripe_subscription["canceled_at"], tz=timezone.utc
+                )
+                if stripe_subscription.get("canceled_at")
+                else None
+            )
             subscription.save()
 
             logger.info(f"Canceled subscription {subscription.id} from webhook")
@@ -228,36 +291,127 @@ class StripeService:
             logger.error(f"Failed to create payment from webhook: {exception}")
             raise
 
-    def cancel_subscription(self, subscription: Subscription) -> None:
-        """Cancel a subscription at the end of the current period."""
+    def get_price_details(self, price_id: str) -> dict:
+        """Get price details from Stripe."""
         try:
-            stripe.Subscription.modify(
-                subscription.stripe_subscription_id,
-                cancel_at_period_end=True,
+            price = stripe.Price.retrieve(price_id)
+            return {
+                "amount": Decimal(price.unit_amount) / 100
+                if price.unit_amount
+                else Decimal("0"),
+                "currency": price.currency.upper(),
+                "recurring_interval": price.recurring.interval
+                if price.recurring
+                else None,
+            }
+        except stripe.error.StripeError as exception:
+            logger.error(f"Failed to retrieve price {price_id}: {exception}")
+            return {
+                "amount": Decimal("0"),
+                "currency": "USD",
+                "recurring_interval": "month",
+            }
+
+    def get_product_details(self, product_id: str) -> dict:
+        """Get product and its default price details from Stripe."""
+        try:
+            # Get product details
+            product = stripe.Product.retrieve(product_id)
+
+            # Get the default price for this product
+            prices = stripe.Price.list(product=product_id, active=True, limit=1)
+            default_price = prices.data[0] if prices.data else None
+
+            price_details = {}
+            if default_price:
+                price_details = {
+                    "price_id": default_price.id,
+                    "amount": Decimal(default_price.unit_amount) / 100
+                    if default_price.unit_amount
+                    else Decimal("0"),
+                    "currency": default_price.currency.upper(),
+                    "recurring_interval": default_price.recurring.interval
+                    if default_price.recurring
+                    else None,
+                }
+
+            return {
+                "name": product.name,
+                "description": product.description or "",
+                "price_details": price_details,
+                "metadata": product.metadata,
+            }
+        except stripe.error.StripeError as exception:
+            logger.error(f"Failed to retrieve product {product_id}: {exception}")
+            return {
+                "name": "Unknown Product",
+                "description": "",
+                "price_details": {
+                    "amount": Decimal("0"),
+                    "currency": "USD",
+                    "recurring_interval": "month",
+                },
+                "metadata": {},
+            }
+
+    def sync_customer_data(self, customer: Customer) -> dict:
+        """Sync customer data from Stripe (subscriptions, payments)."""
+        try:
+            # Get all subscriptions from Stripe (including canceled ones)
+            stripe_subscriptions = stripe.Subscription.list(
+                customer=customer.stripe_customer_id,
+                status="all",  # Include canceled subscriptions
+                limit=10,
             )
 
-            subscription.cancel_at_period_end = True
-            subscription.save()
-
-            logger.info(f"Canceled subscription {subscription.id} at period end")
-
-        except stripe.error.StripeError as exception:
-            logger.error(f"Failed to cancel subscription {subscription.id}: {exception}")
-            raise
-
-    def reactivate_subscription(self, subscription: Subscription) -> None:
-        """Reactivate a canceled subscription."""
-        try:
-            stripe.Subscription.modify(
-                subscription.stripe_subscription_id,
-                cancel_at_period_end=False,
+            # Get payment intents from Stripe
+            stripe_payments = stripe.PaymentIntent.list(
+                customer=customer.stripe_customer_id, limit=10
             )
 
-            subscription.cancel_at_period_end = False
-            subscription.save()
+            synced_data = {
+                "subscriptions_synced": 0,
+                "payments_synced": 0,
+            }
 
-            logger.info(f"Reactivated subscription {subscription.id}")
+            # Sync subscriptions
+            for stripe_sub in stripe_subscriptions.data:
+                try:
+                    # Check if subscription already exists
+                    existing_sub = Subscription.objects.filter(
+                        stripe_subscription_id=stripe_sub["id"]
+                    ).first()
+
+                    if not existing_sub:
+                        self.handle_subscription_created(stripe_sub)
+                        synced_data["subscriptions_synced"] += 1
+                    else:
+                        self.handle_subscription_updated(stripe_sub)
+                        synced_data["subscriptions_synced"] += 1
+                except Exception as exception:
+                    logger.error(
+                        f"Failed to sync subscription {stripe_sub['id']}: {exception}"
+                    )
+
+            # Sync payments
+            for stripe_payment in stripe_payments.data:
+                if stripe_payment.status == "succeeded":
+                    try:
+                        # Check if payment already exists
+                        existing_payment = Payment.objects.filter(
+                            stripe_payment_intent_id=stripe_payment["id"]
+                        ).first()
+
+                        if not existing_payment:
+                            self.handle_payment_intent_succeeded(stripe_payment)
+                            synced_data["payments_synced"] += 1
+                    except Exception as exception:
+                        logger.error(
+                            f"Failed to sync payment {stripe_payment['id']}: {exception}"
+                        )
+
+            return synced_data
 
         except stripe.error.StripeError as exception:
-            logger.error(f"Failed to reactivate subscription {subscription.id}: {exception}")
+            logger.error(f"Failed to sync customer data: {exception}")
             raise

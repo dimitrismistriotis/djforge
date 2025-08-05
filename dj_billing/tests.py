@@ -23,38 +23,32 @@ class PlanModelTest(TestCase):
     def setUp(self) -> None:
         """Set up test data."""
         self.plan_data = {
-            "name": "Test Plan",
-            "plan_type": "starter",
-            "stripe_price_id": "price_test_123",
-            "price": Decimal("29.99"),
-            "max_developers": 1,
-            "support_months": 6,
+            "stripe_product_id": "prod_test_123",
+            "order": 1,
         }
 
     def test_plan_creation(self) -> None:
         """Test creating a plan."""
         plan = Plan.objects.create(**self.plan_data)
-        
-        self.assertEqual(plan.name, "Test Plan")
-        self.assertEqual(plan.plan_type, "starter")
-        self.assertEqual(plan.price, Decimal("29.99"))
+
+        self.assertEqual(plan.stripe_product_id, "prod_test_123")
+        self.assertEqual(plan.order, 1)
         self.assertTrue(plan.is_active)
 
     def test_plan_str_representation(self) -> None:
         """Test plan string representation."""
         plan = Plan.objects.create(**self.plan_data)
-        expected = f"{plan.name} (${plan.price}/month)"
-        self.assertEqual(str(plan), expected)
+        # The __str__ method now fetches from Stripe, so we'll check it contains the product ID
+        self.assertIn("prod_test_123", str(plan))
 
     def test_active_plans_queryset(self) -> None:
         """Test active plans queryset method."""
         Plan.objects.create(**self.plan_data)
         inactive_plan_data = self.plan_data.copy()
-        inactive_plan_data["plan_type"] = "company"
-        inactive_plan_data["stripe_price_id"] = "price_test_456"
+        inactive_plan_data["stripe_product_id"] = "prod_test_456"
         inactive_plan_data["is_active"] = False
         Plan.objects.create(**inactive_plan_data)
-        
+
         active_plans = Plan.objects.active()
         self.assertEqual(active_plans.count(), 1)
         self.assertTrue(active_plans.first().is_active)
@@ -76,7 +70,7 @@ class CustomerModelTest(TestCase):
             user=self.user,
             stripe_customer_id="cus_test_123",
         )
-        
+
         self.assertEqual(customer.user, self.user)
         self.assertEqual(customer.stripe_customer_id, "cus_test_123")
 
@@ -95,7 +89,7 @@ class CustomerModelTest(TestCase):
             user=self.user,
             stripe_customer_id="cus_test_123",
         )
-        
+
         customers = Customer.objects.for_user(self.user)
         self.assertEqual(customers.count(), 1)
         self.assertEqual(customers.first(), customer)
@@ -115,12 +109,8 @@ class SubscriptionModelTest(TestCase):
             stripe_customer_id="cus_test_123",
         )
         self.plan = Plan.objects.create(
-            name="Test Plan",
-            plan_type="starter",
-            stripe_price_id="price_test_123",
-            price=Decimal("29.99"),
-            max_developers=1,
-            support_months=6,
+            stripe_product_id="prod_test_123",
+            order=1,
         )
 
     def test_subscription_creation(self) -> None:
@@ -133,7 +123,7 @@ class SubscriptionModelTest(TestCase):
             current_period_start="2023-01-01T00:00:00Z",
             current_period_end="2023-02-01T00:00:00Z",
         )
-        
+
         self.assertEqual(subscription.customer, self.customer)
         self.assertEqual(subscription.plan, self.plan)
         self.assertEqual(subscription.status, "active")
@@ -149,7 +139,7 @@ class SubscriptionModelTest(TestCase):
             current_period_start="2023-01-01T00:00:00Z",
             current_period_end="2023-02-01T00:00:00Z",
         )
-        
+
         trial_subscription = Subscription.objects.create(
             customer=self.customer,
             plan=self.plan,
@@ -158,7 +148,7 @@ class SubscriptionModelTest(TestCase):
             current_period_start="2023-01-01T00:00:00Z",
             current_period_end="2023-02-01T00:00:00Z",
         )
-        
+
         canceled_subscription = Subscription.objects.create(
             customer=self.customer,
             plan=self.plan,
@@ -167,7 +157,7 @@ class SubscriptionModelTest(TestCase):
             current_period_start="2023-01-01T00:00:00Z",
             current_period_end="2023-02-01T00:00:00Z",
         )
-        
+
         self.assertTrue(active_subscription.is_active)
         self.assertTrue(trial_subscription.is_active)
         self.assertFalse(canceled_subscription.is_active)
@@ -185,22 +175,22 @@ class BillingViewTest(TestCase):
 
     def test_billing_view_requires_login(self) -> None:
         """Test that billing view requires authentication."""
-        url = reverse("dj_billing:billing")
+        url = reverse("dj_billing:pricing")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)  # Redirect to login
 
     def test_billing_view_authenticated(self) -> None:
         """Test billing view for authenticated user."""
         self.client.force_login(self.user)
-        url = reverse("dj_billing:billing")
-        
+        url = reverse("dj_billing:pricing")
+
         with patch.object(StripeService, "get_or_create_customer") as mock_get_customer:
             mock_customer = Mock()
             mock_customer.payments.all.return_value = []
             mock_get_customer.return_value = mock_customer
-            
+
             response = self.client.get(url)
-            
+
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Billing & Subscription")
 
@@ -224,12 +214,12 @@ class StripeServiceTest(TestCase):
         mock_stripe_customer = Mock()
         mock_stripe_customer.id = "cus_test_123"
         mock_stripe_create.return_value = mock_stripe_customer
-        
+
         customer = self.service.create_customer(self.user)
-        
+
         self.assertEqual(customer.user, self.user)
         self.assertEqual(customer.stripe_customer_id, "cus_test_123")
-        
+
         mock_stripe_create.assert_called_once_with(
             email=self.user.email,
             name="Test User",
@@ -243,9 +233,9 @@ class StripeServiceTest(TestCase):
             user=self.user,
             stripe_customer_id="cus_existing_123",
         )
-        
+
         customer = self.service.get_or_create_customer(self.user)
-        
+
         self.assertEqual(customer, existing_customer)
         mock_stripe_create.assert_not_called()
 
@@ -255,9 +245,9 @@ class StripeServiceTest(TestCase):
         mock_stripe_customer = Mock()
         mock_stripe_customer.id = "cus_test_123"
         mock_stripe_create.return_value = mock_stripe_customer
-        
+
         customer = self.service.get_or_create_customer(self.user)
-        
+
         self.assertEqual(customer.user, self.user)
         self.assertEqual(customer.stripe_customer_id, "cus_test_123")
         mock_stripe_create.assert_called_once()
@@ -287,7 +277,7 @@ class PaymentModelTest(TestCase):
             status="succeeded",
             description="Test payment",
         )
-        
+
         self.assertEqual(payment.customer, self.customer)
         self.assertEqual(payment.amount, Decimal("29.99"))
         self.assertEqual(payment.status, "succeeded")
@@ -302,7 +292,7 @@ class PaymentModelTest(TestCase):
             currency="usd",
             status="succeeded",
         )
-        
+
         failed_payment = Payment.objects.create(
             customer=self.customer,
             stripe_payment_intent_id="pi_test_456",
@@ -310,6 +300,6 @@ class PaymentModelTest(TestCase):
             currency="usd",
             status="canceled",
         )
-        
+
         self.assertTrue(successful_payment.is_successful)
         self.assertFalse(failed_payment.is_successful)
