@@ -35,11 +35,20 @@ class PlanModelTest(TestCase):
         self.assertEqual(plan.order, 1)
         self.assertTrue(plan.is_active)
 
-    def test_plan_str_representation(self) -> None:
+    @patch("dj_billing.services.stripe.Product.retrieve")
+    @patch("dj_billing.services.stripe.Price.list")
+    def test_plan_str_representation(self, mock_price_list, mock_product_retrieve) -> None:
         """Test plan string representation."""
+        # Mock Stripe API responses
+        mock_product = Mock()
+        mock_product.name = "Test Product"
+        mock_product.description = "Test description"
+        mock_product_retrieve.return_value = mock_product
+        
+        mock_price_list.return_value.data = []
+        
         plan = Plan.objects.create(**self.plan_data)
-        # The __str__ method now fetches from Stripe, so we'll check it contains the product ID
-        self.assertIn("prod_test_123", str(plan))
+        self.assertEqual(str(plan), "Test Product")
 
     def test_active_plans_queryset(self) -> None:
         """Test active plans queryset method."""
@@ -192,7 +201,7 @@ class BillingViewTest(TestCase):
             response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Billing & Subscription")
+        self.assertContains(response, "Products & Subscription")
 
 
 class StripeServiceTest(TestCase):

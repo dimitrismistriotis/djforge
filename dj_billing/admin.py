@@ -36,7 +36,8 @@ class PlanAdmin(admin.ModelAdmin):
     def stripe_name_display(self, obj):
         """Display Stripe product name."""
         try:
-            return obj.name
+            stripe_details = obj.get_stripe_details()
+            return stripe_details.get("name", "Unknown Plan")
         except Exception as e:
             return f"Error: {str(e)[:30]}"
 

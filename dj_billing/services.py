@@ -291,26 +291,6 @@ class StripeService:
             logger.error(f"Failed to create payment from webhook: {exception}")
             raise
 
-    def get_price_details(self, price_id: str) -> dict:
-        """Get price details from Stripe."""
-        try:
-            price = stripe.Price.retrieve(price_id)
-            return {
-                "amount": Decimal(price.unit_amount) / 100
-                if price.unit_amount
-                else Decimal("0"),
-                "currency": price.currency.upper(),
-                "recurring_interval": price.recurring.interval
-                if price.recurring
-                else None,
-            }
-        except stripe.error.StripeError as exception:
-            logger.error(f"Failed to retrieve price {price_id}: {exception}")
-            return {
-                "amount": Decimal("0"),
-                "currency": "USD",
-                "recurring_interval": "month",
-            }
 
     def get_product_details(self, product_id: str) -> dict:
         """Get product and its default price details from Stripe."""

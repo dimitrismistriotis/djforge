@@ -89,21 +89,6 @@ class Plan(models.Model):
         stripe_details = self.get_stripe_details()
         return stripe_details.get("name", f"Plan ({self.stripe_product_id})")
 
-    @property
-    def name(self):
-        """Get plan name from Stripe."""
-        return self.get_stripe_details().get("name", "Unknown Plan")
-
-    @property
-    def description(self):
-        """Get plan description from Stripe."""
-        return self.get_stripe_details().get("description", "")
-
-    @property
-    def price(self):
-        """Get plan price from Stripe."""
-        price_details = self.get_stripe_details().get("price_details", {})
-        return price_details.get("amount", 0)
 
     def get_stripe_details(self):
         """Get all product and price details from Stripe."""
@@ -206,7 +191,7 @@ class Subscription(models.Model):
 
     def __str__(self):
         """Return string representation of the subscription."""
-        return f"{self.customer.user.email} - {self.plan.name} ({self.status})"
+        return f"{self.customer.user.email} - {self.plan} ({self.status})"
 
     @property
     def is_active(self):
