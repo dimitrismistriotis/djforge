@@ -291,7 +291,6 @@ class StripeService:
             logger.error(f"Failed to create payment from webhook: {exception}")
             raise
 
-
     def get_product_details(self, product_id: str) -> dict:
         """Get product and its default price details from Stripe."""
         try:

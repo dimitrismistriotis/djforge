@@ -89,7 +89,6 @@ class Plan(models.Model):
         stripe_details = self.get_stripe_details()
         return stripe_details.get("name", f"Plan ({self.stripe_product_id})")
 
-
     def get_stripe_details(self):
         """Get all product and price details from Stripe."""
         from dj_billing.services import StripeService
