@@ -19,6 +19,9 @@ logger = logging.getLogger(__name__)
 
 User = get_user_model()
 
+# Constants
+STRIPE_CENTS_TO_DOLLARS = Decimal("0.01")
+
 
 class StripeService:
     """Service class for handling Stripe operations."""
@@ -242,7 +245,7 @@ class StripeService:
             subscription.status = "canceled"
             subscription.canceled_at = (
                 timezone.datetime.fromtimestamp(
-                    stripe_subscription["canceled_at"], tz=timezone.utc
+                    stripe_subscription["canceled_at"], tz=ZoneInfo("UTC")
                 )
                 if stripe_subscription.get("canceled_at")
                 else None
@@ -278,7 +281,7 @@ class StripeService:
                 customer=customer,
                 subscription=subscription,
                 stripe_payment_intent_id=payment_intent["id"],
-                amount=Decimal(payment_intent["amount"]) / 100,  # Convert from cents
+                amount=Decimal(payment_intent["amount"]) * STRIPE_CENTS_TO_DOLLARS,
                 currency=payment_intent["currency"],
                 status="succeeded",
                 description=payment_intent.get("description", ""),
@@ -305,7 +308,8 @@ class StripeService:
             if default_price:
                 price_details = {
                     "price_id": default_price.id,
-                    "amount": Decimal(default_price.unit_amount) / 100
+                    "amount": Decimal(default_price.unit_amount)
+                    * STRIPE_CENTS_TO_DOLLARS
                     if default_price.unit_amount
                     else Decimal("0"),
                     "currency": default_price.currency.upper(),

@@ -38,6 +38,9 @@ class Customer(models.Model):
         verbose_name = _("Customer")
         verbose_name_plural = _("Customers")
         db_table = "dj_billing_customer"
+        indexes = [
+            models.Index(fields=["stripe_customer_id"]),
+        ]
 
     def __str__(self):
         """Return string representation of the customer."""
@@ -187,6 +190,11 @@ class Subscription(models.Model):
         verbose_name = _("Subscription")
         verbose_name_plural = _("Subscriptions")
         db_table = "dj_billing_subscription"
+        indexes = [
+            models.Index(fields=["stripe_subscription_id"]),
+            models.Index(fields=["status"]),
+            models.Index(fields=["customer", "status"]),
+        ]
 
     def __str__(self):
         """Return string representation of the subscription."""
@@ -275,12 +283,18 @@ class Payment(models.Model):
         verbose_name_plural = _("Payments")
         db_table = "dj_billing_payment"
         ordering = ["-created_at"]
-
-    def __str__(self):
-        """Return string representation of the payment."""
-        return f"Payment ${self.amount} - {self.customer.user.email} ({self.status})"
+        indexes = [
+            models.Index(fields=["stripe_payment_intent_id"]),
+            models.Index(fields=["status"]),
+            models.Index(fields=["customer", "status"]),
+            models.Index(fields=["-created_at"]),
+        ]
 
     @property
     def is_successful(self):
         """Return whether the payment was successful."""
         return self.status == "succeeded"
+
+    def __str__(self):
+        """Return string representation of the payment."""
+        return f"Payment ${self.amount} - {self.customer.user.email} ({self.status})"

@@ -454,4 +454,5 @@ STRIPE_PRICE_ID_COMPANY = env.str("STRIPE_PRICE_ID_COMPANY", "")  # No default
 STRIPE_PRICE_ID_ENTERPRISE = env.str("STRIPE_PRICE_ID_ENTERPRISE", "")  # No default
 STRIPE_AUTO_SYNC_LOCAL = env.bool(
     "STRIPE_AUTO_SYNC_LOCAL", False
-)  # Auto-sync for local development
+)
+STRIPE_DEFAULT_TRIAL_DAYS = env.int("STRIPE_DEFAULT_TRIAL_DAYS", 7)  # Auto-sync for local development

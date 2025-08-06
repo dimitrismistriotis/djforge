@@ -168,7 +168,7 @@ class CreateCheckoutSessionView(View):
                 plan=plan,
                 success_url=success_url,
                 cancel_url=cancel_url,
-                trial_period_days=7,  # 7-day trial
+                trial_period_days=settings.STRIPE_DEFAULT_TRIAL_DAYS,
             )
 
             return redirect(checkout_url)
