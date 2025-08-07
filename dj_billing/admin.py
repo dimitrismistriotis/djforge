@@ -41,7 +41,7 @@ class PlanAdmin(admin.ModelAdmin):
         except Exception as e:
             return f"Error: {str(e)[:30]}"
 
-    stripe_name_display.short_description = "Product Name (from Stripe)"
+    stripe_name_display.short_description = "Product Name"
 
     def stripe_price_display(self, obj):
         """Display current Stripe price."""
@@ -55,7 +55,7 @@ class PlanAdmin(admin.ModelAdmin):
                 return f"{price_details['amount']}{currency_symbol}/{price_details['recurring_interval']}"
             return "No price found"
         except Exception as e:
-            return f"Error: {str(e)[:50]}"
+            return f"Error: {e}"
 
     stripe_price_display.short_description = "Current Stripe Price"
 

@@ -53,10 +53,13 @@ class BillingView(View):
             else []
         )
         active_subscription = (
-            subscriptions.filter(status__in=["active", "trialing"]).first()
+            subscriptions.filter(status__in=[Subscription.Status.ACTIVE, Subscription.Status.TRIALING]).first()
             if subscriptions
             else None
         )
+
+        # Get recent payments for display (limit to 5 most recent)
+        recent_payments = customer.payments.all()[:5] if customer else []
 
         # Auto-sync for local development when webhooks don't work
         if settings.DEBUG and settings.STRIPE_AUTO_SYNC_LOCAL and customer:
@@ -85,7 +88,7 @@ class BillingView(View):
                             request.user
                         ).order_by("-created_at")
                         active_subscription = subscriptions.filter(
-                            status__in=["active", "trialing"]
+                            status__in=[Subscription.Status.ACTIVE, Subscription.Status.TRIALING]
                         ).first()
                 except Exception as exception:
                     logger.error(
@@ -120,6 +123,7 @@ class BillingView(View):
             "customer": customer,
             "active_subscription": active_subscription,
             "subscriptions": subscriptions,
+            "recent_payments": recent_payments,
             "plans": plans,
             "plans_with_stripe_prices": plans_with_stripe_prices,
             "stripe_publishable_key": settings.STRIPE_PUBLISHABLE_KEY,
@@ -151,7 +155,7 @@ class CreateCheckoutSessionView(View):
         # Check if user already has an active subscription
         active_subscription = (
             Subscription.objects.for_user(request.user)
-            .filter(status__in=["active", "trialing"])
+            .filter(status__in=[Subscription.Status.ACTIVE, Subscription.Status.TRIALING])
             .first()
         )
 

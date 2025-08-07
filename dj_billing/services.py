@@ -242,7 +242,7 @@ class StripeService:
             subscription = Subscription.objects.get(
                 stripe_subscription_id=stripe_subscription["id"]
             )
-            subscription.status = "canceled"
+            subscription.status = Subscription.Status.CANCELED
             subscription.canceled_at = (
                 timezone.datetime.fromtimestamp(
                     stripe_subscription["canceled_at"], tz=ZoneInfo("UTC")
@@ -283,7 +283,7 @@ class StripeService:
                 stripe_payment_intent_id=payment_intent["id"],
                 amount=Decimal(payment_intent["amount"]) * STRIPE_CENTS_TO_DOLLARS,
                 currency=payment_intent["currency"],
-                status="succeeded",
+                status=Payment.Status.SUCCEEDED,
                 description=payment_intent.get("description", ""),
             )
 
@@ -378,7 +378,7 @@ class StripeService:
 
             # Sync payments
             for stripe_payment in stripe_payments.data:
-                if stripe_payment.status == "succeeded":
+                if stripe_payment.status == Payment.Status.SUCCEEDED:
                     try:
                         # Check if payment already exists
                         existing_payment = Payment.objects.filter(

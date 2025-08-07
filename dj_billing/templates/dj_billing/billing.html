@@ -36,11 +36,13 @@
             </p>
             <p>
               <span class="font-medium">{% trans "Price:" %}</span>
-              {% with stripe_price=active_subscription.plan.get_stripe_price_details %}
-                {% if stripe_price %}
-                  {% if stripe_price.currency|upper == 'EUR' %}{{ stripe_price.amount }}€{% else %}\${{ stripe_price.amount }}{% endif %}/{{ stripe_price.recurring_interval|default:"month" }}
+              {% with stripe_details=active_subscription.plan.get_stripe_details %}
+                {% if stripe_details.price_details %}
+                  {% with price=stripe_details.price_details %}
+                    {% if price.currency|upper == 'EUR' %}{{ price.amount }}€{% else %}\${{ price.amount }}{% endif %}/{{ price.recurring_interval|default:"month" }}
+                  {% endwith %}
                 {% else %}
-                  {{ active_subscription.plan.price }}$/{% trans "month" %}
+                  {% trans "Price not available" %}
                 {% endif %}
               {% endwith %}
             </p>
@@ -81,19 +83,15 @@
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {% for plan_data in plans_with_stripe_prices %}
-        {% with plan=plan_data.plan stripe_price=plan_data.stripe_price %}
-        <div class="border border-gray-200 rounded-lg p-6 dark:border-gray-700 {% if plan.plan_type == 'company' %}ring-2 ring-blue-500 relative{% endif %}">
-          {% if plan.plan_type == 'company' %}
-          <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
-            <span class="bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full">
-              {% trans "Most Popular" %}
-            </span>
-          </div>
-          {% endif %}
-
+        {% with plan=plan_data.plan stripe_price=plan_data.stripe_price stripe_details=plan_data.stripe_details %}
+        <div class="border border-gray-200 rounded-lg p-6 dark:border-gray-700">
           <div class="text-center">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-              {{ plan.name }}
+              {% if stripe_details.name %}
+                {{ stripe_details.name }}
+              {% else %}
+                {% trans "Plan" %} #{{ plan.id }}
+              {% endif %}
             </h3>
             <div class="mb-4">
               {% if stripe_price %}
@@ -102,29 +100,36 @@
                 </span>
                 <span class="text-gray-600 dark:text-gray-400">/{{ stripe_price.recurring_interval|default:"month" }}</span>
               {% else %}
-                <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ plan.price }}$</span>
-                <span class="text-gray-600 dark:text-gray-400">/{% trans "month" %}</span>
+                <span class="text-3xl font-bold text-gray-900 dark:text-white">
+                  {% trans "Contact us" %}
+                </span>
               {% endif %}
             </div>
+
+            {% if stripe_details.description %}
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+              {{ stripe_details.description }}
+            </p>
+            {% endif %}
 
             <ul class="text-sm text-gray-600 dark:text-gray-400 mb-6 space-y-2">
               <li class="flex items-center">
                 <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                {{ plan.max_developers }} {% trans "developers" %}
+                {% trans "Full access to platform" %}
               </li>
               <li class="flex items-center">
                 <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                {{ plan.support_months }} {% trans "months support" %}
+                {% blocktrans with days=settings.STRIPE_DEFAULT_TRIAL_DAYS %}{{ days }}-day free trial{% endblocktrans %}
               </li>
               <li class="flex items-center">
                 <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                {% trans "7-day free trial" %}
+                {% trans "Cancel anytime" %}
               </li>
             </ul>
 
@@ -149,7 +154,7 @@
       <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
         {% trans "Recent Payments" %}
       </h2>
-      {% if customer.payments.all %}
+      {% if recent_payments %}
       <div class="overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -161,7 +166,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for payment in customer.payments.all|slice:":5" %}
+            {% for payment in recent_payments %}
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td class="px-6 py-4">{{ payment.created_at|date:"M d, Y" }}</td>
               <td class="px-6 py-4">${{ payment.amount }}</td>

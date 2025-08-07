@@ -115,16 +115,15 @@ class SubscriptionQuerySet(models.QuerySet):
 class Subscription(models.Model):
     """Subscription model to store Stripe subscription information."""
 
-    STATUS_CHOICES = [
-        ("incomplete", _("Incomplete")),
-        ("incomplete_expired", _("Incomplete Expired")),
-        ("trialing", _("Trialing")),
-        ("active", _("Active")),
-        ("past_due", _("Past Due")),
-        ("canceled", _("Canceled")),
-        ("unpaid", _("Unpaid")),
-        ("paused", _("Paused")),
-    ]
+    class Status(models.TextChoices):
+        INCOMPLETE = "incomplete", _("Incomplete")
+        INCOMPLETE_EXPIRED = "incomplete_expired", _("Incomplete Expired")
+        TRIALING = "trialing", _("Trialing")
+        ACTIVE = "active", _("Active")
+        PAST_DUE = "past_due", _("Past Due")
+        CANCELED = "canceled", _("Canceled")
+        UNPAID = "unpaid", _("Unpaid")
+        PAUSED = "paused", _("Paused")
 
     id = models.BigAutoField(primary_key=True)
     customer = models.ForeignKey(
@@ -147,7 +146,7 @@ class Subscription(models.Model):
     )
     status = models.CharField(
         max_length=20,
-        choices=STATUS_CHOICES,
+        choices=Status.choices,
         verbose_name=_("Status"),
     )
     current_period_start = models.DateTimeField(
@@ -203,7 +202,7 @@ class Subscription(models.Model):
     @property
     def is_active(self):
         """Return whether the subscription is active."""
-        return self.status in ["active", "trialing"]
+        return self.status in [self.Status.ACTIVE, self.Status.TRIALING]
 
 
 class PaymentQuerySet(models.QuerySet):
@@ -221,15 +220,14 @@ class PaymentQuerySet(models.QuerySet):
 class Payment(models.Model):
     """Payment model to store payment transaction information."""
 
-    STATUS_CHOICES = [
-        ("requires_payment_method", _("Requires Payment Method")),
-        ("requires_confirmation", _("Requires Confirmation")),
-        ("requires_action", _("Requires Action")),
-        ("processing", _("Processing")),
-        ("requires_capture", _("Requires Capture")),
-        ("canceled", _("Canceled")),
-        ("succeeded", _("Succeeded")),
-    ]
+    class Status(models.TextChoices):
+        REQUIRES_PAYMENT_METHOD = "requires_payment_method", _("Requires Payment Method")
+        REQUIRES_CONFIRMATION = "requires_confirmation", _("Requires Confirmation")
+        REQUIRES_ACTION = "requires_action", _("Requires Action")
+        PROCESSING = "processing", _("Processing")
+        REQUIRES_CAPTURE = "requires_capture", _("Requires Capture")
+        CANCELED = "canceled", _("Canceled")
+        SUCCEEDED = "succeeded", _("Succeeded")
 
     id = models.BigAutoField(primary_key=True)
     customer = models.ForeignKey(
@@ -265,7 +263,7 @@ class Payment(models.Model):
     )
     status = models.CharField(
         max_length=30,
-        choices=STATUS_CHOICES,
+        choices=Status.choices,
         verbose_name=_("Status"),
     )
     description = models.TextField(
@@ -293,7 +291,7 @@ class Payment(models.Model):
     @property
     def is_successful(self):
         """Return whether the payment was successful."""
-        return self.status == "succeeded"
+        return self.status == self.Status.SUCCEEDED
 
     def __str__(self):
         """Return string representation of the payment."""
