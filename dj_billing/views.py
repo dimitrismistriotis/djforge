@@ -53,7 +53,9 @@ class BillingView(View):
             else []
         )
         active_subscription = (
-            subscriptions.filter(status__in=[Subscription.Status.ACTIVE, Subscription.Status.TRIALING]).first()
+            subscriptions.filter(
+                status__in=[Subscription.Status.ACTIVE, Subscription.Status.TRIALING]
+            ).first()
             if subscriptions
             else None
         )
@@ -88,7 +90,10 @@ class BillingView(View):
                             request.user
                         ).order_by("-created_at")
                         active_subscription = subscriptions.filter(
-                            status__in=[Subscription.Status.ACTIVE, Subscription.Status.TRIALING]
+                            status__in=[
+                                Subscription.Status.ACTIVE,
+                                Subscription.Status.TRIALING,
+                            ]
                         ).first()
                 except Exception as exception:
                     logger.error(
@@ -155,7 +160,9 @@ class CreateCheckoutSessionView(View):
         # Check if user already has an active subscription
         active_subscription = (
             Subscription.objects.for_user(request.user)
-            .filter(status__in=[Subscription.Status.ACTIVE, Subscription.Status.TRIALING])
+            .filter(
+                status__in=[Subscription.Status.ACTIVE, Subscription.Status.TRIALING]
+            )
             .first()
         )
 

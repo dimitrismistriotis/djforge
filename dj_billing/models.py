@@ -221,7 +221,10 @@ class Payment(models.Model):
     """Payment model to store payment transaction information."""
 
     class Status(models.TextChoices):
-        REQUIRES_PAYMENT_METHOD = "requires_payment_method", _("Requires Payment Method")
+        REQUIRES_PAYMENT_METHOD = (
+            "requires_payment_method",
+            _("Requires Payment Method"),
+        )
         REQUIRES_CONFIRMATION = "requires_confirmation", _("Requires Confirmation")
         REQUIRES_ACTION = "requires_action", _("Requires Action")
         PROCESSING = "processing", _("Processing")
