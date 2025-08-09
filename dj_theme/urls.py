@@ -15,8 +15,16 @@ app_name = "dj_theme"
 #
 urlpatterns = (
     [
-        path("messages", messages_demo, name="messages_demo"),
-        path("logging", logging_demo, name="logging_demo"),
+        path(
+            "messages",
+            messages_demo,
+            name="messages_demo",
+        ),
+        path(
+            "logging",
+            logging_demo,
+            name="logging_demo",
+        ),
         path("dashboard", dashboard_template, name="dashboard"),
     ]
     if getattr(settings, "DEBUG", False)

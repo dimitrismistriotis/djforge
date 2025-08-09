@@ -8,5 +8,9 @@ app_name = "dj_chatbot"
 
 
 urlpatterns = [
-    path("", chat, name="chat"),
+    path(
+        "",
+        chat,
+        name="chat",
+    ),
 ]

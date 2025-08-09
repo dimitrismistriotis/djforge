@@ -23,4 +23,8 @@ def manifest_dot_json(request: HttpRequest) -> HttpResponse:
 
     Reference: https://developer.mozilla.org/en-US/docs/Web/Manifest
     """
-    return render(request, "dj_favicons/manifest.json", content_type="application/json")
+    return render(
+        request,
+        "dj_favicons/manifest.json",
+        content_type="application/json",
+    )

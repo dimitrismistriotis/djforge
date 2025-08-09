@@ -29,8 +29,14 @@ class Customer(models.Model):
         verbose_name=_("Stripe Customer ID"),
         help_text=_("The customer ID from Stripe"),
     )
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_("Created At"),
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_("Updated At"),
+    )
 
     objects = CustomerQuerySet.as_manager()
 
@@ -39,7 +45,11 @@ class Customer(models.Model):
         verbose_name_plural = _("Customers")
         db_table = "dj_billing_customer"
         indexes = [
-            models.Index(fields=["stripe_customer_id"]),
+            models.Index(
+                fields=[
+                    "stripe_customer_id",
+                ]
+            ),
         ]
 
     def __str__(self):
@@ -77,8 +87,14 @@ class Plan(models.Model):
         verbose_name=_("Is Active"),
         help_text=_("Whether this plan is currently available for purchase"),
     )
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_("Created At"),
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_("Updated At"),
+    )
 
     objects = PlanQuerySet.as_manager()
 
