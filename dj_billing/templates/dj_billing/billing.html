@@ -1,0 +1,193 @@
+{% extends "dj_theme/base_logged_in.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block logged_in_content %}
+<main>
+  <div class="px-4 pt-6">
+    {% include "dj_theme/messages.html" %}
+
+    <!-- Page Header -->
+    <div class="mb-4">
+      <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+        {% trans "Products & Subscription" %}
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        {% trans "Choose your plan and manage your subscription" %}
+      </p>
+    </div>
+
+    <!-- Current Subscription Status -->
+    {% if active_subscription %}
+    <div class="w-full p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            {% trans "Current Subscription" %}
+          </h2>
+          <div class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+            <p>
+              <span class="font-medium">{% trans "Plan:" %}</span>
+              {{ active_subscription.plan.name }}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                {% if active_subscription.status == 'active' %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300{% elif active_subscription.status == 'trialing' %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300{% else %}bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300{% endif %}">
+                {{ active_subscription.get_status_display }}
+              </span>
+            </p>
+            <p>
+              <span class="font-medium">{% trans "Price:" %}</span>
+              {% with stripe_details=active_subscription.plan.get_stripe_details %}
+                {% if stripe_details.price_details %}
+                  {% with price=stripe_details.price_details %}
+                    {% if price.currency|upper == 'EUR' %}{{ price.amount }}€{% else %}\${{ price.amount }}{% endif %}/{{ price.recurring_interval|default:"month" }}
+                  {% endwith %}
+                {% else %}
+                  {% trans "Price not available" %}
+                {% endif %}
+              {% endwith %}
+            </p>
+            <p><span class="font-medium">{% trans "Current Period:" %}</span> {{ active_subscription.current_period_start|date:"M d, Y" }} - {{ active_subscription.current_period_end|date:"M d, Y" }}</p>
+            {% if active_subscription.trial_end %}
+            <p><span class="font-medium">{% trans "Trial Ends:" %}</span> {{ active_subscription.trial_end|date:"M d, Y" }}</p>
+            {% endif %}
+            {% if active_subscription.cancel_at_period_end %}
+            <p class="text-orange-600 dark:text-orange-400">
+              <span class="font-medium">{% trans "Status:" %}</span> {% trans "Will cancel at period end" %}
+            </p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              {% trans "Use 'Manage Subscription' to reactivate or make changes" %}
+            </p>
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          <form method="post" action="{% url 'dj_billing:billing_portal' %}">
+            {% csrf_token %}
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+              {% trans "Manage Subscription" %}
+            </button>
+          </form>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+            {% trans "Cancel, update payment methods, and view invoices" %}
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Available Plans -->
+    {% if not active_subscription %}
+    <div class="w-full p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        {% trans "Choose Your Plan" %}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {% for plan_data in plans_with_stripe_prices %}
+        {% with plan=plan_data.plan stripe_price=plan_data.stripe_price stripe_details=plan_data.stripe_details %}
+        <div class="border border-gray-200 rounded-lg p-6 dark:border-gray-700">
+          <div class="text-center">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              {% if stripe_details.name %}
+                {{ stripe_details.name }}
+              {% else %}
+                {% trans "Plan" %} #{{ plan.id }}
+              {% endif %}
+            </h3>
+            <div class="mb-4">
+              {% if stripe_price %}
+                <span class="text-3xl font-bold text-gray-900 dark:text-white">
+                  {% if stripe_price.currency|upper == 'EUR' %}{{ stripe_price.amount }}€{% else %}\${{ stripe_price.amount }}{% endif %}
+                </span>
+                <span class="text-gray-600 dark:text-gray-400">/{{ stripe_price.recurring_interval|default:"month" }}</span>
+              {% else %}
+                <span class="text-3xl font-bold text-gray-900 dark:text-white">
+                  {% trans "Contact us" %}
+                </span>
+              {% endif %}
+            </div>
+
+            {% if stripe_details.description %}
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+              {{ stripe_details.description }}
+            </p>
+            {% endif %}
+
+            <ul class="text-sm text-gray-600 dark:text-gray-400 mb-6 space-y-2">
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {% trans "Full access to platform" %}
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {% blocktrans with days=settings.STRIPE_DEFAULT_TRIAL_DAYS %}{{ days }}-day free trial{% endblocktrans %}
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {% trans "Cancel anytime" %}
+              </li>
+            </ul>
+
+            <form method="post" action="{% url 'dj_billing:create_checkout_session' %}">
+              {% csrf_token %}
+              <input type="hidden" name="plan_id" value="{{ plan.id }}">
+              <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                {% trans "Start Free Trial" %}
+              </button>
+            </form>
+          </div>
+        </div>
+        {% endwith %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Payment History -->
+    {% if customer %}
+    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        {% trans "Recent Payments" %}
+      </h2>
+      {% if recent_payments %}
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">{% trans "Date" %}</th>
+              <th scope="col" class="px-6 py-3">{% trans "Amount" %}</th>
+              <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
+              <th scope="col" class="px-6 py-3">{% trans "Description" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for payment in recent_payments %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td class="px-6 py-4">{{ payment.created_at|date:"M d, Y" }}</td>
+              <td class="px-6 py-4">${{ payment.amount }}</td>
+              <td class="px-6 py-4">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                  {% if payment.is_successful %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300{% else %}bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300{% endif %}">
+                  {{ payment.get_status_display }}
+                </span>
+              </td>
+              <td class="px-6 py-4">{{ payment.description|default:"-" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="text-gray-600 dark:text-gray-400">{% trans "No payments yet." %}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+</main>
+{% endblock logged_in_content %}

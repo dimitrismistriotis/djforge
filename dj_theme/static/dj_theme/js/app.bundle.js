@@ -4350,11 +4350,11 @@ exports["default"] = {
 /******/ })()
 ;
 });
-/* 
+/*
 
 Break sourcmapping as it breaks builds. Can assemble back by bringing everything in one line and removing comments:
 
-//# 
+//#
 sourceMappingURL
 =
 flowbite.js.map
@@ -5135,7 +5135,7 @@ var dark_mode = __webpack_require__(834);
 
 /******/ })()
 ;
-/* 
+/*
 
 Break sourcmapping as it breaks builds. Can assemble back by bringing everything in one line and removing comments:
 
