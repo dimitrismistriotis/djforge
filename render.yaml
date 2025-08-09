@@ -18,13 +18,13 @@ services:
       runtime: python
       buildCommand: "make build"
       #
-      # Start command provided from Render was the follwing:
+      # Start command provided from Render was the following:
       #
       # startCommand: "python -m gunicorn djforge.asgi:application -k uvicorn.workers.UvicornWorker"
-      #
+      # ... added in `make gunicorn`
       # For some reason async did not work, this is the fallback to sync:
       #
-      startCommand: "python -m gunicorn djforge.wsgi:application"
+      startCommand: "make gunicorn"
       envVars:
           - key: DATABASE_URL
             fromDatabase:

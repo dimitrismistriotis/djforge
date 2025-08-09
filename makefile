@@ -15,6 +15,10 @@ default: help
 # Variables
 #
 UV_COMMAND_PREFIX := uv run python
+#
+# Following from Django DX book, displays more errors and warnings
+#
+UV_COMMAND_PREFIX_DEVELOPER_MODE := ${UV_COMMAND_PREFIX} -X dev
 GENERATE_SECRET_KEY := ${UV_COMMAND_PREFIX} manage.py generate_secret_key
 # Note that there is not a trailing slash in the following variable for readability:
 THEME_CSS_BASE_DIRECTORY := ./dj_theme/static/dj_theme/css
@@ -35,10 +39,12 @@ help:				## Show help message.
 precommit_install:		## Install pre-commit hooks
 	uv run pre-commit install
 
+
 .PHONY: install
 install:			## Install packages
 	@echo "Installing packages..."
 	uv sync
+
 
 install_npm:			## Install npm packages
 	@echo "Installing npm packages..."
@@ -80,6 +86,7 @@ remove_containers_and_volumes:	## Remove containers and volumes related to the p
 		docker volume ls --format '{{.Name}}' --filter "label=net.djforge" | xargs docker volume rm; \
 	fi
 
+
 #
 # Development commands
 #
@@ -114,11 +121,11 @@ generate_email_templates:	## Generate React Email HTML and text templates
 #
 # Day to day commands
 #
-
 .PHONY: generate_output_css
 generate_output_css:  		## Generate Output CSS in watching for changes mode
 	@echo "Generating output.css..."
 	npx @tailwindcss/cli -i ./input.css -o ${THEME_CSS_BASE_DIRECTORY}/output.css --watch
+
 
 .PHONY: test
 test:				## Run tests
@@ -137,10 +144,12 @@ test_recreate:			## Run tests creating the database, needed after migrations
 	@echo "Running tests..."
 	uv run pytest --create-db
 
+
 .PHONY: migrations
 migrations:		## Make migrations
 	@echo "Making migrations..."
 	${UV_COMMAND_PREFIX} manage.py makemigrations
+
 
 .PHONY: migrate
 migrate:			## Run migrations
@@ -151,13 +160,13 @@ migrate:			## Run migrations
 .PHONY: django_runserver
 django_runserver: 		## Run Django server
 	@echo "Running Django server..."
-	${UV_COMMAND_PREFIX} manage.py runserver
+	${UV_COMMAND_PREFIX_DEVELOPER_MODE} manage.py runserver
 
 
-.PHONY: celery
-celery:				## Run celery
-	@echo "Running celery..."
-	uv run celery -A djforge worker -l info
+.PHONY: celery_debug
+celery_debug:			## Run celery with debug logging level
+	@echo "Running Celery in Debug Mode..."
+	uv run celery -A djforge worker -l debug
 
 
 # LiveReload is a tool to automatically refresh your browser when files change.
@@ -165,7 +174,7 @@ celery:				## Run celery
 .PHONY: livereload
 livereload: 			## Run livereload
 	@echo "Running livereload..."
-	${UV_COMMAND_PREFIX} manage.py livereload
+	${UV_COMMAND_PREFIX_DEVELOPER_MODE} manage.py livereload
 
 
 .PHONY: shell
@@ -216,3 +225,16 @@ docker_compose_up up:		## Run docker compose up running needed containers in the
 .PHONY: pull_docker_compose
 pull_docker_compose:		## Pull docker latest versions of images
 	./development_assist/docker_compose_wrapper pull
+
+#
+# Production Related Commands
+#
+.PHONY: gunicorn
+gunicorn:			## Run gunicorn server
+	${UV_COMMAND_PREFIX} -m gunicorn djforge.wsgi:application
+
+
+.PHONY: celery
+celery:				## Run celery
+	@echo "Running celery..."
+	uv run celery -A djforge worker -l info
