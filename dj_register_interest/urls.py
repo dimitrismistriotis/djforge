@@ -7,5 +7,9 @@ from .views import RegisterInterestView
 app_name = "dj_register_interest"
 
 urlpatterns = [
-    path("", RegisterInterestView.as_view(), name="register_interest"),
+    path(
+        "",
+        RegisterInterestView.as_view(),
+        name="register_interest",
+    ),
 ]

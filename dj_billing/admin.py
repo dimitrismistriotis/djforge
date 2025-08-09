@@ -12,17 +12,32 @@ from .models import Subscription
 class CustomerAdmin(admin.ModelAdmin):
     """Admin configuration for Customer model."""
 
-    list_display = ["user", "stripe_customer_id", "created_at"]
+    list_display = [
+        "user",
+        "stripe_customer_id",
+        "created_at",
+    ]
     list_filter = ["created_at"]
-    search_fields = ["user__email", "stripe_customer_id"]
-    readonly_fields = ["created_at", "updated_at"]
+    search_fields = [
+        "user__email",
+        "stripe_customer_id",
+    ]
+    readonly_fields = [
+        "created_at",
+        "updated_at",
+    ]
 
 
 @admin.register(Plan)
 class PlanAdmin(admin.ModelAdmin):
     """Admin configuration for Plan model."""
 
-    list_display = ["stripe_name_display", "stripe_price_display", "order", "is_active"]
+    list_display = [
+        "stripe_name_display",
+        "stripe_price_display",
+        "order",
+        "is_active",
+    ]
     list_filter = ["is_active"]
     search_fields = ["stripe_product_id"]
     list_editable = ["order"]
@@ -71,8 +86,14 @@ class SubscriptionAdmin(admin.ModelAdmin):
         "current_period_start",
         "current_period_end",
     ]
-    list_filter = ["status", "created_at"]
-    search_fields = ["customer__user__email", "stripe_subscription_id"]
+    list_filter = [
+        "status",
+        "created_at",
+    ]
+    search_fields = [
+        "customer__user__email",
+        "stripe_subscription_id",
+    ]
     readonly_fields = ["created_at", "updated_at"]
     date_hierarchy = "current_period_start"
 
@@ -81,8 +102,24 @@ class SubscriptionAdmin(admin.ModelAdmin):
 class PaymentAdmin(admin.ModelAdmin):
     """Admin configuration for Payment model."""
 
-    list_display = ["customer", "amount", "currency", "status", "created_at"]
-    list_filter = ["status", "currency", "created_at"]
-    search_fields = ["customer__user__email", "stripe_payment_intent_id"]
-    readonly_fields = ["created_at", "updated_at"]
+    list_display = [
+        "customer",
+        "amount",
+        "currency",
+        "status",
+        "created_at",
+    ]
+    list_filter = [
+        "status",
+        "currency",
+        "created_at",
+    ]
+    search_fields = [
+        "customer__user__email",
+        "stripe_payment_intent_id",
+    ]
+    readonly_fields = [
+        "created_at",
+        "updated_at",
+    ]
     date_hierarchy = "created_at"

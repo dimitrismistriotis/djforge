@@ -10,8 +10,24 @@ from .views import license
 app_name = "dj_content"
 
 urlpatterns = [
-    path("about_us", about_us, name="about-us"),
-    path("cookies_policy", cookies_policy, name="cookies-policy"),
-    path("health", health, name="health"),
-    path("license", license, name="license"),
+    path(
+        "about_us",
+        about_us,
+        name="about-us",
+    ),
+    path(
+        "cookies_policy",
+        cookies_policy,
+        name="cookies-policy",
+    ),
+    path(
+        "health",
+        health,
+        name="health",
+    ),
+    path(
+        "license",
+        license,
+        name="license",
+    ),
 ]

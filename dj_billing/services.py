@@ -47,13 +47,17 @@ class StripeService:
             )
 
             logger.info(
-                f"Created Stripe customer {stripe_customer.id} for user {user.email}"
+                "Created Stripe customer %s for user %s",
+                stripe_customer.id,
+                user.email,
             )
             return customer
 
         except stripe.error.StripeError as exception:
             logger.error(
-                f"Failed to create Stripe customer for user {user.email}: {exception}"
+                "Failed to create Stripe customer for user %s: %s",
+                user.email,
+                exception,
             )
             raise
 
