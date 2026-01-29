@@ -1,17 +1,17 @@
 [project]
 name = "djforge"
-version = "1.0.1"
+version = "1.1.1"
 description = "Bootstrap and Grow your SaaS with Django"
 readme = "README.md"
 authors = [
     { name = "Dimitrios Mistriotis", email = "dimitrios@mistriotis.com" },
 ]
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
     #
     # Django framework - core dependency
     #
-    "django>=5.0.13",
+    "django>=6.0.1",
     #
     # Package that allows you to use Twelve-factor methodology to configure your Django
     # application with environment variables.
