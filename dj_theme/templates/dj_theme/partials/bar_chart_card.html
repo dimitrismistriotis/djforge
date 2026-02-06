@@ -37,7 +37,7 @@
       </p>
     </div>
     <div class="w-full max-w-lg">
-      <div date-rangepicker class="grid items-center grid-cols-2 gap-4">
+      <div class="grid items-center grid-cols-2 gap-4">
         <div class="relative">
           <div
             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
@@ -61,9 +61,8 @@
           </div>
           <input
             name="start"
-            type="text"
+            type="date"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="From"
           />
         </div>
         <div class="relative">
@@ -89,9 +88,8 @@
           </div>
           <input
             name="end"
-            type="text"
+            type="date"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="To"
           />
         </div>
       </div>
@@ -102,11 +100,11 @@
   <div
     class="flex items-center justify-between pt-3 mt-4 border-t border-gray-200 sm:pt-6 dark:border-gray-700"
   >
-    <div>
-      <button
+    <div class="dropdown dropdown-top">
+      <div
+        tabindex="0"
+        role="button"
         class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-        type="button"
-        data-dropdown-toggle="sales-by-category-dropdown"
       >
         Last 7 days
         <svg
@@ -123,26 +121,20 @@
             d="M19 9l-7 7-7-7"
           ></path>
         </svg>
-      </button>
-      <!-- Dropdown menu -->
-      <div
-        class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-        id="sales-by-category-dropdown"
-      >
-        <div class="px-4 py-3" role="none">
+      </div>
+      <div tabindex="0" class="dropdown-content z-50 bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600 w-48">
+        <div class="px-4 py-3">
           <p
             class="text-sm font-medium text-gray-900 truncate dark:text-white"
-            role="none"
           >
             Sep 16, 2021 - Sep 22, 2021
           </p>
         </div>
-        <ul class="py-1" role="none">
+        <ul class="py-1 menu">
           <li>
             <a
               href="#"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
               >Yesterday</a
             >
           </li>
@@ -150,7 +142,6 @@
             <a
               href="#"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
               >Today</a
             >
           </li>
@@ -158,7 +149,6 @@
             <a
               href="#"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
               >Last 7 days</a
             >
           </li>
@@ -166,7 +156,6 @@
             <a
               href="#"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
               >Last 30 days</a
             >
           </li>
@@ -174,16 +163,14 @@
             <a
               href="#"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
               >Last 90 days</a
             >
           </li>
         </ul>
-        <div class="py-1" role="none">
+        <div class="py-1">
           <a
             href="#"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-            role="menuitem"
             >Custom...</a
           >
         </div>
