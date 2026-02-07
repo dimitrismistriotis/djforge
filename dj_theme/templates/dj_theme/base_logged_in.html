@@ -1,12 +1,6 @@
 {% extends "dj_theme/base.html" %}
 {% load static %}
 
-{% comment %}
-  Decided to roll with https://github.com/themesberg/flowbite-admin-dashboard/tree/main
-  by Tanislav Robert @robert1508 and Zoltán Szőgyényi @zoltanszogyenyi
-  licensed under MIT License, and then refactor/change as we go along.
-{% endcomment %}
-
 
 {% block extra_head_entries %}
   {{ block.super }}
@@ -14,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="mask-icon" href="https://flowbite-admin-dashboard.vercel.app/safari-pinned-tab.svg" color="#5bbad5">
 
   <script>
     if (localStorage.getItem('color-theme') === 'dark' ||
@@ -28,12 +21,6 @@
 {% endblock extra_head_entries %}
 
 {% block page_body %}
-  {% comment %}
-    Original theme wraps html tag as well: <html lang="en" class="dark">
-
-    Flowbite included at the end for both logged in and not logged in pages.
-  {% endcomment %}
-
   <body class="bg-gray-50 dark:bg-gray-800">
     {% block navigation_bar %}
       {% include "dj_theme/partials/top_navigation_bar.html" %}

@@ -1,7 +1,5 @@
 /**
- * Code from: https://github.com/themesberg/flowbite-admin-dashboard/blob/main/src/dark-mode.js
- * and https://flowbite.com/docs/customize/dark-mode/
- * plus wrapping
+ * Dark mode toggle functionality.
  */
 (function () {
     const themeToggleDarkIcon = document.getElementById(
