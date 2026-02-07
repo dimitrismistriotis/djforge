@@ -4,6 +4,7 @@
 
 -   Uv instead of Poetry for package management
 -   Update ruff formatting to latest version
+-   Replaced Flowbite with daisyUI
 
 ## Version 0.3.0
 
