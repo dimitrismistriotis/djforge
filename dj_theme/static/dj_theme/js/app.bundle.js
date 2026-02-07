@@ -4357,7 +4357,7 @@ Break sourcmapping as it breaks builds. Can assemble back by bringing everything
 //#
 sourceMappingURL
 =
-flowbite.js.map
+app.bundle.js.map
 */
 
 /***/ }),
@@ -4510,8 +4510,6 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 
-// EXTERNAL MODULE: ./node_modules/flowbite/dist/flowbite.js
-var flowbite = __webpack_require__(730);
 // EXTERNAL MODULE: ./src/sidebar.js
 var sidebar = __webpack_require__(872);
 // EXTERNAL MODULE: ./node_modules/apexcharts/dist/apexcharts.common.js

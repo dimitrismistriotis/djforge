@@ -13,34 +13,34 @@
     </div>
     <div class="items-center sm:flex">
       <div class="flex items-center">
-        <button
-          id="dropdownDefault"
-          data-dropdown-toggle="dropdown"
-          class="mb-4 sm:mb-0 mr-4 inline-flex items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          type="button"
-        >
-          Filter by status
-          <svg
-            class="w-4 h-4 ml-2"
-            aria-hidden="true"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+        <div class="dropdown">
+          <div
+            tabindex="0"
+            role="button"
+            class="mb-4 sm:mb-0 mr-4 inline-flex items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
-        </button>
-        <!-- Dropdown menu -->
-        <div
-          id="dropdown"
-          class="z-10 hidden w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700"
-        >
+            Filter by status
+            <svg
+              class="w-4 h-4 ml-2"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </div>
+          <!-- Dropdown menu -->
+          <div
+            tabindex="0"
+            class="dropdown-content z-10 w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700"
+          >
           <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">
             Category
           </h6>
@@ -111,6 +111,7 @@
               </label>
             </li>
           </ul>
+        </div>
         </div>
       </div>
       <div date-rangepicker class="flex items-center space-x-4">
@@ -848,11 +849,11 @@
 
   <!-- Card Footer -->
   <div class="flex items-center justify-between pt-3 sm:pt-6">
-    <div>
-      <button
+    <div class="dropdown">
+      <div
+        tabindex="0"
+        role="button"
         class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-        type="button"
-        data-dropdown-toggle="transactions-dropdown"
       >
         Last 7 days
         <svg
@@ -869,11 +870,11 @@
             d="M19 9l-7 7-7-7"
           ></path>
         </svg>
-      </button>
+      </div>
       <!-- Dropdown menu -->
       <div
-        class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-        id="transactions-dropdown"
+        tabindex="0"
+        class="dropdown-content z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
       >
         <div class="px-4 py-3" role="none">
           <p
