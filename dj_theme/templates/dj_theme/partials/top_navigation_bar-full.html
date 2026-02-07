@@ -1,3 +1,5 @@
+{% comment %}Placeholder avatar images from https://ui-avatars.com{% endcomment %}
+{% load static %}
 <nav
   class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
 >
@@ -33,15 +35,15 @@
           </svg>
         </button>
         <a
-          href="https://flowbite-admin-dashboard.vercel.app/"
+          href="#"
           class="flex ml-2 md:mr-24">
           <img
-            src="https://flowbite-admin-dashboard.vercel.app/images/logo.svg"
+            src="{% static 'dj_favicons/favicon-32x32.png' %}"
             class="h-8 mr-3"
-            alt="FlowBite Logo"
+            alt="DJ Forge Logo"
           />
           <span
-            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
+            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">DJ Forge</span>
         </a>
         <form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
           <label for="topbar-search" class="sr-only">Search</label>
@@ -70,16 +72,6 @@
         </form>
       </div>
       <div class="flex items-center">
-        <div class="hidden mr-3 -mb-1 sm:block">
-          <a
-            class="github-button"
-            href="https://github.com/themesberg/flowbite-admin-dashboard"
-            data-color-scheme="no-preference: dark; light: light; dark: light;"
-            data-icon="octicon-star"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star themesberg/flowbite-admin-dashboard on GitHub">Star</a>
-        </div>
 
         <button
           id="toggleSidebarMobileSearch"
@@ -122,7 +114,7 @@
                 <div class="flex-shrink-0">
                   <img
                     class="rounded-full w-11 h-11"
-                    src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green.png"
+                    src="{% static 'dj_theme/images/avatars/bonnie-green.png' %}"
                     alt="Jese image"
                   />
                   <div
@@ -157,7 +149,7 @@
                 <div class="flex-shrink-0">
                   <img
                     class="rounded-full w-11 h-11"
-                    src="https://flowbite-admin-dashboard.vercel.app/images/users/jese-leos.png"
+                    src="{% static 'dj_theme/images/avatars/jese-leos.png' %}"
                     alt="Jese image"
                   />
                   <div
@@ -192,7 +184,7 @@
                 <div class="flex-shrink-0">
                   <img
                     class="rounded-full w-11 h-11"
-                    src="https://flowbite-admin-dashboard.vercel.app/images/users/joseph-mcfall.png"
+                    src="{% static 'dj_theme/images/avatars/joseph-mcfall.png' %}"
                     alt="Joseph image"
                   />
                   <div
@@ -229,7 +221,7 @@
                 <div class="flex-shrink-0">
                   <img
                     class="rounded-full w-11 h-11"
-                    src="https://flowbite-admin-dashboard.vercel.app/images/users/leslie-livingston.png"
+                    src="{% static 'dj_theme/images/avatars/leslie-livingston.png' %}"
                     alt="Leslie image"
                   />
                   <div
@@ -267,7 +259,7 @@
                 <div class="flex-shrink-0">
                   <img
                     class="rounded-full w-11 h-11"
-                    src="https://flowbite-admin-dashboard.vercel.app/images/users/robert-brown.png"
+                    src="{% static 'dj_theme/images/avatars/robert-brown.png' %}"
                     alt="Robert image"
                   />
                   <div
@@ -426,7 +418,7 @@
             <span class="sr-only">Open user menu</span>
             <img
               class="w-8 h-8 rounded-full"
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              src="{% static 'dj_theme/images/avatars/user-default.png' %}"
               alt="user photo"
             />
           </div>
@@ -436,7 +428,7 @@
                 Neil Sims
               </p>
               <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                neil.sims@flowbite.com
+                neil.sims@example.com
               </p>
             </div>
             <ul class="py-1" role="none">
