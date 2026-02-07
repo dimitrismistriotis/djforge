@@ -278,7 +278,7 @@ class StripeService:
                         subscription = Subscription.objects.get(
                             stripe_subscription_id=invoice["subscription"]
                         )
-                except (stripe.error.StripeError, Subscription.DoesNotExist):
+                except stripe.error.StripeError, Subscription.DoesNotExist:
                     pass
 
             payment = Payment.objects.create(
