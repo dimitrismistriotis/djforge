@@ -12,9 +12,9 @@ Also:
 
 [Postgres](https://www.postgresql.org/)
 
-[Tailwind CSS Django - Flowbite](https://flowbite.com/docs/getting-started/django/)
+[Tailwind CSS Django](https://tailwindcss.com/)
 
-[Flowbite](https://flowbite.com/docs/getting-started/introduction/)
+[daisyUI](https://daisyui.com/)
 
 [The Ruff Formatter](https://docs.astral.sh/ruff/)
 

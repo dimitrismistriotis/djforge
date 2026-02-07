@@ -41,7 +41,7 @@ added manually. Similar situation for email templates.
 Then run:
 
 ```shell
-npm install tailwindcss @tailwindcss/cli flowbite
+npm install
 ```
 
 Outputs of the above should be placed in version control,
