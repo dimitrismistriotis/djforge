@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load static %}
 <nav
-  class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+  class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-base-200 dark:border-base-300"
 >
   <div class="px-3 py-3 lg:px-5 lg:pl-3">
     <div class="flex items-center justify-between">
@@ -10,7 +10,7 @@
           id="toggleSidebarMobile"
           aria-expanded="true"
           aria-controls="sidebar"
-          class="p-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+          class="p-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-base-300 focus:ring-2 focus:ring-gray-100 dark:focus:ring-base-300 dark:text-base-content/60 dark:hover:bg-base-300 dark:hover:text-base-content">
           <svg
             id="toggleSidebarMobileHamburger"
             class="w-6 h-6"
@@ -46,7 +46,7 @@
           />
 
           <span
-            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{% trans "DJ Forge" %}</span>
+            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-base-content">{% trans "DJ Forge" %}</span>
         </a>
       </div>
 
@@ -55,7 +55,7 @@
           <button
             id="theme-toggle"
             type="button"
-            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+            class="text-gray-500 dark:text-base-content/60 hover:bg-gray-100 dark:hover:bg-base-300 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-base-300 rounded-lg text-sm p-2.5">
             <svg
               id="theme-toggle-dark-icon"
               class="hidden w-5 h-5"
@@ -82,25 +82,25 @@
 
         <div class="dropdown dropdown-end ml-3">
           <div tabindex="0" role="button"
-              class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+              class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-base-content/20">
               <span class="sr-only">{% trans "Open user menu" %}</span>
 
               {# user-circle from https://heroicons.com/solid and modified stroke #}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 stroke-gray-50 dark:stroke-grey-100 fill-white dark:fill-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 stroke-gray-50 dark:stroke-base-content fill-white dark:fill-base-content">
                 <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
               </svg>
           </div>
 
           <div tabindex="0"
-            class="dropdown-content z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
+            class="dropdown-content z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-base-300 dark:divide-base-content/20">
             <div class="px-4 py-3" role="none">
               {% if user.name %}
-                <p class="text-sm text-gray-900 dark:text-white" role="none">
+                <p class="text-sm text-gray-900 dark:text-base-content" role="none">
                   {{ user.name }}
                 </p>
               {% endif %}
               <p
-                class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                class="text-sm font-medium text-gray-900 truncate dark:text-base-content/80"
                 role="none">
                 {{ user.email }}
               </p>
@@ -110,21 +110,21 @@
               <li>
                 <a
                   href="{% url 'dj_dashboard:dashboard' %}"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/80 dark:hover:bg-neutral dark:hover:text-base-content"
                   role="menuitem">{% trans "Dashboard" %}</a>
               </li>
 
               <li>
                 <a
                   href="{% url 'account_change_password' %}"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/80 dark:hover:bg-neutral dark:hover:text-base-content"
                   role="menuitem">{% trans "Change Password" %}</a>
               </li>
               <li>
                 <form action="{% url 'account_logout' %}" method="post">
                   {% csrf_token %}
 
-                  <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{% trans "Log Out" %}</button>
+                  <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/80 dark:hover:bg-neutral dark:hover:text-base-content">{% trans "Log Out" %}</button>
                 </form>
               </li>
             </ul>

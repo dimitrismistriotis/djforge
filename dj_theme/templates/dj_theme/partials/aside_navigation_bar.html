@@ -7,20 +7,20 @@
   aria-label="Sidebar"
 >
   <div
-    class="relative flex flex-col flex-1 min-h-0 pt-0 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+    class="relative flex flex-col flex-1 min-h-0 pt-0 bg-white border-r border-gray-200 dark:bg-base-200 dark:border-base-300"
   >
     <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
       <div
-        class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+        class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200 dark:bg-base-200 dark:divide-base-300"
       >
         <ul class="pb-2 space-y-2">
           <li>
             <a
               href="{% url 'dj_dashboard:dashboard' %}"
-              class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+              class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-base-content dark:hover:bg-base-300"
             >
               <svg
-                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-base-content/60 dark:group-hover:text-base-content"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,10 +38,10 @@
           <li>
             <a
               href="{% url 'dj_chatbot:chat' %}"
-              class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+              class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-base-content dark:hover:bg-base-300"
             >
               <svg
-                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-base-content/60 dark:group-hover:text-base-content"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,10 +59,10 @@
             <li>
               <a
                 href="{% url 'dj_users:user_list' %}"
-                class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+                class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-base-content dark:hover:bg-base-300"
               >
                 <svg
-                  class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                  class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-base-content/60 dark:group-hover:text-base-content"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,10 +81,10 @@
           <li>
             <a
               href="{% url 'dj_billing:pricing' %}"
-              class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+              class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-base-content dark:hover:bg-base-300"
             >
               <svg
-                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-base-content/60 dark:group-hover:text-base-content"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,9 +101,9 @@
           {# Settings #}
           <li>
             <details class="group">
-              <summary class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg cursor-pointer hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 list-none">
+              <summary class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg cursor-pointer hover:bg-gray-100 dark:text-base-content dark:hover:bg-base-300 list-none">
                 <svg
-                  class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                  class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-base-content/60 dark:group-hover:text-base-content"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +136,7 @@
                 <li>
                   <a
                     href="#todo"
-                    class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700"
+                    class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-base-content dark:hover:bg-base-300"
                   >
                     {% trans "Email Address" %}
                   </a>
@@ -144,7 +144,7 @@
                 <li>
                   <a
                     href="{% url 'account_change_password' %}"
-                    class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700"
+                    class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-base-content dark:hover:bg-base-300"
                   >
                     {% trans "Change Password" %}
                   </a>
@@ -156,9 +156,9 @@
           {# Demos/PoCs #}
           <li>
             <details class="group">
-              <summary class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg cursor-pointer hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 list-none">
+              <summary class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg cursor-pointer hover:bg-gray-100 dark:text-base-content dark:hover:bg-base-300 list-none">
                 <svg
-                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-base-content/60 dark:group-hover:text-base-content"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +189,7 @@
                 <li>
                   <a
                     href="{% url 'dj_pocs:map_and_postcode_analysis' %}"
-                    class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700"
+                    class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-base-content dark:hover:bg-base-300"
                   >
                     {% trans "Map / Post Codes" %}
                   </a>
@@ -198,7 +198,7 @@
                   <li>
                     <a
                       href="{% url 'dj_pocs:admin_only_display' %}"
-                      class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700"
+                      class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-base-content dark:hover:bg-base-300"
                     >
                       {% trans "Admin Only Page" %}
                     </a>
@@ -211,7 +211,7 @@
 
         <div class="pt-2 space-y-2">
           {% if request.user.is_impersonate %}
-            <p class="text-sm text-gray-600 dark:text-gray-400">
+            <p class="text-sm text-gray-600 dark:text-base-content/60">
               Logged in as
               <span class="font-bold">{{ request.impersonator }}</span>
               impersonating
@@ -220,10 +220,10 @@
 
             <a
               href="{% url 'impersonate-stop' %}"
-              class="w-full flex items-center p-2 text-base text-red-900 transition duration-75 rounded-lg hover:bg-red-100 group dark:text-red-200 dark:hover:bg-red-700 bg-red-50 border border-red-200 dark:bg-red-900 dark:border-red-700"
+              class="w-full flex items-center p-2 text-base text-red-900 transition duration-75 rounded-lg hover:bg-red-100 group dark:text-error/60 dark:hover:bg-error/50 bg-red-50 border border-red-200 dark:bg-error/20 dark:border-error/50"
             >
               <svg
-                class="flex-shrink-0 w-6 h-6 text-red-500 transition duration-75 group-hover:text-red-900 dark:text-red-400 dark:group-hover:text-white"
+                class="flex-shrink-0 w-6 h-6 text-red-500 transition duration-75 group-hover:text-red-900 dark:text-error dark:group-hover:text-base-content"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -239,10 +239,10 @@
             {% csrf_token %}
             <button
               type="submit"
-              class="w-full flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+              class="w-full flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group dark:text-base-content dark:hover:bg-base-300"
             >
               <svg
-                class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-base-content/60 dark:group-hover:text-base-content"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -260,6 +260,6 @@
 </aside>
 
 <div
-  class="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/90"
+  class="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-base-100/90"
   id="sidebarBackdrop"
 ></div>

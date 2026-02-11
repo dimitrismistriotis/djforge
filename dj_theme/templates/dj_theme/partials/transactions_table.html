@@ -1,13 +1,13 @@
 <div
-  class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800"
+  class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-base-300 sm:p-6 dark:bg-base-200"
 >
   <!-- Card header -->
   <div class="items-center justify-between lg:flex">
     <div class="mb-4 lg:mb-0">
-      <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+      <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-base-content">
         Transactions
       </h3>
-      <span class="text-base font-normal text-gray-500 dark:text-gray-400"
+      <span class="text-base font-normal text-gray-500 dark:text-base-content/60"
         >This is a list of latest transactions</span
       >
     </div>
@@ -17,7 +17,7 @@
           <div
             tabindex="0"
             role="button"
-            class="mb-4 sm:mb-0 mr-4 inline-flex items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            class="mb-4 sm:mb-0 mr-4 inline-flex items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-base-200 dark:text-base-content dark:border-base-content/20 dark:hover:bg-base-300 dark:hover:border-base-content/20 dark:focus:ring-base-300"
           >
             Filter by status
             <svg
@@ -39,9 +39,9 @@
           <!-- Dropdown menu -->
           <div
             tabindex="0"
-            class="dropdown-content z-10 w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700"
+            class="dropdown-content z-10 w-56 p-3 bg-white rounded-lg shadow dark:bg-base-300"
           >
-          <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">
+          <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-base-content">
             Category
           </h6>
           <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
@@ -50,12 +50,12 @@
                 id="apple"
                 type="checkbox"
                 value=""
-                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary dark:ring-offset-base-300 focus:ring-2 dark:bg-neutral dark:border-base-content/30"
               />
 
               <label
                 for="apple"
-                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-base-content"
               >
                 Completed (56)
               </label>
@@ -67,12 +67,12 @@
                 type="checkbox"
                 value=""
                 checked
-                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary dark:ring-offset-base-300 focus:ring-2 dark:bg-neutral dark:border-base-content/30"
               />
 
               <label
                 for="fitbit"
-                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-base-content"
               >
                 Cancelled (56)
               </label>
@@ -83,12 +83,12 @@
                 id="dell"
                 type="checkbox"
                 value=""
-                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary dark:ring-offset-base-300 focus:ring-2 dark:bg-neutral dark:border-base-content/30"
               />
 
               <label
                 for="dell"
-                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-base-content"
               >
                 In progress (56)
               </label>
@@ -100,12 +100,12 @@
                 type="checkbox"
                 value=""
                 checked
-                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary dark:ring-offset-base-300 focus:ring-2 dark:bg-neutral dark:border-base-content/30"
               />
 
               <label
                 for="asus"
-                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-base-content"
               >
                 In review (97)
               </label>
@@ -120,7 +120,7 @@
             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
           >
             <svg
-              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              class="w-5 h-5 text-gray-500 dark:text-base-content/60"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@
           <input
             name="start"
             type="text"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-base-300 dark:border-base-content/20 dark:placeholder-base-content/50 dark:text-base-content dark:focus:ring-primary dark:focus:border-primary"
             placeholder="From"
           />
         </div>
@@ -148,7 +148,7 @@
             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
           >
             <svg
-              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              class="w-5 h-5 text-gray-500 dark:text-base-content/60"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +167,7 @@
           <input
             name="end"
             type="text"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-base-300 dark:border-base-content/20 dark:placeholder-base-content/50 dark:text-base-content dark:focus:ring-primary dark:focus:border-primary"
             placeholder="To"
           />
         </div>
@@ -180,73 +180,73 @@
       <div class="inline-block min-w-full align-middle">
         <div class="overflow-hidden shadow sm:rounded-lg">
           <table
-            class="min-w-full divide-y divide-gray-200 dark:divide-gray-600"
+            class="min-w-full divide-y divide-gray-200 dark:divide-base-content/20"
           >
-            <thead class="bg-gray-50 dark:bg-gray-700">
+            <thead class="bg-gray-50 dark:bg-base-300">
               <tr>
                 <th
                   scope="col"
-                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-base-content"
                 >
                   Transaction
                 </th>
                 <th
                   scope="col"
-                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-base-content"
                 >
                   Date & Time
                 </th>
                 <th
                   scope="col"
-                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-base-content"
                 >
                   Amount
                 </th>
                 <th
                   scope="col"
-                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-base-content"
                 >
                   Reference number
                 </th>
                 <th
                   scope="col"
-                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-base-content"
                 >
                   Payment method
                 </th>
                 <th
                   scope="col"
-                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                  class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-base-content"
                 >
                   Status
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-white dark:bg-gray-800">
+            <tbody class="bg-white dark:bg-base-200">
               <tr>
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment from
                   <span class="font-semibold">Bonnie Green</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Apr 23 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   $2300
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0047568936
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-7 h-7"
@@ -282,35 +282,35 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500"
+                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-base-300 dark:text-success border border-green-100 dark:border-success"
                     >Completed</span
                   >
                 </td>
               </tr>
-              <tr class="bg-gray-50 dark:bg-gray-700">
+              <tr class="bg-gray-50 dark:bg-base-300">
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment refund to
                   <span class="font-semibold">#00910</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Apr 23 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   -$670
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0078568936
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-6 h-6"
@@ -340,35 +340,35 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500"
+                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-base-300 dark:text-success border border-green-100 dark:border-success"
                     >Completed</span
                   >
                 </td>
               </tr>
               <tr>
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment failed from
                   <span class="font-semibold">#087651</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Apr 18 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   $234
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0088568934
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-6 h-6"
@@ -398,35 +398,35 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-red-100 dark:border-red-400 dark:bg-gray-700 dark:text-red-400"
+                    class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-red-100 dark:border-red-400 dark:bg-base-300 dark:text-red-400"
                     >Cancelled</span
                   >
                 </td>
               </tr>
-              <tr class="bg-gray-50 dark:bg-gray-700">
+              <tr class="bg-gray-50 dark:bg-base-300">
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment from
                   <span class="font-semibold">Lana Byrd</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Apr 15 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   $5000
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0018568911
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-6 h-6"
@@ -456,35 +456,35 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-purple-100 dark:bg-gray-700 dark:border-purple-500 dark:text-purple-400"
+                    class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-purple-100 dark:bg-base-300 dark:border-purple-500 dark:text-purple-400"
                     >In progress</span
                   >
                 </td>
               </tr>
               <tr>
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment from
                   <span class="font-semibold">Jese Leos</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Apr 15 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   $2300
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0045568939
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-7 h-7"
@@ -520,35 +520,35 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500"
+                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-base-300 dark:text-success border border-green-100 dark:border-success"
                     >Completed</span
                   >
                 </td>
               </tr>
-              <tr class="bg-gray-50 dark:bg-gray-700">
+              <tr class="bg-gray-50 dark:bg-base-300">
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Refund to
                   <span class="font-semibold">THEMESBERG LLC</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Apr 11 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   -$560
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0031568935
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-7 h-7"
@@ -584,7 +584,7 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-orange-100 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-orange-100 dark:bg-gray-700 dark:border-orange-300 dark:text-orange-300"
+                    class="bg-orange-100 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-orange-100 dark:bg-base-300 dark:border-orange-300 dark:text-orange-300"
                     >In review</span
                   >
                 </td>
@@ -592,28 +592,28 @@
 
               <tr>
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment from
                   <span class="font-semibold">Lana Lysle</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Apr 6 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   $1437
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0023568934
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-7 h-7"
@@ -649,35 +649,35 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-orange-100 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-orange-100 dark:bg-gray-700 dark:border-orange-300 dark:text-orange-300"
+                    class="bg-orange-100 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-orange-100 dark:bg-base-300 dark:border-orange-300 dark:text-orange-300"
                     >In review</span
                   >
                 </td>
               </tr>
-              <tr class="bg-gray-50 dark:bg-gray-700">
+              <tr class="bg-gray-50 dark:bg-base-300">
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment to
                   <span class="font-semibold">Joseph Mcfall</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Apr 1 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   $980
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0057568935
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-6 h-6"
@@ -707,35 +707,35 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500"
+                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-base-300 dark:text-success border border-green-100 dark:border-success"
                     >Completed</span
                   >
                 </td>
               </tr>
               <tr>
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment from
                   <span class="font-semibold">Alphabet LLC</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Mar 23 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   $11,436
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   00836143841
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-7 h-7"
@@ -771,35 +771,35 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-purple-100 dark:bg-gray-700 dark:border-purple-500 dark:text-purple-400"
+                    class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-purple-100 dark:bg-base-300 dark:border-purple-500 dark:text-purple-400"
                     >In progress</span
                   >
                 </td>
               </tr>
-              <tr class="bg-gray-50 dark:bg-gray-700">
+              <tr class="bg-gray-50 dark:bg-base-300">
                 <td
-                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   Payment from
                   <span class="font-semibold">Bonnie Green</span>
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   Mar 23 ,2021
                 </td>
                 <td
-                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
+                  class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-base-content"
                 >
                   $560
                 </td>
                 <td
-                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   0031568935
                 </td>
                 <td
-                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
+                  class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-base-content/60"
                 >
                   <svg
                     class="w-7 h-7"
@@ -835,7 +835,7 @@
                 </td>
                 <td class="p-4 whitespace-nowrap">
                   <span
-                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500"
+                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-base-300 dark:text-success border border-green-100 dark:border-success"
                     >Completed</span
                   >
                 </td>
@@ -853,7 +853,7 @@
       <div
         tabindex="0"
         role="button"
-        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-base-content/60 dark:hover:text-base-content"
       >
         Last 7 days
         <svg
@@ -874,11 +874,11 @@
       <!-- Dropdown menu -->
       <div
         tabindex="0"
-        class="dropdown-content z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+        class="dropdown-content z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-base-300 dark:divide-base-content/20"
       >
         <div class="px-4 py-3" role="none">
           <p
-            class="text-sm font-medium text-gray-900 truncate dark:text-white"
+            class="text-sm font-medium text-gray-900 truncate dark:text-base-content"
             role="none"
           >
             Sep 16, 2021 - Sep 22, 2021
@@ -888,7 +888,7 @@
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content"
               role="menuitem"
               >Yesterday</a
             >
@@ -896,7 +896,7 @@
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content"
               role="menuitem"
               >Today</a
             >
@@ -904,7 +904,7 @@
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content"
               role="menuitem"
               >Last 7 days</a
             >
@@ -912,7 +912,7 @@
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content"
               role="menuitem"
               >Last 30 days</a
             >
@@ -920,7 +920,7 @@
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content"
               role="menuitem"
               >Last 90 days</a
             >
@@ -929,7 +929,7 @@
         <div class="py-1" role="none">
           <a
             href="#"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content"
             role="menuitem"
             >Custom...</a
           >
@@ -939,7 +939,7 @@
     <div class="flex-shrink-0">
       <a
         href="#"
-        class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700"
+        class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-100 dark:text-primary dark:hover:bg-base-300"
       >
         Transactions Report
         <svg

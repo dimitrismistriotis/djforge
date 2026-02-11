@@ -14,26 +14,28 @@
         (!('color-theme' in localStorage) &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'night');
     } else {
-        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
     }
   </script>
 {% endblock extra_head_entries %}
 
 {% block page_body %}
-  <body class="bg-gray-50 dark:bg-gray-800">
+  <body class="bg-gray-50 dark:bg-base-200">
     {% block navigation_bar %}
       {% include "dj_theme/partials/top_navigation_bar.html" %}
     {% endblock navigation_bar %}
 
-    <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
+    <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-base-100">
       {% block side_navigation_bar %}
         {% include "dj_theme/partials/aside_navigation_bar.html" %}
       {% endblock side_navigation_bar %}
 
       <div
         id="main-content"
-        class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
+        class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-base-100"
       >
         <main>
           <div class="px-4 pt-6">

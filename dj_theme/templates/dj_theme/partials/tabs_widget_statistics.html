@@ -1,10 +1,10 @@
 {% comment %}Placeholder images from https://ui-avatars.com{% endcomment %}
 {% load static %}
 <div
-  class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800"
+  class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-base-300 sm:p-6 dark:bg-base-200"
 >
   <h3
-    class="flex items-center mb-4 text-lg font-semibold text-gray-900 dark:text-white"
+    class="flex items-center mb-4 text-lg font-semibold text-gray-900 dark:text-base-content"
   >
     Statistics this month
     <div class="tooltip tooltip-bottom ml-2" data-tip="Statistics is a branch of applied mathematics that involves the collection, description, analysis, and inference of conclusions from quantitative data.">
@@ -30,7 +30,7 @@
     <label for="tabs" class="sr-only">Select tab</label>
     <select
       id="tabs"
-      class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+      class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-base-300 dark:border-base-content/20 dark:placeholder-base-content/50 dark:text-base-content dark:focus:ring-primary dark:focus:border-primary"
     >
       <option>Top products</option>
       <option>Top Customers</option>
@@ -39,8 +39,8 @@
 
   <div role="tablist" class="tabs tabs-bordered hidden sm:flex">
     <input type="radio" name="statistics_tabs" role="tab" class="tab whitespace-nowrap" aria-label="Top products" checked />
-    <div role="tabpanel" class="tab-content border-t border-gray-200 dark:border-gray-600 pt-4">
-      <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+    <div role="tabpanel" class="tab-content border-t border-gray-200 dark:border-base-content/20 pt-4">
+      <ul role="list" class="divide-y divide-gray-200 dark:divide-base-300">
         <li class="py-3 sm:py-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center min-w-0">
@@ -50,11 +50,11 @@
                 alt="imac image"
               />
               <div class="ml-3">
-                <p class="font-medium text-gray-900 truncate dark:text-white">
+                <p class="font-medium text-gray-900 truncate dark:text-base-content">
                   iPhone 14 Pro
                 </p>
                 <div
-                  class="flex items-center justify-end flex-1 text-sm text-green-500 dark:text-green-400"
+                  class="flex items-center justify-end flex-1 text-sm text-green-500 dark:text-success"
                 >
                   <svg
                     class="w-4 h-4"
@@ -75,7 +75,7 @@
               </div>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $445,467
             </div>
@@ -90,11 +90,11 @@
                 alt="imac image"
               />
               <div class="ml-3">
-                <p class="font-medium text-gray-900 truncate dark:text-white">
+                <p class="font-medium text-gray-900 truncate dark:text-base-content">
                   Apple iMac 27"
                 </p>
                 <div
-                  class="flex items-center justify-end flex-1 text-sm text-green-500 dark:text-green-400"
+                  class="flex items-center justify-end flex-1 text-sm text-green-500 dark:text-success"
                 >
                   <svg
                     class="w-4 h-4"
@@ -115,7 +115,7 @@
               </div>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $256,982
             </div>
@@ -130,11 +130,11 @@
                 alt="watch image"
               />
               <div class="ml-3">
-                <p class="font-medium text-gray-900 truncate dark:text-white">
+                <p class="font-medium text-gray-900 truncate dark:text-base-content">
                   Apple Watch SE
                 </p>
                 <div
-                  class="flex items-center justify-end flex-1 text-sm text-red-600 dark:text-red-500"
+                  class="flex items-center justify-end flex-1 text-sm text-red-600 dark:text-error"
                 >
                   <svg
                     class="w-4 h-4"
@@ -155,7 +155,7 @@
               </div>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $201,869
             </div>
@@ -170,11 +170,11 @@
                 alt="ipad image"
               />
               <div class="ml-3">
-                <p class="font-medium text-gray-900 truncate dark:text-white">
+                <p class="font-medium text-gray-900 truncate dark:text-base-content">
                   Apple iPad Air
                 </p>
                 <div
-                  class="flex items-center justify-end flex-1 text-sm text-green-500 dark:text-green-400"
+                  class="flex items-center justify-end flex-1 text-sm text-green-500 dark:text-success"
                 >
                   <svg
                     class="w-4 h-4"
@@ -195,7 +195,7 @@
               </div>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $103,967
             </div>
@@ -210,11 +210,11 @@
                 alt="imac image"
               />
               <div class="ml-3">
-                <p class="font-medium text-gray-900 truncate dark:text-white">
+                <p class="font-medium text-gray-900 truncate dark:text-base-content">
                   Apple iMac 24"
                 </p>
                 <div
-                  class="flex items-center justify-end flex-1 text-sm text-red-600 dark:text-red-500"
+                  class="flex items-center justify-end flex-1 text-sm text-red-600 dark:text-error"
                 >
                   <svg
                     class="w-4 h-4"
@@ -235,7 +235,7 @@
               </div>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $98,543
             </div>
@@ -245,8 +245,8 @@
     </div>
 
     <input type="radio" name="statistics_tabs" role="tab" class="tab whitespace-nowrap" aria-label="Top Customers" />
-    <div role="tabpanel" class="tab-content border-t border-gray-200 dark:border-gray-600 pt-4">
-      <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+    <div role="tabpanel" class="tab-content border-t border-gray-200 dark:border-base-content/20 pt-4">
+      <ul role="list" class="divide-y divide-gray-200 dark:divide-base-300">
         <li class="py-3 sm:py-4">
           <div class="flex items-center space-x-4">
             <div class="flex-shrink-0">
@@ -257,15 +257,15 @@
               />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="font-medium text-gray-900 truncate dark:text-white">
+              <p class="font-medium text-gray-900 truncate dark:text-base-content">
                 Neil Sims
               </p>
-              <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm text-gray-500 truncate dark:text-base-content/60">
                 email@somewhere.com
               </p>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $3320
             </div>
@@ -281,15 +281,15 @@
               />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="font-medium text-gray-900 truncate dark:text-white">
+              <p class="font-medium text-gray-900 truncate dark:text-base-content">
                 Bonnie Green
               </p>
-              <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm text-gray-500 truncate dark:text-base-content/60">
                 email@somewhere.com
               </p>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $2467
             </div>
@@ -305,15 +305,15 @@
               />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="font-medium text-gray-900 truncate dark:text-white">
+              <p class="font-medium text-gray-900 truncate dark:text-base-content">
                 Michael Gough
               </p>
-              <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm text-gray-500 truncate dark:text-base-content/60">
                 email@somewhere.com
               </p>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $2235
             </div>
@@ -329,15 +329,15 @@
               />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="font-medium text-gray-900 truncate dark:text-white">
+              <p class="font-medium text-gray-900 truncate dark:text-base-content">
                 Thomes Lean
               </p>
-              <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm text-gray-500 truncate dark:text-base-content/60">
                 email@somewhere.com
               </p>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $1842
             </div>
@@ -353,15 +353,15 @@
               />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="font-medium text-gray-900 truncate dark:text-white">
+              <p class="font-medium text-gray-900 truncate dark:text-base-content">
                 Lana Byrd
               </p>
-              <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm text-gray-500 truncate dark:text-base-content/60">
                 email@somewhere.com
               </p>
             </div>
             <div
-              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+              class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-base-content"
             >
               $1044
             </div>
@@ -373,10 +373,10 @@
 
   <!-- Card Footer -->
   <div
-    class="flex items-center justify-between pt-3 mt-5 border-t border-gray-200 sm:pt-6 dark:border-gray-700"
+    class="flex items-center justify-between pt-3 mt-5 border-t border-gray-200 sm:pt-6 dark:border-base-300"
   >
     <div class="dropdown">
-      <div tabindex="0" role="button" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+      <div tabindex="0" role="button" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-base-content/60 dark:hover:text-base-content">
         Last 7 days
         <svg
           class="w-4 h-4 ml-2"
@@ -393,38 +393,38 @@
           ></path>
         </svg>
       </div>
-      <div tabindex="0" class="dropdown-content z-50 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
+      <div tabindex="0" class="dropdown-content z-50 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-base-300 dark:divide-base-content/20">
         <div class="px-4 py-3" role="none">
-          <p class="text-sm font-medium text-gray-900 truncate dark:text-white" role="none">
+          <p class="text-sm font-medium text-gray-900 truncate dark:text-base-content" role="none">
             Sep 16, 2021 - Sep 22, 2021
           </p>
         </div>
         <ul class="py-1" role="none">
           <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Yesterday</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content" role="menuitem">Yesterday</a>
           </li>
           <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Today</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content" role="menuitem">Today</a>
           </li>
           <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Last 7 days</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content" role="menuitem">Last 7 days</a>
           </li>
           <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Last 30 days</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content" role="menuitem">Last 30 days</a>
           </li>
           <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Last 90 days</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content" role="menuitem">Last 90 days</a>
           </li>
         </ul>
         <div class="py-1" role="none">
-          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Custom...</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-base-content/60 dark:hover:bg-neutral dark:hover:text-base-content" role="menuitem">Custom...</a>
         </div>
       </div>
     </div>
     <div class="flex-shrink-0">
       <a
         href="#"
-        class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700"
+        class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-100 dark:text-primary dark:hover:bg-base-300"
       >
         Full Report
         <svg
