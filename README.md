@@ -12,9 +12,9 @@ Also:
 
 [Postgres](https://www.postgresql.org/)
 
-[Tailwind CSS Django - Flowbite](https://flowbite.com/docs/getting-started/django/)
+[Tailwind CSS Django](https://tailwindcss.com/)
 
-[Flowbite](https://flowbite.com/docs/getting-started/introduction/)
+[daisyUI](https://daisyui.com/)
 
 [The Ruff Formatter](https://docs.astral.sh/ruff/)
 
@@ -32,22 +32,9 @@ Can use this one to generate specifics for your project
 
 ### Dashboard Templates
 
-Decided to use
+Initil version was a port of 
 [Flowbite Admin Dashboard](https://github.com/themesberg/flowbite-admin-dashboard)
-
-Other links from the theme:
-
--   <https://flowbite-admin-dashboard.vercel.app/playground/stacked/>
-
-Some others to check:
-
--   [Tailwind Starter Templates](https://www.tailwindtoolbox.com/starter-templates)
--   [24 Tailwind Sidebars](https://freefrontend.com/tailwind-sidebars/)
--   [Flowbite Admin Dashboard](https://github.com/themesberg/flowbite-admin-dashboard?tab=readme-ov-file#quick-start)
-    nice but very difficult to dissect and integrate, might reconsider in the near future
--   [Admin Template Day](https://www.tailwindtoolbox.com/templates/admin-template-day)
-    nice and simple, ended up using this for logged in pages
--   [Admin Template Night](https://www.tailwindtoolbox.com/templates/admin-template-night)
+to Django, now currently refactoring with [daisyUI](https://daisyui.com/) and LLM tools.
 
 ### Editors
 
@@ -60,9 +47,9 @@ for those who use or will use either of these editors.
 
 ## Dependencies
 
-Using Python 3.13 and higher.
+Using Python 3.14 and higher.
 
-Poetry is used for dependency management. Install it with `pip install poetry`.
+[Astral's uv](https://docs.astral.sh/uv/) for dependency management, etc.
 
 ## Postgres
 
@@ -80,6 +67,12 @@ tools, this means that you can use them... but so can everybody else.
 In the future prompts used to generate content be provided alongside it.
 
 ## Day to Day
+
+## With tmux Installed
+
+```shell
+make development_tmux_services
+```
 
 ## Run Database and related services with Docker Compose
 

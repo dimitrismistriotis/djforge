@@ -1,13 +1,13 @@
 {% load static %}
 {% load i18n %}
-<section class="bg-gray-50 dark:bg-gray-800">
+<section class="bg-white">
   <div
     class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6"
   >
     <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">{# Row #}
-      <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+      <div class="text-gray-500 sm:text-lg">
         <h2
-          class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+          class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900"
         >
           {% trans "Many Integrations Out of the Box" %}
         </h2>
@@ -21,13 +21,13 @@
         </p>
         <ul
           role="list"
-          class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700"
+          class="pt-8 space-y-5 border-t border-gray-200 my-7"
         >{# List #}
           <li class="flex space-x-3">{# Icon #}
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >{% trans "GitHub Actions for Testing" %}
             </span>
           </li>
@@ -36,7 +36,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
               {% trans "Postgres as Main Database" %}
             </span>
@@ -46,9 +46,9 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
-              {% trans "Tailwind CSS and Flowbite" %}
+              {% trans "Tailwind CSS and daisyUI" %}
             </span>
           </li>
 
@@ -56,7 +56,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
               {% trans "Dashboard Menu with Dark Mode" %}
             </span>
@@ -66,7 +66,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
               {% trans "Sign In / Log In / Log Out" %}
             </span>
@@ -76,7 +76,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
               {% trans "Yaml to deploy in Render.com" %}
             </span>
@@ -86,7 +86,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
               {% trans "Major Payment Processors Integration (roadmap)" %}
             </span>
@@ -96,7 +96,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
               {% trans "Proof of Concept Templates to use as reference for your features (roadmap)" %}
             </span>
@@ -106,7 +106,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
               {% trans "Role Management for Users (roadmap)" %}
             </span>
@@ -116,7 +116,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+              class="text-base font-medium leading-tight text-gray-900"
               >
               {% trans "Transactional Email Integration (roadmap)" %}
             </span>
@@ -143,9 +143,9 @@
         src="{% static "dj_landing_page/images/developer_experience.png" %}"
         alt="feature image 2"
       />
-      <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+      <div class="text-gray-500 sm:text-lg">
         <h2
-          class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+          class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900"
         >
           {% trans "Enhanced Developer Experience" %}
         </h2>
@@ -162,13 +162,13 @@
 
         <ul
           role="list"
-          class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700"
+          class="pt-8 space-y-5 border-t border-gray-200 my-7"
         >{# List #}
           <li class="flex space-x-3">
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+              class="text-base font-medium leading-tight text-gray-900">
               {% trans "Dependency Management with Poetry" %}
               </span>
           </li>
@@ -177,7 +177,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+              class="text-base font-medium leading-tight text-gray-900">
               {% trans "Testing with Pytest with different tests and plugins included" %}
             </span>
           </li>
@@ -186,7 +186,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+              class="text-base font-medium leading-tight text-gray-900">
               {% trans "Accelerate development with live CSS generation and reloading" %}
             </span>
           </li>
@@ -195,7 +195,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+              class="text-base font-medium leading-tight text-gray-900">
               {% trans "Ruff as main code linter, associated (optional) pre-commit hooks" %}
             </span>
           </li>
@@ -204,7 +204,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+              class="text-base font-medium leading-tight text-gray-900">
               {% trans "Makefile configured to automate day-to-day tasks" %}
             </span>
           </li>
@@ -213,7 +213,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+              class="text-base font-medium leading-tight text-gray-900">
               {% trans "(Optional) Commitizen for Release Management" %}
             </span>
           </li>
@@ -222,7 +222,7 @@
             {% include "dj_landing_page/partials/check_icon.svg" %}
 
             <span
-              class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+              class="text-base font-medium leading-tight text-gray-900">
               {% trans "Django Components to DRY up the code" %}
             </span>
           </li>

@@ -11,19 +11,19 @@
 {% endcomment %}
 
 {% if "prominent" in attrs.tags and "login" in attrs.tags %}
-<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-info dark:hover:bg-info/80 focus:outline-none dark:focus:ring-info/30">
   {% slot %}{% endslot %}
 </button>
 {% elif "prominent" in attrs.tags and "signup" in attrs.tags %}{# Same as above #}
-<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-info dark:hover:bg-info/80 focus:outline-none dark:focus:ring-info/30">
   {% slot %}{% endslot %}
 </button>
 {% elif "prominent" in attrs.tags and "reset" in attrs.tags %}{# Same as above #}
-<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-info dark:hover:bg-info/80 focus:outline-none dark:focus:ring-info/30">
   {% slot %}{% endslot %}
 </button>
 {% elif "prominent" in attrs.tags and "change_password" in attrs.tags %}{# Same as above #}
-<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-info dark:hover:bg-info/80 focus:outline-none dark:focus:ring-info/30">
   {% slot %}{% endslot %}
 </button>
 {% else %}

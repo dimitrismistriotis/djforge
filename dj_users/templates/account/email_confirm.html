@@ -10,13 +10,13 @@
 {% block content %}
   {% include "dj_theme/header.html" %}
 
-  <section class="bg-gray-50 dark:bg-gray-900">
+  <section class="bg-gray-50 dark:bg-base-100">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <h1 class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+      <h1 class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-base-content">
         {% trans "Confirm Email Address" %}
       </h1>
 
-      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-base-200 dark:border-base-300">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           {% if confirmation %}
               {% user_display confirmation.email_address.user as user_display %}
@@ -25,7 +25,7 @@
                 <p>
                   {% blocktrans with confirmation.email_address.email as email %}
                     Please confirm that
-                    <a href="mailto:{{ email }}" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">{{ email }}</a>
+                    <a href="mailto:{{ email }}" class="font-medium text-blue-600 underline dark:text-info hover:no-underline">{{ email }}</a>
                     is your email address.
                   {% endblocktrans %}
                   {% comment %}
@@ -56,7 +56,7 @@
             <p>
               {% blocktrans %}
                 This email confirmation link expired or is invalid.
-                Please <a href="{{ email_url }}" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">
+                Please <a href="{{ email_url }}" class="font-medium text-blue-600 underline dark:text-info hover:no-underline">
                 issue a new email confirmation request</a>.
               {% endblocktrans %}
             </p>

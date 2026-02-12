@@ -10,20 +10,14 @@
 {% endblock navigation_bar %}
 
 {% block side_navigation_bar %}
-  {% include "dj_theme/partials/aside_navigation_bar-full.html" %}
+  {% include "dj_theme/partials/aside_navigation_bar.html" %}
 {% endblock side_navigation_bar %}
 
 {% block end_of_content_scripts %}
   {{ block.super }}
 
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  {% comment %}
-    Bundle originally from:
-
-    https://flowbite-admin-dashboard.vercel.app/app.bundle.js
-  {% endcomment %}
   <script src="{% static 'dj_theme/js/app.bundle.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/datepicker.min.js"></script>
 {% endblock end_of_content_scripts %}
 
 {% block logged_in_content %}

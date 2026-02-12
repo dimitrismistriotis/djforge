@@ -2,15 +2,9 @@
 
 
 {% block page_body %}
-  {% comment %}
-    Flowbite included at the end for both logged in and not logged in pages.
-  {% endcomment %}
-
   <body>
     {% block content %} {% endblock content %}
 
     {% include "dj_theme/partials/cookie_consent.html" %}
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   </body>
 {% endblock page_body %}

@@ -1,7 +1,5 @@
 /**
- * Code from: https://github.com/themesberg/flowbite-admin-dashboard/blob/main/src/dark-mode.js
- * and https://flowbite.com/docs/customize/dark-mode/
- * plus wrapping
+ * Dark mode toggle functionality.
  */
 (function () {
     const themeToggleDarkIcon = document.getElementById(
@@ -35,9 +33,11 @@
         if (localStorage.getItem("color-theme")) {
             if (localStorage.getItem("color-theme") === "light") {
                 document.documentElement.classList.add("dark");
+                document.documentElement.setAttribute("data-theme", "night");
                 localStorage.setItem("color-theme", "dark");
             } else {
                 document.documentElement.classList.remove("dark");
+                document.documentElement.setAttribute("data-theme", "light");
                 localStorage.setItem("color-theme", "light");
             }
 
@@ -45,9 +45,11 @@
         } else {
             if (document.documentElement.classList.contains("dark")) {
                 document.documentElement.classList.remove("dark");
+                document.documentElement.setAttribute("data-theme", "light");
                 localStorage.setItem("color-theme", "light");
             } else {
                 document.documentElement.classList.add("dark");
+                document.documentElement.setAttribute("data-theme", "night");
                 localStorage.setItem("color-theme", "dark");
             }
         }

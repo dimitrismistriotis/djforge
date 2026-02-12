@@ -1,8 +1,4 @@
 {% extends "dj_theme/base_not_logged_in.html" %}
-{% comment %}
-  Version here based on: https://flowbite.com/blocks/marketing/login/
-{% endcomment %}
-
 {% load i18n %}
 {% load static %}
 
@@ -15,9 +11,9 @@
 
   {% url 'account_login' as login_url %}
 
-  <section class="bg-gray-50 dark:bg-gray-900">
+  <section class="bg-gray-50 dark:bg-base-100">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-base-content">
         <img class="w-8 h-8 mr-2" src="{% static 'dj_favicons/favicon-96x96.png' %}" alt="logo">
 
         {% trans "Sign In to DJ Forge" %}
@@ -25,9 +21,9 @@
 
       {% include "dj_theme/messages.html" %}
 
-      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-base-200 dark:border-base-300">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-base-content">
             {% trans "Sign in to your account" %}
           </h1>
 
@@ -48,7 +44,7 @@
               {% for field in form %}
                 <div>
                   {% if field.field.widget.input_type == "password" %}
-                    <label for="password_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label for="password_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-base-content">
                       {{ field.label }}
                     </label>
 
@@ -56,18 +52,18 @@
                            name="{{ field.name }}"
                            id="password_{{ field.auto_id }}"
                            placeholder="{{ field.field.widget.attrs.placeholder|default:'••••••••' }}"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-base-300 dark:border-base-content/20 dark:placeholder-base-content/50 dark:text-base-content dark:focus:ring-info dark:focus:border-info"
                            {% if field.field.widget.attrs.autocomplete %} autocomplete="{{ field.field.widget.attrs.autocomplete }}" {% endif %}
                            required="">
                   {% elif field.field.widget.input_type == "email" %}
-                    <label for="email_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label for="email_{{ field.auto_id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-base-content">
                       {{ field.label }}
                     </label>
 
                     <input type="{{ field.field.widget.input_type }}"
                            name="{{ field.name }}"
                            id="email_{{ field.auto_id }}"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-base-300 dark:border-base-content/20 dark:placeholder-base-content/50 dark:text-base-content dark:focus:ring-info dark:focus:border-info"
                            placeholder="{{ field.field.widget.attrs.placeholder|default:'name@provider.com' }}"
                            required="">
                   {% elif field.field.widget.input_type == "checkbox" %}{# Used for "Remember me" #}
@@ -77,12 +73,12 @@
                           <input type="checkbox"
                                   id="remember_{{ field.auto_id }}"
                                   aria-describedby="remember"
-                                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
+                                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-base-300 dark:border-base-content/20 dark:focus:ring-primary dark:ring-offset-base-200">
                         </div>
 
                         <div class="ml-3 text-sm">
                           <label for="remember_{{ field.auto_id }}"
-                                 class="text-gray-500 dark:text-gray-300">
+                                 class="text-gray-500 dark:text-base-content/80">
                             {{ field.label }}
                           </label>
                         </div>
@@ -90,7 +86,7 @@
 
                       {% display_action_requiring_email_dispatch as display_forgot_password %}
                       {% if display_forgot_password %}
-                        <a href="{% url 'account_reset_password' %}" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                        <a href="{% url 'account_reset_password' %}" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary">
                           {% trans "Forgot password?" %}
                         </a>
                       {% endif %}
@@ -100,7 +96,7 @@
                   {% endif %}
 
                   {% if field.help_text %}
-                    <small class="text-gray-500 dark:text-gray-400">{{ field.help_text }}</small>
+                    <small class="text-gray-500 dark:text-base-content/60">{{ field.help_text }}</small>
                   {% endif %}
 
                   {% for error in field.errors %}
@@ -121,10 +117,10 @@
             {% endslot %}
           {% endelement %}
 
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            {% trans "Don’t have an account yet?" %}
+          <p class="text-sm font-light text-gray-500 dark:text-base-content/60">
+            {% trans "Don't have an account yet?" %}
 
-            <a href="{{ signup_url }}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">
+            <a href="{{ signup_url }}" class="font-medium text-primary-600 hover:underline dark:text-primary">
               {% trans "Sign Up" %}
             </a>
           </p>
