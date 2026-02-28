@@ -14,8 +14,12 @@ then
   exit 1
 fi
 
+export PYTHONDEVMODE=1
+
 # Set Session Name
 SESSION="Water_Direct_Main_App"
+
+BASE_INDEX=$(tmux show-option -gv base-index 2>/dev/null || echo 0)
 
 # Check if session exists
 SESSION_EXISTS=$(tmux list-sessions 2>/dev/null | grep "^${SESSION}:" || true)
@@ -26,13 +30,12 @@ if [ -z "${SESSION_EXISTS}" ]; then
     tmux new-session -d -s "$SESSION"
 
     # Create windows for different tasks
-    tmux rename-window -t "${SESSION}:0" 'make-up'
+    tmux rename-window -t "${SESSION}:${BASE_INDEX}" 'make-up'
     tmux new-window -t "${SESSION}" -n 'django'
     tmux new-window -t "${SESSION}" -n 'celery'
     tmux new-window -t "${SESSION}" -n 'livereload'
-    tmux new-window -t "${SESSION}" -n 'extra'
+    tmux new-window -t "${SESSION}" -n 'documentation'
     tmux new-window -t "${SESSION}" -n 'extra-1'
-    tmux new-window -t "${SESSION}" -n 'extra-2'
 
     # Send commands to respective windows
     tmux send-keys -t "${SESSION}:make-up" 'echo "Window: make-up"' C-m
@@ -48,7 +51,8 @@ if [ -z "${SESSION_EXISTS}" ]; then
     tmux send-keys -t "${SESSION}:livereload" 'echo "Window: Live Reload"' C-m
     tmux send-keys -t "${SESSION}:livereload" ' make livereload' C-m
 
-    tmux send-keys -t "${SESSION}:extra" 'echo "Window: extra"' C-m
+    tmux send-keys -t "${SESSION}:documentation" 'echo "Window: Display Documentation"' C-m
+    tmux send-keys -t "${SESSION}:documentation" ' make docs' C-m
 
     # Select the first window
     # tmux select-window -t "${SESSION}:make-up"
