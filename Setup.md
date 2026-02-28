@@ -31,14 +31,19 @@ We settled for [uv](https://docs.astral.sh/uv/) - [github](https://github.com/as
 
 [Node.js](https://nodejs.org/en/) needs to be available alongside `npm` and `npx`.
 Because of different types of setups in different operating systems or distributions,
-how to do install is left out as "out of scope" of this document. Easiest way is to
+how to do install is left out as "out of scope" of this document. One way thoug is by
 is using [brew](https://brew.sh/).
 
-Node is needed for two reasons: Tailwind CSS compilation, and email template generation.
-You can develop without it, but extra CSS classes of Tailwind or own have to be
+Npx is needed Tailwind CSS compilation, Node is needed for email template generation. You can develop without it, but extra CSS classes of Tailwind or own have to be
 added manually. Similar situation for email templates.
 
-Then run:
+#### Project's CSS Generation
+
+Check that everything works with `make generate_output_css`.
+
+#### React.email
+
+Cd into `dj_emails/react_email`, then run:
 
 ```shell
 npm install
@@ -46,7 +51,7 @@ npm install
 
 Outputs of the above should be placed in version control,
 and the presence of these tools in production is not required;
-not we believe should be for a Django project.
+nor we believe should be for a Django project.
 
 ### Helpers
 
