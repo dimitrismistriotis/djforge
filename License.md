@@ -3,10 +3,7 @@
 Permission is hereby granted to any person purchasing a subscription of the product,
 DJ-FORGE, its source code and associated documentation and other material
 (the “Software”), to use as a basis for a Single Application per subscription per
-person. This does not include the rights to publish, distribute, sublicense, and/or
-sell any copies of the Software, source code or material related to it. For any
-deviation from this agreement, please contact the author of the Software, DJ-FORGE
-to receive a separate license agreement.
+person or company. This does not include the rights to publish, distribute, sublicense, and/or sell any copies of the Software, source code or material related to it. For any deviation from this agreement, please contact the author of the Software, DJ-FORGE to receive a separate license agreement.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
