@@ -3,6 +3,7 @@ name = "djforge"
 version = "1.1.1"
 description = "Bootstrap and Grow your SaaS with Django"
 readme = "README.md"
+license = { file = "License.md" }
 authors = [
     { name = "Dimitrios Mistriotis", email = "dimitrios@mistriotis.com" },
 ]
