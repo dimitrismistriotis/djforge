@@ -26,6 +26,11 @@ starting point or foundation.
 A one-off license fee of $20 USD is required for use of the Software. Payment
 may be made via GitHub Sponsors or an alternative arrangement agreed upon with at least one of the authors.
 
+The license fee is subject to change at any time. The fee applicable to a given
+Licensee is the fee published at the time of their payment. No previously
+published fee remains available once the fee has changed — the current published
+fee is always the only valid price.
+
 For individuals or companies based in countries where sending payments is
 difficult, or where this conflicts with personal ideology, a license may be
 granted in exchange for an equivalent contribution of work — such as
