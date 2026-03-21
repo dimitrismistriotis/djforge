@@ -151,9 +151,10 @@ MIDDLEWARE = [
 ]
 
 #
-# Conditionally add livereload to the mix if DEBUG is True
+# Conditionally add livereload to the mix if DEBUG is True and do not force SECURE_SSL_REDIRECT
 #
 if DEBUG:
+    SECURE_SSL_REDIRECT = False
     INSTALLED_APPS.append("livereload")
     MIDDLEWARE.append("livereload.middleware.LiveReloadScript")
 else:
