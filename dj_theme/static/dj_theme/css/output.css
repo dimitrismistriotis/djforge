@@ -56,7 +56,6 @@
     --color-purple-600: oklch(55.8% 0.288 302.321);
     --color-purple-700: oklch(49.6% 0.265 301.924);
     --color-purple-800: oklch(43.8% 0.218 303.724);
-    --color-purple-900: oklch(38.1% 0.176 304.987);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
@@ -4097,13 +4096,6 @@
       }
     }
   }
-  .hover\:text-blue-700 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-blue-700);
-      }
-    }
-  }
   .hover\:text-gray-500 {
     &:hover {
       @media (hover: hover) {
@@ -5013,6 +5005,16 @@
   .rtl\:text-right {
     &:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
       text-align: right;
+    }
+  }
+  .dark\:block {
+    &:where(.dark, .dark *) {
+      display: block;
+    }
+  }
+  .dark\:hidden {
+    &:where(.dark, .dark *) {
+      display: none;
     }
   }
   .dark\:divide-base-300 {
