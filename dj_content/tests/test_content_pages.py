@@ -31,3 +31,36 @@ class TestContentPages:
 
         assert "License" in response.content.decode()
         assert "DJ-FORGE" in response.content.decode()
+
+
+class TestRobotsTxt:
+    """Test the robots.txt view."""
+
+    def test_robots_txt_returns_200_text_plain(self, client) -> None:
+        """Test robots.txt returns 200 and plain text content type."""
+        response = client.get(reverse("robots_txt"))
+
+        assert response.status_code == 200
+        assert response["Content-Type"].startswith("text/plain")
+
+    def test_robots_txt_lists_content_pages(self, client) -> None:
+        """Test robots.txt advertises public dj_content pages."""
+        response = client.get(reverse("robots_txt"))
+        body = response.content.decode()
+
+        assert f"Allow: {reverse('dj_content:about-us')}" in body
+        assert f"Allow: {reverse('dj_content:cookies-policy')}" in body
+        assert f"Allow: {reverse('dj_content:license')}" in body
+
+    def test_robots_txt_disallows_auth_paths(self, client) -> None:
+        """Test robots.txt disallows login and authenticated paths."""
+        response = client.get(reverse("robots_txt"))
+        body = response.content.decode()
+
+        assert "User-agent: *" in body
+        assert "Disallow: /accounts/" in body
+        assert "Disallow: /admin/" in body
+        assert "Disallow: /dashboard/" in body
+        assert "Disallow: /users/" in body
+        assert "Disallow: /chat/" in body
+        assert "Disallow: /impersonate/" in body

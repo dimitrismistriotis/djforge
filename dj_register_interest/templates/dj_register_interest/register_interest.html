@@ -66,9 +66,14 @@
         class="hidden md:block col-span-2 space-y-8 md:grid md:grid-cols-1 md:gap-12 md:space-y-0"
       >
         <img
-          src="{% static 'dj_landing_page/images/logo_djforge_transparent.png' %}"
+          src="{% static 'dj_theme/images/full_logo-light.png' %}"
           alt="hero image"
-          class="my-auto mx-auto"
+          class="my-auto mx-auto block dark:hidden"
+        />
+        <img
+          src="{% static 'dj_theme/images/full_logo-dark.png' %}"
+          alt="hero image"
+          class="my-auto mx-auto hidden dark:block"
         />
       </div>
     </div>

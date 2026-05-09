@@ -2,15 +2,33 @@
 
 from pathlib import Path
 
+from django.db import transaction
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
 
 from .utilities import read_file_into_array
 
 _LICENSE_FILE = Path(__file__).parent.parent / "License.md"
 
+_ROBOTS_CONTENT_URL_NAMES = (
+    "dj_content:about-us",
+    "dj_content:cookies-policy",
+    "dj_content:license",
+)
 
+_ROBOTS_DISALLOWED_PATHS = (
+    "/accounts/",
+    "/admin/",
+    "/chat/",
+    "/dashboard/",
+    "/impersonate/",
+    "/users/",
+)
+
+
+@transaction.non_atomic_requests
 def about_us(request: HttpRequest) -> HttpResponse:
     """Return a about_us for the dj_content app."""
     return render(
@@ -19,6 +37,7 @@ def about_us(request: HttpRequest) -> HttpResponse:
     )
 
 
+@transaction.non_atomic_requests
 def cookies_policy(request: HttpRequest) -> HttpResponse:
     """Return Cookies Policy Document."""
     return render(
@@ -27,11 +46,13 @@ def cookies_policy(request: HttpRequest) -> HttpResponse:
     )
 
 
+@transaction.non_atomic_requests
 def health(_request: HttpRequest) -> HttpResponse:
     """Return a health for the dj_content app."""
     return HttpResponse("OK")
 
 
+@transaction.non_atomic_requests
 def license(request: HttpRequest) -> HttpResponse:
     """Return the license of the dj_content app from License.md."""
     # Below removes markdown header:
@@ -48,4 +69,19 @@ def license(request: HttpRequest) -> HttpResponse:
         {
             "license_lines": license_lines,
         },
+    )
+
+
+@transaction.non_atomic_requests
+def robots_txt(_request: HttpRequest) -> HttpResponse:
+    """Return robots.txt advertising public content pages and disallowing auth-only paths."""
+    lines = ["User-agent: *"]
+    for disallowed_path in _ROBOTS_DISALLOWED_PATHS:
+        lines.append(f"Disallow: {disallowed_path}")
+    for url_name in _ROBOTS_CONTENT_URL_NAMES:
+        lines.append(f"Allow: {reverse(url_name)}")
+
+    return HttpResponse(
+        "\n".join(lines) + "\n",
+        content_type="text/plain",
     )

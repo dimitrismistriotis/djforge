@@ -12,7 +12,7 @@ dependencies = [
     #
     # Django framework - core dependency
     #
-    "django>=6.0.1",
+    "django>=6.0.5",
     #
     # Package that allows you to use Twelve-factor methodology to configure your Django
     # application with environment variables.
