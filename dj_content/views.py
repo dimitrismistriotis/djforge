@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+from django.db import transaction
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -27,6 +28,7 @@ _ROBOTS_DISALLOWED_PATHS = (
 )
 
 
+@transaction.non_atomic_requests
 def about_us(request: HttpRequest) -> HttpResponse:
     """Return a about_us for the dj_content app."""
     return render(
@@ -35,6 +37,7 @@ def about_us(request: HttpRequest) -> HttpResponse:
     )
 
 
+@transaction.non_atomic_requests
 def cookies_policy(request: HttpRequest) -> HttpResponse:
     """Return Cookies Policy Document."""
     return render(
@@ -43,11 +46,13 @@ def cookies_policy(request: HttpRequest) -> HttpResponse:
     )
 
 
+@transaction.non_atomic_requests
 def health(_request: HttpRequest) -> HttpResponse:
     """Return a health for the dj_content app."""
     return HttpResponse("OK")
 
 
+@transaction.non_atomic_requests
 def license(request: HttpRequest) -> HttpResponse:
     """Return the license of the dj_content app from License.md."""
     # Below removes markdown header:
@@ -67,6 +72,7 @@ def license(request: HttpRequest) -> HttpResponse:
     )
 
 
+@transaction.non_atomic_requests
 def robots_txt(_request: HttpRequest) -> HttpResponse:
     """Return robots.txt advertising public content pages and disallowing auth-only paths."""
     lines = ["User-agent: *"]
