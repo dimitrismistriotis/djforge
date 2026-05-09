@@ -21,6 +21,7 @@ from django.urls import include
 from django.urls import path
 from django.urls import re_path
 
+from dj_content.views import robots_txt
 from dj_favicons.views import favicon
 from dj_favicons.views import manifest_dot_json
 from dj_landing_page.views import index_page
@@ -32,6 +33,7 @@ urlpatterns = [
     re_path(r"^impersonate/", include("impersonate.urls")),
     path("favicon.ico", favicon, name="favicon"),
     path("manifest.json", manifest_dot_json, name="manifest_dot_json"),
+    path("robots.txt", robots_txt, name="robots_txt"),
     path("", index_page, name="index"),
     path("accounts/", include("allauth.urls")),
     path(

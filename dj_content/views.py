@@ -5,10 +5,26 @@ from pathlib import Path
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
 
 from .utilities import read_file_into_array
 
 _LICENSE_FILE = Path(__file__).parent.parent / "License.md"
+
+_ROBOTS_CONTENT_URL_NAMES = (
+    "dj_content:about-us",
+    "dj_content:cookies-policy",
+    "dj_content:license",
+)
+
+_ROBOTS_DISALLOWED_PATHS = (
+    "/accounts/",
+    "/admin/",
+    "/chat/",
+    "/dashboard/",
+    "/impersonate/",
+    "/users/",
+)
 
 
 def about_us(request: HttpRequest) -> HttpResponse:
@@ -48,4 +64,18 @@ def license(request: HttpRequest) -> HttpResponse:
         {
             "license_lines": license_lines,
         },
+    )
+
+
+def robots_txt(_request: HttpRequest) -> HttpResponse:
+    """Return robots.txt advertising public content pages and disallowing auth-only paths."""
+    lines = ["User-agent: *"]
+    for disallowed_path in _ROBOTS_DISALLOWED_PATHS:
+        lines.append(f"Disallow: {disallowed_path}")
+    for url_name in _ROBOTS_CONTENT_URL_NAMES:
+        lines.append(f"Allow: {reverse(url_name)}")
+
+    return HttpResponse(
+        "\n".join(lines) + "\n",
+        content_type="text/plain",
     )
