@@ -197,18 +197,37 @@ class SurveyVote(models.Model):
         return f"{self.user.get_username()} voted on {self.survey.title}"
 
     def clean(self) -> None:
-        """Prevent multiple votes on single_choice questions."""
-        if self.question.question_type == "single_choice":
-            existing_votes = (
-                SurveyVote.objects.filter(
-                    user=self.user,
-                    question=self.question,
-                )
-                .exclude(pk=self.pk)
-            )
+        """Validate vote rules for single-choice and decline choices."""
+        super().clean()
+
+        if not self.choice_id or not self.user_id:
+            return
+
+        question = self.question or self.choice.question
+        if self.question_id and self.choice.question_id != self.question_id:
+            raise ValidationError("Choice does not belong to this question.")
+
+        if self.survey_id and self.choice.question.survey_id != self.survey_id:
+            raise ValidationError("Choice does not belong to this survey.")
+
+        self.question = question
+        existing_votes = SurveyVote.objects.filter(
+            user=self.user,
+            question=question,
+        ).exclude(pk=self.pk)
+
+        if self.choice.is_decline_option:
             if existing_votes.exists():
                 raise ValidationError(
-                    f"User has already voted on '{self.question.text}'. "
+                    "Decline cannot be selected with other options."
+                )
+        elif existing_votes.filter(choice__is_decline_option=True).exists():
+            raise ValidationError("Decline cannot be selected with other options.")
+
+        if question.question_type == "single_choice":
+            if existing_votes.exists():
+                raise ValidationError(
+                    f"User has already voted on '{question.text}'. "
                     "Single choice questions only allow one vote per user."
                 )
 
