@@ -83,6 +83,12 @@ dependencies = [
     #
     "rich>=13.7.1",
     #
+    # Questionary is a Python library for building beautiful command line interfaces.
+    # https://github.com/tmbo/questionary
+    # MIT license
+    #
+    "questionary>=2.0.0",
+    #
     # Resend Python SDK
     # https://resend.com/
     # https://github.com/resend/resend-python
