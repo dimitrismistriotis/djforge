@@ -4,9 +4,21 @@ from django.db import models
 
 
 class SurveyQuerySet(models.QuerySet):
-    """QuerySet for Survey model."""
+    """QuerySet for filtering and querying Survey objects."""
 
-    pass
+    def visible_to(self, user):
+        """Return surveys that should be displayed to the given user."""
+        if not getattr(user, "is_authenticated", False):
+            return self.none()
+
+        if getattr(user, "is_staff", False) or getattr(user, "is_superuser", False):
+            return self.none()
+
+        return (
+            self.exclude(votes__user=user)
+            .order_by("created_at")
+            .distinct()
+        )
 
 
 class Survey(models.Model):

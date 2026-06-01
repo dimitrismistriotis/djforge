@@ -1,0 +1,82 @@
+{% if survey %}
+  <div id="survey-component">
+    <h2>Survey: {{ survey.title }}</h2>
+
+    <form
+      method="post"
+      action="{{ survey_submit_url }}"
+      id="survey-form"
+    >
+      {% csrf_token %}
+      <input type="hidden" name="survey_id" value="{{ survey.id }}">
+
+      {% if question_forms %}
+        {% for question_form in question_forms %}
+          <fieldset>
+            <legend>
+              Question {{ forloop.counter }}: {{ question_form.question.text }}
+            </legend>
+
+            <div>
+              {% for choice_input in question_form.form.choice %}
+                <label>
+                  {{ choice_input.tag }}
+                  {{ choice_input.choice_label }}
+                </label>
+              {% endfor %}
+            </div>
+
+            {% if question_form.form.choice.errors %}
+              <div>
+                {{ question_form.form.choice.errors }}
+              </div>
+            {% endif %}
+          </fieldset>
+        {% endfor %}
+      {% else %}
+        {% if question %}
+          <input type="hidden" name="question_id" value="{{ question.id }}">
+        {% endif %}
+
+        {% for question in survey.questions.all %}
+          <fieldset>
+            <legend>Question {{ forloop.counter }}: {{ question.text }}</legend>
+
+            <div>
+              {% for radio in form.choice %}
+                <label>
+                  {{ radio.tag }}
+                  {{ radio.choice_label }}
+                </label>
+              {% endfor %}
+            </div>
+
+            {% if form.choice.errors %}
+              <div>
+                {{ form.choice.errors }}
+              </div>
+            {% endif %}
+          </fieldset>
+        {% endfor %}
+      {% endif %}
+
+      <div>
+        <button type="submit">Vote</button>
+        <button type="button" onclick="submitSkip()">Skip</button>
+      </div>
+    </form>
+
+    <script>
+      function submitSkip() {
+        const form = document.getElementById('survey-form');
+        form.action = '{{ survey_skip_url }}';
+
+        form.querySelectorAll('[name="choice"]').forEach((choiceInput) => {
+          choiceInput.required = false;
+        });
+
+        form.submit();
+      }
+    </script>
+  </div>
+{% endif %}

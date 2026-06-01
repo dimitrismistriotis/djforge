@@ -1,6 +1,5 @@
 """URL configuration for dj_surveys app."""
 
-from django.conf import settings
 from django.urls import path
 
 from dj_surveys import views
@@ -9,18 +8,18 @@ app_name = "dj_surveys"
 
 urlpatterns = [
     path(
-        "submit-vote/",
-        views.submit_survey_vote,
-        name="submit_vote",
+        "pending",
+        views.pending_survey,
+        name="pending",
     ),
     path(
-        "skip/<int:survey_id>/",
-        views.skip_survey,
-        name="skip_survey",
+        "<int:survey_id>/submit",
+        views.submit_pending_vote,
+        name="pending_submit",
+    ),
+    path(
+        "<int:survey_id>/skip",
+        views.skip_pending_survey,
+        name="pending_skip",
     ),
 ]
-
-if settings.DEBUG:
-    from dj_surveys.preview.urls import urlpatterns as preview_urlpatterns
-
-    urlpatterns += preview_urlpatterns

@@ -1,6 +1,5 @@
 """Views for the dj_surveys app."""
 
-from django import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
@@ -9,91 +8,87 @@ from django.db import transaction
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 
-from dj_surveys.forms import SurveyVoteForm
 from dj_surveys.models import Survey
-from dj_surveys.models import SurveyChoice
-from dj_surveys.models import SurveyQuestion
-from dj_surveys.models import SurveyVote
+from dj_surveys.services import build_pending_context
+from dj_surveys.services import build_question_vote_forms
+from dj_surveys.services import save_survey_votes
 
 
-def _save_survey_votes(
-    user,
-    survey: Survey,
-    form: SurveyVoteForm,
-    question: SurveyQuestion | None,
-) -> None:
-    """Save votes for a submitted survey form."""
-    choice_data = form.cleaned_data["choice"]
-    is_multiple = isinstance(form.fields["choice"], forms.ModelMultipleChoiceField)
-    choice_ids = [choice.id for choice in choice_data] if is_multiple else [choice_data.id]
+@login_required
+def pending_survey(request: HttpRequest) -> HttpResponse:
+    """Render the next survey pending the user's response."""
+    return render(
+        request,
+        "dj_surveys/modal.html",
+        build_pending_context(request.user),
+    )
 
-    with transaction.atomic():
-        if question:
-            SurveyVote.objects.filter(
-                user=user,
-                choice__question=question,
-            ).delete()
 
-        choices = SurveyChoice.objects.filter(id__in=choice_ids)
-        for choice in choices:
-            SurveyVote(
+@login_required
+@require_http_methods(["POST"])
+def submit_pending_vote(
+    request: HttpRequest,
+    survey_id: int,
+) -> HttpResponse:
+    """Handle survey vote submission from the pending-survey view."""
+    survey = Survey.objects.visible_to(request.user).filter(id=survey_id).first()
+    if survey is None:
+        messages.error(request, "Survey is no longer available.")
+        return redirect("dj_surveys:pending")
+
+    question_forms = build_question_vote_forms(survey, data=request.POST)
+    forms_are_valid = [
+        question_form["form"].is_valid() for question_form in question_forms
+    ]
+    if not question_forms or not all(forms_are_valid):
+        return render(
+            request,
+            "dj_surveys/modal.html",
+            build_pending_context(
+                request.user,
                 survey=survey,
-                user=user,
-                choice=choice,
-                question=choice.question,
-            ).save()
-
-
-@login_required
-@require_http_methods(["POST"])
-def submit_survey_vote(request: HttpRequest) -> HttpResponse:
-    """Handle survey vote submission.
-
-    Supports both single-choice and multiple-choice questions.
-    Uses delete-then-insert pattern to allow vote changes.
-    """
-    survey_id = request.POST.get("survey_id")
-    question_id = request.POST.get("question_id")
+                question_forms=question_forms,
+            ),
+            status=400,
+        )
 
     try:
-        survey = Survey.objects.get(id=survey_id)
-    except (Survey.DoesNotExist, ValueError):
-        messages.error(request, "Survey not found.")
-        return redirect("dj_dashboard:dashboard")
-
-    question = None
-    if question_id:
-        try:
-            question = SurveyQuestion.objects.get(id=question_id, survey=survey)
-        except (SurveyQuestion.DoesNotExist, ValueError):
-            messages.error(request, "Question not found.")
-            return redirect("dj_dashboard:dashboard")
-
-    form = SurveyVoteForm(survey=survey, question=question, data=request.POST)
-    if not form.is_valid():
-        messages.error(request, "Invalid selection. Please try again.")
-        return redirect("dj_dashboard:dashboard")
-
-    try:
-        _save_survey_votes(user=request.user, survey=survey, form=form, question=question)
-        messages.success(request, "Your vote has been recorded. Thank you!")
+        with transaction.atomic():
+            for question_form in question_forms:
+                save_survey_votes(
+                    user=request.user,
+                    survey=survey,
+                    form=question_form["form"],
+                    question=question_form["question"],
+                )
     except (IntegrityError, ValidationError):
-        messages.error(request, "Invalid selection. Please try again.")
+        return render(
+            request,
+            "dj_surveys/modal.html",
+            build_pending_context(
+                request.user,
+                survey=survey,
+                question_forms=question_forms,
+            ),
+            status=400,
+        )
 
-    return redirect("dj_dashboard:dashboard")
+    return redirect("dj_surveys:pending")
 
 
 @login_required
 @require_http_methods(["POST"])
-def skip_survey(request: HttpRequest, survey_id: int) -> HttpResponse:
-    """Handle survey skip action."""
-    try:
-        Survey.objects.get(id=survey_id)
-    except Survey.DoesNotExist:
-        messages.error(request, "Survey not found.")
-        return redirect("dj_dashboard:dashboard")
+def skip_pending_survey(
+    request: HttpRequest,
+    survey_id: int,
+) -> HttpResponse:
+    """Handle survey skip from the pending-survey view."""
+    survey = Survey.objects.visible_to(request.user).filter(id=survey_id).first()
+    if survey is None:
+        messages.error(request, "Survey is no longer available.")
+        return redirect("dj_surveys:pending")
 
-    messages.info(request, "Survey skipped.")
-    return redirect("dj_dashboard:dashboard")
+    return render(request, "dj_surveys/modal.html", {"survey": None})
