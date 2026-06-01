@@ -18,8 +18,8 @@
 {% block logged_in_content %}
   {% include "dj_theme/messages.html" %}
 
-  {% if from_sign_up %}
-    <div class="grid grid-cols-1 mb-4 xl:grid-cols-1 xl:gap-4">
+  <div class="flex flex-wrap items-start gap-4 mb-4">
+    {% if from_sign_up %}
       <div class="w-100 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-base-200 dark:border-base-300">
         <a href="#">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-base-content">Post SignUp Instructions</h5>
@@ -36,10 +36,8 @@
           </svg>
         </a>
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
 
-  <div class="grid grid-cols-1 mb-4 xl:grid-cols-1 xl:gap-4">
     <div class="w-100 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-base-200 dark:border-base-300">
       <a href="https://openclaw.ai/" target="_blank">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-base-content">Sample Card Header</h5>
@@ -60,4 +58,43 @@ All from WhatsApp, Telegram, or any chat app you already use.
       </a>
     </div>
   </div>
+
+  {% if survey_card %}
+    {# Positioning lives in inline CSS (not Tailwind utilities) so the popup is #}
+    {# immune to CSS purge/caching and always floats bottom-right of the viewport. #}
+    <section id="survey-popup" aria-label="Survey">
+      {% include "dj_surveys/survey.html" with survey=survey_card.survey question_forms=survey_card.question_forms survey_submit_url=survey_card.survey_submit_url survey_skip_url=survey_card.survey_skip_url %}
+    </section>
+
+    <style>
+      #survey-popup {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        /* Below the cookie consent banner (z-50), which takes priority. */
+        z-index: 40;
+        max-width: calc(100vw - 2rem);
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+        border-radius: 0.5rem;
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.25), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+        animation: survey-pop 0.25s ease-out;
+      }
+      @keyframes survey-pop {
+        from {
+          opacity: 0;
+          transform: translateY(1rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #survey-popup {
+          animation: none;
+        }
+      }
+    </style>
+  {% endif %}
 {% endblock logged_in_content %}

@@ -91,7 +91,7 @@ class SurveyQuestion(models.Model):
         if is_new:
             SurveyChoice.objects.create(
                 question=self,
-                text="Decline",
+                text="Decline to answer",
                 order=999,
                 is_decline_option=True,
             )

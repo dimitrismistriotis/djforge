@@ -9,12 +9,31 @@ from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_http_methods
 
 from dj_surveys.models import Survey
 from dj_surveys.services import build_pending_context
 from dj_surveys.services import build_question_vote_forms
 from dj_surveys.services import save_survey_votes
+
+
+def _resolve_next(request: HttpRequest) -> str:
+    """Return a safe redirect target, falling back to the pending view.
+
+    Lets an embedding page (e.g. the dashboard) submit a `next` field so the
+    user returns to where the survey was shown instead of the standalone page.
+    """
+    next_url = request.POST.get("next", "")
+    if next_url and url_has_allowed_host_and_scheme(
+        next_url,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    ):
+        return next_url
+
+    return reverse("dj_surveys:pending")
 
 
 @login_required
@@ -44,16 +63,8 @@ def submit_pending_vote(
         question_form["form"].is_valid() for question_form in question_forms
     ]
     if not question_forms or not all(forms_are_valid):
-        return render(
-            request,
-            "dj_surveys/modal.html",
-            build_pending_context(
-                request.user,
-                survey=survey,
-                question_forms=question_forms,
-            ),
-            status=400,
-        )
+        messages.error(request, "Please choose an option before voting.")
+        return redirect(_resolve_next(request))
 
     try:
         with transaction.atomic():
@@ -65,18 +76,10 @@ def submit_pending_vote(
                     question=question_form["question"],
                 )
     except (IntegrityError, ValidationError):
-        return render(
-            request,
-            "dj_surveys/modal.html",
-            build_pending_context(
-                request.user,
-                survey=survey,
-                question_forms=question_forms,
-            ),
-            status=400,
-        )
+        messages.error(request, "Your vote could not be saved. Please try again.")
+        return redirect(_resolve_next(request))
 
-    return redirect("dj_surveys:pending")
+    return redirect(_resolve_next(request))
 
 
 @login_required

@@ -13,7 +13,12 @@ from dj_surveys.models import SurveyVote
 
 def get_survey_for_user(user) -> Survey | None:
     """Return the next survey pending the user's response."""
-    return Survey.objects.visible_to(user).prefetch_related("questions__choices").first()
+    return get_surveys_for_user(user).first()
+
+
+def get_surveys_for_user(user):
+    """Return all surveys pending the user's response."""
+    return Survey.objects.visible_to(user).prefetch_related("questions__choices")
 
 
 def build_question_vote_forms(survey, data=None) -> list[dict[str, object]]:
@@ -22,6 +27,11 @@ def build_question_vote_forms(survey, data=None) -> list[dict[str, object]]:
     questions = survey.questions.all().order_by("order", "id")
 
     for question in questions:
+        decline_choice_id = (
+            question.choices.filter(is_decline_option=True)
+            .values_list("id", flat=True)
+            .first()
+        )
         question_forms.append(
             {
                 "question": question,
@@ -31,23 +41,19 @@ def build_question_vote_forms(survey, data=None) -> list[dict[str, object]]:
                     question=question,
                     prefix=f"question_{question.id}",
                 ),
+                "decline_choice_id": decline_choice_id,
             }
         )
 
     return question_forms
 
 
-def build_pending_context(
-    user,
+def build_survey_card_context(
+    survey: Survey,
     *,
-    survey: Survey | None = None,
     question_forms: list[dict[str, object]] | None = None,
 ) -> dict[str, object]:
-    """Build context for the pending-survey view."""
-    survey = survey or get_survey_for_user(user)
-    if survey is None:
-        return {"survey": None}
-
+    """Build template context for a single survey card."""
     return {
         "survey": survey,
         "question_forms": question_forms or build_question_vote_forms(survey),
@@ -60,6 +66,34 @@ def build_pending_context(
             kwargs={"survey_id": survey.id},
         ),
     }
+
+
+def build_survey_cards(user) -> list[dict[str, object]]:
+    """Build template context for every survey pending the user's response."""
+    return [build_survey_card_context(survey) for survey in get_surveys_for_user(user)]
+
+
+def build_next_survey_card(user) -> dict[str, object] | None:
+    """Build template context for the single next survey pending the user's response."""
+    survey = get_survey_for_user(user)
+    if survey is None:
+        return None
+
+    return build_survey_card_context(survey)
+
+
+def build_pending_context(
+    user,
+    *,
+    survey: Survey | None = None,
+    question_forms: list[dict[str, object]] | None = None,
+) -> dict[str, object]:
+    """Build context for the standalone pending-survey view (single survey)."""
+    survey = survey or get_survey_for_user(user)
+    if survey is None:
+        return {"survey": None}
+
+    return build_survey_card_context(survey, question_forms=question_forms)
 
 
 def save_survey_votes(
