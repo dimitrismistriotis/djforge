@@ -47,7 +47,7 @@
         OpenClaw - The AI that actually does things.
         <br />
         Clears your inbox, sends emails, manages your calendar, checks you in for flights.
-All from WhatsApp, Telegram, or any chat app you already use.
+        All from WhatsApp, Telegram, or any chat app you already use.
       </p>
 
       <a href="https://openclaw.ai/" target="_blank" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-info dark:hover:bg-info/80 dark:focus:ring-info/30">
@@ -60,41 +60,16 @@ All from WhatsApp, Telegram, or any chat app you already use.
   </div>
 
   {% if survey_card %}
-    {# Positioning lives in inline CSS (not Tailwind utilities) so the popup is #}
-    {# immune to CSS purge/caching and always floats bottom-right of the viewport. #}
-    <section id="survey-popup" aria-label="Survey">
-      {% include "dj_surveys/survey.html" with survey=survey_card.survey question_forms=survey_card.question_forms survey_submit_url=survey_card.survey_submit_url survey_skip_url=survey_card.survey_skip_url %}
+    {# daisyUI toast: fixed bottom-right stack with built-in width clamp and #}
+    {# entrance animation. z-40 keeps it below the cookie consent banner (z-50). #}
+    {# Inner div caps height so tall surveys scroll on short viewports. #}
+    <section
+      class="toast toast-end toast-bottom z-40"
+      aria-label="Survey"
+    >
+      <div class="max-h-[calc(100vh-2rem)] overflow-y-auto">
+        {% include "dj_surveys/survey.html" with survey=survey_card.survey question_forms=survey_card.question_forms survey_submit_url=survey_card.survey_submit_url survey_skip_url=survey_card.survey_skip_url survey_decline_url=survey_card.survey_decline_url %}
+      </div>
     </section>
-
-    <style>
-      #survey-popup {
-        position: fixed;
-        bottom: 1rem;
-        right: 1rem;
-        /* Below the cookie consent banner (z-50), which takes priority. */
-        z-index: 40;
-        max-width: calc(100vw - 2rem);
-        max-height: calc(100vh - 2rem);
-        overflow-y: auto;
-        border-radius: 0.5rem;
-        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.25), 0 8px 10px -6px rgb(0 0 0 / 0.2);
-        animation: survey-pop 0.25s ease-out;
-      }
-      @keyframes survey-pop {
-        from {
-          opacity: 0;
-          transform: translateY(1rem);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        #survey-popup {
-          animation: none;
-        }
-      }
-    </style>
   {% endif %}
 {% endblock logged_in_content %}

@@ -2,20 +2,20 @@
   <div
     id="survey-component-{{ survey.id }}"
     data-survey-card
-    class="w-100 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-base-200 dark:border-base-300"
+    class="card card-body w-100 bg-base-100 border border-base-300 shadow"
   >
     <!-- Header: title + decline (close) -->
     <div class="flex items-start justify-between mb-4">
-      <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-base-content">
+      <h5 class="card-title text-base-content">
         {{ survey.title }}
       </h5>
 
       <button
-        type="button"
-        onclick="return declineSurvey(event)"
+        type="submit"
+        form="survey-decline-form-{{ survey.id }}"
         title="Decline this survey"
         aria-label="Decline survey"
-        class="text-gray-400 hover:text-gray-600 dark:text-base-content/50 dark:hover:text-base-content/80 transition-colors"
+        class="btn btn-ghost btn-sm btn-circle"
       >
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
           <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -28,7 +28,6 @@
       method="post"
       action="{{ survey_submit_url }}"
       id="survey-form-{{ survey.id }}"
-      data-survey-form
     >
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ request.path }}">
@@ -36,16 +35,16 @@
 
       {% if question_forms %}
         {% for question_form in question_forms %}
-          <fieldset class="mb-4" data-decline-choice="{{ question_form.decline_choice_id }}">
-            <legend class="font-normal text-gray-900 dark:text-base-content mb-3 text-sm">
+          <fieldset class="fieldset mb-4">
+            <legend class="fieldset-legend font-normal text-base-content mb-3 text-sm">
               {{ question_form.question.text }}
             </legend>
 
             <div class="space-y-2">
               {% for choice_input in question_form.form.choice %}
-                <label class="flex items-center cursor-pointer group">
+                <label class="label cursor-pointer justify-start gap-3 group">
                   {{ choice_input.tag }}
-                  <span class="ml-3 text-sm text-gray-700 dark:text-base-content/80 group-hover:text-gray-900 dark:group-hover:text-base-content transition-colors">
+                  <span class="text-sm text-base-content/80 group-hover:text-base-content transition-colors">
                     {{ choice_input.choice_label }}
                   </span>
                 </label>
@@ -53,7 +52,7 @@
             </div>
 
             {% if question_form.form.choice.errors %}
-              <div class="mt-2 text-xs text-red-600 dark:text-error">
+              <div role="alert" class="alert alert-error alert-soft mt-2 py-2 text-xs">
                 {{ question_form.form.choice.errors }}
               </div>
             {% endif %}
@@ -62,26 +61,29 @@
       {% endif %}
 
       <!-- Actions -->
-      <div class="flex gap-2 mt-6 pt-4 border-t border-gray-200 dark:border-base-300">
-        <button
-          type="submit"
-          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-info dark:hover:bg-info/80 dark:focus:ring-info/30 transition-colors"
-        >
+      <div class="card-actions gap-2 mt-6 pt-4 border-t border-base-300">
+        <button type="submit" class="btn btn-primary btn-sm">
           Vote
         </button>
         <button
           type="submit"
           form="survey-skip-form-{{ survey.id }}"
           onclick="return dismissSurvey(event)"
-          class="px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 dark:bg-base-300 dark:text-base-content dark:border-base-300 dark:hover:bg-base-300/80 transition-colors"
+          class="btn btn-ghost btn-sm"
         >
           Hide
         </button>
       </div>
     </form>
 
-    <!-- Hide: ephemeral dismissal (no vote). No-JS fallback posts here. -->
+    <!-- Hide: ephemeral dismissal (no vote). No-JS fallback redirects back. -->
     <form id="survey-skip-form-{{ survey.id }}" method="post" action="{{ survey_skip_url }}">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}">
+    </form>
+
+    <!-- Decline: persistent opt-out (records a decline vote). -->
+    <form id="survey-decline-form-{{ survey.id }}" method="post" action="{{ survey_decline_url }}">
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ request.path }}">
     </form>
@@ -89,28 +91,6 @@
 
   <script>
     // Defined once even though this partial may be included per survey card.
-    window.declineSurvey = window.declineSurvey || function (event) {
-      // Decline: same outcome as choosing "Decline to answer" and voting.
-      // Select the decline choice in every question of THIS card, then submit
-      // its vote form. Records a decline vote, so the survey does not reappear.
-      if (event) {
-        event.preventDefault();
-      }
-      const card = event.target.closest('[data-survey-card]');
-      const form = card && card.querySelector('[data-survey-form]');
-      if (!form) {
-        return false;
-      }
-      form.querySelectorAll('fieldset[data-decline-choice]').forEach(function (fieldset) {
-        const declineId = fieldset.getAttribute('data-decline-choice');
-        fieldset.querySelectorAll('input[name$="-choice"]').forEach(function (input) {
-          input.checked = input.value === declineId;
-        });
-      });
-      form.submit();
-      return false;
-    };
-
     window.dismissSurvey = window.dismissSurvey || function (event) {
       // Hide: remove THIS card client-side without a round-trip. Ephemeral, so
       // it reappears on the next page load (matching the no-JS server fallback).

@@ -22,4 +22,9 @@ urlpatterns = [
         views.skip_pending_survey,
         name="pending_skip",
     ),
+    path(
+        "<int:survey_id>/decline",
+        views.decline_pending_survey,
+        name="pending_decline",
+    ),
 ]

@@ -1,6 +1,7 @@
 """Service helpers for the dj_surveys app."""
 
 from django import forms
+from django.db import IntegrityError
 from django.db import transaction
 from django.urls import reverse
 
@@ -27,21 +28,14 @@ def build_question_vote_forms(survey, data=None) -> list[dict[str, object]]:
     questions = survey.questions.all().order_by("order", "id")
 
     for question in questions:
-        decline_choice_id = (
-            question.choices.filter(is_decline_option=True)
-            .values_list("id", flat=True)
-            .first()
-        )
         question_forms.append(
             {
                 "question": question,
                 "form": SurveyVoteForm(
                     data=data,
-                    survey=survey,
                     question=question,
                     prefix=f"question_{question.id}",
                 ),
-                "decline_choice_id": decline_choice_id,
             }
         )
 
@@ -65,12 +59,11 @@ def build_survey_card_context(
             "dj_surveys:pending_skip",
             kwargs={"survey_id": survey.id},
         ),
+        "survey_decline_url": reverse(
+            "dj_surveys:pending_decline",
+            kwargs={"survey_id": survey.id},
+        ),
     }
-
-
-def build_survey_cards(user) -> list[dict[str, object]]:
-    """Build template context for every survey pending the user's response."""
-    return [build_survey_card_context(survey) for survey in get_surveys_for_user(user)]
 
 
 def build_next_survey_card(user) -> dict[str, object] | None:
@@ -82,20 +75,6 @@ def build_next_survey_card(user) -> dict[str, object] | None:
     return build_survey_card_context(survey)
 
 
-def build_pending_context(
-    user,
-    *,
-    survey: Survey | None = None,
-    question_forms: list[dict[str, object]] | None = None,
-) -> dict[str, object]:
-    """Build context for the standalone pending-survey view (single survey)."""
-    survey = survey or get_survey_for_user(user)
-    if survey is None:
-        return {"survey": None}
-
-    return build_survey_card_context(survey, question_forms=question_forms)
-
-
 def save_survey_votes(
     user,
     survey: Survey,
@@ -105,7 +84,9 @@ def save_survey_votes(
     """Save votes for a submitted survey form."""
     choice_data = form.cleaned_data["choice"]
     is_multiple = isinstance(form.fields["choice"], forms.ModelMultipleChoiceField)
-    choice_ids = [choice.id for choice in choice_data] if is_multiple else [choice_data.id]
+    choice_ids = (
+        [choice.id for choice in choice_data] if is_multiple else [choice_data.id]
+    )
 
     with transaction.atomic():
         if question:
@@ -116,9 +97,18 @@ def save_survey_votes(
 
         choices = SurveyChoice.objects.filter(id__in=choice_ids)
         for choice in choices:
-            SurveyVote(
-                survey=survey,
-                user=user,
-                choice=choice,
-                question=choice.question,
-            ).save()
+            # Each insert runs in its own savepoint so that an IntegrityError
+            # from the concurrency-race backstop (the partial unique constraint
+            # on single-choice votes) rolls back only this row without aborting
+            # the surrounding transaction. The race-loser is treated as an
+            # idempotent "already voted" rather than surfacing a 500.
+            try:
+                with transaction.atomic():
+                    SurveyVote(
+                        survey=survey,
+                        user=user,
+                        choice=choice,
+                        question=choice.question,
+                    ).save()
+            except IntegrityError:
+                continue

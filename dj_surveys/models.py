@@ -14,11 +14,7 @@ class SurveyQuerySet(models.QuerySet):
         if getattr(user, "is_staff", False) or getattr(user, "is_superuser", False):
             return self.none()
 
-        return (
-            self.exclude(votes__user=user)
-            .order_by("created_at")
-            .distinct()
-        )
+        return self.exclude(votes__user=user).order_by("created_at").distinct()
 
 
 class Survey(models.Model):
@@ -193,6 +189,19 @@ class SurveyVote(models.Model):
         related_name="votes",
         help_text="The choice selected by the user.",
     )
+    question_is_single_choice = models.BooleanField(
+        default=False,
+        editable=False,
+        help_text=(
+            "Denormalized copy of question.question_type == 'single_choice'. "
+            "Backs the partial unique constraint that enforces one vote per "
+            "user per single-choice question at the database level, because a "
+            "UniqueConstraint condition cannot reference fields on the joined "
+            "SurveyQuestion. Populated in save() and can go stale only if a "
+            "question's question_type is edited after votes exist; surveys are "
+            "designed to be immutable, so this is not expected to happen."
+        ),
+    )
     voted_at = models.DateTimeField(auto_now_add=True)
     objects = SurveyVoteQuerySet.as_manager()
 
@@ -201,6 +210,11 @@ class SurveyVote(models.Model):
             models.UniqueConstraint(
                 fields=["user", "choice"],
                 name="one_vote_per_user_per_choice",
+            ),
+            models.UniqueConstraint(
+                fields=["user", "question"],
+                condition=models.Q(question_is_single_choice=True),
+                name="one_vote_per_user_per_single_choice_question",
             ),
         ]
         ordering = ["-voted_at"]
@@ -230,9 +244,7 @@ class SurveyVote(models.Model):
 
         if self.choice.is_decline_option:
             if existing_votes.exists():
-                raise ValidationError(
-                    "Decline cannot be selected with other options."
-                )
+                raise ValidationError("Decline cannot be selected with other options.")
         elif existing_votes.filter(choice__is_decline_option=True).exists():
             raise ValidationError("Decline cannot be selected with other options.")
 
@@ -244,5 +256,10 @@ class SurveyVote(models.Model):
                 )
 
     def save(self, *args, **kwargs):
+        # Populate the denormalized flag before full_clean() so it matches the
+        # value the partial unique constraint is validated and persisted with.
+        if self.choice_id:
+            question = self.question or self.choice.question
+            self.question_is_single_choice = question.question_type == "single_choice"
         self.full_clean()
         super().save(*args, **kwargs)

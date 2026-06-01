@@ -124,7 +124,6 @@ INSTALLED_APPS = [
     "dj_pocs",
     #
     # Surveys & Polls app for collecting user feedback and conducting feature voting.
-    # Displays a modal/banner component on the dashboard using Task 08 eligibility rules.
     #
     "dj_surveys",
     #

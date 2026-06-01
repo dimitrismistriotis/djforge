@@ -10,16 +10,15 @@ class SurveyVoteForm(forms.Form):
 
     choice = forms.ModelChoiceField(
         queryset=SurveyChoice.objects.all(),
-        widget=forms.RadioSelect(),
+        widget=forms.RadioSelect(attrs={"class": "radio radio-sm radio-primary"}),
         empty_label=None,
         label="",
     )
 
-    def __init__(self, *args, survey=None, question=None, **kwargs):
-        """Initialize form with choices filtered by survey or question.
+    def __init__(self, *args, question=None, **kwargs):
+        """Initialize form with choices filtered by question.
 
         Args:
-            survey: Survey instance to filter choices by (legacy/survey-wide voting)
             question: SurveyQuestion instance to filter choices by and determine widget type
         """
         super().__init__(*args, **kwargs)
@@ -31,18 +30,13 @@ class SurveyVoteForm(forms.Form):
             if question.question_type == "multiple_choice":
                 self.fields["choice"] = forms.ModelMultipleChoiceField(
                     queryset=choices_queryset,
-                    widget=forms.CheckboxSelectMultiple(),
+                    widget=forms.CheckboxSelectMultiple(
+                        attrs={"class": "checkbox checkbox-sm checkbox-primary"},
+                    ),
                     label="",
                 )
             else:
                 self.fields["choice"].queryset = choices_queryset
-
-        elif survey:
-            # Voting on survey (legacy) — show all choices, single select
-            choices = SurveyChoice.objects.filter(
-                question__survey=survey,
-            ).order_by("question__order", "order")
-            self.fields["choice"].queryset = choices
 
     def clean_choice(self):
         """Prevent combining Decline with other multiple-choice options."""

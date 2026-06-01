@@ -54,7 +54,7 @@ class Command(BaseCommand):
             user_input = input(
                 f"\nType the survey title '{survey.title}' to confirm deletion: "
             ).strip()
-        except (KeyboardInterrupt, EOFError):
+        except KeyboardInterrupt, EOFError:
             self.stdout.write(self.style.WARNING("\n\nOperation cancelled."))
             return
 
@@ -93,7 +93,7 @@ class Command(BaseCommand):
                 use_jk_keys=False,
                 instruction="(Type to filter, arrow keys to move)",
             ).ask()
-        except (KeyboardInterrupt, EOFError):
+        except KeyboardInterrupt, EOFError:
             self.stdout.write(self.style.WARNING("\n\nOperation cancelled."))
             return None
 
