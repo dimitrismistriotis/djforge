@@ -83,6 +83,12 @@ dependencies = [
     #
     "rich>=13.7.1",
     #
+    # Questionary is a Python library for building beautiful command line interfaces.
+    # https://github.com/tmbo/questionary
+    # MIT license
+    #
+    "questionary>=2.0.0",
+    #
     # Resend Python SDK
     # https://resend.com/
     # https://github.com/resend/resend-python
@@ -207,6 +213,13 @@ dev = [
     # MIT license
     #
     "pytest-mock>=3.12.0",
+    #
+    # Indents Django HTML templates, used to format HTML files
+    # (`uv run djhtml .`, per CLAUDE.md).
+    # https://github.com/rtts/djhtml
+    # GPL-3.0 license
+    #
+    "djhtml>=3.0.6",
 
     # End of DJForge development dependencies, add yours below
 ]

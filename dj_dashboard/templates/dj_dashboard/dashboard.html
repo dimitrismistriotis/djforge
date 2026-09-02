@@ -18,8 +18,8 @@
 {% block logged_in_content %}
   {% include "dj_theme/messages.html" %}
 
-  {% if from_sign_up %}
-    <div class="grid grid-cols-1 mb-4 xl:grid-cols-1 xl:gap-4">
+  <div class="flex flex-wrap items-start gap-4 mb-4">
+    {% if from_sign_up %}
       <div class="w-100 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-base-200 dark:border-base-300">
         <a href="#">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-base-content">Post SignUp Instructions</h5>
@@ -36,10 +36,8 @@
           </svg>
         </a>
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
 
-  <div class="grid grid-cols-1 mb-4 xl:grid-cols-1 xl:gap-4">
     <div class="w-100 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-base-200 dark:border-base-300">
       <a href="https://openclaw.ai/" target="_blank">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-base-content">Sample Card Header</h5>
@@ -49,7 +47,7 @@
         OpenClaw - The AI that actually does things.
         <br />
         Clears your inbox, sends emails, manages your calendar, checks you in for flights.
-All from WhatsApp, Telegram, or any chat app you already use.
+        All from WhatsApp, Telegram, or any chat app you already use.
       </p>
 
       <a href="https://openclaw.ai/" target="_blank" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-info dark:hover:bg-info/80 dark:focus:ring-info/30">
@@ -60,4 +58,18 @@ All from WhatsApp, Telegram, or any chat app you already use.
       </a>
     </div>
   </div>
+
+  {% if survey_card %}
+    {# daisyUI toast: fixed bottom-right stack with built-in width clamp and #}
+    {# entrance animation. z-40 keeps it below the cookie consent banner (z-50). #}
+    {# Inner div caps height so tall surveys scroll on short viewports. #}
+    <section
+      class="toast toast-end toast-bottom z-40"
+      aria-label="Survey"
+    >
+      <div class="max-h-[calc(100vh-2rem)] overflow-y-auto">
+        {% include "dj_surveys/survey.html" with survey=survey_card.survey question_forms=survey_card.question_forms survey_submit_url=survey_card.survey_submit_url survey_skip_url=survey_card.survey_skip_url survey_decline_url=survey_card.survey_decline_url %}
+      </div>
+    </section>
+  {% endif %}
 {% endblock logged_in_content %}

@@ -123,6 +123,10 @@ INSTALLED_APPS = [
     #
     "dj_pocs",
     #
+    # Surveys & Polls app for collecting user feedback and conducting feature voting.
+    #
+    "dj_surveys",
+    #
     # Billing app for Stripe payment processing and subscription management
     #
     "dj_billing",
